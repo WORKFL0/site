@@ -132,34 +132,37 @@ const HeroSection = () => {
             </motion.div>
           </motion.div>
 
-          {/* Hero Image/Graphic */}
+          {/* Hero Video */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative w-full h-[500px] lg:h-[600px]">
-              {/* Placeholder for hero image - replace with actual image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 rounded-3xl shadow-2xl">
-                <div className="absolute inset-0 bg-black/10 rounded-3xl"></div>
-                {/* Network visualization placeholder */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative w-full h-full max-w-md max-h-md p-8">
-                    <div className="absolute top-1/4 left-1/4 w-16 h-16 bg-white rounded-full shadow-lg animate-pulse"></div>
-                    <div className="absolute top-1/3 right-1/4 w-12 h-12 bg-white rounded-full shadow-lg animate-pulse animation-delay-2000"></div>
-                    <div className="absolute bottom-1/4 left-1/3 w-20 h-20 bg-white rounded-full shadow-lg animate-pulse animation-delay-4000"></div>
-                    <div className="absolute bottom-1/3 right-1/3 w-14 h-14 bg-white rounded-full shadow-lg animate-pulse animation-delay-1000"></div>
-                    {/* Connection lines */}
-                    <svg className="absolute inset-0 w-full h-full" viewBox="0 0 400 400">
-                      <line x1="100" y1="100" x2="300" y2="133" stroke="white" strokeWidth="2" strokeOpacity="0.3" />
-                      <line x1="100" y1="100" x2="133" y2="300" stroke="white" strokeWidth="2" strokeOpacity="0.3" />
-                      <line x1="300" y1="133" x2="266" y2="266" stroke="white" strokeWidth="2" strokeOpacity="0.3" />
-                      <line x1="133" y1="300" x2="266" y2="266" stroke="white" strokeWidth="2" strokeOpacity="0.3" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+            <div className="relative w-full h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster="/images/video-poster.jpg"
+                className="absolute inset-0 w-full h-full object-cover"
+              >
+                {/* Serve different video sizes based on screen */}
+                <source 
+                  src="/videos/hero-video-mobile.mp4" 
+                  type="video/mp4"
+                  media="(max-width: 768px)"
+                />
+                <source 
+                  src="/videos/hero-video.mp4" 
+                  type="video/mp4"
+                />
+                {/* Fallback for browsers that don't support video */}
+                Your browser does not support the video tag.
+              </video>
+              {/* Subtle overlay for better visual integration */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-600/10 to-transparent pointer-events-none"></div>
             </div>
           </motion.div>
         </div>
