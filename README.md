@@ -140,4 +140,4 @@ GitHub Actions workflow handles:
 
 ## License
 
-© 2024 Workflo. All rights reserved.
+© 2024 Workflo. All rights reserved. 
