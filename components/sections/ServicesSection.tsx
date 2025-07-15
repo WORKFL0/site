@@ -80,8 +80,21 @@ const ServicesSection = () => {
 
   return (
     <section className="section-padding bg-white relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary-50 rounded-full filter blur-3xl opacity-30 -translate-y-1/2 translate-x-1/2"></div>
+      {/* Animated Background decorations */}
+      <div className="absolute inset-0">
+        {/* Moving circles */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200 rounded-full filter blur-xl opacity-20 animate-float"></div>
+        <div className="absolute bottom-20 right-20 w-40 h-40 bg-purple-200 rounded-full filter blur-xl opacity-20 animate-float-delayed"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-green-200 rounded-full filter blur-xl opacity-20 animate-float-slow"></div>
+        
+        {/* Floating dots */}
+        <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-primary-400 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-primary-300 rounded-full animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-2/3 right-1/3 w-4 h-4 bg-primary-500 rounded-full animate-pulse animation-delay-4000"></div>
+        
+        {/* Gradient mesh */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-primary-100 to-transparent rounded-full filter blur-3xl opacity-30 animate-spin-slow"></div>
+      </div>
       
       <div className="container mx-auto container-padding relative z-10">
         <motion.div
@@ -110,16 +123,22 @@ const ServicesSection = () => {
             <motion.div
               key={service.title}
               variants={itemVariants}
-              className="group relative"
+              className={`group relative ${index % 2 === 0 ? 'animate-float' : 'animate-float-delayed'}`}
+              style={{
+                animationDelay: `${index * 0.2}s`
+              }}
             >
               <Link href={service.href}>
-                <div className="h-full p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group-hover:border-primary-200 relative overflow-hidden">
+                <div className="h-full p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-100 group-hover:border-primary-200 relative overflow-hidden group-hover:-translate-y-2">
                   {/* Gradient background on hover */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
                   
                   {/* Icon */}
-                  <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${service.color} text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    {service.icon}
+                  <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${service.color} text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 relative`}>
+                    <div className="absolute inset-0 rounded-lg bg-white opacity-0 group-hover:opacity-20 animate-ping"></div>
+                    <div className="relative group-hover:animate-bounce">
+                      {service.icon}
+                    </div>
                   </div>
 
                   {/* Content */}
