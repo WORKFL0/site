@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  workflo_nextjs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: workflo_nextjs
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_SANITY_PROJECT_ID=${NEXT_PUBLIC_SANITY_PROJECT_ID}
+      - NEXT_PUBLIC_SANITY_DATASET=${NEXT_PUBLIC_SANITY_DATASET}
+      - SANITY_API_TOKEN=${SANITY_API_TOKEN}
+      - NEXT_PUBLIC_SITE_URL=https://nextjs.workflo.it
+    restart: unless-stopped
+    networks:
+      - workflo_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.workflo_nextjs.rule=Host(`nextjs.workflo.it`)"
+      - "traefik.http.routers.workflo_nextjs.entrypoints=websecure"
+      - "traefik.http.routers.workflo_nextjs.tls.certresolver=cloudflare"
+      - "traefik.http.services.workflo_nextjs.loadbalancer.server.port=3000"
+
+  workflo_sanity:
+    build:
+      context: ./sanity
+      dockerfile: Dockerfile
+    container_name: workflo_sanity
+    ports:
+      - "3333:3333"
+    environment:
+      - NODE_ENV=production
+      - SANITY_STUDIO_PROJECT_ID=${NEXT_PUBLIC_SANITY_PROJECT_ID}
+      - SANITY_STUDIO_DATASET=${NEXT_PUBLIC_SANITY_DATASET}
+    restart: unless-stopped
+    networks:
+      - workflo_network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.workflo_sanity.rule=Host(`sanity.workflo.it`)"
+      - "traefik.http.routers.workflo_sanity.entrypoints=websecure"
+      - "traefik.http.routers.workflo_sanity.tls.certresolver=cloudflare"
+      - "traefik.http.services.workflo_sanity.loadbalancer.server.port=3333"
+
+networks:
+  workflo_network:
+    external: true
