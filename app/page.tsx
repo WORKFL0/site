@@ -7,6 +7,7 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import CTASection from '@/components/sections/CTASection'
 
 export default function Home() {
+  // Updated: 2025-01-16
   return (
     <>
       <Header />
