@@ -208,7 +208,7 @@ export default function FlowchartQuestionnaire({ onComplete }: FlowchartQuestion
     if (nextStep === 'contact' || nextStep === 'satisfied') {
       setShowResult(nextStep)
       onComplete?.(nextStep)
-    } else {
+    } else if (typeof nextStep === 'number') {
       setHistory([...history, currentQuestionIndex])
       setCurrentQuestionIndex(nextStep - 1)
     }
