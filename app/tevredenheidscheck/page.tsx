@@ -28,7 +28,7 @@ export default function TevredenheidscheckPage() {
     } else if (nextStep === 'satisfied') {
       setResultType('satisfied');
       setShowResult(true);
-    } else {
+    } else if (typeof nextStep === 'number') {
       // Continue to next question
       setCurrentQuestionIndex(nextStep - 1); // Convert to 0-based index
     }
