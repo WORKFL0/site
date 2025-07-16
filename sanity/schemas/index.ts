@@ -3,6 +3,9 @@ import testimonial from './testimonial'
 import caseStudy from './caseStudy'
 import teamMember from './teamMember'
 import blogPost from './blogPost'
+import siteSettings from './siteSettings'
+import partner from './partner'
+import client from './client'
 
 export const schemaTypes = [
   service,
@@ -10,4 +13,7 @@ export const schemaTypes = [
   caseStudy,
   teamMember,
   blogPost,
+  siteSettings,
+  partner,
+  client,
 ]

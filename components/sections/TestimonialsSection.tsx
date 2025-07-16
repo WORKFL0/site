@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
 
-const testimonials = [
+const defaultTestimonials = [
   {
     name: 'Esther van der Plas',
     role: 'Managing Director',
@@ -31,7 +31,11 @@ const testimonials = [
   },
 ]
 
-const TestimonialsSection = () => {
+interface TestimonialsSectionProps {
+  testimonials?: typeof defaultTestimonials
+}
+
+const TestimonialsSection = ({ testimonials = defaultTestimonials }: TestimonialsSectionProps) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
