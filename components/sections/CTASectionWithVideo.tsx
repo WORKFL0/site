@@ -21,12 +21,7 @@ const CTASectionWithVideo = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-<<<<<<< HEAD
           <source src="/videos/Workflo-code-animatie.mp4" type="video/mp4" />
-=======
-          <source src="/videos/workflo-code-animation.mp4" type="video/mp4" />
-          <source src="/videos/workflo-code-animation.webm" type="video/webm" />
->>>>>>> 22d852b (Implementeer Nederlandse vertaling en website updates)
         </video>
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/50"></div>

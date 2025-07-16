@@ -122,7 +122,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-500">
-            © {currentYear} Workflo. Alle rechten voorbehouden.
+            © {currentYear} Workflo. Alle rechten voorbehouden. [TEST: v2]
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy" className="text-sm text-gray-500 hover:text-primary-400 transition-colors">
