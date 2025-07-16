@@ -3,7 +3,11 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Button from '@/components/ui/Button'
+<<<<<<< HEAD
 import { ChevronLeftIcon, CheckCircleIcon, ExclamationTriangleIcon } from '@heroicons/react/outline'
+=======
+import { ChevronLeftIcon, CheckCircleIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline'
+>>>>>>> 22d852b (Implementeer Nederlandse vertaling en website updates)
 
 const questions = [
   {
@@ -208,7 +212,11 @@ export default function FlowchartQuestionnaire({ onComplete }: FlowchartQuestion
     if (nextStep === 'contact' || nextStep === 'satisfied') {
       setShowResult(nextStep)
       onComplete?.(nextStep)
+<<<<<<< HEAD
     } else if (typeof nextStep === 'number') {
+=======
+    } else {
+>>>>>>> 22d852b (Implementeer Nederlandse vertaling en website updates)
       setHistory([...history, currentQuestionIndex])
       setCurrentQuestionIndex(nextStep - 1)
     }
