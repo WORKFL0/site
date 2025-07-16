@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import Button from '@/components/ui/Button';
-import { ChevronLeftIcon } from '@heroicons/react/24/outline';
+import { ChevronLeftIcon } from '@heroicons/react/outline';
 
 interface Question {
   id: number;

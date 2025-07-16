@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import Button from '@/components/ui/Button';
-import { EnvelopeIcon, PhoneIcon, MapPinIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
+import { EnvelopeIcon, PhoneIcon, MapPinIcon, GlobeAltIcon } from '@heroicons/react/outline';
 
 interface QuestionnaireResultProps {
   type: 'satisfied' | 'contact';
