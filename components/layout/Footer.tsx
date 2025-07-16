@@ -5,22 +5,22 @@ const Footer = () => {
 
   const footerLinks = {
     services: [
-      { name: 'Cloud Services', href: '/services/cloud' },
+      { name: 'Cloud Diensten', href: '/services/cloud' },
       { name: 'Cybersecurity', href: '/services/security' },
-      { name: 'Managed IT', href: '/services/managed-it' },
-      { name: 'IT Consulting', href: '/services/consulting' },
+      { name: 'Beheerd IT', href: '/services/managed-it' },
+      { name: 'IT Consultancy', href: '/services/consulting' },
     ],
     company: [
-      { name: 'About Us', href: '/about' },
+      { name: 'Over Ons', href: '/about' },
       { name: 'Case Studies', href: '/case-studies' },
-      { name: 'Careers', href: '/careers' },
+      { name: 'Werken bij', href: '/careers' },
       { name: 'Contact', href: '/contact' },
     ],
     industries: [
       { name: 'Marketing & Media', href: '/industries/marketing' },
       { name: 'Non-Profit', href: '/industries/non-profit' },
       { name: 'Retail', href: '/industries/retail' },
-      { name: 'Professional Services', href: '/industries/professional' },
+      { name: 'Zakelijke Dienstverlening', href: '/industries/professional' },
     ],
   }
 
@@ -39,7 +39,7 @@ const Footer = () => {
               <span className="text-xl font-bold text-white">Workflo</span>
             </div>
             <p className="text-sm mb-4 max-w-md">
-              Amsterdam's Most Trusted IT Growth Partner. We help SMEs reduce IT costs by 35% while increasing productivity through smart technology solutions.
+              Amsterdams Meest Vertrouwde IT Groeipartner. Wij helpen MKB-bedrijven IT-kosten met 35% te verlagen terwijl we de productiviteit verhogen door slimme technologische oplossingen.
             </p>
             <div className="flex space-x-4">
               <a href="https://linkedin.com/company/workflo" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 transition-colors">
@@ -57,7 +57,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Services</h3>
+            <h3 className="text-white font-semibold mb-4">Diensten</h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
@@ -71,7 +71,7 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
+            <h3 className="text-white font-semibold mb-4">Bedrijf</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
@@ -85,7 +85,7 @@ const Footer = () => {
 
           {/* Industries */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Industries</h3>
+            <h3 className="text-white font-semibold mb-4">Sectoren</h3>
             <ul className="space-y-2">
               {footerLinks.industries.map((link) => (
                 <li key={link.name}>
@@ -102,7 +102,7 @@ const Footer = () => {
         <div className="mt-8 pt-8 border-t border-gray-800">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div>
-              <span className="text-gray-500">Email:</span>{' '}
+              <span className="text-gray-500">E-mail:</span>{' '}
               <a href="mailto:info@workflo.nl" className="hover:text-primary-400 transition-colors">
                 info@workflo.nl
               </a>
@@ -122,14 +122,14 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-500">
-            © {currentYear} Workflo. All rights reserved.
+            © {currentYear} Workflo. Alle rechten voorbehouden.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy" className="text-sm text-gray-500 hover:text-primary-400 transition-colors">
-              Privacy Policy
+              Privacybeleid
             </Link>
             <Link href="/terms" className="text-sm text-gray-500 hover:text-primary-400 transition-colors">
-              Terms of Service
+              Algemene Voorwaarden
             </Link>
           </div>
         </div>

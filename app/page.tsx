@@ -4,7 +4,8 @@ import HeroSection from '@/components/sections/HeroSection'
 import ServicesSection from '@/components/sections/ServicesSection'
 import StatsSection from '@/components/sections/StatsSection'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
-import CTASection from '@/components/sections/CTASection'
+import ClientsSection from '@/components/sections/ClientsSection'
+import CTASectionWithVideo from '@/components/sections/CTASectionWithVideo'
 
 export default function Home() {
   // Updated: 2025-01-16
@@ -16,7 +17,8 @@ export default function Home() {
         <ServicesSection />
         <StatsSection />
         <TestimonialsSection />
-        <CTASection />
+        <ClientsSection />
+        <CTASectionWithVideo />
       </main>
       <Footer />
     </>

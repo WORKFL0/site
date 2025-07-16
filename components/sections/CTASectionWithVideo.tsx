@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Button from '../ui/Button'
 
-const CTASection = () => {
+const CTASectionWithVideo = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -12,17 +12,21 @@ const CTASection = () => {
 
   return (
     <section className="section-padding relative overflow-hidden">
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700"></div>
-      
-      {/* Animated background shapes */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full filter blur-3xl animate-float"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full filter blur-3xl animate-float animation-delay-4000"></div>
+      {/* Video background */}
+      <div className="absolute inset-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/workflo-code-animation.mp4" type="video/mp4" />
+          <source src="/videos/workflo-code-animation.webm" type="video/webm" />
+        </video>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
       </div>
-
-      {/* Pattern overlay */}
-      <div className="absolute inset-0 bg-grid-gray-100 [mask-image:radial-gradient(ellipse_at_center,transparent_50%,black)] opacity-10"></div>
 
       <div className="container mx-auto container-padding relative z-10">
         <motion.div
@@ -117,4 +121,4 @@ const CTASection = () => {
   )
 }
 
-export default CTASection
+export default CTASectionWithVideo

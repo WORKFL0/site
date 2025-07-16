@@ -62,7 +62,7 @@ const stats = [
     value: 4,
     suffix: '/5',
     label: 'Klanttevredenheid',
-    description: 'Op basis van 20+ reviews',
+    description: 'Op basis van 10+ reviews',
   },
 ]
 
@@ -143,7 +143,7 @@ const StatsSection = () => {
             {/* Partners carousel */}
             <div className="flex animate-scroll">
               <div className="flex items-center gap-12 px-12">
-                {['Microsoft', 'Sophos', 'Apple', 'Ubiquiti', 'Google', 'HP', 'Fortinet', 'Dell', 'Cisco', 'Ruckus', 'Adobe', 'SentinelOne', 'Proofpoint'].map((partner) => (
+                {['Microsoft', 'Apple', 'Dell', 'HP', 'Office365', 'Cisco', 'Sophos', 'Ubiquiti', 'SentinelOne', 'Fortinet', 'and many more'].map((partner) => (
                   <div key={partner} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap">
                     <span className="text-white font-medium text-lg">{partner}</span>
                   </div>
@@ -151,7 +151,7 @@ const StatsSection = () => {
               </div>
               {/* Duplicate for seamless scroll */}
               <div className="flex items-center gap-12 px-12">
-                {['Microsoft', 'Sophos', 'Apple', 'Ubiquiti', 'Google', 'HP', 'Fortinet', 'Dell', 'Cisco', 'Ruckus', 'Adobe', 'SentinelOne', 'Proofpoint'].map((partner, index) => (
+                {['Microsoft', 'Apple', 'Dell', 'HP', 'Office365', 'Cisco', 'Sophos', 'Ubiquiti', 'SentinelOne', 'Fortinet', 'and many more'].map((partner, index) => (
                   <div key={`${partner}-duplicate-${index}`} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap">
                     <span className="text-white font-medium text-lg">{partner}</span>
                   </div>
