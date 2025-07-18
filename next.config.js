@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: 'standalone', // Commented out for Vercel deployment
+  output: 'standalone', // Required for Docker deployment
   images: {
     domains: ['localhost', 'nextjs.workflo.it'],
     remotePatterns: [
