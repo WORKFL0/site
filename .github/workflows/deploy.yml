@@ -93,7 +93,7 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          cd /path/to/workflo/site
+          cd /home/workflo/site  # Update this to your actual path
           docker-compose pull
           docker-compose up -d --force-recreate
           docker system prune -f
