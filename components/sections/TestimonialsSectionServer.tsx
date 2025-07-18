@@ -1,15 +1,11 @@
-import { client, projectId } from '@/lib/sanity.client'
+import { client } from '@/lib/sanity.client'
 import { testimonialsQuery } from '@/lib/sanity.queries'
 import TestimonialsSection from './TestimonialsSection'
 
 async function getTestimonials() {
   try {
-    // Skip Sanity fetch if no valid project ID
-    if (!projectId || projectId === 'dummy-project-id' || projectId === 'your-project-id') {
-      return []
-    }
     const testimonials = await client.fetch(testimonialsQuery)
-    return testimonials
+    return testimonials || []
   } catch (error) {
     console.warn('Failed to fetch testimonials from Sanity:', error)
     return []
