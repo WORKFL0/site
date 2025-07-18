@@ -22,12 +22,12 @@ const Header = () => {
       <nav className="container mx-auto container-padding">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="relative w-12 h-12">
+          <Link href="/" className="flex items-center space-x-2 flex-shrink-0">
+            <div className="relative w-10 h-10 sm:w-12 sm:h-12 transition-all">
               <div className="absolute inset-0 bg-primary-500 rounded-lg"></div>
-              <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-xl">W</span>
+              <span className="absolute inset-0 flex items-center justify-center text-white font-bold text-lg sm:text-xl">W</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">Workflo</span>
+            <span className="text-lg sm:text-xl font-bold text-gray-900 hidden sm:block">Workflo</span>
           </Link>
 
           {/* Desktop Menu */}

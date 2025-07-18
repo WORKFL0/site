@@ -68,35 +68,67 @@ const HeroSection = () => {
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 mb-8">
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.2 }}
-                className="text-center lg:text-left"
+                initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  delay: 0.2,
+                  duration: 0.6,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ scale: 1.05 }}
+                className="text-center lg:text-left group"
               >
-                <div className="text-3xl font-bold text-primary-600">
-                  <CountUp end={35} suffix="%" />
-                </div>
-                <div className="text-sm text-gray-600">Kostenverlaging</div>
+                <motion.div 
+                  className="text-3xl font-bold text-primary-600"
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
+                >
+                  <CountUp end={35} suffix="%" duration={2500} />
+                </motion.div>
+                <div className="text-sm text-gray-600 group-hover:text-primary-600 transition-colors">Kostenverlaging</div>
               </motion.div>
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.3 }}
-                className="text-center lg:text-left"
+                initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  delay: 0.3,
+                  duration: 0.6,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ scale: 1.05 }}
+                className="text-center lg:text-left group"
               >
-                <div className="text-3xl font-bold text-primary-600">
-                  <CountUp end={95} suffix="%" />
-                </div>
-                <div className="text-sm text-gray-600">Minder Downtime</div>
+                <motion.div 
+                  className="text-3xl font-bold text-primary-600"
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, delay: 0.5 }}
+                >
+                  <CountUp end={95} suffix="%" duration={2500} />
+                </motion.div>
+                <div className="text-sm text-gray-600 group-hover:text-primary-600 transition-colors">Minder Downtime</div>
               </motion.div>
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4 }}
-                className="text-center lg:text-left"
+                initial={{ opacity: 0, y: 50, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ 
+                  delay: 0.4,
+                  duration: 0.6,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                whileHover={{ scale: 1.05 }}
+                className="text-center lg:text-left group"
               >
-                <div className="text-3xl font-bold text-primary-600">24/7</div>
-                <div className="text-sm text-gray-600">Support</div>
+                <motion.div 
+                  className="text-3xl font-bold text-primary-600"
+                  animate={{ scale: [1, 1.1, 1] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatDelay: 3, delay: 1 }}
+                >
+                  24/7
+                </motion.div>
+                <div className="text-sm text-gray-600 group-hover:text-primary-600 transition-colors">Support</div>
               </motion.div>
             </div>
 
