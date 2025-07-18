@@ -20,10 +20,6 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
   },
-  // Disable telemetry
-  telemetry: {
-    disabled: true,
-  },
 }
 
 module.exports = nextConfig
