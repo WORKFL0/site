@@ -92,7 +92,7 @@ const StatsSection = () => {
             Numbers That Speak for Themselves
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We're not just another IT provider. We're your growth partner with proven results.
+            We&apos;re not just another IT provider. We&apos;re your growth partner with proven results.
           </p>
         </motion.div>
 

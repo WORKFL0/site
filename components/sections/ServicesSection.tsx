@@ -108,7 +108,7 @@ const ServicesSection = () => {
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             From cloud migration to cybersecurity, we provide comprehensive IT solutions 
-            tailored for Amsterdam's ambitious businesses.
+            tailored for Amsterdam&apos;s ambitious businesses.
           </p>
         </motion.div>
 

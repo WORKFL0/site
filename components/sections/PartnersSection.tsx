@@ -36,7 +36,7 @@ const PartnersSection = () => {
             Partner Van
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We werken samen met 's werelds toonaangevende technologiebedrijven om u de beste oplossingen te bieden
+            We werken samen met &apos;s werelds toonaangevende technologiebedrijven om u de beste oplossingen te bieden
           </p>
         </motion.div>
 

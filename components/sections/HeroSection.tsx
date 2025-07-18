@@ -61,7 +61,7 @@ const HeroSection = () => {
             </h1>
             
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Amsterdam's SMEs trust Workflo to transform their IT from a cost center into a growth engine. 
+              Amsterdam&apos;s SMEs trust Workflo to transform their IT from a cost center into a growth engine. 
               Reduce IT costs by 35% while increasing productivity.
             </p>
 

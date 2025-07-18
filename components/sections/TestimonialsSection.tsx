@@ -88,7 +88,7 @@ const TestimonialsSection = ({ testimonials = defaultTestimonials }: Testimonial
             >
               <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 h-full flex flex-col relative overflow-hidden group-hover:scale-105">
                 {/* Quote mark */}
-                <div className="absolute top-4 right-4 text-6xl text-primary-100 font-serif">"</div>
+                <div className="absolute top-4 right-4 text-6xl text-primary-100 font-serif">&quot;</div>
                 
                 {/* Rating */}
                 <div className="flex gap-1 mb-4">
@@ -108,7 +108,7 @@ const TestimonialsSection = ({ testimonials = defaultTestimonials }: Testimonial
 
                 {/* Content */}
                 <p className="text-gray-700 mb-6 flex-grow italic">
-                  "{testimonial.content}"
+                  &quot;{testimonial.content}&quot;
                 </p>
 
                 {/* Author */}
