@@ -80,7 +80,7 @@ const defaultStats = [
   },
 ]
 
-const StatsSection = ({ stats }: StatsSectionProps = {}) => {
+const StatsSection = ({ stats, partners }: StatsSectionProps = {}) => {
   const statItems = stats ? [
     {
       value: parseInt(stats.clients) || 100,
@@ -183,7 +183,7 @@ const StatsSection = ({ stats }: StatsSectionProps = {}) => {
             {/* Partners carousel */}
             <div className="flex animate-scroll">
               <div className="flex items-center gap-12 px-12">
-                {(partners || []).map((partner) => (
+                {(partners || []).map((partner: { name: string; logoUrl: string }) => (
                   <div key={partner.name} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap flex items-center justify-center h-20 w-32">
                     {partner.logoUrl && (
                       <Image
@@ -199,7 +199,7 @@ const StatsSection = ({ stats }: StatsSectionProps = {}) => {
               </div>
               {/* Duplicate for seamless scroll */}
               <div className="flex items-center gap-12 px-12">
-                {(partners || []).map((partner, index) => (
+                {(partners || []).map((partner: { name: string; logoUrl: string }, index: number) => (
                   <div key={`${partner.name}-duplicate-${index}`} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap flex items-center justify-center h-20 w-32">
                     {partner.logoUrl && (
                       <Image
@@ -212,7 +212,6 @@ const StatsSection = ({ stats }: StatsSectionProps = {}) => {
                     )}
                   </div>
                 ))}
-              </div>
             </div>
           </div>
         </motion.div>
