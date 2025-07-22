@@ -39,7 +39,16 @@ const CountUp = ({ end, duration = 2000, suffix = '' }: CountUpProps) => {
   )
 }
 
-const stats = [
+interface StatsSectionProps {
+  stats?: {
+    clients: string
+    uptime: string
+    responseTime: string
+    satisfaction: string
+  }
+}
+
+const defaultStats = [
   {
     value: 100,
     suffix: '+',
@@ -49,24 +58,50 @@ const stats = [
   {
     value: 35,
     suffix: '%',
-    label: 'Average Cost Reduction',
-    description: 'Through smart IT optimization',
+    label: 'Kostenbesparing',
+    description: 'Door slimme IT-optimalisatie',
   },
   {
-    value: 95,
+    value: 99.9,
     suffix: '%',
-    label: 'Less Downtime',
-    description: '24/7 monitoring and support',
+    label: 'Uptime Garantie',
+    description: '24/7 monitoring en support',
   },
   {
-    value: 4,
-    suffix: '/5',
-    label: 'Klanttevredenheid',
-    description: 'Op basis van 10+ reviews',
+    value: 15,
+    suffix: ' min',
+    label: 'Gemiddelde Reactietijd',
+    description: 'Voor urgente problemen',
   },
 ]
 
-const StatsSection = () => {
+const StatsSection = ({ stats }: StatsSectionProps = {}) => {
+  const statItems = stats ? [
+    {
+      value: parseInt(stats.clients) || 100,
+      suffix: '+',
+      label: 'Bedrijven vertrouwen ons',
+      description: 'In Amsterdam en omgeving',
+    },
+    {
+      value: 35,
+      suffix: '%',
+      label: 'Kostenbesparing',
+      description: 'Door slimme IT-optimalisatie',
+    },
+    {
+      value: parseFloat(stats.uptime) || 99.9,
+      suffix: '%',
+      label: 'Uptime Garantie',
+      description: '24/7 monitoring en support',
+    },
+    {
+      value: parseInt(stats.responseTime) || 15,
+      suffix: ' min',
+      label: 'Gemiddelde Reactietijd',
+      description: 'Voor urgente problemen',
+    },
+  ] : defaultStats
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -97,7 +132,7 @@ const StatsSection = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {stats.map((stat, index) => (
+          {statItems.map((stat, index) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 20 }}
@@ -143,7 +178,7 @@ const StatsSection = () => {
             {/* Partners carousel */}
             <div className="flex animate-scroll">
               <div className="flex items-center gap-12 px-12">
-                {['Microsoft', 'Apple', 'Dell', 'HP', 'Office365', 'Cisco', 'Sophos', 'Ubiquiti', 'SentinelOne', 'Fortinet', 'and many more'].map((partner) => (
+                {['Microsoft', 'Apple', 'Office 365', 'Dell', 'HP', 'Cisco Meraki', 'Ubiquiti', 'Sophos'].map((partner) => (
                   <div key={partner} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap">
                     <span className="text-white font-medium text-lg">{partner}</span>
                   </div>
@@ -151,7 +186,7 @@ const StatsSection = () => {
               </div>
               {/* Duplicate for seamless scroll */}
               <div className="flex items-center gap-12 px-12">
-                {['Microsoft', 'Apple', 'Dell', 'HP', 'Office365', 'Cisco', 'Sophos', 'Ubiquiti', 'SentinelOne', 'Fortinet', 'and many more'].map((partner, index) => (
+                {['Microsoft', 'Apple', 'Office 365', 'Dell', 'HP', 'Cisco Meraki', 'Ubiquiti', 'Sophos'].map((partner, index) => (
                   <div key={`${partner}-duplicate-${index}`} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap">
                     <span className="text-white font-medium text-lg">{partner}</span>
                   </div>

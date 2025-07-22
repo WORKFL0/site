@@ -25,7 +25,7 @@ const defaultTestimonials = [
     name: 'Patrick Beijl',
     role: 'Commerciële Directeur',
     company: 'Winix',
-    content: 'Florian and his team are there to help. Whether it is about simple usability issues or the more serious stuff about network, servers, backup systems and security.',
+    content: 'Florian and his team are there to help. Whether it is about simple usability issues (every day life at the office) or the more serious stuff about network, servers, trustworthy backup systems and security. Workflo knows. They solve it instantly. With a smile.',
     rating: 5,
     image: '/testimonials/patrick.jpg',
   },

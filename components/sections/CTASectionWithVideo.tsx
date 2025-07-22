@@ -3,22 +3,36 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Button from '../ui/Button'
+import { useEffect, useRef } from 'react'
 
 const CTASectionWithVideo = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
+  const videoRef = useRef<HTMLVideoElement>(null)
+  
+  useEffect(() => {
+    // Force video to play on mount
+    const video = videoRef.current
+    if (video) {
+      video.play().catch(err => {
+        console.error('CTA Video autoplay failed:', err)
+      })
+    }
+  }, [])
 
   return (
     <section className="section-padding relative overflow-hidden">
       {/* Video background */}
       <div className="absolute inset-0">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
         >
           <source src="/videos/Workflo-code-animatie.mp4" type="video/mp4" />

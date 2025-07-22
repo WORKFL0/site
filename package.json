@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "verify": "node scripts/verify-build.js",
+    "build:verbose": "NEXT_TELEMETRY_DISABLED=1 next build --debug",
     "postinstall": "echo 'Dependencies installed successfully'"
   },
   "dependencies": {

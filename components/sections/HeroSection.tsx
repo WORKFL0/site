@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import Button from '../ui/Button'
 import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const CountUp = ({ end, duration = 2000, suffix = '' }: { end: number; duration?: number; suffix?: string }) => {
   const [count, setCount] = useState(0)
@@ -36,6 +36,24 @@ const CountUp = ({ end, duration = 2000, suffix = '' }: { end: number; duration?
 }
 
 const HeroSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  
+  useEffect(() => {
+    // Force video to play on mount and add debugging
+    const video = videoRef.current
+    if (video) {
+      video.play().catch(err => {
+        console.error('Video autoplay failed:', err)
+      })
+      
+      // Debug video events
+      video.addEventListener('loadstart', () => console.log('Video: loadstart'))
+      video.addEventListener('loadeddata', () => console.log('Video: loadeddata'))
+      video.addEventListener('canplay', () => console.log('Video: canplay'))
+      video.addEventListener('playing', () => console.log('Video: playing'))
+      video.addEventListener('error', (e) => console.error('Video error:', e))
+    }
+  }, [])
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
       {/* Background Pattern */}
@@ -173,11 +191,12 @@ const HeroSection = () => {
           >
             <div className="relative w-full h-[500px] lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
               <video
+                ref={videoRef}
                 autoPlay
                 loop
                 muted
                 playsInline
-                poster="/images/video-poster.jpg"
+                preload="auto"
                 className="absolute inset-0 w-full h-full object-cover"
               >
                 {/* Serve different video sizes based on screen */}

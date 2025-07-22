@@ -5,6 +5,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost'
   size?: 'sm' | 'md' | 'lg'
   href?: string
+  target?: string
+  rel?: string
   children: ReactNode
   fullWidth?: boolean
 }
@@ -13,6 +15,8 @@ const Button = ({
   variant = 'primary', 
   size = 'md', 
   href, 
+  target,
+  rel,
   children, 
   fullWidth = false,
   className = '',
@@ -36,6 +40,13 @@ const Button = ({
   const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${fullWidth ? 'w-full' : ''} ${className}`
   
   if (href) {
+    if (target === '_blank' || href.startsWith('http')) {
+      return (
+        <a href={href} target={target} rel={rel || 'noopener noreferrer'} className={classes}>
+          {children}
+        </a>
+      )
+    }
     return (
       <Link href={href} className={classes}>
         {children}

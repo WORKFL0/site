@@ -3,20 +3,27 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
-const partners = [
-  { name: 'Apple', logo: '🍎' },
+interface PartnersSectionProps {
+  partners?: Array<{
+    name: string
+    logo: string
+    description?: string
+    website?: string
+  }>
+}
+
+const defaultPartners = [
   { name: 'Microsoft', logo: '🪟' },
+  { name: 'Apple', logo: '🍎' },
+  { name: 'Office 365', logo: '📊' },
   { name: 'Dell', logo: '💻' },
   { name: 'HP', logo: '🖨️' },
-  { name: 'Cisco', logo: '🌐' },
-  { name: 'Meraki', logo: '☁️' },
-  { name: 'Fortinet', logo: '🛡️' },
-  { name: 'Ruckus', logo: '📡' },
-  { name: 'Ubiquiti', logo: '🔧' },
-  { name: 'Logitech', logo: '🖱️' },
+  { name: 'Cisco Meraki', logo: '🌐' },
+  { name: 'Ubiquiti', logo: '📡' },
+  { name: 'Sophos', logo: '🛡️' },
 ]
 
-const PartnersSection = () => {
+const PartnersSection = ({ partners = defaultPartners }: PartnersSectionProps = {}) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,

@@ -4,7 +4,17 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
 
-const clients = [
+interface ClientsSectionProps {
+  clients?: Array<{
+    name: string
+    logo: string
+    industry?: string
+    description?: string
+    website?: string
+  }>
+}
+
+const defaultClients = [
   // Based on the old site reference, these would be the clients
   // In a real implementation, you would fetch these from your CMS or API
   { name: 'Doctor Feelgood', logo: '/clients/doctor-feelgood.png' },
@@ -13,7 +23,7 @@ const clients = [
   // Add more clients as needed
 ]
 
-const ClientsSection = () => {
+const ClientsSection = ({ clients = defaultClients }: ClientsSectionProps = {}) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,

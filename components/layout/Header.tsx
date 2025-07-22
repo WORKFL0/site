@@ -9,10 +9,9 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const menuItems = [
-    { name: 'Services', href: '/services' },
-    { name: 'About', href: '/about' },
-    { name: 'Industries', href: '/industries' },
-    { name: 'Case Studies', href: '/case-studies' },
+    { name: 'Diensten', href: '/diensten' },
+    { name: 'Expertise', href: '/expertise' },
+    { name: 'Over ons', href: '/about' },
     { name: 'IT Check', href: '/tevredenheidscheck' },
     { name: 'Contact', href: '/contact' },
   ]

@@ -4,44 +4,114 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Button from '@/components/ui/Button'
 import Image from 'next/image'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import { useState } from 'react'
+import { ChevronDownIcon, CheckCircleIcon, ExclamationCircleIcon } from '@heroicons/react/24/outline'
 
 const teamMembers = [
   {
     name: 'Florian de Haan',
     role: 'CEO & Founder',
     description: 'Met meer dan 11 jaar ervaring in de MSP-wereld, leidt Florian Workflo met passie voor technologie die écht werkt.',
-    image: '/images/team/florian.jpg',
+    expertise: 'Microsoft 365, Cybersecurity, Business Strategy',
+    linkedIn: 'https://linkedin.com/in/floriandehaan',
   },
 ]
 
+// Problem-first milestones
 const milestones = [
-  { year: '2014', title: 'Opgericht', description: 'Workflo wordt geboren uit de visie om IT simpel te maken voor Amsterdamse bedrijven.' },
-  { year: '2018', title: '50+ Klanten', description: 'We bereiken onze eerste mijlpaal van 50 tevreden klanten.' },
-  { year: '2021', title: 'Cybersecurity Certificering', description: 'We worden gecertificeerd in informatieveiligheid om onze klanten beter te beschermen.' },
-  { year: '2024', title: '100+ Klanten', description: 'We vieren 10 jaar Workflo met meer dan 100 actieve klanten.' },
-  { year: '2025', title: 'Groei & Innovatie', description: 'Uitbreiding van ons team en lancering van AI-gedreven MSP services.' },
+  { 
+    year: '2014', 
+    problem: 'Ondernemers verloren uren aan IT-problemen',
+    solution: 'Workflo opgericht om IT simpel te maken',
+    result: 'Eerste 10 klanten binnen 3 maanden'
+  },
+  { 
+    year: '2018', 
+    problem: 'Bedrijven werden gehackt door gebrek aan security',
+    solution: 'Security-first aanpak geïntroduceerd',
+    result: '0 security incidenten bij onze klanten'
+  },
+  { 
+    year: '2021', 
+    problem: 'Thuiswerken werd chaos door slechte IT',
+    solution: 'Remote workplace oplossingen uitgerold',
+    result: '100% klanten succesvol hybride werken'
+  },
+  { 
+    year: '2024', 
+    problem: 'IT-kosten rijzen de pan uit',
+    solution: 'AI-tools voor kostenbesparing ingezet',
+    result: 'Gemiddeld 35% besparing voor klanten'
+  },
+]
+
+// Real client problems we've solved
+const solvedProblems = [
+  {
+    problem: 'Advocatenkantoor kon 3 dagen niet werken door ransomware',
+    solution: 'Complete security makeover + training',
+    result: '2 jaar later: 0 incidenten, ISO 27001 gecertificeerd',
+    techDetails: 'Sophos XGS firewall, EDR, security awareness training, backup strategie'
+  },
+  {
+    problem: 'E-commerce site crashte bij elke sale',
+    solution: 'Cloud migratie met auto-scaling',
+    result: '300% meer capaciteit, 50% lagere kosten',
+    techDetails: 'Azure App Service, CDN implementatie, load balancing, monitoring'
+  },
+  {
+    problem: 'Zorginstelling faalde bijna GDPR audit',
+    solution: 'Complete compliance overhaul',
+    result: 'Audit gehaald met vlag en wimpel',
+    techDetails: 'NEN 7510 implementatie, data classificatie, DLP policies'
+  },
 ]
 
 const values = [
   {
-    icon: '🚀',
-    title: 'Innovatie',
-    description: 'We blijven voorop lopen met de nieuwste technologie om onze klanten het beste te bieden.',
+    icon: '🚨',
+    problem: 'IT-problemen houden je wakker',
+    value: 'Proactief',
+    solution: 'Wij lossen problemen op voordat jij ze merkt',
   },
   {
-    icon: '🤝',
-    title: 'Partnerschap',
-    description: 'We zijn niet zomaar een leverancier, maar een echte partner in jouw groei.',
+    icon: '⏰',
+    problem: 'Uren wachten op hulp',
+    value: '15 Minuten',
+    solution: 'Gemiddelde reactietijd - omdat wachten geld kost',
   },
   {
-    icon: '⚡',
-    title: 'Snelheid',
-    description: 'Gemiddelde reactietijd van 15 minuten omdat we weten dat elke minuut telt.',
+    icon: '🎯',
+    problem: 'One-size-fits-all oplossingen',
+    value: 'Maatwerk',
+    solution: 'Elke klant krijgt een oplossing die écht past',
   },
   {
-    icon: '🛡️',
-    title: 'Betrouwbaarheid',
-    description: '99.9% uptime garantie en 24/7 monitoring voor jouw gemoedsrust.',
+    icon: '💸',
+    problem: 'Verborgen kosten en verrassingen',
+    value: 'Transparant',
+    solution: 'Vaste prijzen, geen gedoe, altijd duidelijk',
+  },
+]
+
+// Blog articles as proof points
+const proofPoints = [
+  {
+    title: 'Cisco Meraki Partner',
+    excerpt: 'Officiële partner voor enterprise wifi-oplossingen',
+    link: '/blog/cisco-meraki-partner'
+  },
+  {
+    title: 'Microsoft Prijsstijgingen Omzeilen',
+    excerpt: 'Hoe we klanten €12.000/jaar besparen',
+    link: '/blog/microsoft-savings'
+  },
+  {
+    title: '16 Miljard Wachtwoorden Beschermd',
+    excerpt: 'Onze security aanpak in de praktijk',
+    link: '/blog/password-protection'
   },
 ]
 
@@ -49,260 +119,345 @@ export default function AboutPage() {
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [storyRef, storyInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [valuesRef, valuesInView] = useInView({ triggerOnce: true, threshold: 0.1 })
-  const [milestonesRef, milestonesInView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [problemsRef, problemsInView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [expandedProblem, setExpandedProblem] = useState<number | null>(null)
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center bg-gradient-to-br from-primary-50 to-white overflow-hidden">
-        <div className="absolute inset-0 bg-grid-gray-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-        
-        <div className="container mx-auto container-padding relative z-10">
-          <motion.div
-            ref={heroRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl"
-          >
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Lokale Wortels, <span className="text-gradient">Wereldwijde Standaarden</span>
-            </h1>
-            <p className="text-xl lg:text-2xl text-gray-600 mb-8">
-              Sinds 2014 helpen we Amsterdamse bedrijven groeien met IT die gewoon werkt. 
-              Geen gedoe, geen verrassingen, gewoon betrouwbare technologie die jou vooruit helpt.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button href="/contact" size="lg">
-                Ontmoet het Team
-              </Button>
-              <Button href="/services" variant="outline" size="lg">
-                Onze Diensten
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Our Story Section */}
-      <section className="section-padding">
-        <div className="container mx-auto container-padding">
-          <motion.div
-            ref={storyRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={storyInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-8 text-center">
-              Ons Verhaal
-            </h2>
-            
-            <div className="prose prose-lg max-w-none">
-              <p className="text-gray-600 mb-6">
-                Workflo werd in 2014 opgericht door Florian de Haan vanuit een simpele maar krachtige visie: 
-                IT moet bedrijven helpen groeien, niet tegenhouden. Als ondernemer in Amsterdam zag Florian 
-                hoe veel mkb-bedrijven worstelden met technologie die niet werkte zoals beloofd.
-              </p>
-              
-              <p className="text-gray-600 mb-6">
-                Wat begon als een één-mans missie is uitgegroeid tot een team van 4 FTE professionals 
-                die dagelijks meer dan 100 Amsterdamse bedrijven ondersteunen. Van startups in Noord 
-                tot gevestigde bedrijven op de Zuidas - we kennen de unieke uitdagingen van elk district 
-                en elke sector.
-              </p>
-              
-              <p className="text-gray-600">
-                Vandaag de dag zijn we niet de grootste MSP, maar wel de meest betrokken. We geloven in 
-                persoonlijke service, snelle reactietijden en IT-oplossingen die écht werken. Omdat we 
-                weten dat achter elke IT-vraag een ondernemer zit die wil groeien.
-              </p>
-            </div>
-
-            {/* Company Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12">
-              {[
-                { value: '11+', label: 'Jaar Ervaring' },
-                { value: '100+', label: 'Tevreden Klanten' },
-                { value: '15 min', label: 'Gem. Reactietijd' },
-                { value: '99.9%', label: 'Uptime Garantie' },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={storyInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="text-4xl font-bold text-primary-500 mb-2">{stat.value}</div>
-                  <div className="text-gray-600">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Our Values Section */}
-      <section className="section-padding bg-gray-50">
-        <div className="container mx-auto container-padding">
-          <motion.div
-            ref={valuesRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={valuesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-center">
-              Onze Waarden
-            </h2>
-            <p className="text-xl text-gray-600 mb-12 text-center max-w-3xl mx-auto">
-              Deze principes sturen alles wat we doen bij Workflo
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {values.map((value, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={valuesInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow"
-                >
-                  <div className="text-5xl mb-4">{value.icon}</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Timeline Section */}
-      <section className="section-padding">
-        <div className="container mx-auto container-padding">
-          <motion.div
-            ref={milestonesRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={milestonesInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-12 text-center">
-              Onze Reis
-            </h2>
-            
-            <div className="max-w-4xl mx-auto">
-              {milestones.map((milestone, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  animate={milestonesInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`flex gap-8 mb-12 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}
-                >
-                  <div className={`flex-1 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
-                    <h3 className="text-2xl font-bold text-primary-500 mb-2">{milestone.year}</h3>
-                    <h4 className="text-xl font-semibold text-gray-900 mb-2">{milestone.title}</h4>
-                    <p className="text-gray-600">{milestone.description}</p>
-                  </div>
-                  <div className="relative">
-                    <div className="w-4 h-4 bg-primary-500 rounded-full"></div>
-                    {index < milestones.length - 1 && (
-                      <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-0.5 h-24 bg-gray-300"></div>
-                    )}
-                  </div>
-                  <div className="flex-1"></div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className="section-padding bg-gray-50">
-        <div className="container mx-auto container-padding">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-center">
-            Het Team
-          </h2>
-          <p className="text-xl text-gray-600 mb-12 text-center max-w-3xl mx-auto">
-            Ontmoet de mensen achter Workflo die elke dag hard werken om jouw IT zorgeloos te maken
-          </p>
+    <>
+      <Header />
+      <main className="pt-20">
+        {/* Hero Section - Problem First */}
+        <section className="relative min-h-[60vh] flex items-center bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+          <div className="absolute inset-0 bg-grid-gray-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
-              >
-                <div className="aspect-w-1 aspect-h-1 bg-gray-200">
-                  {/* Placeholder for team member photo */}
-                  <div className="w-full h-64 bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center">
-                    <span className="text-6xl text-white">👨‍💼</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                  <p className="text-primary-500 font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-600">{member.description}</p>
-                </div>
-              </motion.div>
-            ))}
-            
-            {/* Growing Team Card */}
+          <div className="container mx-auto px-4 relative z-10">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow text-white"
+              ref={heroRef}
+              initial={{ opacity: 0, y: 20 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl"
             >
-              <div className="h-full flex flex-col items-center justify-center p-8 text-center">
-                <span className="text-6xl mb-4">🚀</span>
-                <h3 className="text-2xl font-bold mb-3">We Groeien!</h3>
-                <p className="mb-6">
-                  We zijn op zoek naar getalenteerde professionals die ons team willen versterken.
-                </p>
-                <Button href="/careers" variant="secondary" className="bg-white text-primary-600 hover:bg-gray-100">
-                  Bekijk Vacatures
+              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                "Mijn IT-partner begrijpt me niet"
+              </h1>
+              <p className="text-xl lg:text-2xl text-gray-600 mb-8">
+                Dat horen we vaak. Daarom doen wij het anders. Workflo begrijpt ondernemers 
+                omdat we zelf ondernemers zijn. Sinds 2014 maken we IT menselijk voor 100+ 
+                Amsterdamse bedrijven.
+              </p>
+              <div className="flex flex-wrap gap-4 mb-8">
+                <span className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full">
+                  <CheckCircleIcon className="w-5 h-5" />
+                  11+ jaar ervaring
+                </span>
+                <span className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full">
+                  <CheckCircleIcon className="w-5 h-5" />
+                  100+ tevreden klanten
+                </span>
+                <span className="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full">
+                  <CheckCircleIcon className="w-5 h-5" />
+                  Lokaal & persoonlijk
+                </span>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button href="#onze-aanpak" size="lg">
+                  Ontdek Onze Aanpak
+                </Button>
+                <Button href="/contact" variant="outline" size="lg">
+                  Direct Contact
                 </Button>
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-r from-primary-500 to-primary-600">
-        <div className="container mx-auto container-padding text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
-            Klaar om Samen te Groeien?
-          </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
-            Ontdek hoe Workflo jouw bedrijf kan transformeren met IT die gewoon werkt. 
-            Geen verplichtingen, alleen een goed gesprek over jouw mogelijkheden.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              href="/contact" 
-              size="lg"
-              className="bg-white text-primary-600 hover:bg-gray-100"
+        {/* Problems We've Solved */}
+        <section className="py-20 bg-white" id="onze-aanpak">
+          <div className="container mx-auto px-4">
+            <motion.div
+              ref={problemsRef}
+              initial={{ opacity: 0, y: 20 }}
+              animate={problemsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
             >
-              Start een Gesprek
-            </Button>
-            <Button 
-              href="tel:0203080465" 
-              variant="outline" 
-              size="lg"
-              className="border-white text-white hover:bg-white hover:text-primary-600"
-            >
-              Bel Direct: 020-30 80 465
-            </Button>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-center">
+                Dit lossen we dagelijks op
+              </h2>
+              <p className="text-xl text-gray-600 mb-12 text-center max-w-3xl mx-auto">
+                Echte problemen van echte klanten - en hoe we ze hebben opgelost
+              </p>
+              
+              <div className="space-y-6">
+                {solvedProblems.map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={problemsInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-all"
+                  >
+                    <div className="grid md:grid-cols-3 gap-6">
+                      <div>
+                        <div className="flex items-start gap-3 mb-3">
+                          <ExclamationCircleIcon className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
+                          <div>
+                            <h3 className="font-semibold text-red-600 mb-1">Het probleem</h3>
+                            <p className="text-gray-700">{item.problem}</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <h3 className="font-semibold text-primary-600 mb-1">Onze oplossing</h3>
+                        <p className="text-gray-700">{item.solution}</p>
+                      </div>
+                      
+                      <div>
+                        <div className="flex items-start gap-3">
+                          <CheckCircleIcon className="w-6 h-6 text-green-500 flex-shrink-0 mt-1" />
+                          <div>
+                            <h3 className="font-semibold text-green-600 mb-1">Het resultaat</h3>
+                            <p className="text-gray-700">{item.result}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Tech details accordion */}
+                    <button
+                      onClick={() => setExpandedProblem(expandedProblem === index ? null : index)}
+                      className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 mt-4 transition-colors"
+                    >
+                      <ChevronDownIcon className={`w-4 h-4 transition-transform ${expandedProblem === index ? 'rotate-180' : ''}`} />
+                      Voor de tech-liefhebber
+                    </button>
+                    {expandedProblem === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="mt-3 p-4 bg-white rounded-lg text-sm text-gray-600"
+                      >
+                        {item.techDetails}
+                      </motion.div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        {/* Our Story - Problem Evolution */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <motion.div
+              ref={storyRef}
+              initial={{ opacity: 0, y: 20 }}
+              animate={storyInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="max-w-4xl mx-auto"
+            >
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-12 text-center">
+                Van probleem naar oplossing: onze reis
+              </h2>
+              
+              <div className="space-y-8">
+                {milestones.map((milestone, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                    animate={storyInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="bg-white rounded-2xl p-6 shadow-lg"
+                  >
+                    <div className="flex items-start gap-6">
+                      <div className="text-3xl font-bold text-primary-500 min-w-[100px]">
+                        {milestone.year}
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-red-600 font-semibold mb-2">
+                          <ExclamationCircleIcon className="w-5 h-5 inline mr-2" />
+                          {milestone.problem}
+                        </p>
+                        <p className="text-gray-700 mb-2">
+                          <span className="font-semibold">Onze actie:</span> {milestone.solution}
+                        </p>
+                        <p className="text-green-600 font-semibold">
+                          <CheckCircleIcon className="w-5 h-5 inline mr-2" />
+                          {milestone.result}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Our Values - Problem/Solution Format */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <motion.div
+              ref={valuesRef}
+              initial={{ opacity: 0, y: 20 }}
+              animate={valuesInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-center">
+                Waarom bedrijven voor ons kiezen
+              </h2>
+              <p className="text-xl text-gray-600 mb-12 text-center max-w-3xl mx-auto">
+                We begrijpen jouw frustraties - en hebben er een oplossing voor
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {values.map((value, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={valuesInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="text-center"
+                  >
+                    <div className="text-6xl mb-4">{value.icon}</div>
+                    <p className="text-sm text-red-600 mb-2 font-medium">{value.problem}</p>
+                    <h3 className="text-2xl font-bold text-primary-500 mb-3">{value.value}</h3>
+                    <p className="text-gray-600">{value.solution}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Proof Points */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-12 text-center">
+              Bewijs uit de praktijk
+            </h2>
+            
+            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+              {proofPoints.map((point, index) => (
+                <motion.a
+                  key={index}
+                  href={point.link}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all group"
+                >
+                  <h3 className="font-bold text-gray-900 mb-2 group-hover:text-primary-500 transition-colors">
+                    {point.title}
+                  </h3>
+                  <p className="text-gray-600">{point.excerpt}</p>
+                  <span className="text-primary-500 text-sm font-medium mt-3 inline-block group-hover:underline">
+                    Lees meer →
+                  </span>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Team Section */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-center">
+              Het gezicht achter Workflo
+            </h2>
+            <p className="text-xl text-gray-600 mb-12 text-center max-w-3xl mx-auto">
+              Geen anonieme helpdesk, maar mensen die je kent en vertrouwt
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {teamMembers.map((member, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
+                >
+                  <div className="aspect-w-1 aspect-h-1 bg-gradient-to-br from-primary-400 to-primary-600 h-64 flex items-center justify-center">
+                    <span className="text-6xl text-white">👨‍💼</span>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                    <p className="text-primary-500 font-medium mb-3">{member.role}</p>
+                    <p className="text-gray-600 mb-4">{member.description}</p>
+                    <p className="text-sm text-gray-500 mb-4">
+                      <span className="font-medium">Expertise:</span> {member.expertise}
+                    </p>
+                    {member.linkedIn && (
+                      <a 
+                        href={member.linkedIn}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary-500 hover:text-primary-600 text-sm font-medium"
+                      >
+                        Connect op LinkedIn →
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+              
+              {/* Team Members Coming Soon */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="bg-gray-50 rounded-2xl overflow-hidden border-2 border-dashed border-gray-300"
+              >
+                <div className="h-full flex flex-col items-center justify-center p-8 text-center">
+                  <span className="text-6xl mb-4">🚀</span>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">We groeien!</h3>
+                  <p className="text-gray-600 mb-6">
+                    Met 4 FTE en groeiend, zoeken we nieuwe collega's die net zo gedreven zijn als wij.
+                  </p>
+                  <Button href="/contact" variant="outline">
+                    Word onderdeel van het team
+                  </Button>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 bg-gradient-to-r from-primary-500 to-primary-600">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+              Stop met zorgen over IT
+            </h2>
+            <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+              Net als 100+ andere Amsterdamse bedrijven. Ontdek hoe wij IT-stress 
+              veranderen in IT-succes. Geen verplichtingen, wel eerlijk advies.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                href="/tevredenheidscheck" 
+                size="lg"
+                className="bg-white text-primary-600 hover:bg-gray-100"
+              >
+                Test je huidige IT-partner
+              </Button>
+              <Button 
+                href="tel:0203080465" 
+                variant="outline" 
+                size="lg"
+                className="border-white text-white hover:bg-white hover:text-primary-600"
+              >
+                Bel Florian: 020-30 80 465
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
   )
 }
