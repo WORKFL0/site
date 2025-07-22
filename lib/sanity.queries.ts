@@ -15,6 +15,16 @@ export const siteSettingsQuery = groq`
   }
 `
 
+// Hero Section Query
+export const heroSectionQuery = groq`
+  *[_type == "heroSection"][0]{
+    title,
+    subtitle,
+    "videoUrl": video.asset->url,
+    "mobileVideoUrl": mobileVideo.asset->url
+  }
+`
+
 // Testimonials Query
 export const testimonialsQuery = groq`
   *[_type == "testimonial" && featured == true] | order(order asc, _createdAt desc)[0...6]{

@@ -7,6 +7,8 @@ import siteSettings from './siteSettings'
 import partner from './partner'
 import client from './client'
 
+import heroSection from './heroSection'
+
 export const schemaTypes = [
   service,
   testimonial,
@@ -16,4 +18,5 @@ export const schemaTypes = [
   siteSettings,
   partner,
   client,
+  heroSection,
 ]

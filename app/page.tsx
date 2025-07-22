@@ -1,6 +1,6 @@
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import HeroSection from '@/components/sections/HeroSection'
+import HeroSectionServer from '@/components/sections/HeroSectionServer'
 import ServicesSection from '@/components/sections/ServicesSection'
 import StatsSectionServer from '@/components/sections/StatsSectionServer'
 import TestimonialsSectionServer from '@/components/sections/TestimonialsSectionServer'
@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <Header />
       <main className="pt-20">
-        <HeroSection />
+        <HeroSectionServer />
         <ServicesSection />
         <StatsSectionServer />
         <PartnersSectionServer />

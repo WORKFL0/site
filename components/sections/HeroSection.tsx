@@ -35,7 +35,7 @@ const CountUp = ({ end, duration = 2000, suffix = '' }: { end: number; duration?
   )
 }
 
-const HeroSection = () => {
+const HeroSection = ({ heroData }: { heroData: any }) => {
   const videoRef = useRef<HTMLVideoElement>(null)
   
   useEffect(() => {
@@ -75,12 +75,11 @@ const HeroSection = () => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Your IT Should <span className="text-gradient">Drive Growth</span>, Not Hold You Back
+              {heroData?.title || "Your IT Should <span className=\"text-gradient\">Drive Growth</span>, Not Hold You Back"}
             </h1>
             
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Amsterdam&apos;s SMEs trust Workflo to transform their IT from a cost center into a growth engine. 
-              Reduce IT costs by 35% while increasing productivity.
+              {heroData?.subtitle || "Amsterdam's SMEs trust Workflo to transform their IT from a cost center into a growth engine. Reduce IT costs by 35% while increasing productivity."}
             </p>
 
             {/* Stats */}
@@ -201,12 +200,12 @@ const HeroSection = () => {
               >
                 {/* Serve different video sizes based on screen */}
                 <source 
-                  src="/videos/hero-video-mobile.mp4" 
+                  src={heroData?.mobileVideoUrl}
                   type="video/mp4"
                   media="(max-width: 768px)"
                 />
                 <source 
-                  src="/videos/hero-video.mp4" 
+                  src={heroData?.videoUrl}
                   type="video/mp4"
                 />
                 {/* Fallback for browsers that don't support video */}
