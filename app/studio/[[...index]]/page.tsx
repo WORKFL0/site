@@ -1,9 +1,8 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import type { NextStudioProps } from 'next-sanity/studio'
 
-const Studio = dynamic<NextStudioProps>(
+const Studio = dynamic(
   () => import('next-sanity/studio').then((mod) => mod.NextStudio),
   { ssr: false }
 )
