@@ -1,5 +1,5 @@
 import AboutPageServer from './AboutPageServer'
 
-export default function About() {
+export default function AboutPage() {
   return <AboutPageServer />
 }
