@@ -1,20 +1,29 @@
-import { motion } from 'framer-motion';
-
 interface QuestionnaireProgressProps {
-  progress: number;
+  current: number
+  total: number
 }
 
-export default function QuestionnaireProgress({ progress }: QuestionnaireProgressProps) {
+const QuestionnaireProgress = ({ current, total }: QuestionnaireProgressProps) => {
+  const progressPercentage = (current / total) * 100
+
   return (
-    <div className="mb-10">
-      <div className="bg-gray-200 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
-        <motion.div
-          className="h-full bg-gradient-to-r from-primary-400 to-primary-500 rounded-full"
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-        />
+    <div className="p-6 border-b border-gray-200">
+      <div className="flex justify-between items-center mb-2">
+        <span className="text-sm font-medium text-gray-600">
+          Vraag {current} van de {total}
+        </span>
+        <span className="text-sm font-bold text-primary-600">
+          {Math.round(progressPercentage)}%
+        </span>
+      </div>
+      <div className="w-full bg-gray-200 rounded-full h-2.5">
+        <div
+          className="bg-primary-500 h-2.5 rounded-full transition-all duration-500 ease-out"
+          style={{ width: `${progressPercentage}%` }}
+        ></div>
       </div>
     </div>
-  );
+  )
 }
+
+export default QuestionnaireProgress

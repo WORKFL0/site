@@ -25,6 +25,19 @@ export const heroSectionQuery = groq`
   }
 `
 
+// Team Members Query
+export const teamMembersQuery = groq`
+  *[_type == "teamMember"] | order(order asc, _createdAt desc){
+    _id,
+    name,
+    role,
+    bio,
+    "imageUrl": image.asset->url,
+    email,
+    linkedin
+  }
+`
+
 // Testimonials Query
 export const testimonialsQuery = groq`
   *[_type == "testimonial" && featured == true] | order(order asc, _createdAt desc)[0...6]{
