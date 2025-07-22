@@ -199,7 +199,7 @@ export default function ServicesPage() {
                         {service.problem}
                       </h3>
                       <p className="text-lg text-gray-700 italic">
-                        "{service.emotion}"
+                        "{\service.emotion}"
                       </p>
                     </div>
 

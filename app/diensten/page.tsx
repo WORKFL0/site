@@ -178,7 +178,7 @@ export default function DienstenPage() {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary-600">6</div>
-                  .div class="text-sm text-gray-600">Specialisaties</div>
+                  <div className="text-sm text-gray-600">Specialisaties</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary-600">100%</div>
