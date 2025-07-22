@@ -2,10 +2,10 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/components/sections/HeroSection'
 import ServicesSection from '@/components/sections/ServicesSection'
-import StatsSection from '@/components/sections/StatsSection'
-import TestimonialsSection from '@/components/sections/TestimonialsSection'
-import PartnersSection from '@/components/sections/PartnersSection'
-import ClientsSection from '@/components/sections/ClientsSection'
+import StatsSectionServer from '@/components/sections/StatsSectionServer'
+import TestimonialsSectionServer from '@/components/sections/TestimonialsSectionServer'
+import PartnersSectionServer from '@/components/sections/PartnersSectionServer'
+import ClientsSectionServer from '@/components/sections/ClientsSectionServer'
 import CTASectionWithVideo from '@/components/sections/CTASectionWithVideo'
 
 export default function Home() {
@@ -16,10 +16,10 @@ export default function Home() {
       <main className="pt-20">
         <HeroSection />
         <ServicesSection />
-        <StatsSection />
-        <PartnersSection />
-        <TestimonialsSection />
-        <ClientsSection />
+        <StatsSectionServer />
+        <PartnersSectionServer />
+        <TestimonialsSectionServer />
+        <ClientsSectionServer />
         <CTASectionWithVideo />
       </main>
       <Footer />
