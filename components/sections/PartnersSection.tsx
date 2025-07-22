@@ -6,21 +6,21 @@ import { useInView } from 'react-intersection-observer'
 interface PartnersSectionProps {
   partners?: Array<{
     name: string
-    logo: string
+    logoUrl: string
     description?: string
     website?: string
   }>
 }
 
 const defaultPartners = [
-  { name: 'Microsoft', logo: '🪟' },
-  { name: 'Apple', logo: '🍎' },
-  { name: 'Office 365', logo: '📊' },
-  { name: 'Dell', logo: '💻' },
-  { name: 'HP', logo: '🖨️' },
-  { name: 'Cisco Meraki', logo: '🌐' },
-  { name: 'Ubiquiti', logo: '📡' },
-  { name: 'Sophos', logo: '🛡️' },
+  { name: 'Microsoft', logoUrl: '/logos/microsoft.png' },
+  { name: 'Apple', logoUrl: '/logos/apple.png' },
+  { name: 'Office 365', logoUrl: '/logos/office365.png' },
+  { name: 'Dell', logoUrl: '/logos/dell.png' },
+  { name: 'HP', logoUrl: '/logos/hp.png' },
+  { name: 'Cisco Meraki', logoUrl: '/logos/cisco-meraki.png' },
+  { name: 'Ubiquiti', logoUrl: '/logos/ubiquiti.png' },
+  { name: 'Sophos', logoUrl: '/logos/sophos.png' },
 ]
 
 const PartnersSection = ({ partners = defaultPartners }: PartnersSectionProps = {}) => {
@@ -64,7 +64,14 @@ const PartnersSection = ({ partners = defaultPartners }: PartnersSectionProps = 
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow p-8 w-48 h-32 flex flex-col items-center justify-center">
-                  <div className="text-4xl mb-2">{partner.logo}</div>
+                  <div className="relative w-24 h-24 mb-2">
+                    <Image
+                      src={partner.logoUrl}
+                      alt={partner.name}
+                      fill
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </div>
                   <p className="text-gray-700 font-semibold">{partner.name}</p>
                 </div>
               </motion.div>

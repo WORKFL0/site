@@ -33,7 +33,7 @@ export default function ContactPage() {
         window.hbspt.forms.create({
           region: "eu1",
           portalId: "143658118",
-          formId: "c8cf93d5-81c1-4e89-899f-f4c009b67479",
+          formId: "1rP7I-sWWT-CqFO1L9Ctvcwfs7tc",
           target: "#hubspot-form-container",
           onFormReady: () => {
             // Style the HubSpot form to match our design
