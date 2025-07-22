@@ -28,5 +28,5 @@ export default async function StatsSectionServer() {
     satisfaction: settings.customerSatisfaction || '98%'
   }
   
-  return <StatsSection stats={stats} />
+  return <StatsSection stats={stats} partners={settings.partners} />
 }

@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 interface CountUpProps {
   end: number
@@ -182,17 +183,33 @@ const StatsSection = ({ stats }: StatsSectionProps = {}) => {
             {/* Partners carousel */}
             <div className="flex animate-scroll">
               <div className="flex items-center gap-12 px-12">
-                {['Microsoft', 'Apple', 'Office 365', 'Dell', 'HP', 'Cisco Meraki', 'Ubiquiti', 'Sophos'].map((partner) => (
-                  <div key={partner} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap">
-                    <span className="text-white font-medium text-lg">{partner}</span>
+                {(partners || []).map((partner) => (
+                  <div key={partner.name} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap flex items-center justify-center h-20 w-32">
+                    {partner.logoUrl && (
+                      <Image
+                        src={partner.logoUrl}
+                        alt={partner.name}
+                        width={80}
+                        height={40}
+                        style={{ objectFit: 'contain' }}
+                      />
+                    )}
                   </div>
                 ))}
               </div>
               {/* Duplicate for seamless scroll */}
               <div className="flex items-center gap-12 px-12">
-                {['Microsoft', 'Apple', 'Office 365', 'Dell', 'HP', 'Cisco Meraki', 'Ubiquiti', 'Sophos'].map((partner, index) => (
-                  <div key={`${partner}-duplicate-${index}`} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap">
-                    <span className="text-white font-medium text-lg">{partner}</span>
+                {(partners || []).map((partner, index) => (
+                  <div key={`${partner.name}-duplicate-${index}`} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap flex items-center justify-center h-20 w-32">
+                    {partner.logoUrl && (
+                      <Image
+                        src={partner.logoUrl}
+                        alt={partner.name}
+                        width={80}
+                        height={40}
+                        style={{ objectFit: 'contain' }}
+                      />
+                    )}
                   </div>
                 ))}
               </div>
