@@ -233,7 +233,7 @@ export default function DienstenPage() {
                     {/* Solution */}
                     <div className="mb-6">
                       <p className="text-lg font-medium text-gray-900 mb-2 italic">
-                        "{industry.emotion}"
+                        {`"${industry.emotion}"`}
                       </p>
                       <p className="text-gray-600">
                         {industry.solution}
