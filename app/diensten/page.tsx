@@ -182,7 +182,7 @@ export default function DienstenPage() {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-primary-600">100%</div>
-                  <div class="text-sm text-gray-600">Branche-kennis</div>
+                  <div className="text-sm text-gray-600">Branche-kennis</div>
                 </div>
               </motion.div>
             </motion.div>
