@@ -1,12 +1,12 @@
-const { defineConfig } = require('sanity')
-const { deskTool } = require('sanity/desk')
-const { visionTool } = require('@sanity/vision')
-const { schemaTypes } = require('./sanity/schemas')
+import { defineConfig } from 'sanity'
+import { deskTool } from 'sanity/desk'
+import { visionTool } from '@sanity/vision'
+import { schemaTypes } from './sanity/schemas'
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'dummy-project'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 
-module.exports = defineConfig({
+export default defineConfig({
   name: 'default',
   title: 'Workflo Website',
   projectId,
