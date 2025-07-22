@@ -158,5 +158,30 @@ export default {
         },
       ],
     },
+    {
+      name: 'partners',
+      title: 'Partners',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'name',
+              title: 'Partner Naam',
+              type: 'string',
+            },
+            {
+              name: 'logo',
+              title: 'Logo',
+              type: 'image',
+              options: {
+                hotspot: true,
+              },
+            },
+          ],
+        },
+      ],
+    },
   ],
 }

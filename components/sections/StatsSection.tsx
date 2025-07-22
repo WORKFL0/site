@@ -46,24 +46,28 @@ interface StatsSectionProps {
     responseTime: string
     satisfaction: string
   }
+  partners?: Array<{
+    name: string
+    logoUrl: string
+  }>
 }
 
 const defaultStats = [
   {
     value: 100,
-    suffix: '+',
+    suffix: '+’,
     label: 'Bedrijven vertrouwen ons',
     description: 'In Amsterdam en omgeving',
   },
   {
     value: 35,
-    suffix: '%',
+    suffix: '%’,
     label: 'Kostenbesparing',
     description: 'Door slimme IT-optimalisatie',
   },
   {
     value: 99.9,
-    suffix: '%',
+    suffix: '%’,
     label: 'Uptime Garantie',
     description: '24/7 monitoring en support',
   },

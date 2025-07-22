@@ -11,7 +11,11 @@ export const siteSettingsQuery = groq`
     stats,
     numberOfClients,
     numberOfReviews,
-    ctaSection
+    ctaSection,
+    partners[]{
+      name,
+      "logoUrl": logo.asset->url
+    }
   }
 `
 
