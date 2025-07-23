@@ -5,6 +5,7 @@ import ServicesSection from '@/components/sections/ServicesSection'
 import StatsSectionServer from '@/components/sections/StatsSectionServer'
 import TestimonialsSectionServer from '@/components/sections/TestimonialsSectionServer'
 import PartnersSectionServer from '@/components/sections/PartnersSectionServer'
+import BrandPartnersSection from '@/components/sections/BrandPartnersSection'
 import ClientsSectionServer from '@/components/sections/ClientsSectionServer'
 import NewsSection from '@/components/sections/NewsSection'
 import CTASectionWithVideo from '@/components/sections/CTASectionWithVideo'
@@ -19,6 +20,7 @@ export default function Home() {
         <ServicesSection />
         <StatsSectionServer />
         <PartnersSectionServer />
+        <BrandPartnersSection />
         <TestimonialsSectionServer />
         <ClientsSectionServer />
         <NewsSection />

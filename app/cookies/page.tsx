@@ -121,7 +121,7 @@ export default function CookiePolicyPage() {
                     <strong>Workflo B.V.</strong><br />
                     E-mail: <a href="mailto:privacy@workflo.nl" className="text-primary-600 hover:text-primary-700">privacy@workflo.nl</a><br />
                     Telefoon: <a href="tel:0203080465" className="text-primary-600 hover:text-primary-700">020-30 80 465</a><br />
-                    Adres: Koivistokade 3, 1013 AM Amsterdam
+                    Adres: Koivistokade 3, 1013AC Amsterdam
                   </p>
                 </div>
 

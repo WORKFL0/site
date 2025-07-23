@@ -36,10 +36,10 @@ const PartnersSection = ({ partners = defaultPartners }: PartnersSectionProps = 
           className="text-center mb-12"
         >
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Partner Van
+            Partners met
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We werken samen met &apos;s werelds toonaangevende technologiebedrijven om u de beste oplossingen te bieden
+            We werken samen met Nederlands toonaangevende bedrijven en instanties om jou de beste oplossingen te kunnen bieden
           </p>
         </motion.div>
 

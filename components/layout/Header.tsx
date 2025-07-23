@@ -4,15 +4,18 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useLanguage } from '@/contexts/LanguageContext'
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { t } = useLanguage()
 
   const menuItems = [
-    { name: 'Diensten', href: '/diensten' },
-    { name: 'Expertise', href: '/expertise' },
-    { name: 'Over ons', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: t.nav.services, href: '/diensten' },
+    { name: t.nav.expertise, href: '/expertise' },
+    { name: t.nav.about, href: '/about' },
+    { name: t.nav.contact, href: '/contact' },
   ]
 
   return (
@@ -42,20 +45,19 @@ const Header = () => {
           </div>
 
           {/* CTA Buttons */}
-          <div className="hidden md:flex items-center space-x-4">
-            <a
-              href="https://store.workflo.nl"
-              target="_blank"
-              rel="noopener noreferrer"
+          <div className="hidden md:flex items-center space-x-3">
+            <LanguageSwitcher />
+            <Link
+              href="/shop"
               className="px-4 py-2.5 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors font-medium flex items-center gap-2"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
-              Store
-            </a>
+              {t.nav.store}
+            </Link>
             <a
-              href="https://web.teamviewer.com"
+              href="https://get.teamviewer.com/workflo-support"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center gap-2"
@@ -63,13 +65,13 @@ const Header = () => {
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M10 2v2.26l2 1.33V2h10v10h-4.59l1.33 2H22V2H10zM2 4v16h16v-7.59l2-1.33V22H0V4h2zm7.59 4l-2-2H4v10h10v-3.59l-2-2v1.59H8V8zM10 8.91V12h3.09L10 8.91z"/>
               </svg>
-              Support
+              {t.nav.support}
             </a>
             <Link
               href="/tevredenheidscheck"
               className="px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors font-medium"
             >
-              Start IT Health Check
+              {t.nav.startHealthCheck}
             </Link>
           </div>
 
@@ -105,8 +107,11 @@ const Header = () => {
               </Link>
             ))}
             <div className="flex flex-col gap-3 mt-4">
+              <div className="flex justify-center mb-2">
+                <LanguageSwitcher />
+              </div>
               <a
-                href="https://web.teamviewer.com"
+                href="https://get.teamviewer.com/workflo-support"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-center flex items-center justify-center gap-2"
@@ -115,14 +120,14 @@ const Header = () => {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M10 2v2.26l2 1.33V2h10v10h-4.59l1.33 2H22V2H10zM2 4v16h16v-7.59l2-1.33V22H0V4h2zm7.59 4l-2-2H4v10h10v-3.59l-2-2v1.59H8V8zM10 8.91V12h3.09L10 8.91z"/>
                 </svg>
-                Support
+                {t.nav.support}
               </a>
               <Link
                 href="/tevredenheidscheck"
                 className="block px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors font-medium text-center"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Start IT Health Check
+                {t.nav.startHealthCheck}
               </Link>
             </div>
           </motion.div>

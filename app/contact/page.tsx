@@ -219,7 +219,7 @@ export default function ContactPage() {
                         <p className="text-gray-900 font-medium">Workflo Amsterdam</p>
                         <p className="text-gray-600">
                           Koivistokade 3<br />
-                          1013 AM Amsterdam<br />
+                          1013AC Amsterdam<br />
                           Nederland
                         </p>
                       </div>

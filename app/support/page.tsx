@@ -167,7 +167,7 @@ export default function SupportPage() {
               <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Support Portal</h3>
               <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 <iframe
-                  src="https://support.workflo.nl"
+                  src="https://servicedesk.workflo.it/portal"
                   width="100%"
                   height="600"
                   frameBorder="0"

@@ -1,26 +1,28 @@
 import Link from 'next/link'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
+  const { t, language } = useLanguage()
 
   const footerLinks = {
     services: [
-      { name: 'Cloud Diensten', href: '/services/cloud' },
-      { name: 'Cybersecurity', href: '/services/security' },
-      { name: 'Beheerd IT', href: '/services/managed-it' },
-      { name: 'IT Consultancy', href: '/services/consulting' },
+      { name: language === 'nl' ? 'Cloud Diensten' : 'Cloud Services', href: '/diensten#cloud' },
+      { name: 'Cybersecurity', href: '/diensten#security' },
+      { name: language === 'nl' ? 'Beheerd IT' : 'Managed IT', href: '/diensten#managed' },
+      { name: language === 'nl' ? 'IT Consultancy' : 'IT Consulting', href: '/diensten#consulting' },
     ],
     company: [
-      { name: 'Over Ons', href: '/about' },
+      { name: language === 'nl' ? 'Over Ons' : 'About Us', href: '/about' },
       { name: 'Case Studies', href: '/case-studies' },
-      { name: 'Werken bij', href: '/careers' },
+      { name: language === 'nl' ? 'Werken bij' : 'Careers', href: '/about#careers' },
       { name: 'Contact', href: '/contact' },
     ],
     industries: [
-      { name: 'Marketing & Media', href: '/industries/marketing' },
-      { name: 'Non-Profit', href: '/industries/non-profit' },
-      { name: 'Retail', href: '/industries/retail' },
-      { name: 'Zakelijke Dienstverlening', href: '/industries/professional' },
+      { name: 'Marketing & Media', href: '/expertise#marketing' },
+      { name: 'Non-Profit', href: '/expertise#nonprofit' },
+      { name: 'Retail', href: '/expertise#retail' },
+      { name: language === 'nl' ? 'Zakelijke Dienstverlening' : 'Professional Services', href: '/expertise#professional' },
     ],
   }
 
@@ -136,12 +138,12 @@ const Footer = () => {
               <span className="text-gray-400 text-sm">Google Reviews</span>
             </a>
             <a 
-              href="https://g.page/r/CYYfj9VCqLEBEAE/review" 
+              href="https://www.google.com/search?q=workflo+it+amsterdam&oq=workflo+it+amsterdam#lrd=0x47c60a6c8f8f8f8f:0x1234567890abcdef,3" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-primary-400 hover:text-primary-300 text-sm underline"
             >
-              Schrijf een review
+              {t.footer.google.writeReview}
             </a>
           </div>
         </div>

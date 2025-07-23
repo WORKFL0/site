@@ -35,27 +35,27 @@ END OF COMPLETED TASKS -->
 
 ## REMAINING TASKS:
 
-[] - get rid of iso27001 at the first part, ISO 27001 Certified - Microsoft Partner (not sure what to put there instead)
+[X] - get rid of iso27001 at the first part, ISO 27001 Certified - Microsoft Partner (not sure what to put there instead)
 
 [] - translation isn't implemented and some parts are dutch and some are english
 
-[] - change the collor schema to moostly use yellow, black and gray like the old website: https://workflo.it
+[X] - change the collor schema to moostly use yellow, black and gray like the old website: https://workflo.it
 
 [] - missing content would be a part about the team with Florian, Nam-Hoon, Mas and Marcello
 
-[] - Twitter link is not correct: https://x.com/workflo_it
-
-[] - Onze partners should be diffrent then partners with, our partners would be: VoizeXL, ROC Amsterdam, Microsoft, Halo, 
+[X] - Twitter link is not correct: https://x.com/workflo_it
 
 [] - Can you add the logos of the reviewers?
 
-[] - link: Lees meer succesverhalen doesnt work
+[X] - link: Lees meer succesverhalen doesnt work
 
 [] - Wij Hebben Gewerkt Voor isnt looking that good, does are not correct, please check at: https://workflo.it/over-ons/onze-klanten/ 
 
 [] - I would like a download support tool button somewhere pointing to: https://get.teamviewer.com/workflo-support
 
-[] - make a coockie policy that in line with dutch laws (GDPR/AVG)
+[X] - make a coockie policy that in line with dutch laws (GDPR/AVG)
+
+[] - can you make the coockie policy something people have to accept or reject?
 
 [] - Add a support section to our ticketsystem: https://servicedesk.workflo.it/portal I think it would be best if you don't leave the page so with a iframe or something like it.
 
@@ -64,7 +64,7 @@ END OF COMPLETED TASKS -->
 [] - the hubspot contact form is not working, it only says: Verstuur een Bericht
 Vul het formulier in en we nemen binnen 24 uur contact met je op. Voor urgente zaken kun je ons direct bellen. 
 
-[] - i like the "it check" but not twice as a menu item. i like the big button.
+[X] - i like the "it check" but not twice as a menu item. i like the big button.
 
 [] - i added a folder with some grapics that i would like you to use in the root
 
@@ -72,8 +72,36 @@ Vul het formulier in en we nemen binnen 24 uur contact met je op. Voor urgente z
 
 [] - google bussiness intergration, what do we need todo?
 
-[] - https://nextsite.workflo.it/case-studies gives a 404 page
+[X] - https://nextsite.workflo.it/case-studies gives a 404 page
 
 [] - more logos and grapichs please. And make them scalleble
 
 [] - please also include: npm i @vercel/analytics   
+
+[] - nl - en button and translation is still not working
+
+[] - address is not right everywhere: Koivistokade 3, 1013AC Amsterdam
+
+[] - still no translation everywhere and nl is mixed with en. Please make this consistant
+
+[] - shop is not working or linking to the right website, besides i would like to use a iframe or something that makes it look like your not leaving the workflo site.
+
+[] - support is linking to the wrong site! It needs to be: "https://get.teamviewer.com/workflo-support"
+
+[] - partner of and partner for are mixed the wrong way around. It should be:
+Partners met:
+We werken samen met Nederlands toonaangevende bedrijven en instanties om jou de beste oplossingen te kunnen bieden
+Partners van:
+De merken: x y z
+
+[] - I'm missing the iframe to our ticket servericedesk
+
+[] - moost of the links in the footer dont work like: all diensten, werken bij, All sectoren, 
+
+[] - schrijf een review leads to google but not where you can leave a review, please use the right link
+
+[] - to book an apoint ment you can use this booking link: https://outlook.office.com/book/PlaneenafspraakmeteenITengineer@workflo.nl/?ismsaljsauthenabled
+iframe would be the best:
+<iframe src='https://outlook.office.com/book/PlaneenafspraakmeteenITengineer@workflo.nl/?ismsaljsauthenabled' width='100%' height='100%' scrolling='yes' style='border:0'></iframe>
+
+
