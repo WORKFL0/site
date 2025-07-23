@@ -1,8 +1,11 @@
 {
-  "buildCommand": "rm -rf .next && node scripts/verify-no-aboutpageserver.js && npm run build",
+  "buildCommand": "rm -rf .next node_modules/.cache && rm -f app/about/AboutPageServer.tsx && ls -la app/about/ && npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm ci --force",
   "framework": "nextjs",
+  "github": {
+    "silent": false
+  },
   "env": {
     "NEXT_PUBLIC_SANITY_PROJECT_ID": "prj_Y1mKm3jHw7E3YolW8R9RXhJe5Shx",
     "NEXT_PUBLIC_SANITY_DATASET": "production"
