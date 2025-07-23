@@ -186,7 +186,28 @@ export const translations = {
       rejectAll: 'Weiger alle',
       showDetails: 'Toon details',
       hideDetails: 'Verberg details',
-    }
+    },
+    // Partners Sections
+    partners: {
+      met: {
+        title: 'Partners met',
+        subtitle: 'We werken samen met Nederlands toonaangevende bedrijven en instanties om jou de beste oplossingen te kunnen bieden',
+      },
+      van: {
+        title: 'Partners van',
+        subtitle: 'De merken waar we trots op zijn om mee samen te werken',
+      },
+    },
+    // Clients Section
+    clients: {
+      title: 'Wij Hebben Gewerkt Voor',
+      subtitle: 'Trotse partner van meer dan 100+ bedrijven in Amsterdam en omgeving',
+      stats: {
+        satisfiedClients: 'Tevreden Klanten',
+        yearsExperience: 'Jaar Ervaring',
+        supportAvailable: 'Support Beschikbaar',
+      },
+    },
   },
   en: {
     // Navigation
@@ -375,7 +396,28 @@ export const translations = {
       rejectAll: 'Reject all',
       showDetails: 'Show details',
       hideDetails: 'Hide details',
-    }
+    },
+    // Partners Sections
+    partners: {
+      met: {
+        title: 'Partners with',
+        subtitle: 'We collaborate with leading Dutch companies and institutions to provide you with the best solutions',
+      },
+      van: {
+        title: 'Partners of',
+        subtitle: 'The brands we are proud to work with',
+      },
+    },
+    // Clients Section
+    clients: {
+      title: 'We Have Worked For',
+      subtitle: 'Proud partner of over 100+ companies in Amsterdam and surrounding areas',
+      stats: {
+        satisfiedClients: 'Satisfied Clients',
+        yearsExperience: 'Years of Experience',
+        supportAvailable: 'Support Available',
+      },
+    },
   }
 }
 

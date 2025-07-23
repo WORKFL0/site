@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 interface ClientsSectionProps {
   clients?: Array<{
@@ -26,6 +27,7 @@ const defaultClients = [
 ]
 
 const ClientsSection = ({ clients = defaultClients }: ClientsSectionProps = {}) => {
+  const { t } = useLanguage()
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -42,10 +44,10 @@ const ClientsSection = ({ clients = defaultClients }: ClientsSectionProps = {}) 
           className="text-center mb-12"
         >
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Wij Hebben Gewerkt Voor
+            {t.clients.title}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Trotse partner van meer dan 100+ bedrijven in Amsterdam en omgeving
+            {t.clients.subtitle}
           </p>
         </motion.div>
 
@@ -86,15 +88,15 @@ const ClientsSection = ({ clients = defaultClients }: ClientsSectionProps = {}) 
         >
           <div className="text-center">
             <div className="text-4xl font-bold text-primary-600 mb-2">100+</div>
-            <div className="text-gray-600">Tevreden Klanten</div>
+            <div className="text-gray-600">{t.clients.stats.satisfiedClients}</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-primary-600 mb-2">15+</div>
-            <div className="text-gray-600">Jaar Ervaring</div>
+            <div className="text-gray-600">{t.clients.stats.yearsExperience}</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-primary-600 mb-2">24/7</div>
-            <div className="text-gray-600">Support Beschikbaar</div>
+            <div className="text-gray-600">{t.clients.stats.supportAvailable}</div>
           </div>
         </motion.div>
       </div>

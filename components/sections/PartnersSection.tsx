@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 interface PartnersSectionProps {
   partners?: Array<{
@@ -20,6 +21,7 @@ const defaultPartners = [
 ]
 
 const PartnersSection = ({ partners = defaultPartners }: PartnersSectionProps = {}) => {
+  const { t } = useLanguage()
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -36,10 +38,10 @@ const PartnersSection = ({ partners = defaultPartners }: PartnersSectionProps = 
           className="text-center mb-12"
         >
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Partners met
+            {t.partners.met.title}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We werken samen met Nederlands toonaangevende bedrijven en instanties om jou de beste oplossingen te kunnen bieden
+            {t.partners.met.subtitle}
           </p>
         </motion.div>
 

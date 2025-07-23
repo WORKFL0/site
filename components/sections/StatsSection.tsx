@@ -136,41 +136,6 @@ const StatsSection = ({ stats }: StatsSectionProps = {}) => {
           ))}
         </div>
 
-        {/* Partners carousel */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-16"
-        >
-          <div className="text-center mb-8">
-            <div className="text-gray-400 text-sm mb-2">{t.stats.partners}</div>
-          </div>
-          <div className="relative overflow-hidden">
-            {/* Gradient overlays for fade effect */}
-            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-gray-900 to-transparent z-10"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-gray-900 to-transparent z-10"></div>
-            
-            {/* Partners carousel */}
-            <div className="flex animate-scroll">
-              <div className="flex items-center gap-12 px-12">
-                {['Microsoft', 'Apple', 'Office 365', 'Dell', 'HP', 'Cisco Meraki', 'Ubiquiti', 'Sophos'].map((partner) => (
-                  <div key={partner} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap">
-                    <span className="text-white font-medium text-lg">{partner}</span>
-                  </div>
-                ))}
-              </div>
-              {/* Duplicate for seamless scroll */}
-              <div className="flex items-center gap-12 px-12">
-                {['Microsoft', 'Apple', 'Office 365', 'Dell', 'HP', 'Cisco Meraki', 'Ubiquiti', 'Sophos'].map((partner, index) => (
-                  <div key={`${partner}-duplicate-${index}`} className="bg-white/10 backdrop-blur-sm rounded-lg px-8 py-4 border border-white/20 whitespace-nowrap">
-                    <span className="text-white font-medium text-lg">{partner}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   )

@@ -125,7 +125,7 @@ const Footer = () => {
           {/* Google Business Reviews */}
           <div className="mt-6 flex flex-col md:flex-row items-center gap-4">
             <a 
-              href="https://www.google.com/maps/place/Workflo" 
+              href="https://www.google.com/maps/place/Workflo+B.V./@52.3849609,4.888629,17z/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-gray-800 px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
@@ -140,7 +140,7 @@ const Footer = () => {
               <span className="text-gray-400 text-sm">Google Reviews</span>
             </a>
             <a 
-              href="https://www.google.com/search?q=workflo+it+amsterdam&oq=workflo+it+amsterdam#lrd=0x47c60a6c8f8f8f8f:0x1234567890abcdef,3" 
+              href="https://g.page/r/CVLBg-DQ8Q0mEBM/review" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-primary-400 hover:text-primary-300 text-sm underline"
