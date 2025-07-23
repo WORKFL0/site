@@ -1,0 +1,44 @@
+{
+  "name": "workflo-website",
+  "version": "1.0.0",
+  "description": "The public marketing website for Workflo",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@sanity/cli": "^3.71.1",
+    "@sanity/types": "^4.1.1",
+    "@sanity/vision": "^3.71.1",
+    "@types/node": "^22.9.0",
+    "@types/react": "^18.3.12",
+    "autoprefixer": "^10.4.20",
+    "next": "^14.2.15",
+    "next-sanity": "^10.0.3",
+    "postcss": "^8.4.49",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-is": "^19.1.0",
+    "sanity": "^3.71.1",
+    "styled-components": "^6.1.19",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.15"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WORKFL0/site.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/WORKFL0/site/issues"
+  },
+  "homepage": "https://github.com/WORKFL0/site#readme"
+}

@@ -1,77 +1,53 @@
-# Home Assistant - Sensitive Files
-HomeAssistant/secrets.yaml
-HomeAssistant/known_devices.yaml
-HomeAssistant/.HA_VERSION
-HomeAssistant/.uuid
-HomeAssistant/home-assistant.log*
-HomeAssistant/home-assistant_v2.db*
-HomeAssistant/zigbee.db*
-HomeAssistant/pyozw.sqlite*
-HomeAssistant/.storage/
-HomeAssistant/deps/
-HomeAssistant/tts/
-HomeAssistant/.cloud/
-
-# Keep template but not actual secrets
-!HomeAssistant/secrets.yaml.template
-
-# Cyberduck - Contains WordPress sites with potential sensitive data
-Cyberduck/
-
-# Node-RED - Flows may contain credentials (reference copy only)
-node-red/
-HomeAssistant/node-red/
-
-# System Files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# IDE/Editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
 # Logs
+logs
 *.log
-*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Temporary files
-*.tmp
-*.temp
-tmp/
-temp/
+node_modules
+dist
+dist-ssr
+*.local
 
-# Backup files
-*.backup
-*.bak
-backup/
-backups/
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
-# Database files
-*.db
-*.sqlite
-*.sqlite3
+# Next.js
+/.next/
+/out/
 
-# Certificate files
+# production
+/build
+
+# misc
+.DS_Store
 *.pem
-*.key
-*.crt
-*.cert
 
-# Environment files
-.env
-.env.local
-.env.*.local
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# Security and analysis reports (optional - you may want to keep these)
-SECURITY_ANALYSIS_REPORT.md
-CREDENTIAL_ROTATION_CHECKLIST.md
-emergency_cleanup.sh
-FINAL_SECURITY_STATUS_REPORT.md
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Sanity
+/.sanity
