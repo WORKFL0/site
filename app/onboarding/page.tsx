@@ -48,8 +48,8 @@ export default function OnboardingPage() {
                 height="800px" 
                 src="https://forms.office.com/e/VTeqZDGwXZ?embed=true" 
                 frameBorder="0" 
-                marginWidth="0" 
-                marginHeight="0" 
+                marginWidth={0} 
+                marginHeight={0} 
                 style={{ border: 'none', maxWidth:'100%', maxHeight:'100vh' }} 
                 allowFullScreen 
                 webkitallowfullscreen="true" 
