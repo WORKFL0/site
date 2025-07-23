@@ -1,5 +1,5 @@
 {
-  "buildCommand": "rm -rf app/about/AboutPageServer.tsx && ls -la app/about/ && npm run build",
+  "buildCommand": "npm run vercel-build",
   "outputDirectory": ".next",
   "installCommand": "npm ci",
   "framework": "nextjs",
