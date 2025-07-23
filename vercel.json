@@ -1,5 +1,5 @@
 {
-  "buildCommand": "rm -rf .next node_modules/.cache && rm -f app/about/AboutPageServer.tsx && ls -la app/about/ && npm run build",
+  "buildCommand": "rm -rf .next node_modules/.cache && npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm ci --force",
   "framework": "nextjs",
