@@ -6,6 +6,7 @@ import { useInView } from 'react-intersection-observer'
 import Button from '@/components/ui/Button'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 // Declare HubSpot global types
 declare global {
@@ -15,6 +16,7 @@ declare global {
 }
 
 export default function ContactPage() {
+  const { t } = useLanguage()
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [formRef, formInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [infoRef, infoInView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -35,7 +37,7 @@ export default function ContactPage() {
           window.hbspt.forms.create({
             region: "eu1",
             portalId: "143658118",
-            formId: "c8cf93d5-81c1-4e89-899f-f4c009b67479",
+            formId: "rP7I-sWWT-CqFO1L9Ctvcwfs7tc",
             target: "#hubspot-form-container",
           onFormReady: () => {
             // Style the HubSpot form to match our design
@@ -131,11 +133,12 @@ export default function ContactPage() {
               className="max-w-4xl"
             >
               <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                Stop Met IT-Stress, <span className="text-gradient">Begin Met Groeien</span>
+                {t.contact.title.split(', ').map((part, i) => 
+                  i === 1 ? <span key={i} className="text-gradient">{part}</span> : part + (i === 0 ? ', ' : '')
+                )}
               </h1>
               <p className="text-xl lg:text-2xl text-gray-600">
-                Direct antwoord op je IT-vragen? Bel ons of vul het formulier in. 
-                Gemiddelde reactietijd: 15 minuten.
+                {t.contact.subtitle}
               </p>
             </motion.div>
           </div>
@@ -152,10 +155,9 @@ export default function ContactPage() {
                 transition={{ duration: 0.6 }}
               >
                 <div className="bg-white rounded-2xl shadow-xl p-8">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Verstuur een Bericht</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">{t.contact.contactForm.title}</h2>
                   <p className="text-gray-600 mb-8">
-                    Vul het formulier in en we nemen binnen 24 uur contact met je op. 
-                    Voor urgente zaken kun je ons direct bellen.
+                    {t.contact.form.description}
                   </p>
                   
                   {/* HubSpot Form Container */}
@@ -173,7 +175,7 @@ export default function ContactPage() {
               >
                 {/* Direct Contact Card */}
                 <div className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl p-6 text-white">
-                  <h3 className="text-xl font-bold mb-4">Direct Contact</h3>
+                  <h3 className="text-xl font-bold mb-4">{t.contact.directContact.title}</h3>
                   <div className="space-y-4">
                     <a href="tel:0203080465" className="flex items-center gap-3 hover:underline group">
                       <div className="p-3 bg-white/20 rounded-lg group-hover:bg-white/30 transition-colors">
@@ -182,7 +184,7 @@ export default function ContactPage() {
                         </svg>
                       </div>
                       <div>
-                        <div className="text-sm opacity-90">Bel ons direct</div>
+                        <div className="text-sm opacity-90">{t.contact.directContact.call}</div>
                         <div className="text-xl font-semibold">020-30 80 465</div>
                       </div>
                     </a>
@@ -194,21 +196,21 @@ export default function ContactPage() {
                         </svg>
                       </div>
                       <div>
-                        <div className="text-sm opacity-90">Email ons</div>
+                        <div className="text-sm opacity-90">{t.contact.directContact.email}</div>
                         <div className="text-xl font-semibold">info@workflo.nl</div>
                       </div>
                     </a>
                   </div>
                   
                   <div className="mt-6 pt-6 border-t border-white/20">
-                    <p className="text-sm opacity-90 mb-2">Urgente IT-problemen?</p>
-                    <p className="font-semibold">Gemiddelde reactietijd: 15 minuten</p>
+                    <p className="text-sm opacity-90 mb-2">{t.contact.directContact.urgentSupport}</p>
+                    <p className="font-semibold">{t.contact.directContact.responseTime}</p>
                   </div>
                 </div>
                 
                 {/* Office Info */}
                 <div className="bg-gray-50 rounded-2xl p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Kantooradres</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">{t.contact.office.title}</h3>
                   <div className="space-y-3">
                     <div className="flex items-start gap-3">
                       <svg className="w-5 h-5 text-primary-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -230,28 +232,28 @@ export default function ContactPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                       <div>
-                        <p className="text-gray-900 font-medium">Openingstijden</p>
+                        <p className="text-gray-900 font-medium">{t.contact.office.hours}</p>
                         <p className="text-gray-600">
-                          Ma-Vr: 9:00 - 17:00<br />
-                          24/7 support voor contractklanten
+                          {t.contact.office.schedule}<br />
+                          {t.contact.office.support247}
                         </p>
                       </div>
                     </div>
                   </div>
                   
                   <Button href="https://maps.google.com/maps?q=Koivistokade+3+Amsterdam" target="_blank" variant="outline" size="sm" className="w-full mt-4">
-                    Route plannen
+                    {t.contact.office.planRoute}
                   </Button>
                 </div>
                 
                 {/* Quick Help */}
                 <div className="bg-primary-50 rounded-2xl p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">Snel Antwoord Nodig?</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{t.contact.quickHelp.title}</h3>
                   <p className="text-gray-700 mb-4">
-                    Check onze IT Health Check om direct te zien of je huidige IT-partner goed presteert.
+                    {t.contact.quickHelp.description}
                   </p>
                   <Button href="/tevredenheidscheck" variant="outline" size="sm" className="w-full">
-                    Start IT Health Check
+                    {t.nav.startHealthCheck}
                   </Button>
                 </div>
               </motion.div>
@@ -263,7 +265,7 @@ export default function ContactPage() {
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-              Kom Langs Voor Een Kop Koffie
+              {t.contact.mapSection.title}
             </h2>
             
             <div className="max-w-6xl mx-auto">
@@ -292,10 +294,10 @@ export default function ContactPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-1">WhatsApp Business</h3>
-                  <p className="text-gray-600 text-sm mb-3">Chat direct met ons team</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">{t.contact.mapSection.whatsappTitle}</h3>
+                  <p className="text-gray-600 text-sm mb-3">{t.contact.mapSection.whatsappDesc}</p>
                   <a href="https://wa.me/31203080465" className="text-primary-600 hover:text-primary-700 font-medium text-sm">
-                    Start WhatsApp →
+                    {t.contact.mapSection.whatsappLink} →
                   </a>
                 </motion.div>
                 
@@ -310,10 +312,10 @@ export default function ContactPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Plan een Meeting</h3>
-                  <p className="text-gray-600 text-sm mb-3">Persoonlijk of online</p>
-                  <a href="/schedule" className="text-primary-600 hover:text-primary-700 font-medium text-sm">
-                    Kies een tijdslot →
+                  <h3 className="font-semibold text-gray-900 mb-1">{t.contact.mapSection.meetingTitle}</h3>
+                  <p className="text-gray-600 text-sm mb-3">{t.contact.mapSection.meetingDesc}</p>
+                  <a href="/booking" className="text-primary-600 hover:text-primary-700 font-medium text-sm">
+                    {t.contact.mapSection.meetingLink} →
                   </a>
                 </motion.div>
                 
@@ -328,10 +330,10 @@ export default function ContactPage() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-1">Support Portal</h3>
-                  <p className="text-gray-600 text-sm mb-3">Voor bestaande klanten</p>
+                  <h3 className="font-semibold text-gray-900 mb-1">{t.contact.mapSection.supportTitle}</h3>
+                  <p className="text-gray-600 text-sm mb-3">{t.contact.mapSection.supportDesc}</p>
                   <a href="https://support.workflo.nl" className="text-primary-600 hover:text-primary-700 font-medium text-sm">
-                    Login support →
+                    {t.contact.mapSection.supportLink} →
                   </a>
                 </motion.div>
               </div>

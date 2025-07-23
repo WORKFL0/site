@@ -6,7 +6,7 @@ export const translations = {
       expertise: 'Expertise', 
       about: 'Over ons',
       contact: 'Contact',
-      support: 'Support',
+      support: 'Download Support',
       store: 'Winkel',
       startHealthCheck: 'Start IT Health Check',
     },
@@ -80,6 +80,10 @@ export const translations = {
     contact: {
       title: 'Stop Met IT-Stress, Begin Met Groeien',
       subtitle: 'Direct antwoord op je IT-vragen? Bel ons of vul het formulier in. Gemiddelde reactietijd: 15 minuten.',
+      contactForm: {
+        title: 'Verstuur een Bericht',
+        description: 'Vul het formulier in...',
+      },
       form: {
         title: 'Verstuur een Bericht',
         description: 'Vul het formulier in en we nemen binnen 24 uur contact met je op. Voor urgente zaken kun je ons direct bellen.',
@@ -90,6 +94,9 @@ export const translations = {
         emailUs: 'Email ons',
         urgentSupport: 'Urgente IT-problemen?',
         responseTime: 'Gemiddelde reactietijd: 15 minuten',
+        call: 'Bel voor urgente zaken',
+        email: 'Stuur een e-mail',
+        whatsapp: 'WhatsApp ons',
       },
       office: {
         title: 'Kantooradres',
@@ -102,6 +109,18 @@ export const translations = {
       quickHelp: {
         title: 'Snel Antwoord Nodig?',
         description: 'Check onze IT Health Check om direct te zien of je huidige IT-partner goed presteert.',
+      },
+      mapSection: {
+        title: 'Kom Langs Voor Een Kop Koffie',
+        whatsappTitle: 'WhatsApp Business',
+        whatsappDesc: 'Chat direct met ons team',
+        whatsappLink: 'WhatsApp ons',
+        meetingTitle: 'Plan een Meeting',
+        meetingDesc: 'Persoonlijk of online',
+        meetingLink: 'Kies een tijdslot',
+        supportTitle: 'Support Portal',
+        supportDesc: 'Voor bestaande klanten',
+        supportLink: 'Login support',
       },
     },
     // Footer
@@ -126,6 +145,32 @@ export const translations = {
       },
       rights: 'Alle rechten voorbehouden.',
     },
+    // Stats Section
+    stats: {
+      title: 'Cijfers Die Voor Zich Spreken',
+      subtitle: 'We zijn niet zomaar een IT-leverancier. We zijn jouw groeipartner met bewezen resultaten.',
+      clients: {
+        value: '100+',
+        label: 'Bedrijven vertrouwen ons',
+        description: 'In Amsterdam en omgeving',
+      },
+      savings: {
+        value: '35%',
+        label: 'Kostenbesparing',
+        description: 'Door slimme IT-optimalisatie',
+      },
+      uptime: {
+        value: '99.9%',
+        label: 'Uptime Garantie',
+        description: '24/7 monitoring en support',
+      },
+      response: {
+        value: '15 min',
+        label: 'Gemiddelde Reactietijd',
+        description: 'Voor urgente problemen',
+      },
+      partners: 'Onze partners',
+    },
     // Cookie Banner
     cookies: {
       title: 'Cookie Instellingen',
@@ -139,6 +184,8 @@ export const translations = {
       acceptAll: 'Accepteer alle',
       acceptSelected: 'Accepteer selectie',
       rejectAll: 'Weiger alle',
+      showDetails: 'Toon details',
+      hideDetails: 'Verberg details',
     }
   },
   en: {
@@ -148,7 +195,7 @@ export const translations = {
       expertise: 'Expertise',
       about: 'About',
       contact: 'Contact',
-      support: 'Support',
+      support: 'Download Support',
       store: 'Store',
       startHealthCheck: 'Start IT Health Check',
     },
@@ -222,6 +269,10 @@ export const translations = {
     contact: {
       title: 'Stop IT Stress, Start Growing',
       subtitle: 'Direct answers to your IT questions? Call us or fill out the form. Average response time: 15 minutes.',
+      contactForm: {
+        title: 'Send a Message',
+        description: 'Fill out the form...',
+      },
       form: {
         title: 'Send a Message',
         description: 'Fill out the form and we\'ll contact you within 24 hours. For urgent matters, call us directly.',
@@ -232,6 +283,9 @@ export const translations = {
         emailUs: 'Email us',
         urgentSupport: 'Urgent IT problems?',
         responseTime: 'Average response time: 15 minutes',
+        call: 'Call for urgent matters',
+        email: 'Send an email',
+        whatsapp: 'WhatsApp us',
       },
       office: {
         title: 'Office Address',
@@ -244,6 +298,18 @@ export const translations = {
       quickHelp: {
         title: 'Need Quick Answer?',
         description: 'Check our IT Health Check to see immediately if your current IT partner is performing well.',
+      },
+      mapSection: {
+        title: 'Come In For A Cup Of Coffee',
+        whatsappTitle: 'WhatsApp Business',
+        whatsappDesc: 'Chat directly with our team',
+        whatsappLink: 'WhatsApp us',
+        meetingTitle: 'Schedule a Meeting',
+        meetingDesc: 'In person or online',
+        meetingLink: 'Choose a time slot',
+        supportTitle: 'Support Portal',
+        supportDesc: 'For existing customers',
+        supportLink: 'Login support',
       },
     },
     // Footer
@@ -268,6 +334,32 @@ export const translations = {
       },
       rights: 'All rights reserved.',
     },
+    // Stats Section
+    stats: {
+      title: 'Numbers That Speak for Themselves',
+      subtitle: 'We\'re not just another IT provider. We\'re your growth partner with proven results.',
+      clients: {
+        value: '100+',
+        label: 'Companies trust us',
+        description: 'In Amsterdam and surroundings',
+      },
+      savings: {
+        value: '35%',
+        label: 'Cost Savings',
+        description: 'Through smart IT optimization',
+      },
+      uptime: {
+        value: '99.9%',
+        label: 'Uptime Guarantee',
+        description: '24/7 monitoring and support',
+      },
+      response: {
+        value: '15 min',
+        label: 'Average Response Time',
+        description: 'For urgent issues',
+      },
+      partners: 'Our partners',
+    },
     // Cookie Banner
     cookies: {
       title: 'Cookie Settings',
@@ -281,6 +373,8 @@ export const translations = {
       acceptAll: 'Accept all',
       acceptSelected: 'Accept selected',
       rejectAll: 'Reject all',
+      showDetails: 'Show details',
+      hideDetails: 'Hide details',
     }
   }
 }

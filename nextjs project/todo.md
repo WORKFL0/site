@@ -104,4 +104,28 @@ De merken: x y z
 iframe would be the best:
 <iframe src='https://outlook.office.com/book/PlaneenafspraakmeteenITengineer@workflo.nl/?ismsaljsauthenabled' width='100%' height='100%' scrolling='yes' style='border:0'></iframe>
 
+[] - kan je het onboardings formulier op de website verwerken zonder daar naar toe te linken maar dat deze wel via een url gebruikt kan worden als er een onboarding moet plaats vinden dat ze op deze pagina terecht komen met dit microsoft form in een ifram verwerkt:
+<iframe width="640px" height="480px" src="https://forms.office.com/e/VTeqZDGwXZ?embed=true" frameborder="0" marginwidth="0" marginheight="0" style="border: none; max-width:100%; max-height:100vh" allowfullscreen webkitallowfullscreen mozallowfullscreen msallowfullscreen> </iframe>
 
+[] - blog pagina werkt niet.
+
+[] - taal niet overal even gelijk of goed
+
+[] - onze partners en partners van nu dubbel, check dit ajb!
+
+[] - nog steed geen logos gebruikt!
+
+[] - store werkt niet!
+
+[] - contact pagina heeft nog steeds niet het hubspot formulier
+
+[] - plan een meeting op contact pagina verwijst naar: https://nextsite.workflo.it/schedule en niet naar het bookings pagina
+
+[] - functies kloppen niet helemaal, Mas is System Engeineer en Marcello is Junior Infrastructure Engineer. 
+Mas heeft geen linkedin
+Nam = https://www.linkedin.com/in/nam-hoon-boots-4b1194139/
+Marcello = https://www.linkedin.com/in/marcello-macnack-455789291/
+Florian klopt maar tekst moet zijn: Ik ben een gedreven generalist en vind het heerlijk om met nieuwe dingen bezig te zijn en vooral de vertaalslag te maken van idee naar een concreet resultaat. Mijn kracht ligt in een positief kritische, ondernemende en enthousiasmerende houding. Ik wil inspireren en geïnspireerd raken. 
+
+[] -  graag wil ik een pagina over de "Netwerk-scan" die wij gratis* aanbieden. In deze netwerk scan gaan wij een inventaris maken van wat er nu in huis is(wat voor vlees er in de kuip is) en aan de hand van deze gegevens maken wij een raport en geven wij een advies uit. Dit raport verplicht de prospect tot niks en is vrij met dit raport naar een andere te gaan. In dit geval gaan we de bestede tijd wel verrekenen voor de moeite maar zodra de prospect ervoor kiest met ons in zee te gaan dan vervallen deze kosten voor de scan en gaan we over op het uitwerken van het advies. Dus dan is de scan gratis*. 
+Maak hier een mooie tekst van die past bij het content strategie. 

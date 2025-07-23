@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useState, useEffect } from 'react'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 interface CountUpProps {
   end: number
@@ -48,64 +49,39 @@ interface StatsSectionProps {
   }
 }
 
-const defaultStats = [
-  {
-    value: 100,
-    suffix: '+',
-    label: 'Bedrijven vertrouwen ons',
-    description: 'In Amsterdam en omgeving',
-  },
-  {
-    value: 35,
-    suffix: '%',
-    label: 'Kostenbesparing',
-    description: 'Door slimme IT-optimalisatie',
-  },
-  {
-    value: 99.9,
-    suffix: '%',
-    label: 'Uptime Garantie',
-    description: '24/7 monitoring en support',
-  },
-  {
-    value: 15,
-    suffix: ' min',
-    label: 'Gemiddelde Reactietijd',
-    description: 'Voor urgente problemen',
-  },
-]
-
 const StatsSection = ({ stats }: StatsSectionProps = {}) => {
-  const statItems = stats ? [
-    {
-      value: parseInt(stats.clients) || 100,
-      suffix: '+',
-      label: 'Bedrijven vertrouwen ons',
-      description: 'In Amsterdam en omgeving',
-    },
-    {
-      value: 35,
-      suffix: '%',
-      label: 'Kostenbesparing',
-      description: 'Door slimme IT-optimalisatie',
-    },
-    {
-      value: parseFloat(stats.uptime) || 99.9,
-      suffix: '%',
-      label: 'Uptime Garantie',
-      description: '24/7 monitoring en support',
-    },
-    {
-      value: parseInt(stats.responseTime) || 15,
-      suffix: ' min',
-      label: 'Gemiddelde Reactietijd',
-      description: 'Voor urgente problemen',
-    },
-  ] : defaultStats
+  const { t } = useLanguage()
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
+
+  const statItems = [
+    {
+      value: parseInt(stats?.clients || '100'),
+      suffix: '+',
+      label: t.stats.clients.label,
+      description: t.stats.clients.description,
+    },
+    {
+      value: 35,
+      suffix: '%',
+      label: t.stats.savings.label,
+      description: t.stats.savings.description,
+    },
+    {
+      value: parseFloat(stats?.uptime || '99.9'),
+      suffix: '%',
+      label: t.stats.uptime.label,
+      description: t.stats.uptime.description,
+    },
+    {
+      value: parseInt(stats?.responseTime || '15'),
+      suffix: ' min',
+      label: t.stats.response.label,
+      description: t.stats.response.description,
+    },
+  ]
 
   return (
     <section className="section-padding bg-gradient-to-br from-gray-900 to-gray-800 relative overflow-hidden">
@@ -124,10 +100,10 @@ const StatsSection = ({ stats }: StatsSectionProps = {}) => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
-            Numbers That Speak for Themselves
+            {t.stats.title}
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We&apos;re not just another IT provider. We&apos;re your growth partner with proven results.
+            {t.stats.subtitle}
           </p>
         </motion.div>
 
@@ -168,7 +144,7 @@ const StatsSection = ({ stats }: StatsSectionProps = {}) => {
           className="mt-16"
         >
           <div className="text-center mb-8">
-            <div className="text-gray-400 text-sm mb-2">Onze partners</div>
+            <div className="text-gray-400 text-sm mb-2">{t.stats.partners}</div>
           </div>
           <div className="relative overflow-hidden">
             {/* Gradient overlays for fade effect */}

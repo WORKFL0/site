@@ -77,7 +77,7 @@ export default function CookieBanner() {
                 onClick={() => setShowDetails(!showDetails)}
                 className="text-sm text-primary-600 hover:text-primary-700 font-medium"
               >
-                {showDetails ? 'Verberg details' : 'Toon details'}
+                {showDetails ? t.cookies.hideDetails : t.cookies.showDetails}
               </button>
             </div>
 
