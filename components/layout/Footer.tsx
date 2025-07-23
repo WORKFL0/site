@@ -118,7 +118,7 @@ const Footer = () => {
               </a>
             </div>
             <div>
-              <span className="text-gray-500">Adres:</span> Amsterdam, Nederland
+              <span className="text-gray-500">{t.footer.contact.address}:</span> Koivistokade 3, 1013AC Amsterdam
             </div>
           </div>
           
