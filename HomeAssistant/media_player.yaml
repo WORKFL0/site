@@ -1,0 +1,47 @@
+# - platform: spotify
+#   client_id: !secret spotify_ID
+#   client_secret: !secret spotify_api
+#   - platform: plex
+# - platform: samsungtv
+#   host: 192.168.178.30
+#   port: 8001
+#   name: 'woonkamer TV'
+#   timeout: 30
+#   mac: 70:2a:d5:ec:7b:1b
+# apple_tv:
+#   - host: 192.168.178.23
+# login_id:
+# name: Woonkamer Apple TV
+#   entity_namespace: 'plex'
+#   IP_ADDRESS: '192.168.178.1'
+#   port: 32400
+#   token: !secret plex_token
+#   ssl: true
+#   verify: false
+#   include_non_clients: false
+#   scan_interval: 5
+#   show_all_controls: true
+#   use_custom_entity_ids: false
+#   use_episode_art: true
+#   remove_unavailable_clients: true
+#   client_remove_interval: 600
+# - platform: sonos
+#   hosts: 192.168.178.26
+# - platform: onkyo
+#   host: 192.168.178.27
+#   name: 'receiver'
+#   sources:
+#     pc: 'PC'
+#     bd-dvd: 'AppleTV'
+#     tv-tape: 'TV'
+#     cd: 'Jack'
+#     network: 'Streaming'
+# tv-cd: 'AppleTV'
+# - platform: cast
+# - platform: volumio
+#   host: 192.168.178.149
+#   port: 3000
+# - platform: androidtv
+#   name: Android TV 3
+#   host: 192.168.178.24
+#   adb_server_ip: 127.0.0.1

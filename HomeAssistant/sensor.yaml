@@ -1,0 +1,291 @@
+#  - platform: trakt
+#    id: !secret trakt_clientid
+#    secret: !secret trakt_secret
+#    username: Florian
+#    days: 10
+#    exclude:
+#    - 'Friends'
+
+#  - platform: plex_recently_added
+#    token: !secret plex_token
+#    server_name: 192.168.178.1
+#    port: 32400
+# ssl: true
+# ssl_cert: false
+# download_images: true
+# max: 5
+# section_types:
+# - movie
+# - show
+
+#SABNZB Sensors
+# - platform: sabnzbd
+#   host: 192.168.178.1
+#   ssl: false
+# api_key: !secret sab_api
+#   monitored_variables:
+#     - 'current_status'
+#     - 'speed'
+#     - 'queue_size'
+#     - 'queue_remaining'
+#     - 'disk_size'
+#     - 'disk_free'
+#     - 'queue_count'
+
+#NAS monitor
+# - platform: synologydsm
+#   host: 192.168.178.13
+#   port: 3000
+#   username: !secret synology_user
+#   password: !secret synology_pass
+#   monitored_conditions:
+#     - cpu_total_load
+#     - memory_real_usage
+#     - network_up
+#     - network_down
+#     - volume_percentage_used
+#     - volume_size_used
+#     - disk_smart_status
+#     - disk_temp
+
+# PI info
+# - platform: glances
+#   username: glances
+#   password: !secret zijlstraat
+#   host: a0d7b954-glances
+#   version: 3
+#   ssl: false
+#   resources:
+#     - 'disk_use_percent'
+#     - 'disk_use'
+#     - 'disk_free'
+#     - 'memory_use_percent'
+#     - 'memory_use'
+#     - 'memory_free'
+#     - 'swap_use_percent'
+#     - 'swap_use'
+#     - 'swap_free'
+#     - 'processor_load'
+#     - 'process_running'
+#     - 'process_total'
+#     - 'process_thread'
+#     - 'process_sleeping'
+#     - 'cpu_temp'
+#     - 'docker_active'
+#     - 'docker_cpu_use'
+#     - 'docker_memory_use'
+
+# Motion
+# - platform: template
+#   sensors:
+#     motion_office:
+#       friendly_name: "Office"
+#       value_template: "{%if states.sensor.aeon_labs_zw100_multisensor_6_burglar.state == '8' %}motion detected{% elif states.sensor.aeon_labs_zw100_multisensor_6_burglar.state == '3' %}tamper{% elif states.sensor.aeon_labs_zw100_multisensor_6_burglar.state == '0' %}standby{% endif %}"
+
+# - platform: template
+#   sensors:
+#     motion_slaapkamer:
+#       friendly_name: "Slaapkamer"
+#       value_template: "{%if states.sensor.aeon_labs_zw100_multisensor_6_burglar_2.state == '8' %}motion detected{% elif states.sensor.aeon_labs_zw100_multisensor_6_burglar_2.state == '3' %}tamper{% elif states.sensor.aeon_labs_zw100_multisensor_6_burglar_2.state == '0' %}standby{% endif %}"
+
+# - platform: template
+#   sensors:
+#     motion_slaapkamer:
+#       friendly_name: 'Slaapkamer'
+#       value_template: "{%if states.sensor.slaapkamersensor_burglar.state == '8' %}motion detected{% elif states.sensor.slaapkamersensor_burglar.state == '3' %}tamper{% elif states.sensor.slaapkamersensor_burglar.state == '0' %}standby{% endif %}"
+
+# - platform: template
+#   sensors:
+#     motion_woonkamer:
+#       friendly_name: "Woonkamer"
+#       value_template: "{%if states.sensor.woonkamer_motion_sensor.state == 'on' %}motion detected{% elif states.sensor.woonkamer_motion_sensor.state == 'off' %}standby{% endif %}"
+
+# - platform: template
+#   sensors:
+#     back_door:
+#       friendly_name: 'Deur Achter'
+#       value_template: "{%if states.binary_sensor.backdoor_sensor.state == 'on' %}1{% elif states.binary_sensor.backdoor_sensor.state == 'off' %}0{% endif %}"
+
+# POST
+# - platform: postnl
+#   username: !secret gmail
+#   password: !secret zijlstraat_nr
+
+#  username: !secret gmail
+#  password: !secret 17track_pass
+
+# NSReisTijden
+- platform: nederlandse_spoorwegen
+  api_key: !secret ns_prim_key
+  routes:
+    - name: Haarlem-Amsterdam
+      from: Hlm
+      to: Asd
+    - name: Hillegom-Haarlem
+      from: Hil
+      to: Hlm
+    - name: Hillegom-Leiden
+      from: Hil
+      to: Ledn
+
+# GoogleTravelTime
+# - platform: google_travel_time
+#   name: "My location to HL"
+#   api_key: !secret g_api_3
+#   origin: device_tracker.life360_florian_de_haan
+#   destination: zone.work_hl
+#   scan_interval: 600
+# - platform: google_travel_time
+#   name: 'My location to GUC'
+#   api_key: !secret g_api_2
+#   origin: device_tracker.life360_florian_de_haan
+#   destination: zone.work_guc
+#   scan_interval: 600
+# - platform: google_travel_time
+#   name: 'My location to FV'
+#   api_key: !secret g_api_1
+#   origin: device_tracker.life360_florian_de_haan
+#   destination: zone.work_fv
+#   scan_interval: 600
+#
+# - platform: haveibeenpwned
+#   email:
+#     - florian.dehaan@gmail.com
+#     - florian@workflo.nl
+#     - info@floriandehaan.nl
+#     - dizzyffish@live.nl
+
+# - platform: mqtt
+#   name: "Sonoff 21 Temperature"
+#   state_topic: "tele/sonoff_21/SENSOR"
+#   value_template: "{{ value_json['AM2301'].Temperature }}"
+#   unit_of_measurement: "°C"
+# - platform: mqtt
+#   name: "Sonoff 21 Humidity"
+#   state_topic: "tele/sonoff_21/SENSOR"
+#   value_template: "{{ value_json['AM2301'].Humidity }}"
+#   unit_of_measurement: "%"
+
+# - platform: mqtt
+# name: "Node RED"
+# state_topic: "checkIn/nodeRED"
+# expire_after: 300
+
+# - platform: mqtt
+#   name: "Wemos 3 Temperature"
+#   state_topic: "tele/wemos03/SENSOR"
+#   value_template: "{{ value_json['SHT3X-0x45'].Temperature }}"
+#   unit_of_measurement: "°C"
+# - platform: mqtt
+#   name: "Wemos 3 Humidity"
+#   state_topic: "tele/wemos03/SENSOR"
+#   value_template: "{{ value_json['SHT3X-0x45'].Humidity }}"
+#   unit_of_measurement: "%"
+# - platform: mqtt
+#   name: "Wemos 3 Motion"
+#   state_topic: "tele/wemos03/SENSOR"
+#   value_template: "{{ value_json['switch1'].Motion }}"
+
+# - platform: mqtt
+#   name: "Wemos 4 Temperature"
+#   state_topic: "tele/wemos04/SENSOR"
+#   value_template: "{{ value_json['DHT11'].Temperature }}"
+#   unit_of_measurement: "°C"
+# - platform: mqtt
+#   name: "Wemos 4 Humidity"
+#   state_topic: "tele/wemos04/SENSOR"
+#   value_template: "{{ value_json['DHT11'].Humidity }}"
+#   unit_of_measurement: "%"
+
+# - platform: mqtt
+#   state_topic: "cmnd/Wemos4/POWER2"
+#   name: "Wemos 4 Motion"
+
+# - platform: mqtt
+#   state_topic: "motion/keuken"
+#   name: "Keuken Camera Motion"
+
+# - platform: mqtt
+#   state_topic: "motion/woonkamer"
+#   name: "Woonkamer Camera Motion"
+
+# - platform: mqtt
+#   name: "Badkamer Humidity"
+#   state_topic: "tele/sonoff01/SENSOR"
+#   value_template: "{{ value_json['DHT11'].Humidity }}"
+#   unit_of_measurement: "%"
+# - platform: mqtt
+#   name: "Badkamer Temperature"
+#   state_topic: "tele/sonoff01/SENSOR"
+#   value_template: "{{ value_json['DHT11'].Temperature }}"
+#   unit_of_measurement: "°C"
+
+# - platform: essent
+#   username: !secret essent_user
+#   password: !secret essent_pass
+
+- platform: toon_smartmeter
+  host: !secret IP_Toon
+  port: 80
+  scan_interval: 10
+  resources:
+    # - gasused
+    # - gasusedcnt
+    # - elecusageflowpulse
+    # - elecusagecntpulse
+    - elecusageflowlow
+    - elecusagecntlow
+    - elecusageflowhigh
+    - elecusagecnthigh
+    - elecprodflowlow
+    - elecprodcntlow
+    - elecprodflowhigh
+    - elecprodcnthigh
+    # - elecsolar
+    # - elecsolarcnt
+    - heat
+
+# - platform: growatt
+#   username: !secret growat_user
+#   password: !secret growat_pass
+
+- platform: integration
+  source: sensor.beekkade_total_output_power
+  name: energy_growatt
+  unit_prefix: k
+  unit_time: h
+  round: 2
+
+- platform: integration
+  source: sensor.stroom_verbruik
+  name: energy_toon
+  unit_prefix: k
+  unit_time: h
+  round: 2
+
+- platform: template
+  sensors:
+    stroom_verbruik:
+      friendly_name: "Stroom Verbruik"
+      unit_of_measurement: "Wh"
+      device_class: energy
+      value_template: >
+        {{ ( (states('sensor.toon_p1_power_use_cnt_low')|float) + (states('sensor.toon_p1_power_use_cnt_high')|float) ) }}
+    stroom_levering:
+      friendly_name: "Stroom Levering"
+      unit_of_measurement: "Wh"
+      device_class: energy
+      value_template: >
+        {{ ( (states('sensor.toon_p1_power_prod_low')|float) + (states('sensor.toon_p1_power_prod_high')|float) ) }}
+
+# - platform: nut
+#   name: UPS Zolder
+#   host: 192.168.178.18
+#   port: 3493
+#   username: admin
+#   password: secret
+#   resources:
+#     - ups.load
+#     - ups.status
+#     - input.voltage
+#     - battery.runtime

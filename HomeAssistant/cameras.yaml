@@ -1,0 +1,70 @@
+# - platform: foscam
+#   ip: 192.168.178.31
+#   username: !secret home_user
+#   password: !secret old_home_n_pass
+
+# - platform: mjpeg
+#   mjpeg_url: http://192.168.178.1:81/mjpg/cam3
+#   name: DAFANG Street
+#   username: !secret home_user
+#   password: !secret kruisweg
+#   authentication: basic
+
+# - platform: mjpeg
+#   mjpeg_url: http://192.168.178.1:81/mjpg/cam2
+#   name: DAFANG Woonkamer
+#   username: !secret home_user
+#   password: !secret kruisweg
+#   authentication: basic
+
+# - platform: mjpeg
+#   mjpeg_url: http://192.168.178.1:81/mjpg/cam_5
+#   name: DAFANG Slaapkamer
+#   username: !secret home_user
+#   password: !secret kruisweg
+#   authentication: basic
+
+# - platform: mjpeg
+#   mjpeg_url: http://192.168.178.1:81/mjpg/cam1
+#   name: Foscam Woonkamer
+#   username: !secret home_user
+#   password: !secret kruisweg
+#   authentication: basic
+
+#   - platform: ffmpeg
+#     name: DAFANG-TALL
+#     input: -rtsp_transport tcp -i rtsp://192.168.178.189:8554/unicast
+#  - platform: generic
+#    name: 'Florian Owntracks'
+#    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.phone_flo_phone_flo.attributes.latitude }},{{ states.device_tracker.phone_flo_phone_flo.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.phone_flo_phone_flo.attributes.latitude }},{{ states.device_tracker.phone_flo_phone_flo.attributes.longitude }}
+#    limit_refetch_to_url_change: true
+#
+#  - platform: generic
+#    name: 'Noah Owntracks'
+#    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.phone_no_phone_no.attributes.latitude }},{{ states.device_tracker.phone_no_phone_no.longitude }}&zoom=13&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.phone_no_phone_no.attributes.latitude }},{{ states.device_tracker.phone_no_phone_no.attributes.longitude }}
+#    limit_refetch_to_url_change: true
+
+# - platform: generic
+#   name: "Buienradar"
+#   still_image_url: https://api.buienradar.nl/image/1.0/RadarMapNL?w=500&h=512
+
+# - platform: generic
+#   name: "A9 Rottepolderplein"
+#   still_image_url: https://stream.inmoves.nl/87?1602154480685
+#   verify_ssl: false
+# - platform: generic
+#   name: "A9 Amstelveen"
+#   still_image_url: https://stream.inmoves.nl/34?1602154538685
+#   verify_ssl: false
+# - platform: generic
+#   name: "A10 Westpoort"
+#   still_image_url: https://stream.inmoves.nl/41?1602154524685
+#   verify_ssl: false
+# - platform: generic
+#   name: "A4/A10 Sloten"
+#   still_image_url: https://stream.inmoves.nl/18?1602154508685
+#   verify_ssl: false
+# - platform: mjpeg
+#   name: "test stream"
+#   mjpeg_url: https://stream.inmoves.nl/07cfa7e6-119d-4070-be3a-4dd62a8afac3
+#   verify_ssl: false.

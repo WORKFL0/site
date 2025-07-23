@@ -1,0 +1,214 @@
+# Ordenairy switches
+# InfraRed hub broadlink (switch?)
+  # - platform: broadlink
+  #   host: 192.168.178.106
+  #   mac: '34:EA:34:43:33:52'
+  #   type: rm2_pro_plus
+  #   switches:
+  #     volume:
+  #       friendly_name: "TV volume"
+  #       command_on: 'JgBOAJGUETkRORI5ERMSExITERQRExI4EjkRORITERQRExITEhMRORI4EjkRFBETEhMRFBETEhMSExEUETkSOBI5ETkSOBIABgORkxEUEAANBQAAAAAAAAAAAAA='
+  #       command_off: 'JgBOAJGUEzcRORI4FBESExITERMSExQ3ETkRORITERQRExITEhMRORQ2EhMSORISExISExETEhMUERI4FBESOBI5EjgRORQABgGQlBMREQANBQAAAAAAAAAAAAA='
+  #     tv_power:
+  #       friendly_name: "TV power"
+  #       command_on: 'JgBOAJCUETkSOBI5ERMSExITERQRExI5ETkRORITERQRExITEhMRExI5ERMSExITERQRExITEjgSExI4EjkRORE5EjkROREABgORkxITEAANBQAAAAAAAAAAAAA='
+  #       command_off: 'JgBOAJCUETkSOBI5ERMSExITERQRExI5ETkRORITERQRExITEhMRExI5ERMSExITERQRExITEjgSExI4EjkRORE5EjkROREABgORkxITEAANBQAAAAAAAAAAAAA='
+  #     setupbox_power:
+  #       friendly_name: "Setupbox power"
+  #       command_on: 'JgCMAA0TFRULCRUVFxQLCQsKDAkIDQwJCA0MCQweFRUXKAwACvILFRYUDAgXFBYUCwoMCAsLCwkLCxYUCwkKDBYUFgkEGwwACvINExYUDAkWFBYUCgsLCgsKCgsKCxYUCwkLCxYUFSoLAAryDRIXEwwJFhQXEwwJDAkMCQsKDAkWFAwJCwoVFRYKDBMMAA0FAAAAAAAAAAAAAAAA'
+  #       command_off: 'JgCMAA0TFRULCRUVFxQLCQsKDAkIDQwJCA0MCQweFRUXKAwACvILFRYUDAgXFBYUCwoMCAsLCwkLCxYUCwkKDBYUFgkEGwwACvINExYUDAkWFBYUCgsLCgsKCgsKCxYUCwkLCxYUFSoLAAryDRIXEwwJFhQXEwwJDAkMCQsKDAkWFAwJCwoVFRYKDBMMAA0FAAAAAAAAAAAAAAAA'
+  #     program:
+  #       friendly_name: "Zender"
+  #       command_on: 'JgBIAAoWExcJFAwWExcJIQsKCQwJDAkMCQwJDBYJDBQJDBQWCQAK9gkWExcJEw0WExcKCwoLCgsKCwsLExYJDBQMCRYKCxQWCQANBQ=='
+  #       command_off: 'JgBIAAoWFBYJDRMWExcIDQkMCQwJDQgMCQwJDAkMFAsKCwoWCQwUAAr/ChYTFwkUDBYTFwgjCAwJDAkMFBYJDBQLCgsKFggNFAANBQ=='
+
+# MQTT
+  - platform: mqtt
+    name: (sonoff 01)
+    command_topic: "cmnd/sonoff01/POWER"
+    state_topic: "stat/sonoff01/POWER"
+    availability_topic: "tele/sonoff01/LWT"
+    qos: 1
+    # assumed_state: false
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+  - platform: mqtt
+    name: (sonoff 02)
+    command_topic: "cmnd/sonoff02/POWER"
+    state_topic: "stat/sonoff02/POWER"
+    availability_topic: "tele/sonoff02/LWT"
+    qos: 1
+    # assumed_state: false
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+  - platform: mqtt
+    name: (shelly 01)
+    command_topic: "cmnd/shelly-01/POWER"
+    state_topic: "stat/shelly-01/POWER"
+    availability_topic: "tele/shelly-01/LWT"
+    qos: 1
+    # assumed_state: false
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+  - platform: mqtt
+    name: (shelly 02)
+    command_topic: "cmnd/shelly-02/POWER"
+    state_topic: "stat/shelly-02/POWER"
+    availability_topic: "tele/shelly-02/LWT"
+    qos: 1
+    # assumed_state: false
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+  # - platform: mqtt
+  #   name: (sonoff 5)
+  #   command_topic: "cmnd/sonoff5/POWER"
+  #   state_topic: "stat/sonoff5/POWER"
+  #   availability_topic: "tele/sonoff5/LWT"
+  #   qos: 1
+  #   # assumed_state: false
+  #   payload_available: "Online"
+  #   payload_not_available: "Offline"
+  #   retain: false
+  - platform: mqtt
+    name: (sonoff 11)
+    command_topic: "cmnd/sonoff11/POWER"
+    state_topic: "stat/sonoff11/POWER"
+    availability_topic: "tele/sonoff11/LWT"
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+    # assumed_state: false
+  - platform: mqtt
+    name: (sonoff 12)
+    command_topic: "cmnd/sonoff12/POWER"
+    state_topic: "stat/sonoff12/POWER"
+    availability_topic: "tele/sonoff12/LWT"
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+    # assumed_state: false
+  - platform: mqtt
+    name: (sonoff 21)
+    command_topic: "cmnd/sonoff_21/POWER"
+    state_topic: "stat/sonoff_21/POWER"
+    availability_topic: "tele/sonoff_21/LWT"
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+    # assumed_state: false
+  - platform: mqtt
+    name: (sonoff 41)
+    command_topic: "cmnd/sonoff_41/POWER1"
+    state_topic: "stat/sonoff_41/POWER1"
+    availability_topic: "tele/sonoff_41/LWT"
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+    # assumed_state: false
+  - platform: mqtt
+    name: (sonoff 42)
+    command_topic: "cmnd/sonoff_41/POWER2"
+    state_topic: "stat/sonoff41/POWER2"
+    availability_topic: "tele/sonoff_41/LWT"
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+    # assumed_state: false
+  - platform: mqtt
+    name: (sonoff 43)
+    command_topic: "cmnd/sonoff_41/POWER3"
+    state_topic: "stat/sonoff41/POWER3"
+    availability_topic: "tele/sonoff_41/LWT"
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+    # assumed_state: false
+  - platform: mqtt
+    name: (sonoff 44)
+    command_topic: "cmnd/sonoff_41/POWER4"
+    state_topic: "stat/sonoff_41/POWER4"
+    availability_topic: "tele/sonoff_41/LWT"
+    qos: 1
+    payload_available: "Online"
+    payload_not_available: "Offline"
+    retain: false
+    # assumed_state: false
+
+  # - platform: command_line
+  #   switches:
+  #     twinkly:
+  #       command_on: "python3 /config/python_scripts/twinkly.py 192.168.178.26 on"
+  #       command_off: "python3 /config/python_scripts/twinkly.py 192.168.178.26 off" 
+  #       command_state: "python3 /config/python_scripts/twinkly.py 192.168.178.26 state"
+  #       value_template: "{{ value == \"1\" }}"
+  #       friendly_name: Twinkly
+
+# Foscam sensors
+#  - platform: command_line
+#    switches:
+#      foscam_motion:
+#        command_on: 'curl -k "https://192.168.178.128:443/cgi-bin/CGIProxy.fcgi?cmd=setMotionDetectConfig&isEnable=1&usr=florian&pwd=ikbenst1L"'
+#        command_off: 'curl -k "https://192.168.178.128:443/cgi-bin/CGIProxy.fcgi?cmd=setMotionDetectConfig&isEnable=0&usr=florian&pwd=ikbenst1L"'
+#        command_state: 'curl -k --silent "https://192.168.178.128:443/cgi-bin/CGIProxy.fcgi?cmd=getMotionDetectConfig&usr=florian&pwd=ikbenst1L" | grep -oP "(?<=isEnable>).*?(?=</isEnable>)"'
+#        value_template: '{{ value == "1" }}'
+
+  # - platform: command_line
+  #   switches:
+  #     kitchen_infrared:
+  #       command_on: 'curl -k "https://192.168.178.128:443/cgi-bin/CGIProxy.fcgi?cmd=openInfraLed&usr=florian&pwd=ikbenst1L"'
+  #       command_off: 'curl -k "https://192.168.178.128:443/cgi-bin/CGIProxy.fcgi?cmd=closeInfraLed&usr=florian&pwd=ikbenst1L"'
+  #       command_state: 'curl -k --silent "https://192.168.178.128:443/cgi-bin/CGIProxy.fcgi?cmd=getDevState&usr=florian&pwd=ikbenst1L" | grep -oP "(?<=infraLedState>).*?(?=</infraLedState>)"'
+  #       value_template: '{{ value == "1" }}'
+  #     kitchen_motion:
+  #       command_on: 'curl -k "https://192.168.178.128:443/cgi-bin/CGIProxy.fcgi?cmd=setMotionDetectConfig1&isEnable=1&linkage=12&snapInterval=1&triggerInterval=10&schedule0=281474976710655&schedule1=281474976710655&schedule2=281474976710655&schedule3=281474976710655&schedule4=281474976710655&schedule5=281474976710655&schedule6=281474976710655&width1=10000&height1=10000&sensitivity1=2&valid1=1&usr=florian&pwd=ikbenst1L"'
+  #       command_off: 'curl -k "https://192.168.178.128:443/cgi-bin/CGIProxy.fcgi?cmd=setMotionDetectConfig1&isEnable=0&usr=florian&pwd=ikbenst1L"'
+  #       command_state: 'curl -k --silent "https://192.168.178.128:443/cgi-bin/CGIProxy.fcgi?cmd=getMotionDetectConfig1&usr=florian&pwd=ikbenst1L" | grep -oP "(?<=isEnable>).*?(?=</isEnable>)"'
+  #       value_template: '{{ value == "1" }}'
+
+  # - platform: command_line
+  #   scan_interval: 1
+  #   switches:
+  #     utubeon:
+  #       command_on: curl -X POST http://192.168.178.145:8001/api/v2/applications/111299001912
+  #       command_off: curl -X POST http://192.168.178.145:8001/api/v2/applications/111299001912
+  #       friendly_name: "Turn on Youtube"
+  #       command_state: off
+  #     netflixon:
+  #       command_on: curl -X POST http://192.168.178.145:8001/ws/apps/Netflix
+  #       command_off: curl -X POST http://192.168.178.145:8001/api/v2/applications/RN1MCdNq8t
+  #       command_state: off
+  #       friendly_name: "Turn on Netflix"
+  #     plexon:
+  #       command_on: curl -X POST http://192.168.178.145:8001/api/v2/applications/kIciSQlYEM.plex
+  #       command_off: curl -X POST http://192.168.178.145:8001
+  #       command_state: off 
+  #       friendly_name: "Turn on Plex"
+
+#   - platform: template
+#     switches:
+#       someone_home:
+#         # value_template: "{{ is_state('input_boolean.someone_home', 'on') }}"
+#         # turn_on:
+#         #   service: cover.open_cover
+#         #   data:
+#         #     entity_id: cover.garage_door
+#         # turn_off:
+#         #   service: cover.close_cover
+#         #   data:
+#         #     entity_id: cover.garage_door
+#         icon_template: >-
+#           {% if is_state('input_boolean.someone_home', 'on') %}
+#             mdi:home-lock
+#           {% else %}
+#             mdi:home-lock-open
+#           {% endif %}

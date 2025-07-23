@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace_resources",
+  "data": {
+    "items": [
+      {
+        "url": "/hacsfiles/mini-graph-card/mini-graph-card-bundle.js?hacstag=1512800620121",
+        "type": "module",
+        "id": "6b9047f9e3644cf88848c6da9c8464a0"
+      },
+      {
+        "url": "/hacsfiles/mini-media-player/mini-media-player-bundle.js?hacstag=1485208381169",
+        "type": "module",
+        "id": "63defbfda5f5488da3a70583c83621ec"
+      },
+      {
+        "url": "/hacsfiles/surveillance-card/surveillance-card.js?hacstag=147764937007",
+        "type": "module",
+        "id": "966a69744e574da88b685c523409f88e"
+      },
+      {
+        "url": "/hacsfiles/lovelace-slider-entity-row/slider-entity-row.js?hacstag=1448997001741",
+        "type": "module",
+        "id": "47818db7149645f695e136685ec363fa"
+      },
+      {
+        "url": "/hacsfiles/lovelace-fold-entity-row/fold-entity-row.js?hacstag=15078199420012",
+        "type": "module",
+        "id": "d75c6296e0f947cc8bb7c9f1a26872dc"
+      },
+      {
+        "url": "/hacsfiles/lovelace-auto-entities/auto-entities.js?hacstag=1677445841130",
+        "type": "module",
+        "id": "0507ac5a5e8e4e39a4ad90a1f42f992b"
+      },
+      {
+        "url": "/hacsfiles/weather-card/weather-card.js",
+        "type": "module",
+        "id": "16f6274b90c04c758b56de1056b46e53"
+      },
+      {
+        "url": "/hacsfiles/button-card/button-card.js?hacstag=146194325412",
+        "type": "module",
+        "id": "2dfdc17e0722435ca504033fd54b5206"
+      },
+      {
+        "url": "/hacsfiles/lovelace-paper-buttons-row/paper-buttons-row.js?hacstag=244872232220",
+        "type": "module",
+        "id": "a2827b6cee374dae91d32a253574566d"
+      },
+      {
+        "url": "/hacsfiles/banner-card/banner-card.js?hacstag=1867657040130",
+        "type": "module",
+        "id": "fed058c86e524f5fbfedf55500a8b452"
+      },
+      {
+        "url": "https://fonts.googleapis.com/css?family=Comfortaa&display=swap",
+        "type": "css",
+        "id": "f29269d61da94d9bacbd611898f61044"
+      },
+      {
+        "url": "/hacsfiles/simple-thermostat/simple-thermostat.js?hacstag=158654878250",
+        "type": "module",
+        "id": "cb73d406b0ae411eac984738e08329c0"
+      },
+      {
+        "url": "/hacsfiles/lovelace-mushroom/mushroom.js?hacstag=444350375402",
+        "type": "module",
+        "id": "f0714c9e03ae4b52b851e24c3ceffd4e"
+      },
+      {
+        "url": "/hacsfiles/lovelace-layout-card/layout-card.js?hacstag=156434866245",
+        "type": "module",
+        "id": "b29faac38cec4b00844b490128607fcf"
+      },
+      {
+        "id": "a4db80882f244ee9b0341c96719b4fb5",
+        "url": "/hacsfiles/roku-card/roku-card.js?hacstag=164367214124",
+        "type": "module"
+      },
+      {
+        "id": "dcbdffed5e864468b8c784af1e8cde6a",
+        "url": "/hacsfiles/mushroom-strategy/mushroom-strategy.js?hacstag=619284862210",
+        "type": "module"
+      },
+      {
+        "id": "fafe2201d3ba4c748a7116871d37f00e",
+        "url": "/hacsfiles/lovelace-mushroom/mushroom.js",
+        "type": "module"
+      }
+    ]
+  }
+}

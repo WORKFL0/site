@@ -1,0 +1,84 @@
+# - platform: template
+#   sensors:
+#     window:
+#       friendly_name: "DakTerras"
+#       device_class: opening
+#       unique_id: c1f08e78-6e2a-4e2f-90b8-46f7688d06ff
+#       value_template: >-
+#         {{  states('sensor.d_link_corporation_dch_z110_door_window_3_in_1_sensor_access_control')|float == 22 }}
+
+# - platform: template
+#   sensors:
+#     front_door:
+#       friendly_name: "VoorDeur"
+#       device_class: opening
+#       unique_id: 83b2b9fc-49db-4537-b3c6-65f9c5d64b17
+#       value_template: >-
+#         {{  states('sensor.d_link_corporation_dch_z110_door_window_3_in_1_sensor_access_control_2')|float == 22 }}
+
+# - platform: template
+#   sensors:
+#     back_door:
+#       friendly_name: "WoonkamerDeur"
+#       device_class: opening
+#       unique_id: e8b1563e-021d-4b65-95e2-2f9c3f3a2e5d
+#       value_template: "{{  is_state('binary_sensor.zw112_door_window_sensor_6_sensor', 'on') }}"
+#       # entity_id: sensor.back_door
+
+- platform: template
+  sensors:
+    someone_home:
+      friendly_name: "Iemand Thuis?"
+      device_class: occupancy
+      unique_id: aebf2f98-3b9d-4d87-86d1-6e1a6fba9c2b
+      # initial_state: on
+      value_template: "{{  states.input_boolean.someone_home.state == 'on' }}"
+      # entity_id: input_boolean.someone_home
+# - platform: template
+#   sensors:
+#     motion_woonkamer:
+#       friendly_name: Woonkamer
+#       device_class: motion
+#       unique_id: b7c4e1b4-f759-4c3a-9d70-5f6e1a9d8b1d
+#       delay_off:
+#         minutes: 5
+#       value_template: "{{ is_state('binary_sensor.woonkamer_sensor_motion', 'on') }}"
+#       # entity_id: sensor.motion_woonkamer
+
+# - platform: template
+#   sensors:
+#     motion_slaapkamer:
+#       friendly_name: Slaapkamer
+#       device_class: motion
+#       unique_id: 4e7a47b3-3b7e-4487-8427-8fc9e4f6e1a3
+#       value_template: "{{ is_state('sensor.motion_slaapkamer', 'motion detected') }}"
+#       # entity_id: sensor.motion_slaapkamer
+
+# - platform: template
+#   sensors:
+#     motion_office:
+#       friendly_name: Kantoor
+#       device_class: motion
+#       unique_id: 9e3c11d1-1f8c-4b89-9d68-6e9f1d2c3b8f
+#       value_template: "{{ is_state('sensor.motion_office', 'motion detected') }}"
+#       # entity_id: sensor.motion_office
+
+#  - platform: template
+#    sensors:
+#      motion_keuken:
+#        friendly_name: Keuken
+#        device_class: motion
+#        value_template: "{{ is_state('sensor.foscam_motion', 'Alarm') }}"
+#        entity_id: sensor.motion_keuken
+# - platform: template
+#   sensors:
+#     motion_keuken:
+#       friendly_name: Keuken
+#       device_class: motion
+#       delay_off:
+#         minutes: 5
+#       value_template: "{{ is_state('sensor.wemos_4_motion', 'ON') }}"
+#       entity_id: sensor.wemos_4_motion
+# retain: false
+# - platform: uptimerobot
+#   api_key: !secret uptimerobot_api

@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_text",
+  "data": {
+    "items": [
+      {
+        "name": "AttributeSpoorHL",
+        "mode": "text",
+        "min": 0,
+        "max": 100,
+        "id": "attributespoorhl"
+      },
+      {
+        "id": "ap",
+        "name": "AP",
+        "icon": "mdi:remote-tv",
+        "pattern": "input_text:   ab_page:     name: AB pagina     initial: \"/lovelace/ab\"     max: 255",
+        "max": 255,
+        "mode": "text",
+        "min": 0
+      },
+      {
+        "id": "ab",
+        "max": 255,
+        "name": "AB",
+        "icon": "mdi:remote-tv",
+        "pattern": "/lovelace/AB",
+        "mode": "text",
+        "min": 0
+      }
+    ]
+  }
+}

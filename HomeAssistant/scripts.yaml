@@ -1,0 +1,578 @@
+'1577995783144':
+  alias: All-OFF
+  sequence:
+  - data: {}
+    service: light.turn_off
+    target:
+      device_id:
+      - 951d09c4ef4843838549b4531da19236
+      - 9653cf84c2c84ae1b4db7181b30677a9
+      - 888353646e794e179aa6c46658705cb2
+      - b748cb6dfc814525a50b8b9766a770a1
+      - 1a553a46ca141fb642e977dc3c46b813
+      - ab60dad64d934226a3a097fdfc017f01
+      area_id:
+      - f9f6cbf3175543cba93284a3ba464ead
+      - tuin
+      - 2fc90dc474b84d0abcaf50fb60bc1bd1
+      - a0bee13683094cbd83a5b33e1a30edbd
+      - 44a8fa68a3124147bf6624a478484567
+  - service: light.turn_off
+    data:
+      transition: 30
+    target:
+      area_id:
+      - a0bee13683094cbd83a5b33e1a30edbd
+      - noah_s_slaapkamer
+      - noah
+      - schuur
+      - tuin
+      - f9f6cbf3175543cba93284a3ba464ead
+      - 44a8fa68a3124147bf6624a478484567
+      - a0bee13683094cbd83a5b33e1a30edbd
+      device_id: 1a553a46ca141fb642e977dc3c46b813
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id:
+      - switch.sonoff_11
+      - switch.sonoff_12
+      - switch.tp_01
+      - switch.shelly_01
+  - service: media_player.media_stop
+    target:
+      device_id:
+      - f668a348f0174564ac3b965a29470d94
+      - d4ea62c99564575ede842affbc4c5eb7
+      - e7e269fa2d7fc9aee3754da4c7c03674
+      - 6cfde0c2fe8cbd352f8aa06bc7fcdbe4
+      - a24b67bdeace4a469f8126e833299952
+      - 5ce94eadf8b12cef754631eb60536b81
+      - 7e11cd7cb2ebe2532732ece4ee838298
+      entity_id:
+      - remote.appletv
+      - media_player.appletv
+      - media_player.unnamed_room
+    data: {}
+  mode: single
+cycle_modem_power:
+  alias: Power Cycle Modem
+  sequence:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.router_2
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.router_2
+  - delay:
+      hours: 0
+      minutes: 1
+      seconds: 0
+      milliseconds: 0
+  - if:
+    - condition: device
+      type: is_off
+      device_id: 99e5c83e3daf0d7a8c8cce806db93a8a
+      entity_id: 19032d0fbd84476c881cb8dacdd58e91
+      domain: light
+    then:
+    - service: switch.turn_on
+      data: {}
+    else:
+    - service: notify.mobile_app_flophone15pro
+      data:
+        message: Router power cycle succesfull
+        title: We're back online!
+  mode: single
+  icon: mdi:restart
+app_kijken:
+  alias: App Kijken
+  sequence:
+  - service: remote.turn_on
+    target:
+      entity_id: remote.harmony_woonlamer
+    data:
+      activity: App Kijken
+  mode: single
+  description: ''
+turn_tv_on:
+  alias: Turn TV On
+  sequence:
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.samsung_6_series_55
+    data: {}
+  mode: single
+  description: ''
+  icon: mdi:television-classic
+turn_tv_off:
+  alias: Turn TV Off
+  sequence:
+  - service: media_player.turn_off
+    target:
+      entity_id: media_player.samsung_6_series_55
+  mode: single
+  description: ''
+  icon: mdi:television-classic-off
+set_tv_to_hdmi_3:
+  alias: Set TV to HDMI 3
+  sequence:
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.samsung_6_series_55
+    data:
+      source: HDMI
+  mode: single
+  description: ''
+  icon: mdi:hdmi-port
+apple_tv_up:
+  alias: Apple TV Up
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: up
+  mode: single
+  description: ''
+  icon: mdi:arrow-up
+apple_tv_down:
+  alias: Apple TV Down
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: down
+  mode: single
+  description: ''
+  icon: mdi:arrow-down
+apple_tv_left:
+  alias: Apple TV Left
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: left
+  mode: single
+  description: ''
+  icon: mdi:arrow-left
+apple_tv_right:
+  alias: Apple TV Right
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: right
+  mode: single
+  description: ''
+  icon: mdi:arrow-right
+apple_tv_select:
+  alias: Apple TV Select
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: select
+  mode: single
+  description: ''
+  icon: mdi:select
+open_odido:
+  alias: Open Odido TV
+  sequence:
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.appletv
+    data:
+      source: Odido TV
+  mode: single
+  description: open the odido tv app
+  icon: mdi:television-classic
+open_youtube:
+  alias: Open YouTube
+  sequence:
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.appletv
+    data:
+      source: YouTube
+  mode: single
+open_ibo_player:
+  alias: Open IPTV
+  sequence:
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.appletv
+    data:
+      source: IBO PLAYER
+  mode: single
+receiver_volume_up:
+  alias: Receiver Volume Up
+  sequence:
+  - service: media_player.volume_up
+    target:
+      entity_id: media_player.denon_zone_1
+  mode: single
+  description: ''
+  icon: mdi:volume-plus
+receiver_volume_down:
+  alias: Receiver Volume Down
+  sequence:
+  - service: media_player.volume_down
+    target:
+      entity_id: media_player.denon_zone_1
+  mode: single
+  description: ''
+  icon: mdi:volume-minus
+receiver_input_apple_tv:
+  alias: Receiver Input Apple TV
+  sequence:
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.denon_zone_1
+    data:
+      source: APPLE TV
+  mode: single
+  description: ''
+  icon: mdi:audio-video
+open_videoland:
+  alias: Open Videoland
+  sequence:
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.appletv
+    data:
+      source: Videoland
+  mode: single
+  description: ''
+  icon: mdi:apple-keyboard-command
+mute_receiver:
+  alias: Mute Receiver
+  sequence:
+  - service: media_player.volume_mute
+    target:
+      entity_id: media_player.denon_zone_1
+    data:
+      is_volume_muted: true
+  mode: single
+unmute_receiver:
+  alias: UnMute Receiver
+  sequence:
+  - service: media_player.volume_mute
+    target:
+      entity_id: media_player.denon_zone_1
+    data:
+      is_volume_muted: false
+  mode: single
+  description: ''
+  icon: mdi:volume-high
+toggle_mute_receiver_2:
+  alias: Toggle Mute Receiver
+  sequence:
+  - condition: template
+    value_template: '{{ state_attr(''media_player.denon_zone_1'', ''is_volume_muted'')
+      == false }}'
+  - service: script.mute_receiver
+    data: {}
+  - condition: template
+    value_template: '{{ state_attr(''media_player.denon_zone_1'', ''is_volume_muted'')
+      == true }}'
+  - service: script.unmute_receiver
+    data: {}
+  mode: single
+  description: Mute or UnMute
+  icon: mdi:speaker-off
+power_on_and_set_inputs:
+  alias: Power On and Set Inputs
+  sequence:
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.denon_zone_1
+    data: {}
+  - delay: 00:00:02
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.samsung_6_series_55
+    data: {}
+  - delay: 00:00:02
+  - service: media_player.turn_on
+    target:
+      entity_id: media_player.appletv
+    data: {}
+    enabled: false
+  - delay: 00:00:02
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.denon_zone_1
+    data:
+      source: Apple TV
+  - delay: 00:00:02
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.samsung_6_series_55
+    data:
+      source: HDMI 3
+  - service: media_player.volume_set
+    metadata: {}
+    data:
+      volume_level: 0.37
+    target:
+      entity_id: media_player.denon_zone_1
+  - service: remote.send_command
+    target:
+      entity_id: remote.denon_zone_1
+    data:
+      command: KEY_ENTER
+  mode: single
+  description: ''
+  icon: mdi:home-automation
+start_power_on_and_navigate:
+  alias: Start Power On and Navigate
+  sequence:
+  - service: script.turn_on
+    target:
+      entity_id: script.power_on_and_set_inputs
+    data: {}
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.AB
+    data:
+      value: '{{ navigation_path }}'
+  mode: single
+  description: ''
+  icon: mdi:television-classic
+apple_tv_suspend:
+  alias: Apple TV Suspend
+  sequence:
+  - service: media_player.turn_off
+    target:
+      entity_id: media_player.appletv
+  mode: single
+  description: ''
+apple_tv_home:
+  alias: Apple TV Home
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: home
+  mode: single
+  description: ''
+apple_tv_top_menu:
+  alias: Apple TV Top Menu
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: top_menu
+  mode: single
+  description: ''
+apple_tv_menu:
+  alias: Apple TV Menu
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: menu
+  mode: single
+  description: ''
+apple_tv_play:
+  alias: Apple TV Play
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: play
+  mode: single
+  description: ''
+  icon: mdi:play-box
+apple_tv_pause:
+  alias: Apple TV Pause
+  sequence:
+  - service: remote.media_pause
+    target:
+      entity_id:
+      - media_player.appletv
+    data: {}
+  mode: single
+  description: ''
+apple_tv_previous:
+  alias: Apple TV Previous
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: previous
+  mode: single
+  description: ''
+apple_tv_next:
+  alias: Apple TV Next
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: next
+  mode: single
+  description: ''
+apple_tv_skip_backward:
+  alias: Apple TV Skip Backward
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: skip_backward
+  mode: single
+  description: ''
+apple_tv_skip_forward:
+  alias: Apple TV Skip Forward
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.appletv
+    data:
+      command: skip_forward
+  mode: single
+  description: ''
+receiver_input_zone1_sonos:
+  alias: Receiver Input Zone1 SONOS
+  sequence:
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.denon_zone_1
+    data:
+      source: SONOS
+  mode: single
+  description: ''
+  icon: mdi:audio-input-rca
+receiver_input_zone2_sonos:
+  alias: Receiver Input Zone2 SONOS
+  sequence:
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.denon_zone_2
+    data:
+      source: SONOS
+  mode: single
+  description: ''
+  icon: mdi:audio-input-rca
+receiver_input_apple_tv_zone2:
+  alias: Receiver Input Apple TV zone2
+  sequence:
+  - service: media_player.select_source
+    target:
+      entity_id: media_player.denon_zone_2
+    data:
+      source: APPLE TV
+  mode: single
+  description: ''
+  icon: mdi:audio-video
+receiver_off_zone2:
+  alias: Receiver off Zone2
+  sequence:
+  - service: media_player.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: media_player.denon_zone_2
+  mode: single
+  description: ''
+  icon: mdi:power-off
+receiver_off_zone1:
+  alias: Receiver off Zone1
+  sequence:
+  - service: media_player.turn_off
+    metadata: {}
+    data: {}
+    target:
+      entity_id: media_player.denon_zone_1
+  mode: single
+  description: ''
+  icon: mdi:power-off
+tv_ok_2:
+  alias: TV OK
+  sequence:
+  - service: remote.send_command
+    target:
+      entity_id: remote.samsung_6_series_55
+    data:
+      command: KEY_ENTER
+  mode: single
+  description: ''
+  icon: mdi:television-classic
+power_on_and_set_inputs_and_turn_sonos_off:
+  alias: Power On and Set Inputs and turn sonos off
+  sequence:
+  - target:
+      entity_id: media_player.denon_zone_1
+    data: {}
+    action: media_player.turn_on
+  - delay: 00:00:02
+  - target:
+      entity_id: media_player.samsung_6_series_55
+    data: {}
+    action: media_player.turn_on
+  - delay: 00:00:02
+  - target:
+      entity_id: media_player.appletv
+    data: {}
+    enabled: false
+    action: media_player.turn_on
+  - delay: 00:00:02
+  - target:
+      entity_id: media_player.denon_zone_1
+    data:
+      source: Apple TV
+    action: media_player.select_source
+  - delay: 00:00:02
+  - target:
+      entity_id: media_player.samsung_6_series_55
+    data:
+      source: HDMI 3
+    action: media_player.select_source
+  - metadata: {}
+    data:
+      volume_level: 0.37
+    target:
+      entity_id: media_player.denon_zone_1
+    action: media_player.volume_set
+  - target:
+      entity_id: remote.denon_zone_1
+    data:
+      command: KEY_ENTER
+    action: remote.send_command
+  - action: media_player.media_pause
+    metadata: {}
+    data: {}
+    target:
+      device_id: d4ea62c99564575ede842affbc4c5eb7
+  mode: single
+  description: ''
+  icon: mdi:home-automation
+receiver_input_odido:
+  alias: Receiver Input Odido
+  sequence:
+  - target:
+      entity_id: media_player.denon_zone_1
+    data:
+      source: Odido TV
+    action: media_player.select_source
+  mode: single
+  description: ''
+  icon: mdi:audio-video

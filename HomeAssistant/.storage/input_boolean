@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "input_boolean",
+  "data": {
+    "items": [
+      {
+        "name": "sleepmode",
+        "id": "sleepmode"
+      },
+      {
+        "name": "ShowerOn",
+        "icon": "mdi:shower",
+        "id": "showeron"
+      },
+      {
+        "name": "Woonkamer Iemand aanwezig",
+        "id": "woonkamer_iemand_aanwezig"
+      },
+      {
+        "name": "Keuken Iemand aanwezig",
+        "id": "keuken_iemand_aanwezig"
+      },
+      {
+        "name": "WC Iemand aanwezig",
+        "id": "wc_iemand_aanwezig"
+      },
+      {
+        "name": "Schuur Iemand aanwezig",
+        "id": "schuur_iemand_aanwezig"
+      },
+      {
+        "name": "Badkamer Iemand aanwezig",
+        "id": "badkamer_iemand_aanwezig"
+      },
+      {
+        "name": "Masterslaapkamer Iemand aanwezig",
+        "id": "masterslaapkamer_iemand_aanwezig"
+      },
+      {
+        "name": "Noahsslaapkamer Iemand aanwezig",
+        "id": "noahsslaapkamer_iemand_aanwezig"
+      },
+      {
+        "name": "Kantoor Iemand aanwezig",
+        "id": "kantoor_iemand_aanwezig"
+      },
+      {
+        "name": "Iemand aanwezig Uit",
+        "id": "iemand_aanwezig_uit"
+      },
+      {
+        "name": "KeukenAutomationsOnOff",
+        "icon": "mdi:exit-run",
+        "id": "keukenautomationsonoff"
+      },
+      {
+        "name": "WoonkamerAutomationsOnOff",
+        "icon": "mdi:exit-run",
+        "id": "woonkamerautomationsonoff"
+      },
+      {
+        "name": "TuinAutomationsOnOff",
+        "icon": "mdi:exit-run",
+        "id": "tuinautomationsonoff"
+      },
+      {
+        "name": "GangAutomationsOnOff",
+        "icon": "mdi:exit-run",
+        "id": "gangautomationsonoff"
+      },
+      {
+        "name": "EetkamerAutomationsOnOff",
+        "icon": "mdi:exit-run",
+        "id": "eetkamerautomationsonoff"
+      },
+      {
+        "name": "KeukendeurAutomationsOnOff",
+        "icon": "mdi:door-open",
+        "id": "keukendeurautomationsonoff"
+      }
+    ]
+  }
+}

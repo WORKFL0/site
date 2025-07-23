@@ -1,0 +1,97 @@
+deFamilie:
+  entities:
+    - person.cindy
+    - person.noah
+    - person.florian
+woonkamer:
+  entities:
+    - light.zithoek_muur
+    - light.plant_muur
+    - light.diner_muur
+    - light.achter_muur
+    # - light.hue_filament
+    # - light.plant_lamp
+    - media_player.woonkamer
+keuken:
+  entities:
+    - light.keukenkastjehue
+    - light.afzuigkap_ambientlight
+    - light.keuken_muur
+    - light.aanrechtblad
+    - media_player.nesthub
+gang:
+  entities:
+    - light.gangbg
+tuin:
+  entities:
+    - light.hue_outdoor_wall_1
+    - binary_sensor.hue_outdoor_motion_sensor_1_motion
+    - switch.overhangbuiten
+schuur:
+  entities:
+    - switch.sonoff_11
+    - switch.sonoff_12
+    - switch.schuur_ingang
+    - camera.ai_360_high
+meterkast:
+  entities:
+    # - switch.aeon_labs_zw096_smart_switch_6_switch_2
+beneden:
+  entities:
+    - group.woonkamer
+    - group.keuken
+    - group.tuin
+    - group.gang
+    - group.schuur
+slaapkamer:
+  entities:
+    - light.masterslaapkamer
+    - climate.floor_thermostat
+    - media_player.slaapkamer
+noah:
+  entities:
+    # - light.hue_artimide_kast
+    - light.noahskamer
+    - light.hue_color_lamp_ikeasta
+    - climate.floor_thermostat_2
+kantoor:
+  entities:
+    #   - light.plafond_spots
+    - light.hue_color_lamp_artimide
+    - light.hue_color_lamp_kartbord
+    - climate.office
+    - media_player.kantoorcast
+badkamer:
+  entities:
+    # - switch.sonoff_01
+    # - switch.shelly_01
+    # - light.ikea_badkamer
+    - media_player.badkamer
+    - climate.advanced_programmable_thermostat_for_heating_systems
+boven:
+  entities:
+    - group.slaapkamer
+    - group.noah
+    - group.badkamer
+    - group.kantoor
+home:
+  entities:
+    - group.beneden
+    - group.boven
+Smart Meter:
+  # - sensor.toon_gas_used_last_hour
+  # - sensor.toon_gas_used_cnt
+  - sensor.toon_power_use_cnt
+  - sensor.toon_power_use
+  - sensor.toon_p1_power_prod_low
+  - sensor.toon_p1_power_prod_high
+  - sensor.toon_p1_power_prod_cnt_low
+  - sensor.toon_p1_power_prod_cnt_high
+  - sensor.toon_p1_power_use_cnt_pulse
+  - sensor.toon_p1_power_use_cnt_low
+  - sensor.toon_p1_power_use_cnt_high
+  - sensor.toon_p1_power_use_low
+  - sensor.toon_p1_power_use_high
+  # - sensor.toon_p1_power_solar
+  # - sensor.toon_p1_power_solar_cnt
+  - sensor.toon_p1_heat

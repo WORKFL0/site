@@ -1,0 +1,51 @@
+# Home Assistant specific files to ignore
+home-assistant_v2.db
+home-assistant.log*
+*.log
+*.log.*
+*.sqlite
+*.db-shm
+*.db-wal
+
+# Secrets and sensitive information
+secrets.yaml
+known_devices.yaml
+
+# Token caches and credentials
+*token*
+*cred*
+flows_cred.json
+*backup.O365-token-cache/
+
+# Backup files
+*.backup
+*.backup2
+*.zip
+
+# TTS cache
+tts/
+
+# Image cache (these can be large and regenerated)
+image/
+
+# Temporary and cache files
+.cloud
+.storage
+*.pyc
+__pycache__/
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+*.swp
+*.swo
+
+# Node modules (if any)
+node_modules/
+
+# Python virtual environment
+venv/
+env/

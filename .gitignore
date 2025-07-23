@@ -1,43 +1,77 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Home Assistant - Sensitive Files
+HomeAssistant/secrets.yaml
+HomeAssistant/known_devices.yaml
+HomeAssistant/.HA_VERSION
+HomeAssistant/.uuid
+HomeAssistant/home-assistant.log*
+HomeAssistant/home-assistant_v2.db*
+HomeAssistant/zigbee.db*
+HomeAssistant/pyozw.sqlite*
+HomeAssistant/.storage/
+HomeAssistant/deps/
+HomeAssistant/tts/
+HomeAssistant/.cloud/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Keep template but not actual secrets
+!HomeAssistant/secrets.yaml.template
 
-# testing
-/coverage
+# Cyberduck - Contains WordPress sites with potential sensitive data
+Cyberduck/
 
-# next.js
-/.next/
-/out/
+# Node-RED - Flows may contain credentials (reference copy only)
+node-red/
+HomeAssistant/node-red/
 
-# production
-/build
-
-# misc
+# System Files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+*.log.*
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Backup files
+*.backup
+*.bak
+backup/
+backups/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Certificate files
 *.pem
+*.key
+*.crt
+*.cert
 
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
-.env*.local
+# Environment files
 .env
+.env.local
+.env.*.local
 
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# sanity
-/sanity/dist
-
-# images (if copying manually)
-/public/images/*
-!/public/images/.gitkeep
+# Security and analysis reports (optional - you may want to keep these)
+SECURITY_ANALYSIS_REPORT.md
+CREDENTIAL_ROTATION_CHECKLIST.md
+emergency_cleanup.sh
+FINAL_SECURITY_STATUS_REPORT.md

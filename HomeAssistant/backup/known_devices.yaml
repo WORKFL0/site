@@ -1,0 +1,48 @@
+
+life360_florian_de_haan:
+  hide_if_away: false
+  icon:
+  mac:
+  name: life360 florian de haan
+  picture: https://www.life360.com/img/user_images/88abb6e5-0cae-4a86-b7f8-224462db6d4b/61877519-de70-4747-9e63-33ceed3d49ed.png?fd=2
+  track: true
+
+life360_mam_sowada:
+  hide_if_away: true
+  icon:
+  mac:
+  name: life360 mam sowada
+  picture: https://www.life360.com/img/user_images/dc58de80-4e4d-41df-946d-a03a375af98f/59cc1466-56ba-436b-9ae9-e352de31faa0.png?fd=2
+  track: true
+
+life360_opa_spain:
+  hide_if_away: true
+  icon:
+  mac:
+  name: life360 opa spain
+  picture: https://www.life360.com/img/user_images/a2bd247e-c443-4b32-ab46-cac7aaabf044/b8220849-b0bd-4655-8938-c87738f2603b.png?fd=2
+  track: true
+
+life360_noah_de_haan:
+  hide_if_away: false
+  icon:
+  mac:
+  name: life360 noah de haan
+  picture: https://www.life360.com/img/user_images/f817f2e0-e066-4dcd-8002-012e5d089460/7ef56c28-b388-4402-9d82-5070d1e9b398.jpg?fd=2
+  track: true
+
+tesla_model_3_241149_location_tracker:
+  hide_if_away: false
+  icon:
+  mac:
+  name: FloMobiel location tracker
+  picture:
+  track: true
+
+flophonex:
+  hide_if_away: false
+  icon:
+  mac:
+  name: FloPhoneX
+  picture:
+  track: true

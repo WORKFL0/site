@@ -1,0 +1,52 @@
+arm_alarm:
+  name: Alarm
+  initial: Off
+arm_office_notifications:
+  name: Office Notifications
+  initial: Off
+arm_frontdoor_notifications:
+  name: Frontdoor Notifications
+  initial: Off
+arm_backdoor_notifications:
+  name: Backdoor Notifications
+  initial: Off
+arm_bedroom_notifications:
+  name: Bedroom Notifications
+  initial: Off
+arm_kitchen_notifications:
+  name: Kitchen Notifications
+  initial: Off
+papa_home:
+  name: Papa thuis
+noah_home:
+  name: Noah thuis
+cindy_home:
+  name: Cindy thuis
+guests_home:
+  name: Gasten thuis
+someone_home:
+  name: Iemand thuis
+###################
+#
+# Foscam Dashboard
+#
+###################
+node_red:
+  name: Node Red Watchdog
+  initial: on
+automation_livingroom:
+  name: Automation livingroom
+  initial: on
+automation_kitchen:
+  name: Automation keuken
+  initial: on
+automation_slaapkamer:
+  name: Automation slaapkamer
+  initial: on
+automation_kantoor:
+  name: Automation kantoor
+  initial: on
+#################
+roomba_triggered_today:
+  name: Roomba Triggered Today
+  initial: off

@@ -1,0 +1,47 @@
+- cal_id: AAMkAGU1YzM1MDc5LTRhNmQtNDQyNS1hNDNkLWVjMmEyZmMxMDI1ZABGAAAAAAD2g_Ebdm3aQqEuhu-gFdlABwAXhWiQL6vHSoxcp682-DWiAAAAAAEHAAAdilKPjGx3SryjS4XOIoHWAAATvQGPAAA=
+  entities:
+    - device_id: Ajax
+      end_offset: 24
+      name: Ajax
+      start_offset: 0
+      track: true
+
+- cal_id: AQMkAGU1YzM1MDc5LTRhNmQtNDQAMjUtYTQzZC1lYzJhMmZjMTAyNWQARgAAA-aD4Rt2bdpCoS6G7_AV2UAHABeFaJAvq8dKjFynrzb8NaIAAAIBBwAAABeFaJAvq8dKjFynrzb8NaIAAAIUwQAAAA==
+  entities:
+    - device_id: Calendar
+      end_offset: 24
+      name: Florian de Haan
+      start_offset: 0
+      track: true
+
+- cal_id: AAMkAGU1YzM1MDc5LTRhNmQtNDQyNS1hNDNkLWVjMmEyZmMxMDI1ZABGAAAAAAD2g_Ebdm3aQqEuhu-gFdlABwAXhWiQL6vHSoxcp682-DWiAAAAAAEHAAAdilKPjGx3SryjS4XOIoHWAAK8-BMUAAA=
+  entities:
+    - device_id: Netherlands holidays
+      end_offset: 24
+      name: Netherlands holidays
+      start_offset: 0
+      track: true
+
+- cal_id: AQMkAGU1YzM1MDc5LTRhNmQtNDQAMjUtYTQzZC1lYzJhMmZjMTAyNWQARgAAA-aD4Rt2bdpCoS6G7_AV2UAHABeFaJAvq8dKjFynrzb8NaIAAAIBBwAAAB2KUo_MbHdKvKNLhc4igdYAAtO3_wAAAQ==
+  entities:
+    - device_id: Verjaardagen
+      end_offset: 24
+      name: Verjaardagen
+      start_offset: 0
+      track: true
+
+- cal_id: AAMkAGU1YzM1MDc5LTRhNmQtNDQyNS1hNDNkLWVjMmEyZmMxMDI1ZABGAAAAAAD2g_Ebdm3aQqEuhu-gFdlABwAXhWiQL6vHSoxcp682-DWiAAAAAAEHAAAXhWiQL6vHSoxcp682-DWiAALXlYkxAAA=
+  entities:
+    - device_id: Formula 1
+      end_offset: 24
+      name: Formula 1
+      start_offset: 0
+      track: true
+
+- cal_id: AAMkAGU1YzM1MDc5LTRhNmQtNDQyNS1hNDNkLWVjMmEyZmMxMDI1ZABGAAAAAAD2g_Ebdm3aQqEuhu-gFdlABwAXhWiQL6vHSoxcp682-DWiAAAAAAEHAAAdilKPjGx3SryjS4XOIoHWAAGoEoHrAAA=
+  entities:
+    - device_id: Cindy van der Pal
+      end_offset: 24
+      name: Cindy van der Pal
+      start_offset: 0
+      track: true
