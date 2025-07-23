@@ -52,21 +52,23 @@ export const translations = {
     },
     // Partners
     partners: {
-      title: 'Partners van',
-      subtitle: 'We werken samen met \'s werelds toonaangevende technologiebedrijven om u de beste oplossingen te bieden',
-      workWith: {
+      met: {
         title: 'Partners met',
         subtitle: 'We werken samen met Nederlands toonaangevende bedrijven en instanties om jou de beste oplossingen te kunnen bieden',
-      }
+      },
+      van: {
+        title: 'Partners van',
+        subtitle: 'De merken waar we trots op zijn om mee samen te werken',
+      },
     },
     // Clients
     clients: {
       title: 'Wij Hebben Gewerkt Voor',
       subtitle: 'Trotse partner van meer dan 100+ bedrijven in Amsterdam en omgeving',
       stats: {
-        customers: 'Tevreden Klanten',
-        experience: 'Jaar Ervaring',
-        support: 'Support Beschikbaar',
+        satisfiedClients: 'Tevreden Klanten',
+        yearsExperience: 'Jaar Ervaring',
+        supportAvailable: 'Support Beschikbaar',
       }
     },
     // Testimonials
@@ -187,27 +189,7 @@ export const translations = {
       showDetails: 'Toon details',
       hideDetails: 'Verberg details',
     },
-    // Partners Sections
-    partners: {
-      met: {
-        title: 'Partners met',
-        subtitle: 'We werken samen met Nederlands toonaangevende bedrijven en instanties om jou de beste oplossingen te kunnen bieden',
-      },
-      van: {
-        title: 'Partners van',
-        subtitle: 'De merken waar we trots op zijn om mee samen te werken',
-      },
-    },
-    // Clients Section
-    clients: {
-      title: 'Wij Hebben Gewerkt Voor',
-      subtitle: 'Trotse partner van meer dan 100+ bedrijven in Amsterdam en omgeving',
-      stats: {
-        satisfiedClients: 'Tevreden Klanten',
-        yearsExperience: 'Jaar Ervaring',
-        supportAvailable: 'Support Beschikbaar',
-      },
-    },
+    
   },
   en: {
     // Navigation
@@ -260,25 +242,7 @@ export const translations = {
         description: 'Help when you need it.',
       },
     },
-    // Partners
-    partners: {
-      title: 'Partners Of',
-      subtitle: 'We work with the world\'s leading technology companies to provide you the best solutions',
-      workWith: {
-        title: 'Partners With',
-        subtitle: 'We work with the Netherlands\' leading companies and institutions to provide you the best solutions',
-      }
-    },
-    // Clients
-    clients: {
-      title: 'We Have Worked For',
-      subtitle: 'Proud partner of more than 100+ companies in Amsterdam and surroundings',
-      stats: {
-        customers: 'Satisfied Customers',
-        experience: 'Years Experience',
-        support: 'Support Available',
-      }
-    },
+    
     // Testimonials
     testimonials: {
       title: 'What Customers Say',

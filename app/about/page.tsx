@@ -16,6 +16,7 @@ const teamMembers = [
     description: 'Ik ben een gedreven generalist en vind het heerlijk om met nieuwe dingen bezig te zijn en vooral de vertaalslag te maken van idee naar een concreet resultaat. Mijn kracht ligt in een positief kritische, ondernemende en enthousiasmerende houding. Ik wil inspireren en geïnspireerd raken.',
     expertise: 'Microsoft 365, Cybersecurity, Business Strategy',
     linkedIn: 'https://linkedin.com/in/floriandehaan',
+    image: '/images/team/florian.jpg',
   },
   {
     name: 'Nam-Hoon Boots',
@@ -23,6 +24,7 @@ const teamMembers = [
     description: 'Nam-Hoon leidt onze technische innovatie en zorgt ervoor dat onze oplossingen altijd vooroplopen in de markt.',
     expertise: 'Cloud Architecture, DevOps, Infrastructure',
     linkedIn: 'https://www.linkedin.com/in/nam-hoon-boots-4b1194139/',
+    image: '/images/team/nam.jpg',
   },
   {
     name: 'Mas',
@@ -30,6 +32,7 @@ const teamMembers = [
     description: 'Mas zorgt ervoor dat onze systemen optimaal draaien en klanten altijd kunnen rekenen op stabiele IT-infrastructuur.',
     expertise: 'System Architecture, Network Management, Technical Support',
     linkedIn: null,
+    image: null,
   },
   {
     name: 'Marcello Macnack',
@@ -37,6 +40,7 @@ const teamMembers = [
     description: 'Marcello ondersteunt ons team met het beheren en optimaliseren van IT-infrastructuur voor onze klanten.',
     expertise: 'Infrastructure Management, Support, Cloud Services',
     linkedIn: 'https://www.linkedin.com/in/marcello-macnack-455789291/',
+    image: null,
   },
 ]
 
@@ -402,8 +406,19 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow border border-gray-100"
                 >
-                  <div className="aspect-w-1 aspect-h-1 bg-gradient-to-br from-primary-400 to-primary-600 h-64 flex items-center justify-center">
-                    <span className="text-6xl text-white">👨‍💼</span>
+                  <div className="aspect-w-1 aspect-h-1 h-64 relative overflow-hidden bg-gradient-to-br from-primary-400 to-primary-600">
+                    {member.image ? (
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full">
+                        <span className="text-6xl text-white">👨‍💼</span>
+                      </div>
+                    )}
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>

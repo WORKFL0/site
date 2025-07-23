@@ -52,9 +52,7 @@ export default function OnboardingPage() {
                 marginHeight={0} 
                 style={{ border: 'none', maxWidth:'100%', maxHeight:'100vh' }} 
                 allowFullScreen 
-                webkitallowfullscreen="true" 
-                mozallowfullscreen="true" 
-                msallowfullscreen="true"
+                
                 title={language === 'nl' ? 'Onboarding Formulier' : 'Onboarding Form'}
               />
             </motion.div>

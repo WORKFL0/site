@@ -6,7 +6,7 @@ import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './sanity/schemas'
 
 // Use environment variables when available, otherwise fall back to the hard-coded defaults that were in the previous JS config
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'prj_Y1mKm3jHw7E3YolW8R9RXhJe5Shx'
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!
 const dataset   = process.env.NEXT_PUBLIC_SANITY_DATASET       || 'production'
 
 export default defineConfig({

@@ -4,12 +4,12 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "env": {
-    "NEXT_PUBLIC_SANITY_PROJECT_ID": "prj_Y1mKm3jHw7E3YolW8R9RXhJe5Shx",
+    "NEXT_PUBLIC_SANITY_PROJECT_ID": "y1mkm3jhw7e3yolw8r9rxhje5shx",
     "NEXT_PUBLIC_SANITY_DATASET": "production"
   },
   "build": {
     "env": {
-      "NEXT_PUBLIC_SANITY_PROJECT_ID": "prj_Y1mKm3jHw7E3YolW8R9RXhJe5Shx",
+      "NEXT_PUBLIC_SANITY_PROJECT_ID": "y1mkm3jhw7e3yolw8r9rxhje5shx",
       "NEXT_PUBLIC_SANITY_DATASET": "production"
     }
   }

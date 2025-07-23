@@ -16,14 +16,14 @@ interface ClientsSectionProps {
 }
 
 const defaultClients = [
-  { name: 'Havas Media', logo: '📺', industry: 'Marketing & Media' },
-  { name: 'Doctor Feelgood', logo: '🏥', industry: 'Healthcare' },
-  { name: 'Winix', logo: '💨', industry: 'Technology' },
-  { name: 'ROC Amsterdam', logo: '🎓', industry: 'Education' },
-  { name: 'Greenpeace', logo: '🌍', industry: 'Non-Profit' },
-  { name: 'Podimo', logo: '🎧', industry: 'Media & Entertainment' },
-  { name: 'NWA', logo: '✈️', industry: 'Aviation' },
-  { name: 'BijVoorbeeld', logo: '📊', industry: 'Business Services' },
+  { name: 'Havas Media', logo: '/images/logos/havas-media.png', industry: 'Marketing & Media' },
+  { name: 'Doctor Feelgood', logo: '/images/logos/doctor-feelgood.jpg', industry: 'Healthcare' },
+  { name: 'Winix', logo: '/images/logos/winix.jpg', industry: 'Technology' },
+  { name: 'ROC Amsterdam', logo: '/images/logos/roc-amsterdam.png', industry: 'Education' },
+  { name: 'Greenpeace', logo: '/images/logos/greenpeace.png', industry: 'Non-Profit' },
+  { name: 'Podimo', logo: '/images/logos/podimo.png', industry: 'Media & Entertainment' },
+  { name: 'NWA', logo: '/images/logos/nwa.png', industry: 'Aviation' },
+  { name: 'BijVoorbeeld', logo: '/images/logos/bijvoorbeeld.jpg', industry: 'Business Services' },
 ]
 
 const ClientsSection = ({ clients = defaultClients }: ClientsSectionProps = {}) => {
@@ -67,8 +67,18 @@ const ClientsSection = ({ clients = defaultClients }: ClientsSectionProps = {}) 
               className="flex items-center justify-center p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
             >
               <div className="text-center">
-                <div className="w-24 h-24 bg-white rounded-lg mb-2 mx-auto flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
-                  <span className="text-4xl">{client.logo}</span>
+                <div className="w-24 h-24 bg-white rounded-lg mb-2 mx-auto flex items-center justify-center shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+                  {client.logo.startsWith('/') ? (
+                    <Image
+                      src={client.logo}
+                      alt={client.name}
+                      width={80}
+                      height={80}
+                      className="object-contain"
+                    />
+                  ) : (
+                    <span className="text-4xl">{client.logo}</span>
+                  )}
                 </div>
                 <p className="text-sm text-gray-700 font-medium">{client.name}</p>
                 {client.industry && (
