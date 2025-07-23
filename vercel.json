@@ -1,5 +1,5 @@
 {
-  "buildCommand": "rm -rf .next node_modules/.cache && npm run build",
+  "buildCommand": "echo '// Cache bypass' > app/about/AboutPageServer.tsx && echo 'export { default } from \"./page\"' >> app/about/AboutPageServer.tsx && cat app/about/AboutPageServer.tsx && npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm ci --force",
   "framework": "nextjs",
