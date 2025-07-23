@@ -1,5 +1,5 @@
 {
-  "buildCommand": "rm -rf .next && npm run build",
+  "buildCommand": "rm -rf .next && node scripts/verify-no-aboutpageserver.js && npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm ci --force",
   "framework": "nextjs",
