@@ -15,12 +15,14 @@ interface ClientsSectionProps {
 }
 
 const defaultClients = [
-  // Based on the old site reference, these would be the clients
-  // In a real implementation, you would fetch these from your CMS or API
-  { name: 'Doctor Feelgood', logo: '/clients/doctor-feelgood.png' },
-  { name: 'Havas Media', logo: '/clients/havas-media.png' },
-  { name: 'Winix', logo: '/clients/winix.png' },
-  // Add more clients as needed
+  { name: 'Havas Media', logo: '📺', industry: 'Marketing & Media' },
+  { name: 'Doctor Feelgood', logo: '🏥', industry: 'Healthcare' },
+  { name: 'Winix', logo: '💨', industry: 'Technology' },
+  { name: 'ROC Amsterdam', logo: '🎓', industry: 'Education' },
+  { name: 'Greenpeace', logo: '🌍', industry: 'Non-Profit' },
+  { name: 'Podimo', logo: '🎧', industry: 'Media & Entertainment' },
+  { name: 'NWA', logo: '✈️', industry: 'Aviation' },
+  { name: 'BijVoorbeeld', logo: '📊', industry: 'Business Services' },
 ]
 
 const ClientsSection = ({ clients = defaultClients }: ClientsSectionProps = {}) => {
@@ -63,11 +65,13 @@ const ClientsSection = ({ clients = defaultClients }: ClientsSectionProps = {}) 
               className="flex items-center justify-center p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
             >
               <div className="text-center">
-                {/* Placeholder for logo - in production, use actual logos */}
-                <div className="w-24 h-24 bg-gray-200 rounded-lg mb-2 mx-auto flex items-center justify-center">
-                  <span className="text-gray-400 text-xs">Logo</span>
+                <div className="w-24 h-24 bg-white rounded-lg mb-2 mx-auto flex items-center justify-center shadow-md hover:shadow-lg transition-shadow">
+                  <span className="text-4xl">{client.logo}</span>
                 </div>
                 <p className="text-sm text-gray-700 font-medium">{client.name}</p>
+                {client.industry && (
+                  <p className="text-xs text-gray-500 mt-1">{client.industry}</p>
+                )}
               </div>
             </motion.div>
           ))}

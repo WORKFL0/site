@@ -17,6 +17,27 @@ const teamMembers = [
     expertise: 'Microsoft 365, Cybersecurity, Business Strategy',
     linkedIn: 'https://linkedin.com/in/floriandehaan',
   },
+  {
+    name: 'Nam-Hoon',
+    role: 'CTO',
+    description: 'Nam-Hoon leidt onze technische innovatie en zorgt ervoor dat onze oplossingen altijd vooroplopen in de markt.',
+    expertise: 'Cloud Architecture, DevOps, Infrastructure',
+    linkedIn: 'https://linkedin.com/in/namhoon',
+  },
+  {
+    name: 'Mas',
+    role: 'Head of Operations',
+    description: 'Mas zorgt ervoor dat onze dienstverlening soepel verloopt en klanten altijd de beste ervaring hebben.',
+    expertise: 'Service Management, Process Optimization, Client Relations',
+    linkedIn: 'https://linkedin.com/in/mas',
+  },
+  {
+    name: 'Marcello',
+    role: 'Lead Developer',
+    description: 'Marcello ontwikkelt innovatieve oplossingen die complexe IT-uitdagingen eenvoudig maken.',
+    expertise: 'Software Development, Automation, Integration',
+    linkedIn: 'https://linkedin.com/in/marcello',
+  },
 ]
 
 // Problem-first milestones
@@ -372,7 +393,7 @@ export default function AboutPage() {
               Geen anonieme helpdesk, maar mensen die je kent en vertrouwt
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
               {teamMembers.map((member, index) => (
                 <motion.div
                   key={index}

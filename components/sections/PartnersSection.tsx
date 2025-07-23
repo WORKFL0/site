@@ -13,14 +13,10 @@ interface PartnersSectionProps {
 }
 
 const defaultPartners = [
+  { name: 'VoizeXL', logo: '📞' },
+  { name: 'ROC Amsterdam', logo: '🎓' },
   { name: 'Microsoft', logo: '🪟' },
-  { name: 'Apple', logo: '🍎' },
-  { name: 'Office 365', logo: '📊' },
-  { name: 'Dell', logo: '💻' },
-  { name: 'HP', logo: '🖨️' },
-  { name: 'Cisco Meraki', logo: '🌐' },
-  { name: 'Ubiquiti', logo: '📡' },
-  { name: 'Sophos', logo: '🛡️' },
+  { name: 'Halo', logo: '🔐' },
 ]
 
 const PartnersSection = ({ partners = defaultPartners }: PartnersSectionProps = {}) => {

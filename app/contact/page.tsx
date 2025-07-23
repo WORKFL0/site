@@ -28,13 +28,15 @@ export default function ContactPage() {
     document.body.appendChild(script)
 
     script.onload = () => {
-      // Create HubSpot form
-      if (window.hbspt) {
-        window.hbspt.forms.create({
-          region: "eu1",
-          portalId: "143658118",
-          formId: "c8cf93d5-81c1-4e89-899f-f4c009b67479",
-          target: "#hubspot-form-container",
+      // Wait a bit to ensure DOM is ready
+      setTimeout(() => {
+        // Create HubSpot form
+        if (window.hbspt && document.getElementById('hubspot-form-container')) {
+          window.hbspt.forms.create({
+            region: "eu1",
+            portalId: "143658118",
+            formId: "c8cf93d5-81c1-4e89-899f-f4c009b67479",
+            target: "#hubspot-form-container",
           onFormReady: () => {
             // Style the HubSpot form to match our design
             const style = document.createElement('style')
@@ -97,7 +99,10 @@ export default function ContactPage() {
             console.log('Form submitted successfully')
           }
         })
-      }
+        } else {
+          console.error('HubSpot form could not be created. Container or hbspt not found.')
+        }
+      }, 100)
     }
 
     return () => {

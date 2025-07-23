@@ -6,6 +6,7 @@ import StatsSectionServer from '@/components/sections/StatsSectionServer'
 import TestimonialsSectionServer from '@/components/sections/TestimonialsSectionServer'
 import PartnersSectionServer from '@/components/sections/PartnersSectionServer'
 import ClientsSectionServer from '@/components/sections/ClientsSectionServer'
+import NewsSection from '@/components/sections/NewsSection'
 import CTASectionWithVideo from '@/components/sections/CTASectionWithVideo'
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         <PartnersSectionServer />
         <TestimonialsSectionServer />
         <ClientsSectionServer />
+        <NewsSection />
         <CTASectionWithVideo />
       </main>
       <Footer />
