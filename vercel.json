@@ -1,11 +1,8 @@
 {
-  "buildCommand": "npm run vercel-build",
+  "buildCommand": "npm run build",
   "outputDirectory": ".next",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "github": {
-    "silent": false
-  },
   "env": {
     "NEXT_PUBLIC_SANITY_PROJECT_ID": "prj_Y1mKm3jHw7E3YolW8R9RXhJe5Shx",
     "NEXT_PUBLIC_SANITY_DATASET": "production"
