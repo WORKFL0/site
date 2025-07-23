@@ -30,11 +30,31 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "lib/**/*.ts",
+    "lib/**/*.tsx",
+    "sanity/**/*.ts",
+    "sanity/**/*.tsx",
+    "scripts/**/*.ts",
+    "scripts/**/*.tsx",
+    "types/**/*.ts",
+    "types/**/*.tsx",
+    "*.ts",
+    "*.tsx",
     ".next/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "Cyberduck/**/*",
+    "HomeAssistant/**/*",
+    "N8N/**/*",
+    "dashy/**/*",
+    "node-red/**/*",
+    "nextjs project/**/*",
+    "AI-Prompts/**/*",
+    ".github/**/*"
   ]
 }
