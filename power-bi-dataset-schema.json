@@ -1,0 +1,99 @@
+{
+  "name": "CampaignPerformanceMetrics",
+  "defaultMode": "Push",
+  "tables": [
+    {
+      "name": "PerformanceData",
+      "columns": [
+        {
+          "name": "timestamp",
+          "dataType": "DateTime",
+          "formatString": "yyyy-MM-dd HH:mm:ss"
+        },
+        {
+          "name": "platform",
+          "dataType": "String"
+        },
+        {
+          "name": "campaignId",
+          "dataType": "String"
+        },
+        {
+          "name": "campaignName",
+          "dataType": "String"
+        },
+        {
+          "name": "impressions",
+          "dataType": "Int64"
+        },
+        {
+          "name": "clicks",
+          "dataType": "Int64"
+        },
+        {
+          "name": "conversions",
+          "dataType": "Int64"
+        },
+        {
+          "name": "spend",
+          "dataType": "Double"
+        },
+        {
+          "name": "revenue",
+          "dataType": "Double"
+        },
+        {
+          "name": "ctr",
+          "dataType": "Double"
+        },
+        {
+          "name": "cpc",
+          "dataType": "Double"
+        },
+        {
+          "name": "roas",
+          "dataType": "Double"
+        }
+      ],
+      "measures": [
+        {
+          "name": "Total Impressions",
+          "expression": "SUM([impressions])"
+        },
+        {
+          "name": "Total Clicks",
+          "expression": "SUM([clicks])"
+        },
+        {
+          "name": "Total Conversions",
+          "expression": "SUM([conversions])"
+        },
+        {
+          "name": "Total Spend",
+          "expression": "SUM([spend])"
+        },
+        {
+          "name": "Total Revenue",
+          "expression": "SUM([revenue])"
+        },
+        {
+          "name": "Average CTR",
+          "expression": "AVERAGE([ctr])"
+        },
+        {
+          "name": "Average CPC",
+          "expression": "AVERAGE([cpc])"
+        },
+        {
+          "name": "Average ROAS",
+          "expression": "AVERAGE([roas])"
+        },
+        {
+          "name": "Campaign Count",
+          "expression": "DISTINCTCOUNT([campaignId])"
+        }
+      ]
+    }
+  ],
+  "relationships": []
+}

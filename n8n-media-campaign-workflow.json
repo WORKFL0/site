@@ -1,0 +1,326 @@
+{
+  "name": "Media Campaign Monitoring Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Every 6 Hours",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 3,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "content": "## Campaign Data Collection Workflow\n\nThis workflow collects campaign data from multiple platforms:\n- Facebook/Instagram (Meta)\n- LinkedIn\n- YouTube\n- Google Ads\n- Custom sources (TV, Radio, Guerrilla)",
+        "height": 200,
+        "width": 300
+      },
+      "id": "sticky-note",
+      "name": "Workflow Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [100, 100]
+    },
+    {
+      "parameters": {
+        "resource": "adInsight",
+        "operation": "get",
+        "adAccountId": "={{ $json.adAccountId }}"
+      },
+      "id": "facebook-ads",
+      "name": "Facebook Ads",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [600, 200],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "resource": "analytics",
+        "operation": "get",
+        "organizationId": "={{ $json.organizationId }}"
+      },
+      "id": "linkedin-ads",
+      "name": "LinkedIn Ads",
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [600, 350],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "resource": "reports",
+        "operation": "get",
+        "channelId": "={{ $json.channelId }}"
+      },
+      "id": "youtube-analytics",
+      "name": "YouTube Analytics",
+      "type": "n8n-nodes-base.youTube",
+      "typeVersion": 1,
+      "position": [600, 500],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "resource": "report",
+        "operation": "get",
+        "customerId": "={{ $json.customerId }}"
+      },
+      "id": "google-ads",
+      "name": "Google Ads",
+      "type": "n8n-nodes-base.googleAds",
+      "typeVersion": 1,
+      "position": [600, 650],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.apiEndpoint }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "custom-api",
+      "name": "Custom Sources (TV/Radio/Guerrilla)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [600, 800],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "multiplex",
+        "options": {}
+      },
+      "id": "merge-data",
+      "name": "Merge All Data",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [900, 500]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Standardize data from different platforms\nconst items = [];\n\nfor (const item of $input.all()) {\n  const standardizedData = {\n    timestamp: new Date().toISOString(),\n    platform: item.json.platform || 'unknown',\n    campaignId: item.json.campaignId || item.json.campaign_id,\n    campaignName: item.json.campaignName || item.json.campaign_name,\n    impressions: item.json.impressions || 0,\n    clicks: item.json.clicks || 0,\n    conversions: item.json.conversions || 0,\n    spend: item.json.spend || item.json.cost || 0,\n    revenue: item.json.revenue || 0,\n    ctr: item.json.clicks && item.json.impressions ? \n         (item.json.clicks / item.json.impressions * 100).toFixed(2) : 0,\n    cpc: item.json.clicks && item.json.spend ? \n         (item.json.spend / item.json.clicks).toFixed(2) : 0,\n    roas: item.json.spend && item.json.revenue ? \n          (item.json.revenue / item.json.spend).toFixed(2) : 0\n  };\n  \n  items.push({\n    json: standardizedData\n  });\n}\n\nreturn items;"
+      },
+      "id": "transform-data",
+      "name": "Transform & Standardize",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1100, 500]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": "campaign_data",
+        "table": "performance_metrics",
+        "columns": "timestamp,platform,campaign_id,campaign_name,impressions,clicks,conversions,spend,revenue,ctr,cpc,roas",
+        "options": {}
+      },
+      "id": "database-storage",
+      "name": "Store in Database",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.4,
+      "position": [1300, 400],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "https://api.powerbi.com/v1.0/myorg/datasets/{{ $json.datasetId }}/rows",
+        "authentication": "oAuth2",
+        "method": "POST",
+        "body": "={{ $json }}",
+        "options": {}
+      },
+      "id": "power-bi",
+      "name": "Send to Power BI",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [1300, 600],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "adAccountId",
+              "value": "YOUR_FB_AD_ACCOUNT_ID"
+            },
+            {
+              "name": "organizationId",
+              "value": "YOUR_LINKEDIN_ORG_ID"
+            },
+            {
+              "name": "channelId",
+              "value": "YOUR_YOUTUBE_CHANNEL_ID"
+            },
+            {
+              "name": "customerId",
+              "value": "YOUR_GOOGLE_ADS_CUSTOMER_ID"
+            },
+            {
+              "name": "apiEndpoint",
+              "value": "YOUR_CUSTOM_API_ENDPOINT"
+            },
+            {
+              "name": "datasetId",
+              "value": "YOUR_POWER_BI_DATASET_ID"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "config-data",
+      "name": "Configuration",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [450, 300]
+    }
+  ],
+  "connections": {
+    "schedule-trigger": {
+      "main": [
+        [
+          {
+            "node": "config-data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "config-data": {
+      "main": [
+        [
+          {
+            "node": "facebook-ads",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "linkedin-ads",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "youtube-analytics",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "google-ads",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "custom-api",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "facebook-ads": {
+      "main": [
+        [
+          {
+            "node": "merge-data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "linkedin-ads": {
+      "main": [
+        [
+          {
+            "node": "merge-data",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "youtube-analytics": {
+      "main": [
+        [
+          {
+            "node": "merge-data",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "google-ads": {
+      "main": [
+        [
+          {
+            "node": "merge-data",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "custom-api": {
+      "main": [
+        [
+          {
+            "node": "merge-data",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "merge-data": {
+      "main": [
+        [
+          {
+            "node": "transform-data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "transform-data": {
+      "main": [
+        [
+          {
+            "node": "database-storage",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "power-bi",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "1.0.0",
+  "triggerCount": 1
+}
