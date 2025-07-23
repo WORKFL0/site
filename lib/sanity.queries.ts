@@ -62,3 +62,16 @@ export const servicesQuery = groq`
     slug
   }
 `
+
+// Team Members Query
+export const teamMembersQuery = groq`
+  *[_type == "teamMember"] | order(order asc, _createdAt desc){
+    _id,
+    name,
+    role,
+    bio,
+    "imageUrl": image.asset->url,
+    linkedin,
+    email
+  }
+`
