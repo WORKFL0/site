@@ -4,43 +4,21 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
 import Link from 'next/link'
-
-const defaultTestimonials = [
-  {
-    name: 'Esther van der Plas',
-    role: 'Managing Director',
-    company: 'Doctor Feelgood',
-    content: 'Every business needs Workflo. They are the IT Masters. Fast, knowledgeable, to the point, down to earth, friendly and super cool!',
-    rating: 5,
-    image: '/testimonials/esther.jpg',
-  },
-  {
-    name: 'Thijs Muller',
-    role: 'CEO',
-    company: 'Havas Media',
-    content: 'Workflo is een verlengstuk en integraal onderdeel van ons team. Zeer betrokken, makkelijk aanspreekbaar, oplossingsgericht, creatief en professioneel.',
-    rating: 5,
-    image: '/testimonials/thijs.jpg',
-  },
-  {
-    name: 'Patrick Beijl',
-    role: 'Commerciële Directeur',
-    company: 'Winix',
-    content: 'Florian and his team are there to help. Whether it is about simple usability issues (every day life at the office) or the more serious stuff about network, servers, trustworthy backup systems and security. Workflo knows. They solve it instantly. With a smile.',
-    rating: 5,
-    image: '/testimonials/patrick.jpg',
-  },
-]
+import { useLanguage } from '@/contexts/LanguageContext'
 
 interface TestimonialsSectionProps {
-  testimonials?: typeof defaultTestimonials
+  testimonials?: any[]
 }
 
-const TestimonialsSection = ({ testimonials = defaultTestimonials }: TestimonialsSectionProps) => {
+const TestimonialsSection = ({ testimonials }: TestimonialsSectionProps) => {
+  const { t } = useLanguage()
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
+
+  // Use testimonials from translations if not provided
+  const displayTestimonials = testimonials || t.testimonials.items
 
   return (
     <section className="section-padding bg-gray-50 relative overflow-hidden">
@@ -49,84 +27,63 @@ const TestimonialsSection = ({ testimonials = defaultTestimonials }: Testimonial
       
       {/* Animated elements */}
       <div className="absolute inset-0">
-        {/* Floating stars */}
-        <div className="absolute top-10 left-20 text-4xl text-yellow-400 opacity-20 animate-float">★</div>
-        <div className="absolute bottom-20 right-10 text-3xl text-yellow-400 opacity-20 animate-float-delayed">★</div>
-        <div className="absolute top-1/3 right-1/4 text-5xl text-yellow-400 opacity-20 animate-float-slow">★</div>
-        <div className="absolute bottom-1/4 left-1/3 text-3xl text-yellow-400 opacity-20 animate-float">★</div>
-        
-        {/* Rotating gradient orbs */}
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-gradient-to-br from-primary-200 to-transparent rounded-full filter blur-3xl opacity-20 animate-spin-slow"></div>
-        <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-gradient-to-br from-yellow-200 to-transparent rounded-full filter blur-3xl opacity-20 animate-spin-slow" style={{animationDirection: 'reverse'}}></div>
+        <div className="absolute top-20 right-20 w-64 h-64 bg-primary-100 rounded-full filter blur-3xl opacity-30 animate-blob"></div>
+        <div className="absolute bottom-20 left-20 w-64 h-64 bg-primary-200 rounded-full filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
       </div>
-      
+
       <div className="container mx-auto container-padding relative z-10">
         <motion.div
+          ref={ref}
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Vertrouwd door <span className="text-gradient">de Beste Bedrijven</span>
-          </h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4" dangerouslySetInnerHTML={{ 
+            __html: t.testimonials.title.replace('**', '<span class="text-primary-500">').replace('**', '</span>') 
+          }} />
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Geloof niet alleen ons. Lees wat onze klanten zeggen over de samenwerking met Workflo.
+            {t.testimonials.subtitle}
           </p>
         </motion.div>
 
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {displayTestimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`group ${index % 2 === 0 ? 'animate-float-slow' : 'animate-float-delayed'}`}
-              style={{
-                animationDelay: `${index * 0.5}s`
-              }}
+              className="relative"
             >
-              <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 p-8 h-full flex flex-col relative overflow-hidden group-hover:scale-105">
-                {/* Quote mark */}
-                <div className="absolute top-4 right-4 text-6xl text-primary-100 font-serif">&quot;</div>
+              <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                {/* Quote icon */}
+                <div className="absolute -top-4 -left-2 text-6xl text-primary-100">"</div>
                 
-                {/* Rating */}
+                {/* Stars */}
                 <div className="flex gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-5 h-5 text-yellow-400 fill-current group-hover:animate-pulse"
-                      style={{
-                        animationDelay: `${i * 100}ms`
-                      }}
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                  {[...Array(testimonial.rating || 5)].map((_, i) => (
+                    <svg key={i} className="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
 
                 {/* Content */}
-                <p className="text-gray-700 mb-6 flex-grow italic">
-                  &quot;{testimonial.content}&quot;
-                </p>
+                <p className="text-gray-600 mb-6 flex-grow italic">"{testimonial.content}"</p>
 
                 {/* Author */}
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center text-white font-bold">
-                    {testimonial.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-600">
-                      {testimonial.role}, {testimonial.company}
+                  {testimonial.image && (
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center text-white font-bold">
+                      {testimonial.name.split(' ').map((n: string) => n[0]).join('')}
                     </div>
+                  )}
+                  <div>
+                    <p className="font-semibold text-gray-900">{testimonial.name}</p>
+                    <p className="text-sm text-gray-600">{testimonial.role} - {testimonial.company}</p>
                   </div>
                 </div>
-
-                {/* Hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
               </div>
             </motion.div>
           ))}
@@ -139,7 +96,7 @@ const TestimonialsSection = ({ testimonials = defaultTestimonials }: Testimonial
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-12 text-center"
         >
-          <p className="text-gray-600 mb-6">Bekijk wat onze klanten zeggen op:</p>
+          <p className="text-gray-600 mb-6">{t.testimonials.reviewPlatforms}</p>
           <div className="flex justify-center items-center gap-8 flex-wrap">
             <a
               href="https://g.page/r/CVLBg-DQ8Q0mEBM/review"
@@ -179,12 +136,12 @@ const TestimonialsSection = ({ testimonials = defaultTestimonials }: Testimonial
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center mt-12"
         >
-          <p className="text-gray-600 mb-4">Sluit je aan bij 100+ bedrijven die Workflo vertrouwen</p>
+          <p className="text-gray-600 mb-4">{t.testimonials.joinClients}</p>
           <Link
             href="/case-studies"
             className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium group"
           >
-            <span>Lees meer succesverhalen</span>
+            <span>{t.testimonials.readMore}</span>
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

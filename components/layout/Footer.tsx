@@ -9,22 +9,22 @@ const Footer = () => {
 
   const footerLinks = {
     services: [
-      { name: language === 'nl' ? 'Cloud Diensten' : 'Cloud Services', href: '/diensten#cloud' },
-      { name: 'Cybersecurity', href: '/diensten#security' },
-      { name: language === 'nl' ? 'Beheerd IT' : 'Managed IT', href: '/diensten#managed' },
-      { name: language === 'nl' ? 'IT Consultancy' : 'IT Consulting', href: '/diensten#consulting' },
+      { name: language === 'nl' ? 'Cloud Diensten' : 'Cloud Services', href: '/services' },
+      { name: 'Cybersecurity', href: '/services' },
+      { name: language === 'nl' ? 'Beheerd IT' : 'Managed IT', href: '/services' },
+      { name: language === 'nl' ? 'IT Consultancy' : 'IT Consulting', href: '/services' },
     ],
     company: [
       { name: language === 'nl' ? 'Over Ons' : 'About Us', href: '/about' },
-      { name: 'Case Studies', href: '/case-studies' },
+      { name: 'Blog', href: '/blog' },
       { name: language === 'nl' ? 'Werken bij' : 'Careers', href: '/about#careers' },
       { name: 'Contact', href: '/contact' },
     ],
     industries: [
-      { name: 'Marketing & Media', href: '/expertise#marketing' },
-      { name: 'Non-Profit', href: '/expertise#nonprofit' },
-      { name: 'Retail', href: '/expertise#retail' },
-      { name: language === 'nl' ? 'Zakelijke Dienstverlening' : 'Professional Services', href: '/expertise#professional' },
+      { name: 'Marketing & Media', href: '/expertise' },
+      { name: 'Non-Profit', href: '/expertise' },
+      { name: 'Retail', href: '/expertise' },
+      { name: language === 'nl' ? 'Zakelijke Dienstverlening' : 'Professional Services', href: '/expertise' },
     ],
   }
 

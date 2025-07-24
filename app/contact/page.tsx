@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Button from '@/components/ui/Button'
@@ -20,6 +20,7 @@ export default function ContactPage() {
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [formRef, formInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [infoRef, infoInView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  const [formLoaded, setFormLoaded] = useState(false)
 
   useEffect(() => {
     // Load HubSpot forms script
@@ -40,6 +41,7 @@ export default function ContactPage() {
             formId: "rP7I-sWWT-CqFO1L9Ctvcwfs7tc",
             target: "#hubspot-form-container",
           onFormReady: () => {
+            setFormLoaded(true)
             // Style the HubSpot form to match our design
             const style = document.createElement('style')
             style.textContent = `
@@ -161,7 +163,14 @@ export default function ContactPage() {
                   </p>
                   
                   {/* HubSpot Form Container */}
-                  <div id="hubspot-form-container"></div>
+                  <div id="hubspot-form-container" className="min-h-[400px]">
+                    {!formLoaded && (
+                      <div className="text-center py-8">
+                        <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
+                        <p className="mt-4 text-gray-600">{t.contact.form.loading || 'Formulier wordt geladen...'}</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </motion.div>
               

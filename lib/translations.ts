@@ -71,13 +71,6 @@ export const translations = {
         supportAvailable: 'Support Beschikbaar',
       }
     },
-    // Testimonials
-    testimonials: {
-      title: 'Wat Klanten Zeggen',
-      subtitle: 'Echte resultaten van echte ondernemers',
-      readMore: 'Lees meer succesverhalen',
-      joinCompanies: 'Sluit je aan bij 100+ bedrijven die Workflo vertrouwen',
-    },
     // Contact
     contact: {
       title: 'Stop Met IT-Stress, Begin Met Groeien',
@@ -89,6 +82,7 @@ export const translations = {
       form: {
         title: 'Verstuur een Bericht',
         description: 'Vul het formulier in en we nemen binnen 24 uur contact met je op. Voor urgente zaken kun je ons direct bellen.',
+        loading: 'Formulier wordt geladen...',
       },
       directContact: {
         title: 'Direct Contact',
@@ -189,6 +183,48 @@ export const translations = {
       showDetails: 'Toon details',
       hideDetails: 'Verberg details',
     },
+    // Testimonials Section
+    testimonials: {
+      title: 'Vertrouwd door **de Beste Bedrijven**',
+      subtitle: 'Geloof ons niet op ons woord. Lees wat onze klanten zeggen over samenwerken met Workflo.',
+      reviewPlatforms: 'Bekijk wat onze klanten zeggen op:',
+      joinClients: 'Sluit je aan bij 100+ bedrijven die Workflo vertrouwen',
+      readMore: 'Lees meer succesverhalen',
+      items: [
+        {
+          name: 'Esther van der Plas',
+          role: 'Managing Director',
+          company: 'Doctor Feelgood',
+          content: 'Elk bedrijf heeft Workflo nodig. Zij zijn de IT Masters. Snel, kundig, to the point, down to earth, vriendelijk en super cool!',
+        },
+        {
+          name: 'Thijs Muller',
+          role: 'CEO',
+          company: 'Havas Media',
+          content: 'Workflo is een verlengstuk en integraal onderdeel van ons team. Zeer betrokken, makkelijk benaderbaar, oplossingsgericht, creatief en professioneel.',
+        },
+        {
+          name: 'Patrick Beijl',
+          role: 'Commercial Director',
+          company: 'Winix',
+          content: 'Florian en zijn team staan klaar om te helpen. Of het nu gaat om simpele gebruiksproblemen (dagelijks leven op kantoor) of de meer serieuze zaken over netwerk, servers, betrouwbare backupsystemen en beveiliging. Workflo weet het. Ze lossen het direct op. Met een glimlach.',
+        },
+      ],
+    },
+    // CTA Section
+    cta: {
+      limitedTime: 'Beperkte Tijd',
+      stopWorrying: 'Stop Met Zorgen Over IT-Problemen',
+      description: 'Ontvang vandaag nog je gratis IT-scan en ontdek hoe je kosten met 35% kunt verlagen terwijl je downtime elimineert. Geen verplichtingen, alleen inzichten.',
+      averageResponse: 'Gemiddelde reactietijd: 15 minuten',
+      freeITScan: 'Gratis IT-Scan',
+      consultation: 'Gratis Adviesgesprek',
+      customAnalysis: 'Analyse op Maat',
+      securityAudit: 'Security Audit',
+      startFreeScan: 'Start Gratis Scan',
+      callNow: 'Bel Nu',
+      trustedBy: 'Vertrouwd door 100+ Amsterdamse bedrijven',
+    },
     
   },
   en: {
@@ -242,14 +278,6 @@ export const translations = {
         description: 'Help when you need it.',
       },
     },
-    
-    // Testimonials
-    testimonials: {
-      title: 'What Customers Say',
-      subtitle: 'Real results from real entrepreneurs',
-      readMore: 'Read more success stories',
-      joinCompanies: 'Join 100+ companies that trust Workflo',
-    },
     // Contact
     contact: {
       title: 'Stop IT Stress, Start Growing',
@@ -261,6 +289,7 @@ export const translations = {
       form: {
         title: 'Send a Message',
         description: 'Fill out the form and we\'ll contact you within 24 hours. For urgent matters, call us directly.',
+        loading: 'Loading form...',
       },
       directContact: {
         title: 'Direct Contact',
@@ -381,6 +410,48 @@ export const translations = {
         yearsExperience: 'Years of Experience',
         supportAvailable: 'Support Available',
       },
+    },
+    // Testimonials Section
+    testimonials: {
+      title: 'Trusted by **the Best Companies**',
+      subtitle: "Don't just take our word for it. Read what our clients say about working with Workflo.",
+      reviewPlatforms: 'See what our clients say on:',
+      joinClients: 'Join 100+ companies that trust Workflo',
+      readMore: 'Read more success stories',
+      items: [
+        {
+          name: 'Esther van der Plas',
+          role: 'Managing Director',
+          company: 'Doctor Feelgood',
+          content: 'Every business needs Workflo. They are the IT Masters. Fast, knowledgeable, to the point, down to earth, friendly and super cool!',
+        },
+        {
+          name: 'Thijs Muller',
+          role: 'CEO',
+          company: 'Havas Media',
+          content: 'Workflo is an extension and integral part of our team. Very involved, easily approachable, solution-oriented, creative and professional.',
+        },
+        {
+          name: 'Patrick Beijl',
+          role: 'Commercial Director',
+          company: 'Winix',
+          content: 'Florian and his team are there to help. Whether it is about simple usability issues (every day life at the office) or the more serious stuff about network, servers, trustworthy backup systems and security. Workflo knows. They solve it instantly. With a smile.',
+        },
+      ],
+    },
+    // CTA Section
+    cta: {
+      limitedTime: 'Limited Time',
+      stopWorrying: 'Stop Worrying About IT Problems',
+      description: 'Get your free IT scan today and discover how to reduce costs by 35% while eliminating downtime. No obligations, just insights.',
+      averageResponse: 'Average response time: 15 minutes',
+      freeITScan: 'Free IT Scan',
+      consultation: 'Free Consultation',
+      customAnalysis: 'Custom Analysis',
+      securityAudit: 'Security Audit',
+      startFreeScan: 'Start Free Scan',
+      callNow: 'Call Now',
+      trustedBy: 'Trusted by 100+ Amsterdam businesses',
     },
   }
 }
