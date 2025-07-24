@@ -195,7 +195,4 @@ const TestimonialsSection = ({ testimonials = defaultTestimonials }: Testimonial
   )
 }
 
-// Add Link import
-import Link from 'next/link'
-
 export default TestimonialsSection
