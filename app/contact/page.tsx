@@ -16,101 +16,131 @@ declare global {
 }
 
 export default function ContactPage() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [formRef, formInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [infoRef, infoInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [formLoaded, setFormLoaded] = useState(false)
+  const [showFallback, setShowFallback] = useState(false)
 
   useEffect(() => {
+    // Show fallback after 5 seconds if form hasn't loaded
+    const fallbackTimer = setTimeout(() => {
+      if (!formLoaded) {
+        setShowFallback(true)
+      }
+    }, 5000)
+
     // Load HubSpot forms script
     const script = document.createElement('script')
-    script.src = '//js-eu1.hsforms.net/forms/embed/v2.js'
+    script.src = 'https://js-eu1.hsforms.net/forms/embed/v2.js'
     script.async = true
     script.defer = true
+    script.charset = 'utf-8'
     document.body.appendChild(script)
 
-    script.onload = () => {
-      // Wait a bit to ensure DOM is ready
-      setTimeout(() => {
-        // Create HubSpot form
-        if (window.hbspt && document.getElementById('hubspot-form-container')) {
+    let retryCount = 0
+    const maxRetries = 10
+
+    const createForm = () => {
+      if (window.hbspt && window.hbspt.forms && document.getElementById('hubspot-form-container')) {
+        try {
           window.hbspt.forms.create({
             region: "eu1",
             portalId: "143658118",
             formId: "rP7I-sWWT-CqFO1L9Ctvcwfs7tc",
             target: "#hubspot-form-container",
-          onFormReady: () => {
-            setFormLoaded(true)
-            // Style the HubSpot form to match our design
-            const style = document.createElement('style')
-            style.textContent = `
-              .hs-form-field label {
-                font-size: 0.875rem;
-                font-weight: 500;
-                color: #374151;
-                margin-bottom: 0.5rem;
-                display: block;
-              }
-              .hs-input {
-                width: 100%;
-                padding: 0.75rem 1rem;
-                border: 1px solid #d1d5db;
-                border-radius: 0.5rem;
-                transition: all 0.2s;
-                font-size: 1rem;
-              }
-              .hs-input:focus {
-                outline: none;
-                border-color: #f16e13;
-                box-shadow: 0 0 0 3px rgba(241, 110, 19, 0.1);
-              }
-              .hs-form-field {
-                margin-bottom: 1.5rem;
-              }
-              .hs-button {
-                width: 100%;
-                padding: 0.875rem 1.5rem;
-                background-color: #f16e13;
-                color: white;
-                border: none;
-                border-radius: 0.5rem;
-                font-size: 1.125rem;
-                font-weight: 500;
-                cursor: pointer;
-                transition: background-color 0.2s;
-              }
-              .hs-button:hover {
-                background-color: #e54f0d;
-              }
-              .hs-error-msgs {
-                margin-top: 0.5rem;
-                color: #dc2626;
-                font-size: 0.875rem;
-              }
-              .submitted-message {
-                padding: 1rem;
-                background-color: #d1fae5;
-                border: 1px solid #6ee7b7;
-                border-radius: 0.5rem;
-                color: #065f46;
-              }
-            `
-            document.head.appendChild(style)
-          },
-          onFormSubmit: () => {
-            // Track form submission in analytics if needed
-            console.log('Form submitted successfully')
-          }
-        })
-        } else {
-          console.error('HubSpot form could not be created. Container or hbspt not found.')
+            onFormReady: () => {
+              setFormLoaded(true)
+              // Style the HubSpot form to match our design
+              const style = document.createElement('style')
+              style.textContent = `
+                .hs-form-field label {
+                  font-size: 0.875rem;
+                  font-weight: 500;
+                  color: #374151;
+                  margin-bottom: 0.5rem;
+                  display: block;
+                }
+                .hs-input {
+                  width: 100%;
+                  padding: 0.75rem 1rem;
+                  border: 1px solid #d1d5db;
+                  border-radius: 0.5rem;
+                  transition: all 0.2s;
+                  font-size: 1rem;
+                }
+                .hs-input:focus {
+                  outline: none;
+                  border-color: #f16e13;
+                  box-shadow: 0 0 0 3px rgba(241, 110, 19, 0.1);
+                }
+                .hs-form-field {
+                  margin-bottom: 1.5rem;
+                }
+                .hs-button {
+                  width: 100%;
+                  padding: 0.875rem 1.5rem;
+                  background-color: #f16e13;
+                  color: white;
+                  border: none;
+                  border-radius: 0.5rem;
+                  font-size: 1.125rem;
+                  font-weight: 500;
+                  cursor: pointer;
+                  transition: background-color 0.2s;
+                }
+                .hs-button:hover {
+                  background-color: #e54f0d;
+                }
+                .hs-error-msgs {
+                  margin-top: 0.5rem;
+                  color: #dc2626;
+                  font-size: 0.875rem;
+                }
+                .submitted-message {
+                  padding: 1rem;
+                  background-color: #d1fae5;
+                  border: 1px solid #6ee7b7;
+                  border-radius: 0.5rem;
+                  color: #065f46;
+                }
+              `
+              document.head.appendChild(style)
+            },
+            onFormSubmit: () => {
+              // Track form submission in analytics if needed
+              console.log('Form submitted successfully')
+            },
+            onFormSubmitted: () => {
+              console.log('Form submission completed')
+            }
+          })
+        } catch (error) {
+          console.error('Error creating HubSpot form:', error)
+          setFormLoaded(true) // Show fallback
         }
-      }, 100)
+      } else if (retryCount < maxRetries) {
+        retryCount++
+        setTimeout(createForm, 500)
+      } else {
+        console.error('Failed to load HubSpot form after retries')
+        setFormLoaded(true) // Show fallback
+      }
+    }
+
+    script.onload = () => {
+      setTimeout(createForm, 100)
+    }
+
+    script.onerror = () => {
+      console.error('Failed to load HubSpot script')
+      setFormLoaded(true) // Show fallback
     }
 
     return () => {
       // Cleanup
+      clearTimeout(fallbackTimer)
       const hubspotScript = document.querySelector('script[src*="hsforms.net"]')
       if (hubspotScript) {
         hubspotScript.remove()
@@ -171,6 +201,37 @@ export default function ContactPage() {
                       </div>
                     )}
                   </div>
+                  
+                  {/* Fallback form if HubSpot doesn't load after 5 seconds */}
+                  {!formLoaded && showFallback && (
+                    <div className="mt-8 p-6 bg-gray-50 rounded-lg">
+                      <p className="text-sm text-gray-600 mb-4">
+                        {language === 'nl' 
+                          ? 'Het formulier laadt langzaam. U kunt ook direct contact opnemen:' 
+                          : 'The form is loading slowly. You can also contact us directly:'}
+                      </p>
+                      <div className="space-y-3">
+                        <a 
+                          href="mailto:info@workflo.nl?subject=Contact%20via%20website" 
+                          className="flex items-center gap-2 text-primary-600 hover:text-primary-700"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                          info@workflo.nl
+                        </a>
+                        <a 
+                          href="tel:0203080465" 
+                          className="flex items-center gap-2 text-primary-600 hover:text-primary-700"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                          </svg>
+                          020-30 80 465
+                        </a>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </motion.div>
               
@@ -214,6 +275,21 @@ export default function ContactPage() {
                   <div className="mt-6 pt-6 border-t border-white/20">
                     <p className="text-sm opacity-90 mb-2">{t.contact.directContact.urgentSupport}</p>
                     <p className="font-semibold">{t.contact.directContact.responseTime}</p>
+                  </div>
+                  
+                  {/* Book Appointment Button */}
+                  <div className="mt-6">
+                    <Button 
+                      href="/booking" 
+                      variant="secondary" 
+                      size="lg" 
+                      className="w-full bg-white text-primary-600 hover:bg-gray-100"
+                    >
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      {t.contact.directContact.schedule || 'Plan een afspraak'}
+                    </Button>
                   </div>
                 </div>
                 

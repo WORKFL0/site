@@ -14,6 +14,7 @@ const Header = () => {
   const menuItems = [
     { name: t.nav.services, href: '/diensten' },
     { name: t.nav.expertise, href: '/expertise' },
+    { name: t.nav.pricing, href: '/tarieven' },
     { name: t.nav.about, href: '/about' },
     { name: t.nav.contact, href: '/contact' },
   ]

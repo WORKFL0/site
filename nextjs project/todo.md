@@ -129,3 +129,14 @@ Florian klopt maar tekst moet zijn: Ik ben een gedreven generalist en vind het h
 
 [] -  graag wil ik een pagina over de "Netwerk-scan" die wij gratis* aanbieden. In deze netwerk scan gaan wij een inventaris maken van wat er nu in huis is(wat voor vlees er in de kuip is) en aan de hand van deze gegevens maken wij een raport en geven wij een advies uit. Dit raport verplicht de prospect tot niks en is vrij met dit raport naar een andere te gaan. In dit geval gaan we de bestede tijd wel verrekenen voor de moeite maar zodra de prospect ervoor kiest met ons in zee te gaan dan vervallen deze kosten voor de scan en gaan we over op het uitwerken van het advies. Dus dan is de scan gratis*. 
 Maak hier een mooie tekst van die past bij het content strategie. 
+
+
+[] - app.pax8.com heeft de verbinding geweigerd.
+
+[] - vertaling nog steeds niet overal even consistent. 
+
+[] - de tarieven pagina moeten we nog wat mee doen.
+
+[] - beelden uit de grapics moeten nog geimplementeerd worden
+
+[] - contact form is not loading

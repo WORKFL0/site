@@ -9,22 +9,22 @@ const Footer = () => {
 
   const footerLinks = {
     services: [
-      { name: language === 'nl' ? 'Cloud Diensten' : 'Cloud Services', href: '/services' },
-      { name: 'Cybersecurity', href: '/services' },
-      { name: language === 'nl' ? 'Beheerd IT' : 'Managed IT', href: '/services' },
-      { name: language === 'nl' ? 'IT Consultancy' : 'IT Consulting', href: '/services' },
+      { name: t.footer.links.cloudServices, href: '/services' },
+      { name: t.footer.links.cybersecurity, href: '/services' },
+      { name: t.footer.links.managedIT, href: '/services' },
+      { name: t.footer.links.itConsulting, href: '/services' },
     ],
     company: [
-      { name: language === 'nl' ? 'Over Ons' : 'About Us', href: '/about' },
-      { name: 'Blog', href: '/blog' },
-      { name: language === 'nl' ? 'Werken bij' : 'Careers', href: '/about#careers' },
-      { name: 'Contact', href: '/contact' },
+      { name: t.footer.links.about, href: '/about' },
+      { name: t.footer.links.blog, href: '/blog' },
+      { name: t.footer.links.careers, href: '/about#careers' },
+      { name: t.footer.links.contact, href: '/contact' },
     ],
     industries: [
-      { name: 'Marketing & Media', href: '/expertise' },
-      { name: 'Non-Profit', href: '/expertise' },
-      { name: 'Retail', href: '/expertise' },
-      { name: language === 'nl' ? 'Zakelijke Dienstverlening' : 'Professional Services', href: '/expertise' },
+      { name: t.footer.links.marketingMedia, href: '/expertise' },
+      { name: t.footer.links.nonProfit, href: '/expertise' },
+      { name: t.footer.links.retail, href: '/expertise' },
+      { name: t.footer.links.professionalServices, href: '/expertise' },
     ],
   }
 
@@ -43,7 +43,7 @@ const Footer = () => {
               <span className="text-xl font-bold text-white">Workflo</span>
             </div>
             <p className="text-sm mb-4 max-w-md">
-              Amsterdams Meest Vertrouwde IT Groeipartner. Wij helpen MKB-bedrijven IT-kosten met 35% te verlagen terwijl we de productiviteit verhogen door slimme technologische oplossingen.
+              {t.footer.description}
             </p>
             <div className="flex space-x-4">
               <a href="https://linkedin.com/company/workflo" target="_blank" rel="noopener noreferrer" className="hover:text-primary-400 transition-colors">
@@ -61,7 +61,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Diensten</h3>
+            <h3 className="text-white font-semibold mb-4">{t.footer.services}</h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
@@ -75,7 +75,7 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Bedrijf</h3>
+            <h3 className="text-white font-semibold mb-4">{t.footer.company}</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
@@ -89,7 +89,7 @@ const Footer = () => {
 
           {/* Industries */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Sectoren</h3>
+            <h3 className="text-white font-semibold mb-4">{t.footer.industries}</h3>
             <ul className="space-y-2">
               {footerLinks.industries.map((link) => (
                 <li key={link.name}>
@@ -106,13 +106,13 @@ const Footer = () => {
         <div className="mt-8 pt-8 border-t border-gray-800">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
             <div>
-              <span className="text-gray-500">E-mail:</span>{' '}
+              <span className="text-gray-500">{t.footer.contact.email}:</span>{' '}
               <a href="mailto:info@workflo.nl" className="hover:text-primary-400 transition-colors">
                 info@workflo.nl
               </a>
             </div>
             <div>
-              <span className="text-gray-500">Telefoon:</span>{' '}
+              <span className="text-gray-500">{t.footer.contact.phone}:</span>{' '}
               <a href="tel:0203080465" className="hover:text-primary-400 transition-colors">
                 020-30 80 465
               </a>
@@ -153,7 +153,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-500">
-            © {currentYear} Workflo. Alle rechten voorbehouden. [TEST: v2]
+            {t.footer.copyright.replace('{year}', currentYear.toString())}
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy" className="text-sm text-gray-500 hover:text-primary-400 transition-colors">
