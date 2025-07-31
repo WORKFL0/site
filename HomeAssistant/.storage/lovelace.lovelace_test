@@ -1,0 +1,544 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.lovelace_test",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "theme": "Backend-selected",
+          "title": "Mobile",
+          "path": "mobile",
+          "icon": "mdi:phone",
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "square": false,
+                  "columns": 1,
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-chips-card",
+                      "chips": [
+                        {
+                          "type": "entity",
+                          "entity": "person.florian",
+                          "use_entity_picture": true
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "person.cindy",
+                          "use_entity_picture": true
+                        },
+                        {
+                          "type": "entity",
+                          "entity": "person.noah",
+                          "use_entity_picture": true
+                        }
+                      ],
+                      "alignment": "center"
+                    },
+                    {
+                      "type": "custom:mushroom-climate-card",
+                      "entity": "climate.toon_thermostat",
+                      "collapsible_controls": true,
+                      "show_temperature_control": true,
+                      "fill_container": true,
+                      "name": "Woonkamer tempratuur"
+                    }
+                  ]
+                },
+                {
+                  "show_name": true,
+                  "show_icon": false,
+                  "show_state": true,
+                  "type": "glance",
+                  "entities": [
+                    {
+                      "entity": "sensor.woonkamer_sensor_temperature"
+                    },
+                    {
+                      "entity": "sensor.temperature"
+                    },
+                    {
+                      "entity": "sensor.temperature_2"
+                    },
+                    {
+                      "entity": "sensor.hue_outdoor_motion_sensor_1_temperature"
+                    }
+                  ],
+                  "state_color": false,
+                  "columns": 4
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.lichten_woonkamer",
+                      "name": "WK",
+                      "layout": "vertical",
+                      "fill_container": true,
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "collapsible_controls": true,
+                      "hold_action": {
+                        "action": "navigate",
+                        "navigation_path": "/lovelace-test/woonkamer"
+                      }
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.lichten_keuken",
+                      "name": "KK",
+                      "layout": "vertical",
+                      "fill_container": true,
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "collapsible_controls": true
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.gangbg",
+                      "name": "Gang",
+                      "icon": "mdi:lightbulb-group",
+                      "fill_container": true,
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "collapsible_controls": true,
+                      "layout": "vertical"
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.lichten_tuin",
+                      "name": "Tuin",
+                      "layout": "vertical",
+                      "fill_container": true,
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "collapsible_controls": true
+                    },
+                    {
+                      "type": "custom:mushroom-light-card",
+                      "entity": "light.lichten_schuur",
+                      "name": "Schuur",
+                      "layout": "vertical",
+                      "fill_container": true,
+                      "use_light_color": true,
+                      "show_brightness_control": true,
+                      "collapsible_controls": true
+                    }
+                  ]
+                },
+                {
+                  "show_name": true,
+                  "show_icon": true,
+                  "show_state": true,
+                  "type": "glance",
+                  "entities": [
+                    {
+                      "entity": "binary_sensor.motion_woonkamer"
+                    },
+                    {
+                      "entity": "binary_sensor.motion"
+                    },
+                    {
+                      "entity": "binary_sensor.motion_2"
+                    }
+                  ],
+                  "state_color": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Default",
+          "path": "default",
+          "icon": "mdi:home",
+          "panel": false,
+          "visible": [
+            {
+              "user": "39a55d1013fd441a8386b006ace59ea1"
+            },
+            {
+              "user": "adcd17a955c24612ad14765d539e92a6"
+            }
+          ],
+          "badges": [],
+          "cards": [
+            {
+              "type": "grid",
+              "square": false,
+              "cards": [
+                {
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "card": {
+                        "title": "Wie is er thuis",
+                        "type": "glance"
+                      },
+                      "filter": {
+                        "exclude": [
+                          {
+                            "state": "not_home"
+                          },
+                          {
+                            "state": "School"
+                          },
+                          {
+                            "state": "Mam"
+                          },
+                          {
+                            "state": "Omie"
+                          },
+                          {
+                            "state": "work*"
+                          },
+                          {
+                            "state": "Lader*"
+                          }
+                        ],
+                        "include": [
+                          {
+                            "entity_id": "person.florian"
+                          },
+                          {
+                            "entity_id": "person.noah"
+                          },
+                          {
+                            "entity_id": "person.cindy"
+                          }
+                        ]
+                      },
+                      "show_empty": false,
+                      "show_header_toggle": false,
+                      "type": "custom:auto-entities",
+                      "sort": {
+                        "method": "none"
+                      }
+                    }
+                  ],
+                  "columns": 1,
+                  "square": false
+                },
+                {
+                  "type": "grid",
+                  "square": false,
+                  "columns": 6,
+                  "cards": [
+                    {
+                      "show_name": true,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.lichten_woonkamer",
+                      "name": "Woon"
+                    },
+                    {
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.lichten_keuken",
+                      "name": "Keuken"
+                    },
+                    {
+                      "show_name": true,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.lichten_tuin",
+                      "name": "Tuin"
+                    },
+                    {
+                      "show_name": true,
+                      "show_icon": true,
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.lichten_schuur",
+                      "name": "Schuur"
+                    },
+                    {
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.lichten_slaapkamer",
+                      "name": "Slaap"
+                    },
+                    {
+                      "type": "button",
+                      "tap_action": {
+                        "action": "toggle"
+                      },
+                      "entity": "light.lichten_kantoor",
+                      "name": "Kantoor"
+                    }
+                  ]
+                },
+                {
+                  "type": "grid",
+                  "square": false,
+                  "cards": [
+                    {
+                      "type": "entity-filter",
+                      "square": "flase",
+                      "columns": 1,
+                      "entities": [
+                        "light.lichten_woonkamer",
+                        "light.lichten_keueken",
+                        "light.lichten_tuin",
+                        "light.lichten_schuur",
+                        "light.gang",
+                        "light.lichten_slaapkamer",
+                        "light.lichten_noah",
+                        "light.lichten_kantoor",
+                        "light.lichten_badkamer"
+                      ],
+                      "state_filter": [
+                        "on"
+                      ],
+                      "card": {
+                        "type": "entities"
+                      }
+                    }
+                  ],
+                  "columns": 1
+                },
+                {
+                  "type": "custom:weather-card",
+                  "entity": "weather.dark_sky",
+                  "number_of_forecasts": "5"
+                }
+              ],
+              "columns": 1
+            },
+            {
+              "type": "grid",
+              "square": false,
+              "cards": [
+                {
+                  "type": "logbook",
+                  "entities": [
+                    "binary_sensor.dch_z110_door_window_3_in_1_sensor_access_control_door_window_open_2",
+                    "binary_sensor.back_door",
+                    "binary_sensor.door_window_sensor_158d000242f039",
+                    "binary_sensor.door_window_sensor_158d00023ed6e2",
+                    "binary_sensor.door_window_sensor_158d000275eb0b",
+                    "binary_sensor.woonkamer_sensor_motion",
+                    "binary_sensor.433_motion_02",
+                    "binary_sensor.433_motion_01",
+                    "binary_sensor.zw100_multisensor_6_home_security_motion_detected",
+                    "binary_sensor.zw100_multisensor_6_home_security_motion_detected_2",
+                    "binary_sensor.433_motion_03",
+                    "switch.motion_2",
+                    "switch.hue_outdoor_motion_sensor_1_motion",
+                    "switch.motion",
+                    "binary_sensor.hue_outdoor_motion_sensor_1_motion",
+                    "binary_sensor.motion_slaapkamer",
+                    "binary_sensor.motion_woonkamer",
+                    "binary_sensor.slaapkamer_motion_detection",
+                    "binary_sensor.motion_office",
+                    "binary_sensor.motion"
+                  ],
+                  "hours_to_show": 24
+                },
+                {
+                  "type": "calendar",
+                  "entities": [
+                    "calendar.ajax",
+                    "calendar.formula_1",
+                    "calendar.calendar",
+                    "calendar.cindy_van_der_pal"
+                  ],
+                  "initial_view": "dayGridMonth"
+                },
+                {
+                  "type": "entity-filter",
+                  "square": false,
+                  "columns": 1,
+                  "entities": [
+                    "light.lichten_woonkamer",
+                    "light.lichten_keueken",
+                    "light.gang",
+                    "light.lichten_slaapkamer",
+                    "light.lichten_kantoor",
+                    "light.lichten_badkamer"
+                  ],
+                  "state_filter": [
+                    "on"
+                  ],
+                  "card": {
+                    "type": "entities"
+                  }
+                }
+              ],
+              "columns": 1
+            },
+            {
+              "type": "grid",
+              "columns": 1,
+              "cards": [
+                {
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-climate-card",
+                      "entity": "climate.toon_thermostat",
+                      "show_temperature_control": false,
+                      "fill_container": true,
+                      "collapsible_controls": true
+                    },
+                    {
+                      "type": "custom:mushroom-vacuum-card",
+                      "entity": "vacuum.roomba",
+                      "fill_container": true,
+                      "commands": [
+                        "start_pause",
+                        "return_home"
+                      ],
+                      "name": "SZ"
+                    }
+                  ],
+                  "columns": 4
+                },
+                {
+                  "type": "grid",
+                  "cards": [
+                    {
+                      "type": "custom:mini-media-player",
+                      "entity": "media_player.spotify_florian_de_haan",
+                      "name": "Spotify",
+                      "icon": "mdi:spotify"
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "name": "TV Woonkamer",
+                      "icon": "mdi:television",
+                      "entity": "media_player.ue55mu6100",
+                      "hide": {
+                        "volume": true
+                      }
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "entity": "media_player.denon_zone_1"
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "entity": "media_player.denon_zone_2"
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "entity": "media_player.beneden"
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "entity": "media_player.badkamer"
+                    },
+                    {
+                      "type": "custom:mini-media-player",
+                      "entity": "media_player.amp"
+                    }
+                  ],
+                  "columns": 1,
+                  "square": false
+                }
+              ],
+              "square": false
+            }
+          ]
+        },
+        {
+          "title": "Test",
+          "path": "test",
+          "visible": [
+            {
+              "user": "39a55d1013fd441a8386b006ace59ea1"
+            },
+            {
+              "user": "adcd17a955c24612ad14765d539e92a6"
+            },
+            {
+              "user": "74457290574e476cbb28f9f0c8fdd8f6"
+            }
+          ],
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "input_boolean.iemand_aanwezig_uit"
+                },
+                {
+                  "entity": "input_boolean.woonkamer_iemand_aanwezig"
+                },
+                {
+                  "entity": "input_boolean.keuken_iemand_aanwezig"
+                },
+                {
+                  "entity": "input_boolean.schuur_iemand_aanwezig"
+                },
+                {
+                  "entity": "input_boolean.masterslaapkamer_iemand_aanwezig"
+                },
+                {
+                  "entity": "input_boolean.noahsslaapkamer_iemand_aanwezig"
+                },
+                {
+                  "entity": "input_boolean.kantoor_iemand_aanwezig"
+                }
+              ],
+              "title": "Iemand aanwezig",
+              "state_color": true
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Woonkamer",
+          "path": "woonkamer",
+          "icon": "mdi:sofa",
+          "subview": true,
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "entity-filter",
+                  "entities": [
+                    "light.zithoek_muur",
+                    "light.plant_lamp",
+                    "light.hue_color_lamp_artimide",
+                    "light.plant_muur",
+                    "light.diner_muur",
+                    "light.achter_muur"
+                  ],
+                  "state_filter": [
+                    "on"
+                  ],
+                  "card": {
+                    "type": "entities"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "zone",
+  "data": {
+    "items": [
+      {
+        "latitude": 52.335356,
+        "longitude": 4.653725,
+        "name": "Mam",
+        "icon": "mdi:map-marker",
+        "passive": false,
+        "radius": 127.0,
+        "id": "mama_thuis"
+      },
+      {
+        "latitude": 52.398245,
+        "longitude": 4.876022,
+        "name": "work_HA",
+        "icon": "mdi:briefcase",
+        "passive": false,
+        "radius": 430.0,
+        "id": "work_ha"
+      },
+      {
+        "latitude": 52.14825439453125,
+        "longitude": 4.494297103960527,
+        "name": "work_Kopz",
+        "passive": false,
+        "radius": 134.0,
+        "icon": "mdi:hair-dryer",
+        "id": "work_kopzorgen"
+      },
+      {
+        "latitude": 52.151641845703125,
+        "longitude": 4.5094643879034,
+        "name": "Ell",
+        "icon": "mdi:account",
+        "passive": false,
+        "radius": 100.0,
+        "id": "ell"
+      },
+      {
+        "id": "dsov",
+        "latitude": 52.348920471618555,
+        "longitude": 4.682900905609132,
+        "name": "DSOV",
+        "icon": "mdi:map-marker",
+        "passive": false,
+        "radius": 202.0
+      },
+      {
+        "id": "yoga",
+        "latitude": 52.1524658203125,
+        "longitude": 4.4939911792663,
+        "name": "Yoga",
+        "icon": "mdi:map-marker",
+        "passive": false,
+        "radius": 100.0
+      },
+      {
+        "id": "envi_s_pap",
+        "latitude": 52.346337,
+        "longitude": 4.642675,
+        "name": "Envi's pap",
+        "icon": "mdi:map-marker",
+        "passive": false,
+        "radius": 100.0
+      },
+      {
+        "id": "omaroeleveld",
+        "latitude": 52.099884033203125,
+        "longitude": 4.273217440045087,
+        "name": "OmaRoeleveld",
+        "icon": "mdi:map-marker",
+        "passive": false,
+        "radius": 100.0
+      },
+      {
+        "id": "rich_marjan",
+        "latitude": 52.10418701171875,
+        "longitude": 4.271279051903888,
+        "name": "Rich&Marjan",
+        "icon": "mdi:map-marker",
+        "passive": false,
+        "radius": 100.0
+      },
+      {
+        "id": "sportschool",
+        "latitude": 52.2701416015625,
+        "longitude": 4.564454052601535,
+        "name": "Sportschool",
+        "icon": "mdi:dumbbell",
+        "passive": false,
+        "radius": 100.0
+      },
+      {
+        "id": "omi",
+        "latitude": 52.374033754620406,
+        "longitude": 4.640715122222901,
+        "name": "Omi",
+        "icon": "mdi:family-tree",
+        "passive": false,
+        "radius": 50.0
+      },
+      {
+        "id": "gymnu",
+        "latitude": 52.34405517578125,
+        "longitude": 4.631010972556589,
+        "name": "GymNU",
+        "icon": "mdi:weight-lifter",
+        "passive": false,
+        "radius": 100.0
+      },
+      {
+        "id": "milan",
+        "latitude": 52.359960416940986,
+        "longitude": 4.665969370830311,
+        "name": "Milan",
+        "icon": "mdi:account",
+        "passive": false,
+        "radius": 100.0
+      },
+      {
+        "id": "wessel",
+        "latitude": 52.34588623046875,
+        "longitude": 4.674551001613487,
+        "name": "Wessel",
+        "icon": "mdi:account",
+        "passive": false,
+        "radius": 100.0
+      },
+      {
+        "id": "school_noah",
+        "latitude": 52.3922119140625,
+        "longitude": 4.625797385922449,
+        "name": "School_Noah",
+        "icon": "mdi:school",
+        "passive": false,
+        "radius": 100.0
+      },
+      {
+        "id": "tom",
+        "latitude": 52.379467233736484,
+        "longitude": 4.551152084184223,
+        "name": "Tom",
+        "icon": "mdi:map-marker",
+        "passive": false,
+        "radius": 114.0
+      },
+      {
+        "id": "tom_2",
+        "latitude": 52.379467233736484,
+        "longitude": 4.551152084184223,
+        "name": "Tom",
+        "icon": "mdi:map-marker",
+        "passive": false,
+        "radius": 124.0
+      },
+      {
+        "id": "ah_hillegom",
+        "latitude": 52.292444950406896,
+        "longitude": 4.577433302733687,
+        "name": "AH Hillegom",
+        "icon": "mdi:bag-carry-on",
+        "passive": false,
+        "radius": 45.23150324367253
+      },
+      {
+        "id": "nance",
+        "latitude": 52.191338250324854,
+        "longitude": 4.486794553041311,
+        "name": "Nance",
+        "icon": "mdi:map-marker",
+        "passive": false,
+        "radius": 100.0
+      }
+    ]
+  }
+}

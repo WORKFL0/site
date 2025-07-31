@@ -1,0 +1,482 @@
+{
+  "version": 1,
+  "minor_version": 4,
+  "key": "cloud",
+  "data": {
+    "alexa_enabled": false,
+    "alexa_entity_configs": {},
+    "cloud_user": "98cb8008da1540359bdeba6c51df2e89",
+    "cloudhooks": {
+      "b67befd1e805f6bd2bb11833e5f8c00c93a5c20e8f16ff08637c4a25255d3fd2": {
+        "cloudhook_id": "2e390630a3cb43a8b50235d33915eccc",
+        "cloudhook_url": "https://hooks.nabu.casa/gAAAAABd37G8LDbEqAC__9ylU8oA5bTmOBLq7DIA4D_MIm56vTmyrlwVNCai1HkZARUCM78Cm3qZeZZ1-BZ3hrwNN65QGCsBM5J1TxZyydJv3VHrQHQ4rkSrIr53tTne4VVyi-SB3WiAysVDo3LjXFqZtD9Cx18NBF-TwfNZIsrdJSvh3XvO9q0=",
+        "managed": true,
+        "webhook_id": "b67befd1e805f6bd2bb11833e5f8c00c93a5c20e8f16ff08637c4a25255d3fd2"
+      },
+      "5bdbad8ec37ce50cf927252d0bbeaa25c83ddbf6142b4c3b92b74e14c920c744": {
+        "webhook_id": "5bdbad8ec37ce50cf927252d0bbeaa25c83ddbf6142b4c3b92b74e14c920c744",
+        "cloudhook_id": "984d348464cc412195016bc0d808546d",
+        "cloudhook_url": "https://hooks.nabu.casa/gAAAAABmkau9RzzIfkyub41EPcizpmESQRq-zcUp-q8eia_HxUwf2O5ZPlrTT0mumChfl8hvGaGtIG7KCCUfC41ZjznDKOOP7OsMh8dA0s-uqX0B89A37Hvf7pa6wCnjlU3fnq4sa1HSa7R95YWmwb0rL-9Ouk1LqHm8FFQdi0HeyBq2VIcJgjw=",
+        "managed": true
+      },
+      "0fe3ea049045a8bfbd07509772ee119a48f2fae0b561f9e11613509f1e69eed4": {
+        "webhook_id": "0fe3ea049045a8bfbd07509772ee119a48f2fae0b561f9e11613509f1e69eed4",
+        "cloudhook_id": "12e6782913574d70be3c10ca1eefdc62",
+        "cloudhook_url": "https://hooks.nabu.casa/gAAAAABnl86wKcjcX37Impc0tr292VmZmAjLdXAuKXULjc0KcWU2yE3vD-75qDyIzM-F_R5ma9q1lBthukygsXUKOuCU9Tu8UvVplX1ck_brJvqzme4bD8qQA7WwjCdPi5h_vtaXnevrIjZ3qHC19qqnk8KWBiohZnlqUe3ejQ0G4jXeyT1tg6I=",
+        "managed": true
+      },
+      "dceb2c7d6b27b6a86e82a7c4ad2e4b8d62dbe243b95e70fcf36356208bf8c57b": {
+        "webhook_id": "dceb2c7d6b27b6a86e82a7c4ad2e4b8d62dbe243b95e70fcf36356208bf8c57b",
+        "cloudhook_id": "961e1eea66f54639a45b0bd74242f2b1",
+        "cloudhook_url": "https://hooks.nabu.casa/gAAAAABoIoJAVeV0J9AlA_eeORaRnbqnTuFvl47f_ea4pvhNSWFrh37SVvxb7bECT6qEZMk_Tqy7c68Z8jTCxDAF-a4SVbkrczXLvZybvgN_BFDR2fMoApSuve_nH1t25U9lDkhRXTscWzLzwTgG--WDxDvz0jzKtPe_PSgejxnf9xKVl_cedto=",
+        "managed": true
+      },
+      "942171794321416acdf28605e1b2afd665e103f2ff6218cec2dcc563131e993e": {
+        "webhook_id": "942171794321416acdf28605e1b2afd665e103f2ff6218cec2dcc563131e993e",
+        "cloudhook_id": "3910ed19fb934add888b90a3e1bca7ac",
+        "cloudhook_url": "https://hooks.nabu.casa/gAAAAABoI67i5qAiTpGGMP_4geARdbelDRxccgipQzxHgrjhMxPJ7sgrwnb4vkY3QxSBhTRz0FlMMCMiRw6TdD23Re-N3FqLzP7ZyTkWwPI37FzqKj2KgYaqrDBnkbn7cpwRiz1bzLV_58s5O_7XlDc58Ab9Y1SJdtFKFxVhDC5qnUekQoH7X38=",
+        "managed": true
+      },
+      "22adda8164c6dc9b6a3fb14291bde5b1d057a637da1dfdf930584b924d90b37b": {
+        "webhook_id": "22adda8164c6dc9b6a3fb14291bde5b1d057a637da1dfdf930584b924d90b37b",
+        "cloudhook_id": "b50a2ad9798f43a5b984b6cdecfaa888",
+        "cloudhook_url": "https://hooks.nabu.casa/gAAAAABoJD3DNAOSVPb3W_PIAoTUF3FG0QXgM7t9UJ2Sf1XcM2YHRf_RBc7KJxUhAMSknOk_ILfL_FJbBM4uPKO5jYZJo0ss837LOvuDq-QcjoB0x_DtYHp8-miU2X0jPji4N0cNT9Ks95vVskunERayFIEAgEMmxU9oGzAdikRI2T8ajD3anKw=",
+        "managed": true
+      },
+      "14f16d4a54291f2d072d24df24c385d0086167b253e266cdea10c684075e5dce": {
+        "webhook_id": "14f16d4a54291f2d072d24df24c385d0086167b253e266cdea10c684075e5dce",
+        "cloudhook_id": "ae2ece4eea164cf69fa54e3ad4e04f69",
+        "cloudhook_url": "https://hooks.nabu.casa/gAAAAABoLtIltbqTudXX-2RzpcnTw9l9GbJrMQkdyW8FzALX7eAq_uL9VSB0VlNwSfT_9BpWSHr-iu-KmgoKwztn7xjSvCJAZncJXzo8cXRuVAMmGUVjsbUR-4augZbaAVSs25lbWr-nQrT_SdZxfzRu9P7LhYmUUO1JlAmCMBEhcpqVisA3qmk=",
+        "managed": true
+      }
+    },
+    "google_enabled": true,
+    "google_entity_configs": {
+      "light.the_voice_group_3": {
+        "should_expose": false
+      },
+      "light.the_voice_group_0": {
+        "should_expose": false
+      },
+      "light.the_voice_group_1": {
+        "should_expose": false
+      },
+      "light.the_voice_group_2": {
+        "should_expose": false
+      },
+      "light.hgrp_0000000012": {
+        "should_expose": false
+      },
+      "light.hgrp_0000000254": {
+        "should_expose": false
+      },
+      "input_boolean.foscam_stop_cruise": {
+        "should_expose": false
+      },
+      "input_boolean.foscam_toon_alarm_dash": {
+        "should_expose": false
+      },
+      "input_boolean.node_red": {
+        "should_expose": false
+      },
+      "input_boolean.foscam_motion_detect": {
+        "should_expose": false
+      },
+      "input_boolean.foscam_mirror": {
+        "should_expose": false
+      },
+      "input_boolean.foscam_infrared": {
+        "should_expose": false
+      },
+      "input_boolean.foscam_auto_infrared": {
+        "should_expose": false
+      },
+      "input_boolean.arm_kitchen_notifications": {
+        "should_expose": false
+      },
+      "input_boolean.noah_home": {
+        "should_expose": false
+      },
+      "media_player.plex_plex_web_chrome_2": {
+        "should_expose": false
+      },
+      "media_player.plex_plex_for_ios_flophone11pro": {
+        "should_expose": false
+      },
+      "media_player.plex_plex_web_chrome": {
+        "should_expose": false
+      },
+      "media_player.plex_plex_for_samsung_tv_ue55mu6100": {
+        "should_expose": false
+      },
+      "media_player.plex_plex_for_samsung_tv_2017": {
+        "should_expose": false
+      },
+      "input_select.foscam_preset_points": {
+        "should_expose": false
+      },
+      "switch.aeon_labs_zw096_smart_switch_6_switch_2": {
+        "should_expose": false
+      },
+      "input_boolean.foscam_default_picture_settings": {
+        "should_expose": false
+      },
+      "input_select.timer_gang_automator": {
+        "should_expose": false
+      },
+      "input_select.timer_keuken_automator": {
+        "should_expose": false
+      },
+      "input_select.timer_woonkamer_automator": {
+        "should_expose": false
+      },
+      "input_select.foscam_preset_cruise": {
+        "should_expose": false
+      },
+      "media_player.plex_plex_for_ios_iphone_van_noah": {
+        "should_expose": false
+      },
+      "media_player.plex_plex_web_chrome_3": {
+        "should_expose": false
+      },
+      "media_player.plex_plex_for_apple_tv_woonkamer": {
+        "should_expose": false
+      },
+      "media_player.plex_plex_media_player_mbp16_workflo": {
+        "should_expose": false
+      },
+      "input_boolean.papa_home": {
+        "should_expose": false
+      },
+      "input_boolean.someone_home": {
+        "should_expose": false
+      },
+      "input_boolean.guests_home": {
+        "should_expose": false
+      },
+      "light.group_group5_huelabs_halloween": {
+        "should_expose": false
+      },
+      "input_boolean.arm_frontdoor_notifications": {
+        "should_expose": false
+      },
+      "sensor.flomobiel_temperature_sensor_inside": {
+        "should_expose": false
+      },
+      "sensor.flomobiel_temperature_sensor_outside": {
+        "should_expose": false
+      },
+      "lock.flomobiel_trunk_lock": {
+        "should_expose": false
+      },
+      "switch.flomobiel_update_switch": {
+        "should_expose": false
+      },
+      "switch.flomobiel_sentry_mode_switch": {
+        "should_expose": false
+      },
+      "switch.flomobiel_maxrange_switch": {
+        "should_expose": false
+      },
+      "lock.flomobiel_frunk_lock": {
+        "should_expose": false
+      },
+      "lock.flomobiel_door_lock": {
+        "should_expose": false
+      },
+      "switch.flomobiel_charger_switch": {
+        "should_expose": false
+      },
+      "input_boolean.foscam_flip": {
+        "should_expose": false
+      },
+      "climate.flomobiel_hvac_climate_system": {
+        "should_expose": false
+      },
+      "lock.flomobiel_charger_door_lock": {
+        "should_expose": false
+      },
+      "light.custom_group_for_lights": {
+        "should_expose": false
+      },
+      "input_boolean.cindy_home": {
+        "should_expose": false
+      },
+      "light.custom_group_for_lights_2": {
+        "should_expose": false
+      },
+      "input_boolean.arm_bedroom_notifications": {
+        "should_expose": false
+      },
+      "input_boolean.arm_backdoor_notifications": {
+        "should_expose": false
+      },
+      "sensor.bigmama_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_8_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_9_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_volume_1_average_disk_temp": {
+        "should_expose": false
+      },
+      "sensor.bigmama_volume_2_average_disk_temp": {
+        "should_expose": false
+      },
+      "sensor.bigmama_volume_3_average_disk_temp": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_7_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_6_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_5_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_4_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_3_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_1_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_10_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_11_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_12_temperature": {
+        "should_expose": false
+      },
+      "sensor.bigmama_drive_2_temperature": {
+        "should_expose": false
+      },
+      "input_boolean.automation_slaapkamer": {
+        "should_expose": false
+      },
+      "input_boolean.automation_livingroom": {
+        "should_expose": false
+      },
+      "input_boolean.automation_kitchen": {
+        "should_expose": false
+      },
+      "input_boolean.automation_kantoor": {
+        "should_expose": false
+      },
+      "switch.adguard_safe_browsing": {
+        "should_expose": false
+      },
+      "switch.adguard_safe_search": {
+        "should_expose": false
+      },
+      "input_boolean.arm_alarm": {
+        "should_expose": false
+      },
+      "switch.adguard_query_log": {
+        "should_expose": false
+      },
+      "switch.adguard_protection": {
+        "should_expose": false
+      },
+      "switch.adguard_parental_control": {
+        "should_expose": false
+      },
+      "switch.adguard_filtering": {
+        "should_expose": false
+      },
+      "cover.aeon_labs_zw099_smart_dimmer_6_switch": {
+        "should_expose": false
+      },
+      "switch.sonoff_43": {
+        "should_expose": false
+      },
+      "switch.sonoff_44": {
+        "should_expose": false
+      },
+      "binary_sensor.433_opening_01": {
+        "should_expose": false
+      },
+      "binary_sensor.433_opening_02": {
+        "should_expose": false
+      },
+      "cover.aeon_labs_zw099_smart_dimmer_6_level": {
+        "should_expose": false
+      },
+      "switch.sonoff_42": {
+        "should_expose": false
+      },
+      "switch.sonoff_41": {
+        "should_expose": false
+      },
+      "switch.sonoff_21": {
+        "should_expose": false
+      },
+      "media_player.cast_tv": {
+        "should_expose": false
+      },
+      "media_player.woonkamer": {
+        "should_expose": false
+      },
+      "input_boolean.arm_office_notifications": {
+        "should_expose": false
+      },
+      "media_player.slaapkamer": {
+        "should_expose": false
+      },
+      "media_player.spotify_florian_de_haan": {
+        "should_expose": false
+      },
+      "input_boolean.foscam_snap_picture_now": {
+        "should_expose": false
+      },
+      "input_select.timer_office_automator": {
+        "should_expose": false
+      },
+      "media_player.all": {
+        "should_expose": false
+      },
+      "switch.shelly_02": {
+        "should_expose": false
+      },
+      "switch.sonoff_02": {
+        "should_expose": false
+      },
+      "script.1577995783144": {
+        "should_expose": false
+      },
+      "media_player.amp": {
+        "should_expose": false
+      },
+      "media_player.badkamer": {
+        "should_expose": false
+      },
+      "camera.foscam_camera": {
+        "should_expose": false
+      },
+      "media_player.kantoorcast": {
+        "should_expose": false
+      },
+      "media_player.plex_plex_for_ios_flopadpro": {
+        "should_expose": false
+      },
+      "switch.woonkamer_apple_tv4": {
+        "should_expose": false
+      },
+      "switch.woonkamer_gamen": {
+        "should_expose": false
+      },
+      "switch.woonkamer_iptv": {
+        "should_expose": false
+      },
+      "switch.woonkamer_pc": {
+        "should_expose": false
+      },
+      "switch.woonkamer_tv_kijken": {
+        "should_expose": false
+      },
+      "group.badkamer": {
+        "should_expose": false
+      },
+      "group.gang": {
+        "should_expose": false
+      },
+      "group.kantoor": {
+        "should_expose": false
+      },
+      "group.keuken": {
+        "should_expose": false
+      },
+      "group.meterkast": {
+        "should_expose": false
+      },
+      "group.slaapkamer": {
+        "should_expose": false
+      },
+      "input_boolean.sleepmode": {
+        "should_expose": false
+      },
+      "group.woonkamer": {
+        "should_expose": false
+      },
+      "switch.blueiris_profile_active": {
+        "should_expose": false
+      },
+      "switch.blueiris_profile_inactive": {
+        "should_expose": false
+      },
+      "switch.blueiris_profile_profile_3": {
+        "should_expose": false
+      },
+      "switch.blueiris_profile_profile_4": {
+        "should_expose": false
+      },
+      "switch.blueiris_profile_profile_5": {
+        "should_expose": false
+      },
+      "switch.blueiris_profile_profile_6": {
+        "should_expose": false
+      },
+      "switch.blueiris_profile_profile_7": {
+        "should_expose": false
+      },
+      "switch.blueiris_profile_work_hours": {
+        "should_expose": false
+      },
+      "switch.blueiris_schedule_default": {
+        "should_expose": false
+      },
+      "light.color_light_1": {
+        "should_expose": false
+      },
+      "light.color_light_2": {
+        "should_expose": false
+      },
+      "light.ikea_spot_1": {
+        "should_expose": false
+      },
+      "light.ikea_spot_2": {
+        "should_expose": false
+      },
+      "light.ikea_spot_3": {
+        "should_expose": false
+      },
+      "input_boolean.showeron": {
+        "should_expose": false
+      },
+      "media_player.samsung_ue55mu6100": {
+        "should_expose": false
+      },
+      "switch.wled_light_nightlight": {
+        "should_expose": false
+      },
+      "switch.wled_light_sync_receive": {
+        "should_expose": false
+      },
+      "switch.wled_light_sync_send": {
+        "should_expose": false
+      }
+    },
+    "google_local_webhook_id": "0278ec7659d6e8d9f65b1e4968d3d18677ef3f1a45eec514c8fab5bc25327539",
+    "google_report_state": true,
+    "google_secure_devices_pin": null,
+    "remote_enabled": true,
+    "username": "d4e9d30e-1303-476e-99d6-a6d7fb21295c",
+    "tts_default_voice": [
+      "nl-NL",
+      "ColetteNeural"
+    ],
+    "remote_domain": "dwfe7c9499s66fxffaidukom0p7aclla.ui.nabu.casa",
+    "alexa_settings_version": 3,
+    "google_settings_version": 3,
+    "instance_id": "f9eb80e80b63445da2a1709109862690",
+    "google_connected": true
+  }
+}

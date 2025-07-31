@@ -1,0 +1,61 @@
+{
+    "version": "6",
+    "minor_version": 1,
+    "key": "hacs/228662926.hacs",
+    "data": {
+        "archived": false,
+        "authors": [
+            "@cyberjunky"
+        ],
+        "category": "integration",
+        "content_in_root": false,
+        "country": [
+            "NL"
+        ],
+        "config_flow": false,
+        "default_branch": "master",
+        "description": "This component provides a climate device for rooted Toon thermostats.",
+        "domain": "toon_climate",
+        "domains": [
+            "climate"
+        ],
+        "downloads": 0,
+        "etag_repository": "W/\"b897017d137103331ef9bbeebad38f30b8ad6de36488e14d115735031b5c8ebe\"",
+        "file_name": "",
+        "filename": "",
+        "first_install": false,
+        "fork": false,
+        "full_name": "cyberjunky/home-assistant-toon_climate",
+        "hacs": null,
+        "hide": false,
+        "hide_default_branch": false,
+        "homeassistant": null,
+        "id": "228662926",
+        "iot_class": null,
+        "installed": true,
+        "installed_commit": "0d6c5ef",
+        "installed_version": "1.0.13",
+        "open_issues": 2,
+        "last_commit": "0d6c5ef",
+        "last_version": "1.0.13",
+        "last_updated": "2022-05-03T05:53:31Z",
+        "manifest_name": "Toon Climate",
+        "new": false,
+        "persistent_directory": null,
+        "pushed_at": "2022-05-03T05:53:31",
+        "releases": true,
+        "render_readme": false,
+        "published_tags": [
+            "1.0.13",
+            "1.0.12",
+            "1.0.11",
+            "1.0.10",
+            "1.0.9"
+        ],
+        "selected_tag": null,
+        "show_beta": false,
+        "stargazers_count": 23,
+        "topics": [],
+        "zip_release": false
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "version": 1,
+    "minor_version": 1,
+    "key": "google_assistant",
+    "data": {
+        "agent_user_ids": {
+            "d4e9d30e-1303-476e-99d6-a6d7fb21295c": {
+                "local_webhook_id": "058939d2d1375075a4d9b47f262fea9ac48d8ceaa9cd8947e57f9379e082544a"
+            }
+        }
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "version": "6",
+    "minor_version": 1,
+    "key": "hacs/228678807.hacs",
+    "data": {
+        "archived": false,
+        "authors": [
+            "@cyberjunky"
+        ],
+        "category": "integration",
+        "content_in_root": false,
+        "country": [
+            "NL"
+        ],
+        "config_flow": false,
+        "default_branch": "master",
+        "description": "This component reads and displays sensor values from the meteradapter connected to a rooted Toon thermostat.",
+        "domain": "toon_smartmeter",
+        "domains": [
+            "sensor"
+        ],
+        "downloads": 0,
+        "etag_repository": "W/\"2216ab8a3725ee246f4a1e92b4322d3c6b58c64ed898a9d016da24ba9029507b\"",
+        "file_name": "",
+        "filename": "",
+        "first_install": false,
+        "fork": false,
+        "full_name": "cyberjunky/home-assistant-toon_smartmeter",
+        "hacs": null,
+        "hide": false,
+        "hide_default_branch": false,
+        "homeassistant": null,
+        "id": "228678807",
+        "iot_class": null,
+        "installed": true,
+        "installed_commit": "26c3983",
+        "installed_version": "1.0.21",
+        "open_issues": 8,
+        "last_commit": "26c3983",
+        "last_version": "1.0.21",
+        "last_updated": "2022-06-22T15:18:33Z",
+        "manifest_name": "Toon Smart Meter",
+        "new": false,
+        "persistent_directory": null,
+        "pushed_at": "2022-06-22T15:18:33",
+        "releases": true,
+        "render_readme": false,
+        "published_tags": [
+            "1.0.21",
+            "1.0.20",
+            "1.0.19",
+            "1.0.18",
+            "1.0.17"
+        ],
+        "selected_tag": null,
+        "show_beta": false,
+        "stargazers_count": 12,
+        "topics": [
+            "custom-component",
+            "hacs",
+            "home-assistant",
+            "homeassistant",
+            "python"
+        ],
+        "zip_release": false
+    }
+}

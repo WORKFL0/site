@@ -1,0 +1,29 @@
+# - name: florian.pushover
+#   platform: pushover
+#   api_key: !secret pushover_api_key
+#   user_key: !secret pushover_user_key
+- name: in_the_kitchen
+  platform: tts
+  tts_service: tts.google_say
+  media_player: media_player.woonkamer
+  ios:
+    push:
+      categories:
+        - name: Alarm
+          identifier: "alarm"
+          actions:
+            - identifier: "SILENCE_ALARM"
+              title: "Silence Alarm"
+              activationMode: "background"
+              authenticationRequired: no
+              destructive: yes
+              behavior: "default"
+        - name: Siren
+          identifier: "siren"
+          actions:
+            - identifier: "ACTIVATE_SIRENS"
+              title: "Activate Sirens"
+              activationMode: "background"
+              authenticationRequired: no
+              destructive: yes
+              behavior: "default"

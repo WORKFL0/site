@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "energy",
+  "data": {
+    "energy_sources": [
+      {
+        "type": "grid",
+        "flow_from": [
+          {
+            "stat_energy_from": "sensor.toon_p1_power_use_cnt_high_2",
+            "stat_cost": null,
+            "entity_energy_price": null,
+            "number_energy_price": null
+          },
+          {
+            "stat_energy_from": "sensor.toon_p1_power_use_cnt_low_2",
+            "stat_cost": null,
+            "entity_energy_price": null,
+            "number_energy_price": null
+          }
+        ],
+        "flow_to": [],
+        "cost_adjustment_day": 0.0
+      },
+      {
+        "type": "solar",
+        "stat_energy_from": "sensor.beekkade_total_energy_today",
+        "config_entry_solar_forecast": null
+      },
+      {
+        "type": "solar",
+        "stat_energy_from": "sensor.dle3a131a8_lifetime_energy_output",
+        "config_entry_solar_forecast": null
+      }
+    ],
+    "device_consumption": []
+  }
+}

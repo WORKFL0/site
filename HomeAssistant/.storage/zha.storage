@@ -1,0 +1,13 @@
+{
+    "version": 1,
+    "key": "zha.storage",
+    "data": {
+        "devices": [
+            {
+                "name": "dresden elektronik ConBee II",
+                "ieee": "00:21:2e:ff:ff:04:e1:7f",
+                "last_seen": 1625152938.2088048
+            }
+        ]
+    }
+}

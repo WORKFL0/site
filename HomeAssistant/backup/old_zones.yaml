@@ -1,0 +1,113 @@
+# - name: Home
+#   latitude: 52.291006701431805
+#   longitude: 4.576778427245915
+#   radius: 100
+#   icon: mdi:account-multiple
+
+# # - name: Mam
+# #   latitude: 52.3429642214337
+# #   longitude: 4.6202462465013285
+# #   radius: 250
+# #   icon: mdi:account-multiple
+
+# - name: School
+#   latitude: 52.357108
+#   longitude: 4.616776
+#   radius: 200
+#   icon: mdi:school
+
+# - name: Omie
+#   latitude: 52.374136
+#   longitude: 4.640655
+#   radius: 150
+#   icon: mdi:account-multiple
+
+# - name: Lader Hl Park
+#   latitude: 52.386368
+#   longitude: 4.634401
+#   radius: 10
+#   icon: mdi:battery-charging
+
+# - name: Lader Hl Kerk
+#   latitude: 52.385681
+#   longitude: 4.638265
+#   radius: 10
+#   icon: mdi:battery-charging
+
+# - name: Lader Hl Nasau
+#   latitude: 52.384962
+#   longitude: 4.633983
+#   radius: 10
+#   icon: mdi:battery-charging
+
+# - name: Lader Hl Gracht
+#   latitude: 52.385235
+#   longitude: 4.632073
+#   radius: 10
+#   icon: mdi:battery-charging
+
+# - name: Lader Hl GreenFlux
+#   latitude: 52.385212
+#   longitude: 4.639076
+#   radius: 10
+#   icon: mdi:battery-charging
+
+# - name: Lader Hl Shop
+#   latitude: 52.383877
+#   longitude: 4.633302
+#   radius: 10
+#   icon: mdi:battery-charging
+
+# - name: Lader Hl Park Noord
+#   latitude: 52.387532
+#   longitude: 4.633794
+#   radius: 10
+#   icon: mdi:battery-charging
+
+# # - name: work_GUC_old
+# #   latitude: 52.344352
+# #   longitude: 4.a854871
+# #   radius: 150
+# #   icon: mdi:briefcase
+
+# # - name: work_guc
+# #   latitude: 52.358558
+# #   longitude: 4.8499957
+# #   radius: 150
+# #   icon: mdi:briefcase
+
+# - name: work_dwk
+#   latitude: 52.371244
+#   longitude: 4.897284
+#   radius: 150
+#   icon: mdi:briefcase
+
+# #  - name: work_vdk
+# #    latitude: 52.376831
+# #    longitude: 4.886846
+# #    radius: 150
+# #    icon: mdi:briefcase
+# #
+# # - name: work_aescap
+# #   latitude: 52.356599
+# #   longitude: 4.958358
+# #   radius: 150
+# #   icon: mdi:briefcase
+
+# # - name: work_FV
+# #   latitude: 52.353162
+# #   longitude: 5.006051
+# #   radius: 150
+# #   icon: mdi:briefcase
+
+# # - name: work_hl
+# #   latitude: 52.364115
+# #   longitude: 4.879286
+# #   radius: 150
+# #   icon: mdi:briefcase
+
+# - name: work_kopzorgen
+#   latitude: 52.15437126070774
+#   longitude: 4.4892884984073635
+#   radius: 150
+#   icon: mdi:hair-dryer

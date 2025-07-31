@@ -1,0 +1,8 @@
+#  - platform: command_line
+#    name: Kitchen motion
+#    command: "python3 config/appdaemon/apps/foscam.py 'getMotionAlert' '192.168.178.128' 'florian' 'ikbenst1L'"
+#    value_template: '{{ value == "2" }}'
+#    scan_interval: 2
+# - platform: command_line
+#   name: Foscam Preset 3
+#   command: 192.168.178.31/web/cgi-bin/hi3510/preset.cgi?-act=goto&-number=3
