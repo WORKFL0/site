@@ -1,12 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['cdn.sanity.io'],
+    domains: ['localhost', 'nextjs.workflo.it'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        pathname: '/images/**',
+      },
+    ],
   },
-  env: {
-    SANITY_PROJECT_ID: process.env.SANITY_PROJECT_ID,
-    SANITY_DATASET: process.env.SANITY_DATASET,
-    SANITY_API_VERSION: process.env.SANITY_API_VERSION,
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
+  experimental: {
+    optimizeCss: true,
   },
 }
 
