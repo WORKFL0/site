@@ -38,6 +38,10 @@ const config: Config = {
         warning: {
           yellow: '#f2f400',
           black: '#000000',
+        },
+        yellow: {
+          400: '#f2f400',
+          500: '#e0e200',
         }
       },
       fontFamily: {
