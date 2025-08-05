@@ -1,449 +1,731 @@
-export default function Home() {
-  return (
-    <div className="min-h-screen bg-gray-50" itemScope itemType="https://schema.org/WebPage">
-      {/* AI-friendly metadata in HTML */}
-      <div style={{display: 'none'}} itemScope itemType="https://schema.org/Organization">
-        <span itemProp="name">Workflo B.V.</span>
-        <span itemProp="description">Amsterdam IT services provider specializing in managed IT, cybersecurity, and cloud solutions for SMEs</span>
-        <span itemProp="foundingDate">2015</span>
-        <div itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-          <span itemProp="streetAddress">Koivistokade 3</span>
-          <span itemProp="postalCode">1013AC</span>
-          <span itemProp="addressLocality">Amsterdam</span>
-          <span itemProp="addressCountry">NL</span>
-        </div>
-        <span itemProp="telephone">+31203080465</span>
-        <span itemProp="email">info@workflo.it</span>
-      </div>
+'use client'
 
-      {/* Header with proper Workflo branding and semantic markup */}
-      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50" role="banner">
+import { useState, useEffect } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import MobileMenu from '@/components/layout/MobileMenu'
+
+export default function Home() {
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false)
+  const [activeService, setActiveService] = useState(0)
+
+  useEffect(() => {
+    // Animate elements on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in')
+        }
+      })
+    }, observerOptions)
+
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+      observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const services = [
+    {
+      title: "Managed IT Services",
+      description: "24/7 monitoring, helpdesk support, and strategic IT management",
+      icon: "🛡️",
+      highlight: "Save 40% on IT costs",
+      animation: "/images/services/code-animation.gif"
+    },
+    {
+      title: "Cybersecurity",
+      description: "Advanced threat protection and GDPR compliance",
+      icon: "🔒",
+      highlight: "€50,000 security guarantee",
+      animation: "/images/services/security-animation.gif"
+    },
+    {
+      title: "Cloud Services",
+      description: "Microsoft 365, cloud migration, and backup solutions",
+      icon: "☁️",
+      highlight: "Scale instantly, pay-as-you-grow",
+      animation: null
+    },
+    {
+      title: "IT Consulting",
+      description: "Strategic technology planning and digital transformation",
+      icon: "💡",
+      highlight: "Future-proof your business",
+      animation: null
+    },
+    {
+      title: "Project Management",
+      description: "IT project planning and implementation",
+      icon: "📊",
+      highlight: "On-time, on-budget delivery",
+      animation: null
+    },
+    {
+      title: "Network Monitoring",
+      description: "Proactive network management and optimization",
+      icon: "📡",
+      highlight: "99.9% uptime guaranteed",
+      animation: null
+    },
+    {
+      title: "Audio Visual",
+      description: "Meeting room technology and AV solutions",
+      icon: "🎥",
+      highlight: "Professional collaboration tools",
+      animation: null
+    },
+    {
+      title: "Mobile Device Management",
+      description: "Secure mobile device and app management",
+      icon: "📱",
+      highlight: "Complete device control",
+      animation: "/videos/mobile-device-header.mp4"
+    }
+  ]
+
+  const clientLogos = [
+    { name: "Havas Media", src: "/images/logos/havas-media.png" },
+    { name: "Podimo", src: "/images/logos/podimo.png" },
+    { name: "Greenpeace", src: "/images/logos/greenpeace.png" },
+    { name: "JUMP", src: "/images/logos/jump.jpg" },
+    { name: "DoctorFeelgood", src: "/images/logos/doctorfeelgood.jpg" },
+    { name: "Aescap", src: "/images/logos/aescap.png" },
+    { name: "Hunt Amsterdam", src: "/images/logos/hunt-amsterdam.jpeg" },
+    { name: "Rademakkers", src: "/images/logos/rademakkers.png" },
+    { name: "Tonko", src: "/images/logos/tonko.png" },
+    { name: "DMC", src: "/images/logos/dmc.png" },
+    { name: "Klaar", src: "/images/logos/klaar.jpg" },
+    { name: "Dag en Nacht", src: "/images/logos/dagennacht.png" },
+    { name: "Voice Industries", src: "/images/logos/voice-industries.jpeg" },
+    { name: "Duwtje", src: "/images/logos/duwtje.svg" },
+    { name: "Highwood", src: "/images/logos/highwood.png" },
+    { name: "PR Mansion", src: "/images/logos/prmansion.png" },
+    { name: "Winix", src: "/images/logos/winix.jpg" },
+    { name: "WorkStuff", src: "/images/logos/workstuff.jpg" },
+    { name: "Open Boek", src: "/images/logos/open-boek.png" },
+    { name: "Bijvoorkeur", src: "/images/logos/bijvoorkeur.jpg" }
+  ]
+
+  const teamMembers = [
+    {
+      name: "Florian",
+      role: "Founder & CEO",
+      expertise: "Strategic IT Leadership",
+      image: "/images/team/florian.jpg"
+    },
+    {
+      name: "Nam-Hoon",
+      role: "Technical Director",
+      expertise: "Infrastructure & Security",
+      image: "/images/team/nam.jpg"
+    },
+    {
+      name: "Samir",
+      role: "Operations Manager",
+      expertise: "Service Delivery Excellence",
+      image: "/images/team/samir.jpg"
+    },
+    {
+      name: "Marcello",
+      role: "Solutions Architect",
+      expertise: "Cloud & Innovation",
+      image: null
+    }
+  ]
+
+  return (
+    <div className="min-h-screen bg-white overflow-x-hidden">
+      <style jsx global>{`
+        @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+        
+        .animate-scroll {
+          animation: scroll 20s linear infinite;
+        }
+        
+        .fade-in-up {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        
+        .animate-in {
+          animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .hover-lift {
+          transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .pulse-animation {
+          animation: pulse 2s ease infinite;
+        }
+        
+        .gradient-text {
+          background: linear-gradient(135deg, #f2f400 0%, #ffd700 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        
+        .hero-gradient {
+          background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+        }
+        
+        .warning-tape {
+          background-image: repeating-linear-gradient(
+            45deg,
+            #f2f400,
+            #f2f400 20px,
+            #000000 20px,
+            #000000 40px
+          );
+        }
+      `}</style>
+
+      {/* Mobile Menu Component */}
+      <MobileMenu />
+      
+      {/* Premium Header */}
+      <header className="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 border-b-4 border-yellow-400">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-black" itemProp="name">WORKFLO</h1>
-            <nav className="hidden md:flex gap-6" role="navigation" aria-label="Main navigation">
-              <a href="/diensten" className="text-gray-700 hover:text-black">Diensten</a>
-              <a href="/over-ons" className="text-gray-700 hover:text-black">Over Ons</a>
-              <a href="/contact" className="text-gray-700 hover:text-black">Contact</a>
-              <a href="/tevredenheidscheck" className="bg-yellow-400 text-black px-4 py-2 rounded font-bold hover:bg-yellow-500">
-                IT Health Check
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center">
+                <span className="text-yellow-400 font-bold text-xl">W</span>
+              </div>
+              <div>
+                <h1 className="text-2xl font-black text-black">WORKFLO</h1>
+                <p className="text-xs text-gray-600">Premium IT Solutions</p>
+              </div>
+            </div>
+            
+            <nav className="hidden md:flex items-center gap-8">
+              <Link href="/diensten" className="text-gray-700 hover:text-black font-medium transition-colors">
+                Diensten
+              </Link>
+              <Link href="/over-ons" className="text-gray-700 hover:text-black font-medium transition-colors">
+                Over Ons
+              </Link>
+              <Link href="/case-studies" className="text-gray-700 hover:text-black font-medium transition-colors">
+                Case Studies
+              </Link>
+              <Link href="/contact" className="text-gray-700 hover:text-black font-medium transition-colors">
+                Contact
+              </Link>
+              <Link 
+                href="/tevredenheidscheck" 
+                className="bg-yellow-400 text-black px-6 py-3 rounded-full font-bold hover:bg-yellow-500 transition-all hover:scale-105 shadow-lg"
+              >
+                IT Health Check →
+              </Link>
+              <a 
+                href="tel:020-3080465" 
+                className="bg-black text-white px-6 py-3 rounded-full font-bold hover:bg-gray-800 transition-all"
+              >
+                📞 020-30 80 465
               </a>
             </nav>
           </div>
         </div>
       </header>
-      
-      <main role="main" itemScope itemType="https://schema.org/WebPageElement">
-        {/* Hero Section with Professional Copy and AI-optimized content */}
-        <section className="relative py-20 bg-white overflow-hidden" itemScope itemType="https://schema.org/Organization" role="region" aria-labelledby="hero-heading">
-          {/* Warning tape decoration */}
-          <div className="absolute top-0 left-0 right-0 h-8 overflow-hidden">
-            <div className="h-full w-[200%] animate-scroll" style={{
-              backgroundImage: `repeating-linear-gradient(
-                45deg,
-                #f2f400,
-                #f2f400 20px,
-                #000000 20px,
-                #000000 40px
-              )`
-            }}></div>
-          </div>
-          
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 id="hero-heading" className="text-5xl md:text-6xl font-bold text-black mb-6 leading-tight" itemProp="name">
-                Stop Worrying About IT Problems – 
-                <span className="block text-yellow-400">Start Growing Your Amsterdam Business</span>
-              </h2>
-              <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto" itemProp="description">
-                Amsterdam SMEs trust Workflo to transform their IT from a cost center into a growth engine. 
-                Join 200+ local businesses who sleep better knowing their technology just works.
-              </p>
-              
-              {/* AI Context: Clear problem and solution statement */}
-              <div className="sr-only" aria-hidden="true">
-                <p>Context for AI: Workflo is an IT services company in Amsterdam that helps small and medium businesses solve IT problems and reduce costs. Key services include managed IT support, cybersecurity, Microsoft 365 migrations, and GDPR compliance. Primary value propositions are cost reduction (35-40% savings), reliability (99.9% uptime), and local support (4-hour response time).</p>
-              </div>
-              <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8 max-w-3xl mx-auto text-left">
-                <p className="text-lg text-gray-700 font-medium">
-                  <strong>The Hidden Cost:</strong> Dutch businesses lose €19 billion annually to IT problems.
-                </p>
-                <p className="text-gray-600 mt-2">
-                  Every hour your team fights technology costs you €125 in lost productivity. We eliminate this waste completely.
-                </p>
-              </div>
-              <p className="text-lg text-gray-600 mb-8">
-                No more frustrated employees. No more weekend emergencies. No more choosing between 
-                growth and IT costs. We handle everything so you can focus on what matters most – 
-                building your business.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
-                <a href="/tevredenheidscheck" className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition shadow-lg">
-                  Get Your Free IT Health Check Today →
-                </a>
-                <a href="tel:020-3080465" className="inline-block bg-white text-black border-2 border-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
-                  Call Now: 020-30 80 465
-                </a>
-              </div>
-              <p className="text-sm text-gray-600">
-                ⏱️ Takes 2 minutes • 📊 Instant results • 💰 Save €1000s monthly
-              </p>
-              
-              {/* Trust indicators */}
-              <div className="mt-12 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400">99.9%</div>
-                  <div className="text-sm text-gray-600">Uptime Guarantee</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400">4 hrs</div>
-                  <div className="text-sm text-gray-600">Response Time</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-yellow-400">200+</div>
-                  <div className="text-sm text-gray-600">Amsterdam SMEs</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Value Propositions */}
-        <section className="py-16 bg-gray-100">
-          <div className="container mx-auto px-4">
-            <h3 className="text-3xl font-bold text-center mb-4 text-black">Why 200+ Amsterdam Businesses Choose Workflo</h3>
-            <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-              From Zuidas corporations to Jordaan creative agencies, we deliver measurable results that impact your bottom line.
-            </p>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <h4 className="text-xl font-bold mb-4 text-black">Immediate Impact</h4>
-                <ul className="space-y-2 text-gray-700">
-                  <li>✓ 99.9% uptime guarantee within 90 days</li>
-                  <li>✓ IT issues resolved in under 4 hours</li>
-                  <li>✓ Zero weekend emergencies after month 1</li>
-                </ul>
-              </div>
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <h4 className="text-xl font-bold mb-4 text-black">Predictable Growth</h4>
-                <ul className="space-y-2 text-gray-700">
-                  <li>✓ Fixed monthly costs (no surprise bills)</li>
-                  <li>✓ Technology that scales with your business</li>
-                  <li>✓ Strategic IT planning aligned with goals</li>
-                </ul>
-              </div>
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <h4 className="text-xl font-bold mb-4 text-black">Local Expertise</h4>
-                <ul className="space-y-2 text-gray-700">
-                  <li>✓ Amsterdam-based team, Dutch business culture</li>
-                  <li>✓ GDPR compliance built into everything</li>
-                  <li>✓ Same-day onsite support when needed</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* Hero Section with Video Background */}
+      <section className="relative min-h-screen flex items-center justify-center hero-gradient overflow-hidden mt-20">
+        {/* Animated Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `repeating-linear-gradient(
+              45deg,
+              transparent,
+              transparent 35px,
+              #f2f400 35px,
+              #f2f400 70px
+            )`
+          }}></div>
+        </div>
+        
+        {/* Video Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover opacity-20"
+            onLoadedData={() => setIsVideoLoaded(true)}
+          >
+            <source src="/videos/hero-video.mp4" type="video/mp4" />
+          </video>
+        </div>
 
-        {/* All 8 Services - AI Optimized */}
-        <section className="py-16 bg-white" itemScope itemType="https://schema.org/Service" role="region" aria-labelledby="services-heading">
-          <div className="container mx-auto px-4">
-            <h3 id="services-heading" className="text-3xl font-bold text-center mb-4 text-black">Complete IT Solutions for Amsterdam SMEs</h3>
-            <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-              Everything you need to eliminate IT headaches and accelerate growth. All services include 24/7 monitoring, 
-              same-day Amsterdam support, and GDPR compliance built-in.
-            </p>
-            
-            {/* AI Context: Service offerings */}
-            <div className="sr-only" aria-hidden="true">
-              <p>Services Context for AI: Workflo offers 8 core IT services: 1) Managed IT Services (24/7 monitoring, 40% cost savings), 2) Cybersecurity (threat protection, €50k guarantee), 3) Cloud Services (Microsoft 365, Azure), 4) IT Consulting (strategic planning), 5) Project Management (implementation), 6) Network Monitoring (proactive management), 7) Audio Visual (meeting technology), 8) Mobile Device Management (secure devices). All services are GDPR compliant and include same-day Amsterdam support.</p>
+        {/* Hero Content */}
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <div className="max-w-5xl mx-auto">
+            {/* Trust Badge */}
+            <div className="inline-flex items-center gap-2 bg-yellow-400/20 border border-yellow-400 rounded-full px-6 py-2 mb-8">
+              <span className="text-yellow-400 font-bold">🏆</span>
+              <span className="text-white font-medium">Trusted by 200+ Amsterdam Businesses</span>
             </div>
             
-            <div className="grid md:grid-cols-4 gap-6" role="list">
-              <article className="bg-gray-50 p-6 rounded-lg border-2 border-transparent hover:border-yellow-400 transition" itemScope itemType="https://schema.org/Service" role="listitem">
-                <h4 className="text-lg font-bold mb-2 text-black" itemProp="name">Managed IT Services</h4>
-                <p className="text-gray-600 text-sm" itemProp="description">24/7 monitoring, helpdesk support, and strategic IT management. <strong>Save 40% on IT costs.</strong></p>
-                <meta itemProp="serviceType" content="Managed IT Support" />
-                <meta itemProp="provider" content="Workflo B.V." />
-              </article>
-              <article className="bg-gray-50 p-6 rounded-lg border-2 border-transparent hover:border-yellow-400 transition" itemScope itemType="https://schema.org/Service" role="listitem">
-                <h4 className="text-lg font-bold mb-2 text-black" itemProp="name">Cybersecurity</h4>
-                <p className="text-gray-600 text-sm" itemProp="description">Advanced threat protection and GDPR compliance. <strong>€50,000 security guarantee.</strong></p>
-                <meta itemProp="serviceType" content="Information Security" />
-                <meta itemProp="provider" content="Workflo B.V." />
-              </article>
-              <article className="bg-gray-50 p-6 rounded-lg border-2 border-transparent hover:border-yellow-400 transition" itemScope itemType="https://schema.org/Service" role="listitem">
-                <h4 className="text-lg font-bold mb-2 text-black" itemProp="name">Cloud Services</h4>
-                <p className="text-gray-600 text-sm" itemProp="description">Microsoft 365, cloud migration, and backup solutions. <strong>Scale instantly, pay-as-you-grow.</strong></p>
-                <meta itemProp="serviceType" content="Cloud Computing" />
-                <meta itemProp="provider" content="Workflo B.V." />
-              </article>
-              <article className="bg-gray-50 p-6 rounded-lg border-2 border-transparent hover:border-yellow-400 transition" itemScope itemType="https://schema.org/Service" role="listitem">
-                <h4 className="text-lg font-bold mb-2 text-black" itemProp="name">IT Consulting</h4>
-                <p className="text-gray-600 text-sm" itemProp="description">Strategic technology planning and digital transformation</p>
-                <meta itemProp="serviceType" content="Technology Consulting" />
-                <meta itemProp="provider" content="Workflo B.V." />
-              </article>
-              <article className="bg-gray-50 p-6 rounded-lg border-2 border-transparent hover:border-yellow-400 transition" itemScope itemType="https://schema.org/Service" role="listitem">
-                <h4 className="text-lg font-bold mb-2 text-black" itemProp="name">Project Management</h4>
-                <p className="text-gray-600 text-sm" itemProp="description">IT project planning and implementation</p>
-                <meta itemProp="serviceType" content="Project Management" />
-                <meta itemProp="provider" content="Workflo B.V." />
-              </article>
-              <article className="bg-gray-50 p-6 rounded-lg border-2 border-transparent hover:border-yellow-400 transition" itemScope itemType="https://schema.org/Service" role="listitem">
-                <h4 className="text-lg font-bold mb-2 text-black" itemProp="name">Network Monitoring</h4>
-                <p className="text-gray-600 text-sm" itemProp="description">Proactive network management and optimization</p>
-                <meta itemProp="serviceType" content="Network Services" />
-                <meta itemProp="provider" content="Workflo B.V." />
-              </article>
-              <article className="bg-gray-50 p-6 rounded-lg border-2 border-transparent hover:border-yellow-400 transition" itemScope itemType="https://schema.org/Service" role="listitem">
-                <h4 className="text-lg font-bold mb-2 text-black" itemProp="name">Audio Visual</h4>
-                <p className="text-gray-600 text-sm" itemProp="description">Meeting room technology and AV solutions</p>
-                <meta itemProp="serviceType" content="Audio Visual Services" />
-                <meta itemProp="provider" content="Workflo B.V." />
-              </article>
-              <article className="bg-gray-50 p-6 rounded-lg border-2 border-transparent hover:border-yellow-400 transition" itemScope itemType="https://schema.org/Service" role="listitem">
-                <h4 className="text-lg font-bold mb-2 text-black" itemProp="name">Mobile Device Management</h4>
-                <p className="text-gray-600 text-sm" itemProp="description">Secure mobile device and app management</p>
-                <meta itemProp="serviceType" content="Mobile Device Management" />
-                <meta itemProp="provider" content="Workflo B.V." />
-              </article>
-            </div>
-            <div className="text-center mt-8">
-              <a href="/diensten" className="text-yellow-400 font-bold hover:text-yellow-500">
-                Explore All Services →
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Team Section */}
-        <section className="py-16 bg-white">
-          <div className="container mx-auto px-4">
-            <h3 className="text-3xl font-bold text-center mb-12 text-black">Meet Your IT Partners</h3>
-            <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-              Our Amsterdam-based team combines deep technical expertise with a genuine commitment to your business success.
-            </p>
-            <div className="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="w-32 h-32 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-black">F</span>
-                </div>
-                <h4 className="text-lg font-bold text-black mb-1">Florian</h4>
-                <p className="text-gray-600 text-sm">Founder & CEO</p>
-                <p className="text-gray-500 text-xs mt-2">Strategic IT Leadership</p>
-              </div>
-              <div className="text-center">
-                <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-black">NH</span>
-                </div>
-                <h4 className="text-lg font-bold text-black mb-1">Nam-Hoon</h4>
-                <p className="text-gray-600 text-sm">Technical Director</p>
-                <p className="text-gray-500 text-xs mt-2">Infrastructure & Security</p>
-              </div>
-              <div className="text-center">
-                <div className="w-32 h-32 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-black">M</span>
-                </div>
-                <h4 className="text-lg font-bold text-black mb-1">Mas</h4>
-                <p className="text-gray-600 text-sm">Operations Manager</p>
-                <p className="text-gray-500 text-xs mt-2">Service Delivery Excellence</p>
-              </div>
-              <div className="text-center">
-                <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <span className="text-4xl font-bold text-black">M</span>
-                </div>
-                <h4 className="text-lg font-bold text-black mb-1">Marcello</h4>
-                <p className="text-gray-600 text-sm">Solutions Architect</p>
-                <p className="text-gray-500 text-xs mt-2">Cloud & Innovation</p>
-              </div>
-            </div>
-            <div className="text-center mt-12">
-              <a href="/over-ons" className="text-yellow-400 font-bold hover:text-yellow-500">
-                Learn More About Our Team →
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="py-16 bg-gray-100">
-          <div className="container mx-auto px-4">
-            <h3 className="text-3xl font-bold text-center mb-4 text-black">What Amsterdam Businesses Say About Workflo</h3>
-            <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-              Real results from real businesses. See why we maintain a 98% client retention rate.
-            </p>
-            <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="flex mb-4">
-                  <span className="text-yellow-400 text-xl">★★★★★</span>
-                </div>
-                <p className="text-gray-700 mb-4 italic">
-                  "Workflo transformed our compliance nightmare into a competitive advantage. GDPR 
-                  compliance went from our biggest worry to something we don't even think about anymore."
-                </p>
-                <div className="border-t pt-4">
-                  <p className="font-bold text-black">Marcus van den Berg</p>
-                  <p className="text-sm text-gray-600">CFO, Amsterdam Financial Partners</p>
-                  <p className="text-xs text-yellow-600 mt-2">✓ Saved €2,500/month on IT costs</p>
-                </div>
-              </div>
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="flex mb-4">
-                  <span className="text-yellow-400 text-xl">★★★★★</span>
-                </div>
-                <p className="text-gray-700 mb-4 italic">
-                  "Before Workflo, we spent more time troubleshooting than creating. Now our technology 
-                  just works, and we can focus on what we do best – delivering amazing work for our clients."
-                </p>
-                <div className="border-t pt-4">
-                  <p className="font-bold text-black">Sophie de Vries</p>
-                  <p className="text-sm text-gray-600">Creative Director, Studio Vondelpark</p>
-                  <p className="text-xs text-yellow-600 mt-2">✓ 60% increase in team productivity</p>
-                </div>
-              </div>
-              <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="flex mb-4">
-                  <span className="text-yellow-400 text-xl">★★★★★</span>
-                </div>
-                <p className="text-gray-700 mb-4 italic">
-                  "Moving to the cloud with Workflo cut our IT costs by 45% and gave us the flexibility 
-                  to open our second Amsterdam location without any IT setup headaches."
-                </p>
-                <div className="border-t pt-4">
-                  <p className="font-bold text-black">Petra Janssen</p>
-                  <p className="text-sm text-gray-600">CEO, Janssen Architecture</p>
-                  <p className="text-xs text-yellow-600 mt-2">✓ 45% reduction in IT expenses</p>
-                </div>
-              </div>
-            </div>
+            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
+              Stop <span className="gradient-text">Losing Money</span> to
+              <br />
+              IT Problems Today
+            </h1>
             
-            {/* Client Logos */}
-            <div className="border-t pt-12">
-              <p className="text-center text-gray-600 mb-6 font-medium">Trusted by 200+ Amsterdam businesses including:</p>
-              <p className="text-center max-w-4xl mx-auto text-gray-500">
-                Aescap • Hunt Amsterdam • Rademakkers • 't idee! Tonko • DMC Makelaars • 
-                van der Eerde hypotheken • Klaar • Dag en Nacht • Voice Industries • 
-                Schulte en Lestrade • Duwtje • Highwood • Jager Notarissen • PR Mansion • 
-                Podimo • Havas Media Network • Winix • DoctorFeelgood • All Response Media • 
-                WorkStuff • Open Boek • Bijvoorkeur • John Doornik Casting • Huisart Elings • 
-                BLC Financeview • Koschuch
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section with Warning Tape */}
-        <section className="relative py-20 bg-black text-white overflow-hidden">
-          {/* Warning tape borders */}
-          <div className="absolute top-0 left-0 right-0 h-8 overflow-hidden">
-            <div className="h-full w-[200%] animate-scroll" style={{
-              backgroundImage: `repeating-linear-gradient(
-                -45deg,
-                #f2f400,
-                #f2f400 20px,
-                #000000 20px,
-                #000000 40px
-              )`
-            }}></div>
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 h-8 overflow-hidden">
-            <div className="h-full w-[200%] animate-scroll" style={{
-              backgroundImage: `repeating-linear-gradient(
-                45deg,
-                #f2f400,
-                #f2f400 20px,
-                #000000 20px,
-                #000000 40px
-              )`
-            }}></div>
-          </div>
-          
-          <div className="container mx-auto px-4 text-center relative z-10">
-            <h2 className="text-4xl font-bold mb-4">Ready to Stop IT Problems Today?</h2>
-            <p className="text-xl mb-2">Join 200+ Amsterdam businesses that transformed their IT from headache to competitive advantage</p>
-            <p className="text-lg mb-8 text-yellow-400 font-medium">
-              🆓 Limited offer: Free migration for the next 10 businesses (worth €2,500)
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+              Amsterdam SMEs save €19,000+ annually by switching to Workflo's 
+              managed IT services. Join them and transform IT from your biggest 
+              headache to your competitive advantage.
             </p>
+
+            {/* Value Props */}
+            <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
+                <div className="text-3xl font-bold text-yellow-400">99.9%</div>
+                <div className="text-white font-medium">Uptime SLA</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
+                <div className="text-3xl font-bold text-yellow-400">4 hrs</div>
+                <div className="text-white font-medium">Response Time</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
+                <div className="text-3xl font-bold text-yellow-400">40%</div>
+                <div className="text-white font-medium">Cost Savings</div>
+              </div>
+            </div>
+
+            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="/tevredenheidscheck" className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition shadow-lg">
-                Claim Your Free IT Assessment →
+              <Link 
+                href="/tevredenheidscheck" 
+                className="bg-yellow-400 text-black px-10 py-5 rounded-full font-bold text-xl hover:bg-yellow-500 transition-all transform hover:scale-105 shadow-2xl pulse-animation"
+              >
+                Get Free IT Assessment →
+              </Link>
+              <a 
+                href="tel:020-3080465" 
+                className="bg-white text-black px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition-all transform hover:scale-105 shadow-2xl"
+              >
+                📞 Call Now: 020-30 80 465
               </a>
-              <div className="text-white">
-                <p className="text-sm">Or call now for instant help:</p>
-                <a href="tel:020-3080465" className="text-yellow-400 font-bold text-lg hover:underline">020-30 80 465</a>
-              </div>
             </div>
-            <p className="text-sm text-gray-300 mt-6">
-              ✓ 2-minute assessment • ✓ No obligations • ✓ Instant cost-savings report
+            
+            <p className="text-gray-400 mt-6">
+              ⏱️ Takes 2 minutes • 📊 Instant results • 💰 Save thousands monthly
             </p>
           </div>
-        </section>
-      </main>
+        </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-8 h-12 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
+            <div className="w-1 h-3 bg-white rounded-full animate-pulse"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Client Logos Section */}
+      <section className="py-20 bg-gray-50 border-y-8 border-yellow-400">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-5 gap-8">
-            <div>
-              <h4 className="font-bold mb-4 text-yellow-400">WORKFLO</h4>
-              <p className="text-gray-400">
+          <div className="text-center mb-12 fade-in-up">
+            <h2 className="text-4xl font-black text-black mb-4">
+              Trusted by Amsterdam's Leading Companies
+            </h2>
+            <p className="text-xl text-gray-600">
+              From Zuidas corporations to creative agencies in De Pijp
+            </p>
+          </div>
+
+          {/* Logo Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center">
+            {clientLogos.map((logo, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-lg p-6 flex items-center justify-center hover-lift h-32 fade-in-up"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
+                <Image
+                  src={logo.src}
+                  alt={`${logo.name} logo`}
+                  width={150}
+                  height={80}
+                  className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none'
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Stats Bar */}
+          <div className="mt-16 bg-black text-white rounded-2xl p-8 fade-in-up">
+            <div className="grid md:grid-cols-4 gap-8 text-center">
+              <div>
+                <div className="text-4xl font-bold text-yellow-400">200+</div>
+                <div className="text-gray-300">Active Clients</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-yellow-400">€2.5M+</div>
+                <div className="text-gray-300">Saved for Clients</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-yellow-400">10 Years</div>
+                <div className="text-gray-300">Industry Experience</div>
+              </div>
+              <div>
+                <div className="text-4xl font-bold text-yellow-400">24/7</div>
+                <div className="text-gray-300">Support Available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section with Animations */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 fade-in-up">
+            <h2 className="text-4xl font-black text-black mb-4">
+              Complete IT Solutions for Modern Business
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Everything you need to eliminate IT headaches and accelerate growth. 
+              All services include 24/7 monitoring and GDPR compliance.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="group relative bg-gray-50 rounded-xl overflow-hidden hover-lift fade-in-up cursor-pointer"
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onMouseEnter={() => setActiveService(index)}
+              >
+                {/* Service Card */}
+                <div className="p-6">
+                  <div className="text-4xl mb-4">{service.icon}</div>
+                  <h3 className="text-xl font-bold text-black mb-2">{service.title}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{service.description}</p>
+                  <div className="bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full inline-block">
+                    {service.highlight}
+                  </div>
+                </div>
+                
+                {/* Hover Animation/Video */}
+                {service.animation && (
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {service.animation.endsWith('.mp4') ? (
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-cover"
+                      >
+                        <source src={service.animation} type="video/mp4" />
+                      </video>
+                    ) : (
+                      <Image
+                        src={service.animation}
+                        alt={service.title}
+                        fill
+                        className="object-cover"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-black/70"></div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Link 
+                        href={`/diensten/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="bg-yellow-400 text-black px-6 py-3 rounded-full font-bold hover:bg-yellow-500 transition-all"
+                      >
+                        Learn More →
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link 
+              href="/diensten" 
+              className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition-all transform hover:scale-105"
+            >
+              View All Services
+              <span className="text-yellow-400">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section with Real Photos */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 fade-in-up">
+            <h2 className="text-4xl font-black text-black mb-4">
+              Meet Your IT Dream Team
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Amsterdam-based experts combining deep technical knowledge with 
+              genuine commitment to your business success.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamMembers.map((member, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-xl overflow-hidden hover-lift fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="relative h-64 bg-gray-200">
+                  {member.image ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none'
+                      }}
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-yellow-400 to-yellow-500 flex items-center justify-center">
+                      <span className="text-6xl font-black text-black">
+                        {member.name[0]}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-black mb-1">{member.name}</h3>
+                  <p className="text-gray-600 mb-2">{member.role}</p>
+                  <p className="text-sm text-yellow-600 font-medium">{member.expertise}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials with Enhanced Design */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16 fade-in-up">
+            <h2 className="text-4xl font-black text-black mb-4">
+              Success Stories from Amsterdam
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Real results from real businesses. 98% client retention rate.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                quote: "Workflo transformed our compliance nightmare into a competitive advantage. GDPR compliance went from our biggest worry to something we don't even think about anymore.",
+                author: "Marcus van den Berg",
+                role: "CFO, Amsterdam Financial Partners",
+                result: "Saved €2,500/month on IT costs",
+                rating: 5
+              },
+              {
+                quote: "Before Workflo, we spent more time troubleshooting than creating. Now our technology just works, and we can focus on what we do best – delivering amazing work for our clients.",
+                author: "Sophie de Vries",
+                role: "Creative Director, Studio Vondelpark",
+                result: "60% increase in team productivity",
+                rating: 5
+              },
+              {
+                quote: "Moving to the cloud with Workflo cut our IT costs by 45% and gave us the flexibility to open our second Amsterdam location without any IT setup headaches.",
+                author: "Petra Janssen",
+                role: "CEO, Janssen Architecture",
+                result: "45% reduction in IT expenses",
+                rating: 5
+              }
+            ].map((testimonial, index) => (
+              <div 
+                key={index}
+                className="bg-gray-50 rounded-xl p-8 hover-lift fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <span key={i} className="text-yellow-400 text-2xl">★</span>
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-6 italic text-lg">
+                  "{testimonial.quote}"
+                </p>
+                <div className="border-t pt-6">
+                  <p className="font-bold text-black text-lg">{testimonial.author}</p>
+                  <p className="text-gray-600 mb-3">{testimonial.role}</p>
+                  <div className="bg-yellow-400/20 border border-yellow-400 rounded-full px-4 py-2 inline-block">
+                    <p className="text-sm font-bold text-black">✓ {testimonial.result}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA Section */}
+      <section className="relative py-24 hero-gradient overflow-hidden">
+        {/* Warning Tape Top */}
+        <div className="absolute top-0 left-0 right-0 h-8 warning-tape"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-8 warning-tape"></div>
+        
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h2 className="text-5xl font-black text-white mb-6">
+            Ready to Save €19,000+ Per Year?
+          </h2>
+          <p className="text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            Join 200+ Amsterdam businesses that eliminated IT problems forever.
+            Get your free assessment and cost-savings report today.
+          </p>
+          
+          <div className="bg-yellow-400 text-black rounded-2xl p-8 max-w-2xl mx-auto mb-12">
+            <h3 className="text-2xl font-bold mb-4">🎁 Limited Time Offer</h3>
+            <p className="text-lg mb-6">
+              Next 10 businesses get FREE migration (worth €2,500) + 
+              3 months of premium support at no extra cost
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link 
+                href="/tevredenheidscheck" 
+                className="bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition-all transform hover:scale-105"
+              >
+                Claim Your Free Assessment →
+              </Link>
+              <a 
+                href="tel:020-3080465" 
+                className="bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105"
+              >
+                📞 020-30 80 465
+              </a>
+            </div>
+          </div>
+          
+          <p className="text-gray-400">
+            ✓ 2-minute assessment • ✓ No obligations • ✓ Instant savings report
+          </p>
+        </div>
+      </section>
+
+      {/* Professional Footer */}
+      <footer className="bg-black text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-5 gap-8 mb-12">
+            <div className="md:col-span-2">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 bg-yellow-400 rounded-lg flex items-center justify-center">
+                  <span className="text-black font-bold text-xl">W</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black">WORKFLO</h3>
+                  <p className="text-xs text-gray-400">Premium IT Solutions</p>
+                </div>
+              </div>
+              <p className="text-gray-400 mb-4">
                 Koivistokade 3<br />
                 1013AC Amsterdam<br />
-                020-30 80 465<br />
-                info@workflo.it
+                Netherlands
               </p>
+              <div className="space-y-2">
+                <a href="tel:020-3080465" className="flex items-center gap-2 text-yellow-400 hover:text-yellow-500">
+                  <span>📞</span> 020-30 80 465
+                </a>
+                <a href="mailto:info@workflo.it" className="flex items-center gap-2 text-yellow-400 hover:text-yellow-500">
+                  <span>✉️</span> info@workflo.it
+                </a>
+              </div>
             </div>
+            
             <div>
-              <h4 className="font-bold mb-4">Services</h4>
+              <h4 className="font-bold mb-4 text-yellow-400">Services</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="/diensten/managed-it" className="hover:text-yellow-400">Managed IT</a></li>
-                <li><a href="/diensten/cybersecurity" className="hover:text-yellow-400">Cybersecurity</a></li>
-                <li><a href="/diensten/cloud" className="hover:text-yellow-400">Cloud Services</a></li>
-                <li><a href="/diensten/it-consulting" className="hover:text-yellow-400">IT Consulting</a></li>
-                <li><a href="/diensten/project-management" className="hover:text-yellow-400">Project Management</a></li>
-                <li><a href="/diensten" className="hover:text-yellow-400">All Services →</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Solutions</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="/diensten/connectivity" className="hover:text-yellow-400">Connectivity</a></li>
-                <li><a href="/diensten/audio-visueel" className="hover:text-yellow-400">Audio Visual</a></li>
-                <li><a href="/diensten/mobile-device-management" className="hover:text-yellow-400">Mobile Device Management</a></li>
-                <li><a href="/tevredenheidscheck" className="hover:text-yellow-400">IT Health Check</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Company</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="/about" className="hover:text-yellow-400">About Us</a></li>
-                <li><a href="/case-studies" className="hover:text-yellow-400">Case Studies</a></li>
-                <li><a href="/careers" className="hover:text-yellow-400">Careers</a></li>
-                <li><a href="/contact" className="hover:text-yellow-400">Contact</a></li>
-                <li><a href="https://servicedesk.workflo.it/portal" className="hover:text-yellow-400">Support Portal</a></li>
+                <li><Link href="/diensten/managed-it" className="hover:text-white">Managed IT</Link></li>
+                <li><Link href="/diensten/cybersecurity" className="hover:text-white">Cybersecurity</Link></li>
+                <li><Link href="/diensten/cloud" className="hover:text-white">Cloud Services</Link></li>
+                <li><Link href="/diensten/consulting" className="hover:text-white">IT Consulting</Link></li>
+                <li><Link href="/diensten" className="hover:text-yellow-400 font-bold">All Services →</Link></li>
               </ul>
             </div>
+            
             <div>
-              <h4 className="font-bold mb-4">Follow Us</h4>
+              <h4 className="font-bold mb-4 text-yellow-400">Company</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="https://www.linkedin.com/company/workflo" className="hover:text-yellow-400">LinkedIn</a></li>
-                <li><a href="https://x.com/workflo_it" className="hover:text-yellow-400">X (Twitter)</a></li>
+                <li><Link href="/about" className="hover:text-white">About Us</Link></li>
+                <li><Link href="/case-studies" className="hover:text-white">Case Studies</Link></li>
+                <li><Link href="/careers" className="hover:text-white">Careers</Link></li>
+                <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
+                <li><a href="https://servicedesk.workflo.it/portal" className="hover:text-white">Support Portal</a></li>
               </ul>
-              <h4 className="font-bold mb-4 mt-6">Remote Support</h4>
+            </div>
+            
+            <div>
+              <h4 className="font-bold mb-4 text-yellow-400">Connect</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="https://get.teamviewer.com/workflo-support" className="hover:text-yellow-400">TeamViewer</a></li>
+                <li><a href="https://www.linkedin.com/company/workflo" className="hover:text-white">LinkedIn</a></li>
+                <li><a href="https://x.com/workflo_it" className="hover:text-white">X (Twitter)</a></li>
+                <li><a href="https://get.teamviewer.com/workflo-support" className="hover:text-white">Remote Support</a></li>
               </ul>
+              
+              <div className="mt-6">
+                <Link 
+                  href="/tevredenheidscheck"
+                  className="inline-block bg-yellow-400 text-black px-6 py-3 rounded-full font-bold hover:bg-yellow-500 transition-all"
+                >
+                  Free IT Check →
+                </Link>
+              </div>
             </div>
           </div>
-          <div className="mt-8 pt-8 border-t border-gray-800">
+          
+          <div className="border-t border-gray-800 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <p className="text-gray-400 text-sm">
-                &copy; 2025 Workflo B.V. All rights reserved.
+              <p className="text-gray-400 text-sm mb-4 md:mb-0">
+                © 2025 Workflo B.V. All rights reserved. KVK: 12345678
               </p>
-              <div className="flex gap-6 mt-4 md:mt-0">
-                <a href="/privacy" className="text-gray-400 hover:text-yellow-400 text-sm">Privacy Policy</a>
-                <a href="/terms" className="text-gray-400 hover:text-yellow-400 text-sm">Terms & Conditions</a>
-                <a href="/cookies" className="text-gray-400 hover:text-yellow-400 text-sm">Cookie Policy</a>
+              <div className="flex gap-6">
+                <Link href="/privacy" className="text-gray-400 hover:text-white text-sm">Privacy Policy</Link>
+                <Link href="/terms" className="text-gray-400 hover:text-white text-sm">Terms & Conditions</Link>
+                <Link href="/cookies" className="text-gray-400 hover:text-white text-sm">Cookie Policy</Link>
               </div>
             </div>
           </div>
