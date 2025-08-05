@@ -12,10 +12,28 @@ interface LanguageContextType {
 
 const translations = {
   en: {
-    // Add your English translations here
+    'nav.services': 'Services',
+    'nav.shop': 'Shop',
+    'nav.support': 'Support',
+    'nav.about': 'About',
+    'nav.itcheck': 'IT Check',
+    'nav.networkscan': 'Network Scan',
+    'nav.contact': 'Contact',
+    'nav.support_tool': 'Remote Support',
+    'nav.start_it_check': 'Start IT Check',
+    'testimonials.more': 'Read more success stories',
   },
   nl: {
-    // Add your Dutch translations here
+    'nav.services': 'Diensten',
+    'nav.shop': 'Winkel',
+    'nav.support': 'Ondersteuning',
+    'nav.about': 'Over Ons',
+    'nav.itcheck': 'IT Check',
+    'nav.networkscan': 'Netwerk Scan',
+    'nav.contact': 'Contact',
+    'nav.support_tool': 'Externe Ondersteuning',
+    'nav.start_it_check': 'Start IT Check',
+    'testimonials.more': 'Lees meer succesverhalen',
   }
 }
 

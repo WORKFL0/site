@@ -22,7 +22,17 @@ export default function Home() {
         {/* Hero Section with Professional Copy */}
         <section className="relative py-20 bg-white overflow-hidden">
           {/* Warning tape decoration */}
-          <div className="absolute top-0 left-0 right-0 h-4 bg-gradient-to-r from-yellow-400 via-black to-yellow-400 opacity-90"></div>
+          <div className="absolute top-0 left-0 right-0 h-8 overflow-hidden">
+            <div className="h-full w-[200%] animate-scroll" style={{
+              backgroundImage: `repeating-linear-gradient(
+                45deg,
+                #f2f400,
+                #f2f400 20px,
+                #000000 20px,
+                #000000 40px
+              )`
+            }}></div>
+          </div>
           
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center">
@@ -141,6 +151,55 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Team Section */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <h3 className="text-3xl font-bold text-center mb-12 text-black">Meet Your IT Partners</h3>
+            <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+              Our Amsterdam-based team combines deep technical expertise with a genuine commitment to your business success.
+            </p>
+            <div className="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+              <div className="text-center">
+                <div className="w-32 h-32 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-4xl font-bold text-black">F</span>
+                </div>
+                <h4 className="text-lg font-bold text-black mb-1">Florian</h4>
+                <p className="text-gray-600 text-sm">Founder & CEO</p>
+                <p className="text-gray-500 text-xs mt-2">Strategic IT Leadership</p>
+              </div>
+              <div className="text-center">
+                <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-4xl font-bold text-black">NH</span>
+                </div>
+                <h4 className="text-lg font-bold text-black mb-1">Nam-Hoon</h4>
+                <p className="text-gray-600 text-sm">Technical Director</p>
+                <p className="text-gray-500 text-xs mt-2">Infrastructure & Security</p>
+              </div>
+              <div className="text-center">
+                <div className="w-32 h-32 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-4xl font-bold text-black">M</span>
+                </div>
+                <h4 className="text-lg font-bold text-black mb-1">Mas</h4>
+                <p className="text-gray-600 text-sm">Operations Manager</p>
+                <p className="text-gray-500 text-xs mt-2">Service Delivery Excellence</p>
+              </div>
+              <div className="text-center">
+                <div className="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-4xl font-bold text-black">M</span>
+                </div>
+                <h4 className="text-lg font-bold text-black mb-1">Marcello</h4>
+                <p className="text-gray-600 text-sm">Solutions Architect</p>
+                <p className="text-gray-500 text-xs mt-2">Cloud & Innovation</p>
+              </div>
+            </div>
+            <div className="text-center mt-12">
+              <a href="/over-ons" className="text-yellow-400 font-bold hover:text-yellow-500">
+                Learn More About Our Team →
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Client Logos */}
         <section className="py-16 bg-gray-100">
           <div className="container mx-auto px-4">
@@ -161,10 +220,27 @@ export default function Home() {
 
         {/* CTA Section with Warning Tape */}
         <section className="relative py-20 bg-black text-white overflow-hidden">
-          {/* Warning tape pattern */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="h-full w-full" style={{
-              backgroundImage: `repeating-linear-gradient(45deg, #f2f400, #f2f400 10px, transparent 10px, transparent 20px)`
+          {/* Warning tape borders */}
+          <div className="absolute top-0 left-0 right-0 h-8 overflow-hidden">
+            <div className="h-full w-[200%] animate-scroll" style={{
+              backgroundImage: `repeating-linear-gradient(
+                -45deg,
+                #f2f400,
+                #f2f400 20px,
+                #000000 20px,
+                #000000 40px
+              )`
+            }}></div>
+          </div>
+          <div className="absolute bottom-0 left-0 right-0 h-8 overflow-hidden">
+            <div className="h-full w-[200%] animate-scroll" style={{
+              backgroundImage: `repeating-linear-gradient(
+                45deg,
+                #f2f400,
+                #f2f400 20px,
+                #000000 20px,
+                #000000 40px
+              )`
             }}></div>
           </div>
           

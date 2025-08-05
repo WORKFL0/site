@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { useLanguage } from '@/context/LanguageContext'
 import Image from 'next/image'
+import Link from 'next/link'
 
 const defaultTestimonials = [
   {
@@ -167,8 +168,5 @@ const TestimonialsSection = ({ testimonials = defaultTestimonials }: Testimonial
     </section>
   )
 }
-
-// Add Link import
-import Link from 'next/link'
 
 export default TestimonialsSection
