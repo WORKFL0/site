@@ -13,7 +13,7 @@ export default function Home() {
             Your IT Should <span className="text-yellow-400">Drive Growth</span>, Not Hold You Back
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Amsterdam's SMEs trust Workflo to transform their IT from a cost center into a growth engine. 
+            Amsterdam&apos;s SMEs trust Workflo to transform their IT from a cost center into a growth engine. 
             Reduce IT costs by 35% while increasing productivity.
           </p>
         </section>
