@@ -1,0 +1,43 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install --legacy-peer-deps",
+  "framework": "nextjs",
+  "regions": ["ams1"],
+  "env": {
+    "NEXT_PUBLIC_SANITY_PROJECT_ID": "y1mkm3jhw7e3yolw8r9rxhje5shx",
+    "NEXT_PUBLIC_SANITY_DATASET": "production"
+  },
+  "build": {
+    "env": {
+      "NEXT_TELEMETRY_DISABLED": "1",
+      "NODE_OPTIONS": "--max-old-space-size=4096",
+      "NEXT_PUBLIC_SANITY_PROJECT_ID": "y1mkm3jhw7e3yolw8r9rxhje5shx",
+      "NEXT_PUBLIC_SANITY_DATASET": "production"
+    }
+  },
+  "functions": {
+    "app/**.tsx": {
+      "maxDuration": 30
+    }
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}
