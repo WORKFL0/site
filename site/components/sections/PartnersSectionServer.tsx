@@ -1,10 +1,10 @@
-import { client } from '@/lib/sanity.client'
+import { sanityFetch } from '@/lib/sanity.fetch'
 import { partnersQuery } from '@/lib/sanity.queries'
 import PartnersSection from './PartnersSection'
 
 async function getPartners() {
   try {
-    const partners = await client.fetch(partnersQuery)
+    const partners = await sanityFetch(partnersQuery)
     return partners || []
   } catch (error) {
     console.error('Error fetching partners:', error)

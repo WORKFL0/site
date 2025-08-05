@@ -1,15 +1,10 @@
-import { client } from '@/lib/sanity.client'
+import { sanityFetch } from '@/lib/sanity.fetch'
 import { clientsQuery } from '@/lib/sanity.queries'
 import ClientsSection from './ClientsSection'
 
 async function getClients() {
-  try {
-    const clients = await client.fetch(clientsQuery)
-    return clients || []
-  } catch (error) {
-    console.error('Error fetching clients:', error)
-    return []
-  }
+  const clients = await sanityFetch(clientsQuery)
+  return clients || []
 }
 
 export default async function ClientsSectionServer() {

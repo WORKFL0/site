@@ -1,10 +1,10 @@
-import { client } from '@/lib/sanity.client'
+import { sanityFetch } from '@/lib/sanity.fetch'
 import { siteSettingsQuery } from '@/lib/sanity.queries'
 import StatsSection from './StatsSection'
 
 async function getSiteSettings() {
   try {
-    const settings = await client.fetch(siteSettingsQuery)
+    const settings = await sanityFetch(siteSettingsQuery)
     return settings
   } catch (error) {
     console.error('Error fetching site settings:', error)

@@ -1,10 +1,10 @@
-import { client } from '@/lib/sanity.client'
+import { sanityFetch } from '@/lib/sanity.fetch'
 import { testimonialsQuery } from '@/lib/sanity.queries'
 import TestimonialsSection from './TestimonialsSection'
 
 async function getTestimonials() {
   try {
-    const testimonials = await client.fetch(testimonialsQuery)
+    const testimonials = await sanityFetch(testimonialsQuery)
     return testimonials || []
   } catch (error) {
     console.warn('Failed to fetch testimonials from Sanity:', error)
