@@ -41,7 +41,7 @@ const Footer = () => {
               <span className="text-xl font-bold text-white">Workflo</span>
             </div>
             <p className="text-sm mb-4 max-w-md">
-              {t('footer.tagline')}. Wij helpen MKB-bedrijven IT-kosten met 35% te verlagen terwijl we de productiviteit verhogen door slimme technologische oplossingen.
+              {t('footer.tagline')}
             </p>
             <div className="flex space-x-4">
               <a href="https://linkedin.com/company/workflo" target="_blank" rel="noopener noreferrer" className="hover:text-warning-yellow transition-colors">
