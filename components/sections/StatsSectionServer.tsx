@@ -1,26 +1,15 @@
-import { sanityFetch } from '@/lib/sanity.fetch'
-import { siteSettingsQuery } from '@/lib/sanity.queries'
+import { notionFetch } from '@/lib/notion.fetch'
 import StatsSection from './StatsSection'
 
-async function getSiteSettings() {
-  try {
-    const settings = await sanityFetch(siteSettingsQuery)
-    return settings
-  } catch (error) {
-    console.error('Error fetching site settings:', error)
-    return null
-  }
-}
-
 export default async function StatsSectionServer() {
-  const settings = await getSiteSettings()
+  const settings = await notionFetch('stats')
   
-  // If no settings from Sanity, use defaults
+  // If no settings from Notion, use defaults
   if (!settings) {
     return <StatsSection />
   }
   
-  // Pass the stats from Sanity settings
+  // Pass the stats from Notion
   const stats = {
     clients: settings.totalClients || '100+',
     uptime: settings.uptimePercentage || '99.9%',
@@ -28,5 +17,5 @@ export default async function StatsSectionServer() {
     satisfaction: settings.customerSatisfaction || '98%'
   }
   
-  return <StatsSection stats={stats} partners={settings.partners} />
+  return <StatsSection stats={stats} />
 }

@@ -1,31 +1,20 @@
-import { sanityFetch } from '@/lib/sanity.fetch'
-import { partnersQuery } from '@/lib/sanity.queries'
+import { notionFetch } from '@/lib/notion.fetch'
 import PartnersSection from './PartnersSection'
 
-async function getPartners() {
-  try {
-    const partners = await sanityFetch(partnersQuery)
-    return partners || []
-  } catch (error) {
-    console.error('Error fetching partners:', error)
-    return []
-  }
-}
-
 export default async function PartnersSectionServer() {
-  const partners = await getPartners()
+  const partners = await notionFetch('partners')
   
-  // If no partners from Sanity, use default hardcoded ones
-  if (partners.length === 0) {
+  // If no partners from Notion, use default hardcoded ones
+  if (!partners || partners.length === 0) {
     return <PartnersSection />
   }
   
-  // Transform Sanity data to match component props
+  // Transform Notion data to match component props
   const transformedPartners = partners.map((partner: any) => ({
     name: partner.name,
-    logo: partner.logo?.asset?.url || '', // This would be the actual logo URL
+    logo: partner.logo || '',
     description: partner.description,
-    website: partner.website
+    website: partner.url
   }))
   
   return <PartnersSection partners={transformedPartners} />
