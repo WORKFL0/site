@@ -29,7 +29,7 @@ export default function AboutPage() {
             <p className="text-xl text-gray-700 text-center max-w-3xl mx-auto mb-6">
               We started Workflo because we were tired of seeing Amsterdam businesses held back by 
               their technology. Too many great companies were choosing between growth and IT costs, 
-              or worse, losing customers because their systems couldn't handle success.
+              or worse, losing customers because their systems couldn&apos;t handle success.
             </p>
             <div className="flex justify-center gap-8 text-center">
               <div>
@@ -59,24 +59,24 @@ export default function AboutPage() {
             <div className="max-w-3xl mx-auto">
               <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6 mb-6">
                 <p className="text-lg text-gray-700 font-medium mb-3">
-                  "We don't believe in one-size-fits-all IT solutions."
+                  &ldquo;We don&apos;t believe in one-size-fits-all IT solutions.&rdquo;
                 </p>
                 <p className="text-gray-600">
-                  Every Amsterdam business is unique. That's why we take time to understand your specific 
+                  Every Amsterdam business is unique. That&apos;s why we take time to understand your specific 
                   challenges, industry requirements, and growth ambitions before crafting your IT strategy.
                 </p>
               </div>
               
               <p className="text-gray-700 mb-6">
                 <strong>Founded by entrepreneurs, for entrepreneurs.</strong> We understand the Amsterdam business 
-                landscape because we're part of it. We know that directness and reliability matter more than 
-                flashy presentations. That's why we focus on delivering measurable results, not just services.
+                landscape because we&apos;re part of it. We know that directness and reliability matter more than 
+                flashy presentations. That&apos;s why we focus on delivering measurable results, not just services.
               </p>
               
               <p className="text-gray-700 mb-6">
                 Our team combines <strong>15+ years of technical expertise</strong> with genuine business acumen. 
-                We don't just fix your IT – we align your technology with your business goals. When you succeed, 
-                we succeed. It's that simple.
+                We don&apos;t just fix your IT – we align your technology with your business goals. When you succeed, 
+                we succeed. It&apos;s that simple.
               </p>
               
               <div className="grid md:grid-cols-3 gap-6 mb-6">
@@ -179,7 +179,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-black">True Partnership</h3>
                 <p className="text-gray-600">
-                  Your IT team, not just another vendor. We're invested in your growth.
+                  Your IT team, not just another vendor. We&apos;re invested in your growth.
                 </p>
               </div>
               <div className="text-center">
