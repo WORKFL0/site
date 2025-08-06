@@ -484,8 +484,8 @@ const PricingCalculator = () => {
                         {(() => {
                           const option = pricingOptions.find(o => o.id === selectedOption)
                           if (!option?.hours) return ''
-                          // Estimate 2 hours per employee per month average
-                          const hoursPerMonth = employees * 2
+                          // Estimate: 2 hours per employee + 5 hours per server per month
+                          const hoursPerMonth = (employees * 2) + (servers * 5)
                           const months = Math.ceil(option.hours / hoursPerMonth)
                           return `${months} ${language === 'en' ? 'months' : 'maanden'}`
                         })()}
@@ -563,11 +563,24 @@ const PricingCalculator = () => {
                     : 'Fixed Fee inclusief ALLE licenties (Backup, EDR/MDR, Monitoring, etc.) behalve Office 365'}
                 </p>
               ) : (
-                <p className="text-xs text-gray-700">
-                  {language === 'en' 
-                    ? 'Break-Fix: Additional licenses needed for Backup, EDR/MDR, Monitoring (RMM), etc.'
-                    : 'Break-Fix: Extra licenties nodig voor Backup, EDR/MDR, Monitoring (RMM), etc.'}
-                </p>
+                <div className="space-y-2">
+                  <p className="text-xs text-gray-700 font-medium">
+                    {language === 'en' 
+                      ? 'Break-Fix & Strippenkaart: Software licenses billed separately'
+                      : 'Break-Fix & Strippenkaart: Software licenties apart gefactureerd'}
+                  </p>
+                  <ul className="text-xs text-gray-600 space-y-1">
+                    <li>• Backup: €8-15 {language === 'en' ? 'per device/month' : 'per apparaat/maand'}</li>
+                    <li>• EDR/MDR Security: €5-10 {language === 'en' ? 'per device/month' : 'per apparaat/maand'}</li>
+                    <li>• Monitoring (RMM): €4-8 {language === 'en' ? 'per device/month' : 'per apparaat/maand'}</li>
+                    <li>• Office 365: €6-57 {language === 'en' ? 'per user/month' : 'per gebruiker/maand'}</li>
+                  </ul>
+                  <p className="text-xs text-gray-500 italic">
+                    {language === 'en' 
+                      ? 'Prices depend on chosen solutions and number of devices'
+                      : 'Prijzen afhankelijk van gekozen oplossingen en aantal apparaten'}
+                  </p>
+                </div>
               )}
             </div>
 

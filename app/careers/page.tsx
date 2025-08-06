@@ -256,48 +256,7 @@ export default function CareersPage() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h4 className="font-bold mb-4 text-yellow-400">WORKFLO</h4>
-              <p className="text-gray-400">
-                Koivistokade 3<br />
-                1013AC Amsterdam<br />
-                020-30 80 465
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Diensten</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="/diensten/managed-it" className="hover:text-yellow-400">Managed IT</a></li>
-                <li><a href="/diensten/cybersecurity" className="hover:text-yellow-400">Cybersecurity</a></li>
-                <li><a href="/diensten/cloud" className="hover:text-yellow-400">Cloud Services</a></li>
-                <li><a href="/diensten" className="hover:text-yellow-400">Alle diensten →</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Support</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="https://servicedesk.workflo.it/portal" className="hover:text-yellow-400">Support Portal</a></li>
-                <li><a href="https://get.teamviewer.com/workflo-support" className="hover:text-yellow-400">Remote Support</a></li>
-                <li><a href="/contact" className="hover:text-yellow-400">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Volg Ons</h4>
-              <ul className="space-y-2 text-gray-400">
-                <li><a href="https://www.linkedin.com/company/workflo" className="hover:text-yellow-400">LinkedIn</a></li>
-                <li><a href="https://x.com/workflo_it" className="hover:text-yellow-400">X (Twitter)</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-            <p>&copy; 2024 Workflo. Alle rechten voorbehouden.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
