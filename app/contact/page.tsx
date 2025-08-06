@@ -359,11 +359,22 @@ export default function ContactPage() {
                 className="space-y-8"
               >
                 {/* Direct Contact Card */}
-                <div className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl p-6 text-white">
-                  <h3 className="text-xl font-bold mb-4">{t('contact.direct.title')}</h3>
-                  <div className="space-y-4">
-                    <a href="tel:0203080465" className="flex items-center gap-3 hover:underline group">
-                      <div className="p-3 bg-white/20 rounded-lg group-hover:bg-white/30 transition-colors">
+                <div className="bg-black rounded-2xl p-6 text-white relative overflow-hidden">
+                  {/* Danger Tape Stripe */}
+                  <div className="absolute top-0 left-0 right-0 h-3" style={{
+                    backgroundImage: `repeating-linear-gradient(
+                      45deg,
+                      #f2f400,
+                      #f2f400 15px,
+                      #000000 15px,
+                      #000000 30px
+                    )`
+                  }}></div>
+                  <div className="pt-2">
+                    <h3 className="text-xl font-bold mb-4 text-yellow-400">{t('contact.direct.title')}</h3>
+                    <div className="space-y-4">
+                      <a href="tel:0203080465" className="flex items-center gap-3 hover:underline group">
+                        <div className="p-3 bg-yellow-400/20 rounded-lg group-hover:bg-yellow-400/30 transition-colors">
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
@@ -373,23 +384,24 @@ export default function ContactPage() {
                         <div className="text-xl font-semibold">020-30 80 465</div>
                       </div>
                     </a>
-                    
-                    <a href="mailto:info@workflo.nl" className="flex items-center gap-3 hover:underline group">
-                      <div className="p-3 bg-white/20 rounded-lg group-hover:bg-white/30 transition-colors">
+                      
+                      <a href="mailto:info@workflo.nl" className="flex items-center gap-3 hover:underline group">
+                        <div className="p-3 bg-yellow-400/20 rounded-lg group-hover:bg-yellow-400/30 transition-colors">
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                       </div>
                       <div>
                         <div className="text-sm opacity-90">{t('contact.direct.email')}</div>
-                        <div className="text-xl font-semibold">info@workflo.nl</div>
-                      </div>
-                    </a>
-                  </div>
-                  
-                  <div className="mt-6 pt-6 border-t border-white/20">
-                    <p className="text-sm opacity-90 mb-2">{t('contact.direct.urgent')}</p>
-                    <p className="font-semibold">{t('contact.direct.response_time')}</p>
+                          <div className="text-xl font-semibold">info@workflo.nl</div>
+                        </div>
+                      </a>
+                    </div>
+                    
+                    <div className="mt-6 pt-6 border-t border-white/20">
+                      <p className="text-sm opacity-90 mb-2">{t('contact.direct.urgent')}</p>
+                      <p className="font-semibold">{t('contact.direct.response_time')}</p>
+                    </div>
                   </div>
                 </div>
                 

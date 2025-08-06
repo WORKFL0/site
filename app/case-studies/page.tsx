@@ -15,7 +15,8 @@ export default function CaseStudiesPage() {
       client: 'Schulte & Lestraden',
       industry: language === 'en' ? 'Installation Services' : 'Installatie Diensten',
       logo: '/images/logos/SchulteLestrade_Logo.jpg',
-      duration: '3+ years partnership',
+      duration: 'Managed IT Services',
+      linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7236276208433344512',
       challenge: language === 'en'
         ? 'A well-established installation company with over 70 years of experience needed a complete IT infrastructure installation and ongoing second-line support to modernize their operations.'
         : 'Een gevestigd installatiebedrijf met meer dan 70 jaar ervaring had een complete IT-infrastructuur installatie en doorlopende tweedelijns ondersteuning nodig om hun activiteiten te moderniseren.',
@@ -36,7 +37,7 @@ export default function CaseStudiesPage() {
       client: 'Duwtje',
       industry: language === 'en' ? 'Scientific & Creative Agency' : 'Wetenschappelijk & Creatief Bureau',
       logo: '/images/logos/duwtje.svg',
-      duration: '2+ years partnership',
+      duration: 'Complete IT Partnership',
       challenge: language === 'en'
         ? 'A scientific and creative behavioral agency needed a reliable IT partner to support their innovative work and ensure their digital infrastructure could keep pace with their creative processes.'
         : 'Een wetenschappelijk en creatief gedragsbureau had een betrouwbare IT-partner nodig om hun innovatieve werk te ondersteunen en ervoor te zorgen dat hun digitale infrastructuur gelijke tred kon houden met hun creatieve processen.',
@@ -57,7 +58,7 @@ export default function CaseStudiesPage() {
       client: 'Havas Media',
       industry: language === 'en' ? 'Media & Advertising' : 'Media & Reclame',
       logo: '/images/logos/Havas_Media.png',
-      duration: '3+ years partnership',
+      duration: 'Fixed Fee Onsite Support',
       challenge: language === 'en'
         ? 'A global media network needed local IT support that could match their fast-paced environment and provide immediate assistance for their Amsterdam office.'
         : 'Een wereldwijd medianetwerk had lokale IT-ondersteuning nodig die kon meegaan met hun snelle omgeving en directe hulp kon bieden voor hun kantoor in Amsterdam.',
@@ -171,11 +172,26 @@ export default function CaseStudiesPage() {
                         ))}
                       </div>
 
-                      <div className="mt-8 bg-black/10 rounded-lg p-4">
-                        <p className="text-black font-semibold">
-                          {language === 'en' ? 'Partnership Duration:' : 'Duur Partnerschap:'}
-                        </p>
-                        <p className="text-black">{study.duration}</p>
+                      <div className="mt-8 space-y-4">
+                        <div className="bg-black/10 rounded-lg p-4">
+                          <p className="text-black font-semibold">
+                            {language === 'en' ? 'Service Type:' : 'Type Dienstverlening:'}
+                          </p>
+                          <p className="text-black">{study.duration}</p>
+                        </div>
+                        {study.linkedinUrl && (
+                          <a 
+                            href={study.linkedinUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-black text-yellow-400 rounded-lg hover:bg-gray-800 transition-colors"
+                          >
+                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            {language === 'en' ? 'Read on LinkedIn' : 'Lees op LinkedIn'}
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>

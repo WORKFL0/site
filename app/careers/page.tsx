@@ -22,10 +22,14 @@ export default function CareersPage() {
               professionals die geloven dat geweldige technologie bedrijfssucces moet stimuleren, 
               geen hoofdpijn moet veroorzaken.
             </p>
-            {/* Fun Rihanna reference */}
-            <p className="text-sm text-gray-500 text-center mt-4 italic">
-              Want bij ons draait het om work, work, work, work, work – maar dan met plezier en passie! 🎵
-            </p>
+            {/* Fun Rihanna reference with bouncing animation */}
+            <div className="text-center mt-6">
+              <p className="text-sm text-gray-500 italic animate-bounce">
+                <span className="text-2xl mr-2">♪</span>
+                Want bij ons draait het om work, work, work, work, work – maar dan met plezier en passie!
+                <span className="text-2xl ml-2">♫</span>
+              </p>
+            </div>
           </div>
         </section>
 
@@ -176,6 +180,35 @@ export default function CareersPage() {
                 <strong>— Florian</strong><br />
                 Oprichter & CEO, Workflo
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* SBB Member Section */}
+        <section className="py-16 bg-yellow-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center">
+              <div className="bg-white rounded-lg shadow-lg p-8 border-2 border-yellow-400">
+                <h2 className="text-2xl font-bold mb-4 text-black">Stageplekken Beschikbaar</h2>
+                <p className="text-lg text-gray-700 mb-4">
+                  Wij zijn lid van SBB en bieden stageplekken voor gemotiveerde studenten die willen leren 
+                  in een dynamische IT-omgeving. Bij Workflo krijg je de kans om hands-on ervaring op te doen 
+                  met de nieuwste technologieën terwijl je bijdraagt aan echte projecten voor Amsterdamse bedrijven.
+                </p>
+                <div className="flex items-center justify-center gap-4 mb-4">
+                  <div className="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center">
+                    <span className="text-3xl font-bold text-black">SBB</span>
+                  </div>
+                  <div className="text-left">
+                    <p className="font-bold text-black">Erkend Leerbedrijf</p>
+                    <p className="text-sm text-gray-600">Samenwerkingsorganisatie Beroepsonderwijs Bedrijfsleven</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-6">
+                  Interesse in een stage bij Workflo? Stuur je motivatiebrief en CV naar 
+                  <a href="mailto:stage@workflo.it" className="text-yellow-600 hover:text-yellow-700 font-semibold">stage@workflo.it</a>
+                </p>
+              </div>
             </div>
           </div>
         </section>

@@ -317,7 +317,7 @@ export default function Home() {
             {/* Professional CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link 
-                href="/tevredenheidscheck" 
+                href="/contact" 
                 className="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all shadow-lg"
               >
                 {t('hero.cta.primary')}
@@ -362,26 +362,37 @@ export default function Home() {
             {language === 'en' ? 'Current Clients' : 'Huidige Klanten'}
           </h3>
           <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
-            {currentClients.map((logo, index) => (
-              <div 
-                key={index}
-                className="bg-white rounded-lg p-3 flex items-center justify-center hover-lift h-20 fade-in-up group"
-                style={{ animationDelay: `${index * 0.03}s` }}
-              >
-                <div className="relative w-24 h-14 flex items-center justify-center">
-                  <Image
-                    src={logo.src}
-                    alt={`${logo.name} logo`}
-                    fill
-                    className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                    sizes="96px"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none'
-                    }}
-                  />
+            {currentClients.map((logo, index) => {
+              // Check if this is one of the logos that should be bigger
+              const isBiggerLogo = logo.name === 'John Doornik' || 
+                                   logo.name === 'DoctorFeelgood' || 
+                                   logo.name === 'BLC Financeview'
+              
+              return (
+                <div 
+                  key={index}
+                  className={`bg-white rounded-lg p-3 flex items-center justify-center hover-lift fade-in-up group ${
+                    isBiggerLogo ? 'h-28 md:col-span-2' : 'h-20'
+                  }`}
+                  style={{ animationDelay: `${index * 0.03}s` }}
+                >
+                  <div className={`relative flex items-center justify-center ${
+                    isBiggerLogo ? 'w-32 h-20' : 'w-24 h-14'
+                  }`}>
+                    <Image
+                      src={logo.src}
+                      alt={`${logo.name} logo`}
+                      fill
+                      className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                      sizes={isBiggerLogo ? '128px' : '96px'}
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none'
+                      }}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
 
 
@@ -630,14 +641,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Industry Experience Section - Dark Background */}
-      <section className="py-16 bg-gray-900 text-white">
+      {/* Industry Experience Section - White Background */}
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-2xl font-semibold text-white mb-4">
+            <h3 className="text-2xl font-semibold text-gray-900 mb-4">
               {language === 'en' ? 'Industry Experience Since 2015' : 'Sector Ervaring Sinds 2015'}
             </h3>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto">
               {language === 'en' 
                 ? "Over the years, we've had the privilege of serving diverse organizations across multiple sectors, building expertise that benefits all our clients."
                 : "Door de jaren heen hebben we het voorrecht gehad om diverse organisaties in meerdere sectoren te bedienen, waarbij we expertise hebben opgebouwd die al onze klanten ten goede komt."}
@@ -662,7 +673,7 @@ export default function Home() {
                         }}
                       />
                     ) : (
-                      <div className="text-gray-400 font-semibold text-sm whitespace-nowrap hover:text-gray-200 transition-colors">
+                      <div className="text-gray-600 font-semibold text-sm whitespace-nowrap hover:text-gray-800 transition-colors">
                         {logo.name}
                       </div>
                     )}
@@ -725,7 +736,7 @@ export default function Home() {
             </ul>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
-                href="/tevredenheidscheck" 
+                href="/contact" 
                 className="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all shadow-lg"
               >
                 {t('cta.start_assessment')}
