@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import HubSpotForm from '@/components/forms/HubSpotForm'
+import HubSpotForm from '@/components/forms/HubSpotFormClient'
 
 export default function TestHubSpotPage() {
   const [formReady, setFormReady] = useState(false)

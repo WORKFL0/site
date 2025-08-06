@@ -7,7 +7,7 @@ import { useInView } from 'react-intersection-observer'
 import Button from '@/components/ui/Button'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import HubSpotForm from '@/components/forms/HubSpotForm'
+import HubSpotForm from '@/components/forms/HubSpotFormClient'
 import { useLanguage } from '@/context/LanguageContext'
 import { debugHubSpot } from '@/utils/hubspot-debug'
 

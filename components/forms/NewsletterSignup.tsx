@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useLanguage } from '@/context/LanguageContext'
-import HubSpotForm from './HubSpotForm'
+import HubSpotForm from './HubSpotFormClient'
 
 interface NewsletterSignupProps {
   variant?: 'default' | 'footer' | 'inline'

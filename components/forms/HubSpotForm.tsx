@@ -32,6 +32,9 @@ export default function HubSpotForm({
   const containerId = `hubspot-form-${formId}`
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return
+    
     let mounted = true
     let retryCount = 0
     const maxRetries = 3
