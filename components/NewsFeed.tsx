@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { CalendarIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline'
@@ -29,117 +29,74 @@ const NewsFeed = ({
   const [error, setError] = useState<string | null>(null)
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
-  // Fallback news items for when RSS feed is unavailable
-  const getFallbackNews = useCallback((): NewsItem[] => {
-    return [
-      {
-        title: "Microsoft Announces New AI-Powered Security Features for Office 365",
-        description: "Microsoft unveils advanced threat protection capabilities powered by artificial intelligence to help businesses stay secure in the cloud.",
-        link: "https://www.microsoft.com/security",
-        pubDate: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
-        guid: "fallback-1"
-      },
-      {
-        title: "Cybersecurity Trends: Zero Trust Architecture Adoption Grows",
-        description: "Organizations worldwide are increasingly implementing Zero Trust security models to protect against modern cyber threats.",
-        link: "https://www.cybersecurity-news.com",
-        pubDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-        guid: "fallback-2"
-      },
-      {
-        title: "Cloud Migration Best Practices for SMBs in 2024",
-        description: "Small and medium businesses are accelerating their cloud adoption. Here are the key strategies for successful migration.",
-        link: "https://www.cloud-news.com",
-        pubDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
-        guid: "fallback-3"
-      },
-      {
-        title: "IT Infrastructure Modernization: Key Strategies for Success",
-        description: "Learn how organizations can modernize their IT infrastructure to improve efficiency, security, and scalability.",
-        link: "https://www.tech-insights.com",
-        pubDate: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000).toISOString(),
-        guid: "fallback-4"
-      },
-      {
-        title: "Network Security: Protecting Remote Work Environments",
-        description: "With hybrid work becoming permanent, organizations need robust network security strategies to protect distributed teams.",
-        link: "https://www.network-security.com",
-        pubDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
-        guid: "fallback-5"
-      },
-      {
-        title: "Backup and Disaster Recovery: Essential for Business Continuity",
-        description: "Comprehensive backup strategies and disaster recovery planning are critical for maintaining business operations during disruptions.",
-        link: "https://www.disaster-recovery.com",
-        pubDate: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString(),
-        guid: "fallback-6"
-      }
-    ].slice(0, maxItems)
-  }, [maxItems])
-
   useEffect(() => {
     const fetchRSSFeed = async () => {
       try {
         setLoading(true)
         setError(null)
         
-        // Fetch RSS feed via CORS proxy
-        const rssUrl = 'https://rss.workflo.it/i/?a=rss&get=c_4&rid=6893c5809212b&hours=168'
-        const corsProxy = 'https://api.allorigins.win/get?url='
-        
-        const response = await fetch(`${corsProxy}${encodeURIComponent(rssUrl)}`)
+        // Fetch RSS feed via our API endpoint (handles CORS server-side)
+        const response = await fetch('/api/rss-feed')
         
         if (!response.ok) {
           throw new Error('Failed to fetch RSS feed')
         }
         
-        const data = await response.json()
+        const xmlContent = await response.text()
         
-        if (!data.contents) {
+        if (!xmlContent) {
           throw new Error('No RSS content available')
         }
         
         const parser = new DOMParser()
-        const xmlDoc = parser.parseFromString(data.contents, 'text/xml')
+        const xmlDoc = parser.parseFromString(xmlContent, 'text/xml')
+        
+        // Check for parsing errors
+        const parserError = xmlDoc.querySelector('parsererror')
+        if (parserError) {
+          console.warn('RSS feed parsing error, attempting to extract RSS from HTML')
+          // The content might be HTML with embedded RSS, try to extract it
+          // For now, we'll just set empty items
+          setNewsItems([])
+          return
+        }
         
         const items = xmlDoc.querySelectorAll('item')
         const newsData: NewsItem[] = []
         
         items.forEach((item, index) => {
           if (index < maxItems) {
-            const title = item.querySelector('title')?.textContent || 'Untitled'
+            const title = item.querySelector('title')?.textContent || ''
             const description = item.querySelector('description')?.textContent || ''
-            const link = item.querySelector('link')?.textContent || '#'
+            const link = item.querySelector('link')?.textContent || ''
             const pubDate = item.querySelector('pubDate')?.textContent || ''
             const guid = item.querySelector('guid')?.textContent || `item-${index}`
             
-            newsData.push({
-              title: title.trim(),
-              description: description.trim(),
-              link: link.trim(),
-              pubDate: pubDate.trim(),
-              guid: guid.trim()
-            })
+            // Only add items that have at least a title and link
+            if (title && link) {
+              newsData.push({
+                title: title.trim(),
+                description: description.trim(),
+                link: link.trim(),
+                pubDate: pubDate.trim(),
+                guid: guid.trim()
+              })
+            }
           }
         })
         
-        if (newsData.length === 0) {
-          // Fallback to sample news items
-          setNewsItems(getFallbackNews())
-        } else {
-          setNewsItems(newsData)
-        }
+        setNewsItems(newsData)
       } catch (err) {
         console.error('Error fetching RSS feed:', err)
-        // Use fallback news items instead of showing error
-        setNewsItems(getFallbackNews())
+        setError('Failed to load news feed')
+        setNewsItems([])
       } finally {
         setLoading(false)
       }
     }
 
     fetchRSSFeed()
-  }, [maxItems, getFallbackNews])
+  }, [maxItems])
 
   const formatDate = (dateString: string) => {
     try {
@@ -181,8 +138,8 @@ const NewsFeed = ({
     )
   }
 
-  // Since we now use fallback news, we only show error if there are truly no items
-  if (newsItems.length === 0 && !loading) {
+  // Show error or no items message
+  if ((newsItems.length === 0 || error) && !loading) {
     return (
       <div className={`w-full ${className}`}>
         <motion.div 
@@ -197,9 +154,9 @@ const NewsFeed = ({
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">News Feed Unavailable</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">RSS Feed Unavailable</h3>
             <p className="text-gray-600">
-              No news items available at the moment.
+              {error || 'No articles available from the RSS feed at the moment. Please check back later.'}
             </p>
           </div>
         </motion.div>

@@ -38,7 +38,7 @@ const Footer = () => {
             variant="footer"
             showTitle={true}
             showDescription={true}
-            formId="REPLACE_WITH_NEWSLETTER_FORM_ID" // Replace this with the actual HubSpot newsletter form ID from portal 26510736
+            formId="e92de02c-71b0-4a68-aedd-3b6acb0f5f67" // HubSpot newsletter form ID from portal 26510736
           />
         </div>
 

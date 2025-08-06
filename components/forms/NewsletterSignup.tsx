@@ -17,7 +17,7 @@ export default function NewsletterSignup({
   className = '',
   showTitle = true,
   showDescription = true,
-  formId = 'REPLACE_WITH_NEWSLETTER_FORM_ID' // Replace with actual HubSpot newsletter form ID
+  formId = 'e92de02c-71b0-4a68-aedd-3b6acb0f5f67' // HubSpot newsletter form ID from portal 26510736
 }: NewsletterSignupProps) {
   const { t } = useLanguage()
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -119,7 +119,7 @@ export default function NewsletterSignup({
 
       {/* HubSpot Form Integration */}
       <div className="newsletter-form-container">
-        {formId === 'REPLACE_WITH_NEWSLETTER_FORM_ID' ? (
+        {formId === 'e92de02c-71b0-4a68-aedd-3b6acb0f5f67' ? (
           // Fallback when newsletter form isn't configured yet
           <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
             <p className="text-yellow-800 text-sm mb-2">
