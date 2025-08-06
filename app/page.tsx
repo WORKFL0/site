@@ -1208,7 +1208,7 @@ export default function Home() {
               {[...previousClients, ...previousClients].map((logo, index) => (
                 <div key={index} className="flex-shrink-0">
                   <div className="relative w-32 h-16 flex items-center justify-center">
-                    {logo.src && (logo.src.includes('jump') || logo.src.includes('ladress') || logo.src.includes('greenpeace') || logo.src.includes('leyden') || logo.src.includes('tbwa') || logo.src.includes('io_Logo') || logo.src.includes('dailypaper')) ? (
+                    {logo.src ? (
                       <Image
                         src={logo.src}
                         alt={`${logo.name} logo`}
