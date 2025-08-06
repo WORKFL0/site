@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState, useEffect } from 'react'
 
 type Language = 'en' | 'nl'
 
@@ -759,13 +759,48 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [language, setLanguage] = useState<Language>('nl')
+  const [isInitialized, setIsInitialized] = useState(false)
+
+  // Initialize language from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedLanguage = localStorage.getItem('workflo-language') as Language | null
+      if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'nl')) {
+        setLanguage(savedLanguage)
+      }
+    } catch (error) {
+      console.warn('Could not load saved language from localStorage:', error)
+      // Falls back to default 'nl'
+    }
+    setIsInitialized(true)
+  }, [])
+
+  // Save language to localStorage when it changes
+  useEffect(() => {
+    if (isInitialized) {
+      try {
+        localStorage.setItem('workflo-language', language)
+        
+        // Update HTML lang attribute
+        if (typeof document !== 'undefined') {
+          document.documentElement.lang = language
+        }
+      } catch (error) {
+        console.warn('Could not save language to localStorage:', error)
+      }
+    }
+  }, [language, isInitialized])
+
+  const handleSetLanguage = (lang: Language) => {
+    setLanguage(lang)
+  }
 
   const t = (key: string) => {
     return translations[language][key as keyof typeof translations['en']] || key
   }
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage: handleSetLanguage, t }}>
       {children}
     </LanguageContext.Provider>
   )

@@ -131,6 +131,7 @@ export default function Home() {
   // Current active clients
   const currentClients = [
     { name: "Havas Media", src: "/images/logos/Havas_Media.png" },
+    { name: "Havas Lemz", src: "/images/logos/Havas_Media.png" }, // Using same logo as Havas Media for now
     { name: "Podimo", src: "/images/logos/Podimo_Logo.png" },
     { name: "DoctorFeelgood", src: "/images/logos/doctorfeelgood_Logo.jpg" },
     { name: "Aescap", src: "/images/logos/Aescap2_Logo.png" },
