@@ -117,13 +117,17 @@ export default function Home() {
     { name: "Klaar", src: "/images/logos/Klaar_Logo.jpg" },
     { name: "Dag en Nacht", src: "/images/logos/Dagennacht_Logo.png" },
     { name: "Voice Industries", src: "/images/logos/voice.industries_Logo.jpeg" },
-    { name: "Duwtje", src: "/images/logos/Duwtje.svg" },
-    { name: "Highwood", src: "/images/logos/HighWood.png" },
+    { name: "Duwtje", src: "/images/logos/duwtje.svg" },
+    { name: "Highwood", src: "/images/logos/highwood.png" },
     { name: "PR Mansion", src: "/images/logos/prmansion.png" },
     { name: "Winix", src: "/images/logos/Winix_Logo.jpg" },
     { name: "WorkStuff", src: "/images/logos/workstuff_Logo.jpg" },
     { name: "Open Boek", src: "/images/logos/open-boek_Logo.png" },
-    { name: "Bijvoorkeur", src: "/images/logos/Bijvoorkeur_Logo.jpg" }
+    { name: "Bijvoorkeur", src: "/images/logos/Bijvoorkeur_Logo.jpg" },
+    { name: "BLC Financeview", src: "/images/logos/blc-financeview.png" },
+    { name: "L'Adress", src: "/images/logos/ladress.png" },
+    { name: "Koschuch", src: "/images/logos/koschuch.png" },
+    { name: "John Doornik", src: "/images/logos/john-doornik.png" }
   ]
 
   const teamMembers = [
@@ -140,10 +144,10 @@ export default function Home() {
       image: "/images/team/nam.jpg"
     },
     {
-      name: t('team.samir.name'),
-      role: t('team.samir.role'),
-      expertise: t('team.samir.expertise'),
-      image: "/images/team/samir.jpg"
+      name: t('team.mas.name'),
+      role: t('team.mas.role'),
+      expertise: t('team.mas.expertise'),
+      image: "/images/team/mas.jpg"
     },
     {
       name: t('team.marcello.name'),
@@ -292,7 +296,7 @@ export default function Home() {
                 <div className="text-xs text-gray-400 mt-1">{t('stats.phone_response')}</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
-                <div className="text-3xl font-bold text-yellow-400">€2.5M+</div>
+                <div className="text-3xl font-bold text-yellow-400">€500K+</div>
                 <div className="text-white font-medium">{t('hero.benefit.savings')}</div>
                 <div className="text-xs text-gray-400 mt-1">{t('stats.total_savings')}</div>
               </div>
@@ -367,12 +371,12 @@ export default function Home() {
           <div className="mt-16 bg-black text-white rounded-2xl p-8 fade-in-up">
             <div className="grid md:grid-cols-4 gap-8 text-center">
               <div>
-                <div className="text-4xl font-bold text-yellow-400">€2.5M+</div>
+                <div className="text-4xl font-bold text-yellow-400">€500K+</div>
                 <div className="text-gray-300">{t('stats.saved')}</div>
                 <div className="text-xs text-gray-400 mt-1">2024 results</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-yellow-400">1,200+</div>
+                <div className="text-4xl font-bold text-yellow-400">500+</div>
                 <div className="text-gray-300">{t('stats.prevented')}</div>
                 <div className="text-xs text-gray-400 mt-1">{t('stats.since_2015')}</div>
               </div>

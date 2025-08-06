@@ -144,7 +144,7 @@ export default function CaseStudiesPage() {
             <h2 className="text-3xl font-bold text-center mb-12 text-black">Results That Speak for Themselves</h2>
             <div className="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
-                <div className="text-5xl font-bold text-yellow-400 mb-2">200+</div>
+                <div className="text-5xl font-bold text-yellow-400 mb-2">100+</div>
                 <p className="text-gray-600">Amsterdam Businesses Served</p>
               </div>
               <div className="text-center">

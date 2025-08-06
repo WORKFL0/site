@@ -1,25 +1,14 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import { useLanguage } from '@/context/LanguageContext'
 
-export default function ShopPage() {
+export default function SchedulePage() {
+  const { language } = useLanguage()
   const [isIframeLoaded, setIsIframeLoaded] = useState(false)
   const [hasIframeError, setHasIframeError] = useState(false)
-  const { language } = useLanguage()
-
-  useEffect(() => {
-    // Handle iframe timeout
-    const timeout = setTimeout(() => {
-      if (!isIframeLoaded) {
-        setHasIframeError(true)
-      }
-    }, 10000) // 10 second timeout
-
-    return () => clearTimeout(timeout)
-  }, [isIframeLoaded])
 
   const handleIframeLoad = () => {
     setIsIframeLoaded(true)
@@ -41,30 +30,30 @@ export default function ShopPage() {
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                Workflo Shop
+                {language === 'en' ? 'Schedule a Meeting' : 'Afspraak Inplannen'}
               </h1>
               <p className="text-xl text-gray-600 mb-4">
                 {language === 'en' 
-                  ? 'Professional IT products and services for your business'
-                  : 'Professionele IT-producten en -diensten voor uw bedrijf'}
+                  ? 'Book a convenient time to discuss your IT needs'
+                  : 'Plan een geschikt moment om uw IT-behoeften te bespreken'}
               </p>
               <p className="text-gray-500">
                 {language === 'en'
-                  ? 'Browse our complete catalog of hardware, software, and IT services'
-                  : 'Bekijk onze complete catalogus van hardware, software en IT-diensten'}
+                  ? 'Choose from available time slots and we\'ll confirm your appointment within 1 business hour.'
+                  : 'Kies uit beschikbare tijdsloten en we bevestigen uw afspraak binnen 1 werkuur.'}
               </p>
             </div>
           </div>
         </section>
 
-        {/* Shop Iframe */}
+        {/* Booking Iframe */}
         <section className="py-4">
           <div className="container mx-auto px-4">
             {!isIframeLoaded && !hasIframeError && (
               <div className="text-center py-16">
                 <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400"></div>
                 <p className="mt-4 text-gray-600">
-                  {language === 'en' ? 'Loading shop...' : 'Shop wordt geladen...'}
+                  {language === 'en' ? 'Loading booking calendar...' : 'Boekingskalender wordt geladen...'}
                 </p>
               </div>
             )}
@@ -76,16 +65,16 @@ export default function ShopPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 18.5c-.77.833.192 2.5 1.732 2.5z" />
                   </svg>
                   <h3 className="text-lg font-semibold text-red-800 mb-2">
-                    {language === 'en' ? 'Shop temporarily unavailable' : 'Shop tijdelijk niet beschikbaar'}
+                    {language === 'en' ? 'Booking calendar unavailable' : 'Boekingskalender niet beschikbaar'}
                   </h3>
                   <p className="text-red-600 mb-4">
                     {language === 'en'
-                      ? 'The shop cannot be loaded at this moment. Please try again later or contact us.'
-                      : 'De shop kan momenteel niet geladen worden. Probeer het later opnieuw of neem contact met ons op.'}
+                      ? 'The booking calendar cannot be loaded at this moment. Please use one of the alternatives below.'
+                      : 'De boekingskalender kan momenteel niet worden geladen. Gebruik een van de onderstaande alternatieven.'}
                   </p>
                   <div className="space-y-2">
                     <a 
-                      href="https://shop.workflo.it" 
+                      href="https://outlook.office365.com/owa/calendar/20306080465@82f1e73c-fa8e-4530-a1ef-6a2f86e5c0be/58de87ed43f94c588c91797f09e821831684323654674849@82f1e73c-fa8e-4530-a1ef-6a2f86e5c0be/booking/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-block bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500 transition-colors"
@@ -99,11 +88,11 @@ export default function ShopPage() {
 
             <div className="bg-white rounded-lg shadow-lg overflow-hidden" style={{ minHeight: '700px' }}>
               <iframe
-                src="https://shop.workflo.it"
+                src="https://outlook.office365.com/owa/calendar/20306080465@82f1e73c-fa8e-4530-a1ef-6a2f86e5c0be/58de87ed43f94c588c91797f09e821831684323654674849@82f1e73c-fa8e-4530-a1ef-6a2f86e5c0be/booking/"
                 width="100%"
                 height="700"
                 style={{ border: 'none', minHeight: '700px' }}
-                title="Workflo Shop"
+                title="Workflo Booking Calendar"
                 onLoad={handleIframeLoad}
                 onError={handleIframeError}
                 className={hasIframeError ? 'hidden' : 'block'}
@@ -112,11 +101,11 @@ export default function ShopPage() {
           </div>
         </section>
 
-        {/* Alternative Shopping Options */}
+        {/* Alternative Contact Options */}
         <section className="py-12 bg-gray-100">
           <div className="container mx-auto px-4">
             <h2 className="text-2xl font-bold text-center mb-8">
-              {language === 'en' ? 'Need Help with Your Order?' : 'Hulp nodig bij uw bestelling?'}
+              {language === 'en' ? 'Other ways to reach us' : 'Andere manieren om ons te bereiken'}
             </h2>
             
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
@@ -127,10 +116,10 @@ export default function ShopPage() {
                   </svg>
                 </div>
                 <h3 className="font-semibold mb-2">
-                  {language === 'en' ? 'Phone Orders' : 'Telefonisch bestellen'}
+                  {language === 'en' ? 'Call directly' : 'Direct bellen'}
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  {language === 'en' ? 'Order by phone with our sales team' : 'Bestel telefonisch bij ons verkoopteam'}
+                  {language === 'en' ? 'Speak with our team immediately' : 'Spreek direct met ons team'}
                 </p>
                 <a 
                   href="tel:0203080465" 
@@ -147,72 +136,68 @@ export default function ShopPage() {
                   </svg>
                 </div>
                 <h3 className="font-semibold mb-2">
-                  {language === 'en' ? 'Email Quote' : 'Offerte via e-mail'}
+                  {language === 'en' ? 'Email us' : 'E-mail ons'}
                 </h3>
                 <p className="text-gray-600 mb-4">
-                  {language === 'en' ? 'Request a custom quote' : 'Vraag een offerte op maat aan'}
+                  {language === 'en' ? 'Get a response within 4 hours' : 'Krijg binnen 4 uur antwoord'}
                 </p>
                 <a 
-                  href="mailto:sales@workflo.nl" 
+                  href="mailto:info@workflo.nl" 
                   className="text-yellow-600 hover:text-yellow-700 font-medium"
                 >
-                  sales@workflo.nl
+                  info@workflo.nl
                 </a>
               </div>
 
               <div className="bg-white rounded-lg p-6 text-center shadow">
                 <div className="w-12 h-12 bg-yellow-400 rounded-lg mx-auto mb-4 flex items-center justify-center">
                   <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                   </svg>
                 </div>
-                <h3 className="font-semibold mb-2">
-                  {language === 'en' ? 'Product Advice' : 'Productadvies'}
-                </h3>
+                <h3 className="font-semibold mb-2">WhatsApp</h3>
                 <p className="text-gray-600 mb-4">
-                  {language === 'en' ? 'Get expert IT purchasing advice' : 'Krijg deskundig IT-aankoopadvies'}
+                  {language === 'en' ? 'Quick questions? Chat with us' : 'Snelle vragen? Chat met ons'}
                 </p>
                 <a 
-                  href="/contact" 
+                  href="https://wa.me/31203080465" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-yellow-600 hover:text-yellow-700 font-medium"
                 >
-                  {language === 'en' ? 'Contact us' : 'Contact opnemen'}
+                  {language === 'en' ? 'Start chat' : 'Start chat'}
                 </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Popular Products */}
+        {/* Meeting Types */}
         <section className="py-8 bg-white">
           <div className="container mx-auto px-4 text-center">
             <h3 className="text-xl font-semibold mb-4">
-              {language === 'en' ? 'Popular Categories' : 'Populaire categorieën'}
+              {language === 'en' ? 'Meeting Options' : 'Vergaderopties'}
             </h3>
             <div className="max-w-2xl mx-auto">
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Hardware</h4>
+                  <h4 className="font-medium text-gray-900 mb-2">
+                    {language === 'en' ? 'Virtual Meeting' : 'Virtuele vergadering'}
+                  </h4>
                   <p className="text-gray-600">
                     {language === 'en' 
-                      ? 'Laptops, desktops, servers'
-                      : 'Laptops, desktops, servers'}
+                      ? 'Video call via Microsoft Teams or Zoom'
+                      : 'Videogesprek via Microsoft Teams of Zoom'}
                   </p>
                 </div>
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Software</h4>
+                  <h4 className="font-medium text-gray-900 mb-2">
+                    {language === 'en' ? 'Office Visit' : 'Kantoorbezoek'}
+                  </h4>
                   <p className="text-gray-600">
                     {language === 'en'
-                      ? 'Microsoft 365, security tools'
-                      : 'Microsoft 365, beveiligingstools'}
-                  </p>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900 mb-2">Services</h4>
-                  <p className="text-gray-600">
-                    {language === 'en'
-                      ? 'Support plans, cloud migration'
-                      : 'Support plannen, cloud migratie'}
+                      ? 'Meet us at our Amsterdam office'
+                      : 'Ontmoet ons op ons kantoor in Amsterdam'}
                   </p>
                 </div>
               </div>

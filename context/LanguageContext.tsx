@@ -26,18 +26,18 @@ const translations = {
     // Hero Section - Professional tone
     'hero.title': 'Reliable IT Solutions for Amsterdam Businesses',
     'hero.subtitle': 'Professional IT support that helps your business grow efficiently',
-    'hero.description': 'We provide comprehensive IT services to 200+ Amsterdam businesses, helping them reduce costs, improve security, and focus on what they do best. Local expertise, proven results.',
+    'hero.description': 'We provide comprehensive IT services to 100+ businesses in the Netherlands, helping them reduce costs, improve security, and focus on what they do best. Local expertise, proven results.',
     'hero.cta.primary': 'Get Your IT Assessment',
     'hero.cta.secondary': 'Call Us Now',
     'hero.cta.time': '2 minutes',
     'hero.benefit.uptime': 'Proven Uptime',
     'hero.benefit.response': 'Quick Response',
     'hero.benefit.savings': 'Client Savings',
-    'hero.badge.text': 'Serving 200+ Amsterdam businesses since 2015',
+    'hero.badge.text': 'Serving 100+ businesses since 2015',
     'hero.bottom.guarantee': 'Free consultation • No obligations • Local Amsterdam team',
     
     // Stats Section
-    'stats.title': '200+ Amsterdam Businesses Trust Our IT Solutions',
+    'stats.title': '100+ Businesses Trust Our IT Solutions',
     'stats.description': 'From financial firms in Zuidas to creative agencies in Jordaan, we help businesses across Amsterdam optimize their technology infrastructure and reduce IT costs.',
     'stats.saved': 'Saved This Year',
     'stats.prevented': 'Issues Prevented',
@@ -97,9 +97,9 @@ const translations = {
     'team.namhoon.name': 'Nam-Hoon',
     'team.namhoon.role': 'Technical Director',
     'team.namhoon.expertise': 'Infrastructure & Security',
-    'team.samir.name': 'Samir',
-    'team.samir.role': 'Operations Manager',
-    'team.samir.expertise': 'Service Delivery Excellence',
+    'team.mas.name': 'Mas',
+    'team.mas.role': 'Operations Manager',
+    'team.mas.expertise': 'Service Delivery Excellence',
     'team.marcello.name': 'Marcello',
     'team.marcello.role': 'Solutions Architect',
     'team.marcello.expertise': 'Cloud & Innovation',
@@ -126,7 +126,7 @@ const translations = {
     
     // CTA Sections
     'cta.ready_title': 'Ready to Optimize Your IT Infrastructure?',
-    'cta.ready_description': 'Join 200+ Amsterdam businesses that have improved their operations and reduced IT costs with our professional services.',
+    'cta.ready_description': 'Join 100+ businesses that have improved their operations and reduced IT costs with our professional services.',
     'cta.assessment_title': 'Free IT Assessment',
     'cta.assessment_description': 'Get a comprehensive review of your current IT infrastructure and discover optimization opportunities:',
     'cta.assessment.security': 'Security assessment and recommendations',
@@ -159,7 +159,7 @@ const translations = {
     'about.team.title': 'Meet Our Team',
     'about.team.florian.description': 'With over 15 years in IT management, Florian leads our vision of making enterprise-grade IT accessible to Amsterdam SMEs.',
     'about.team.namhoon.description': 'Our infrastructure wizard ensures your systems are secure, scalable, and always available when you need them.',
-    'about.team.samir.description': 'Mas ensures every client receives exceptional service and that our team delivers on every promise we make.',
+    'about.team.mas.description': 'Mas ensures every client receives exceptional service and that our team delivers on every promise we make.',
     'about.team.marcello.description': 'Marcello designs innovative solutions that transform business challenges into competitive advantages.',
     'about.values.title': 'Our Values',
     'about.values.results.title': 'Results-Driven',
@@ -169,7 +169,7 @@ const translations = {
     'about.values.innovation.title': 'Proactive Innovation',
     'about.values.innovation.description': 'Staying ahead of problems and opportunities so you can focus on business.',
     'about.cta.title': 'Ready to Experience IT That Just Works?',
-    'about.cta.description': 'Join 200+ Amsterdam businesses who trust Workflo',
+    'about.cta.description': 'Join 100+ businesses who trust Workflo',
     'about.cta.button': 'Start Your Free IT Assessment',
     
     // Contact Page
@@ -387,9 +387,9 @@ const translations = {
     'team.namhoon.name': 'Nam-Hoon',
     'team.namhoon.role': 'Technisch Directeur',
     'team.namhoon.expertise': 'Infrastructuur & Beveiliging',
-    'team.samir.name': 'Samir',
-    'team.samir.role': 'Operations Manager',
-    'team.samir.expertise': 'Service Delivery Excellence',
+    'team.mas.name': 'Mas',
+    'team.mas.role': 'Operations Manager',
+    'team.mas.expertise': 'Service Delivery Excellence',
     'team.marcello.name': 'Marcello',
     'team.marcello.role': 'Solutions Architect',
     'team.marcello.expertise': 'Cloud & Innovatie',
@@ -416,7 +416,7 @@ const translations = {
     
     // CTA Sections
     'cta.ready_title': 'Klaar om Uw IT-infrastructuur te Optimaliseren?',
-    'cta.ready_description': 'Sluit u aan bij 200+ Amsterdamse bedrijven die hun activiteiten hebben verbeterd en IT-kosten hebben verlaagd met onze professionele diensten.',
+    'cta.ready_description': 'Sluit u aan bij 100+ bedrijven die hun activiteiten hebben verbeterd en IT-kosten hebben verlaagd met onze professionele diensten.',
     'cta.assessment_title': 'Gratis IT Assessment',
     'cta.assessment_description': 'Krijg een uitgebreide beoordeling van uw huidige IT-infrastructuur en ontdek optimalisatiemogelijkheden:',
     'cta.assessment.security': 'Beveiligingsbeoordeling en aanbevelingen',
@@ -449,7 +449,7 @@ const translations = {
     'about.team.title': 'Maak Kennis Met Ons Team',
     'about.team.florian.description': 'Met meer dan 15 jaar ervaring in IT-management leidt Florian onze visie om enterprise-level IT toegankelijk te maken voor Amsterdamse MKB-bedrijven.',
     'about.team.namhoon.description': 'Onze infrastructuur-wizard zorgt ervoor dat uw systemen veilig, schaalbaar en altijd beschikbaar zijn wanneer u ze nodig hebt.',
-    'about.team.samir.description': 'Mas zorgt ervoor dat elke klant uitzonderlijke service ontvangt en dat ons team elke belofte nakomt die we maken.',
+    'about.team.mas.description': 'Mas zorgt ervoor dat elke klant uitzonderlijke service ontvangt en dat ons team elke belofte nakomt die we maken.',
     'about.team.marcello.description': 'Marcello ontwerpt innovatieve oplossingen die bedrijfsuitdagingen omzetten in concurrentievoordelen.',
     'about.values.title': 'Onze Waarden',
     'about.values.results.title': 'Resultaatgericht',
@@ -459,7 +459,7 @@ const translations = {
     'about.values.innovation.title': 'Proactieve Innovatie',
     'about.values.innovation.description': 'Voor blijven op problemen en kansen zodat u zich kunt concentreren op zakendoen.',
     'about.cta.title': 'Klaar om IT te Ervaren Die Gewoon Werkt?',
-    'about.cta.description': 'Sluit u aan bij 200+ Amsterdamse bedrijven die Workflo vertrouwen',
+    'about.cta.description': 'Sluit u aan bij 100+ bedrijven die Workflo vertrouwen',
     'about.cta.button': 'Start Uw Gratis IT Assessment',
     
     // Contact Page
