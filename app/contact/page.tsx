@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Button from '@/components/ui/Button'
@@ -412,9 +413,11 @@ export default function ContactPage() {
                   {/* Building Photo */}
                   <div className="mb-6 relative z-10">
                     <div className="rounded-lg overflow-hidden shadow-lg">
-                      <img 
+                      <Image 
                         src="/images/building.jpg" 
                         alt="Workflo Kantoor - Koivistokade 3, Amsterdam"
+                        width={400}
+                        height={192}
                         className="w-full h-48 object-cover"
                       />
                       <div className="absolute bottom-2 left-2 bg-black/70 text-white px-3 py-1 rounded-lg flex items-center gap-2">

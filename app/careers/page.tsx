@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 
@@ -196,10 +197,12 @@ export default function CareersPage() {
                   met de nieuwste technologieën terwijl je bijdraagt aan echte projecten voor Amsterdamse bedrijven.
                 </p>
                 <div className="flex items-center justify-center gap-4 mb-4">
-                  <img 
+                  <Image 
                     src="/images/sbb-logo.png" 
                     alt="SBB Logo" 
-                    className="w-20 h-20 object-contain"
+                    width={80}
+                    height={80}
+                    className="object-contain"
                   />
                   <div className="text-left">
                     <p className="font-bold text-black">Erkend Leerbedrijf</p>

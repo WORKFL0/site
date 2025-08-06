@@ -200,7 +200,7 @@ const PricingCalculator = () => {
     // Calculate savings vs break-fix (estimated 8 hours/month at €110/hour)
     const breakFixCost = 8 * 110
     setSavings(Math.max(0, breakFixCost - total))
-  }, [selectedOption, employees, servers, selectedOffice365, office365Licenses])
+  }, [selectedOption, employees, servers, selectedOffice365, office365Licenses, pricingOptions, office365Packages])
 
   const getCompanySize = () => {
     if (employees <= 5) return language === 'en' ? 'Micro Business' : 'Micro Bedrijf'

@@ -429,7 +429,6 @@ export default function Home() {
               loop
               playsInline
               className="absolute inset-0 w-full h-full object-cover opacity-5"
-              loading="lazy"
               preload="metadata"
             >
               <source src="/videos/Workflo_W_Mobile_1.mp4" type="video/mp4" />
@@ -577,7 +576,6 @@ export default function Home() {
               loop
               playsInline
               className="w-72 h-72 object-cover"
-              loading="lazy"
               preload="metadata"
             >
               <source src="/videos/Workflo-code-animatie-2.mp4" type="video/mp4" />
@@ -592,7 +590,6 @@ export default function Home() {
               loop
               playsInline
               className="w-80 h-80 object-contain"
-              loading="lazy"
               preload="metadata"
             >
               <source src="/videos/Workflo_W_final_3.mp4" type="video/mp4" />
@@ -732,7 +729,6 @@ export default function Home() {
               loop
               playsInline
               className="w-96 h-96 object-cover"
-              loading="lazy"
               preload="metadata"
             >
               <source src="/videos/Mobile-Device-Header-3.mp4" type="video/mp4" />
@@ -747,7 +743,6 @@ export default function Home() {
               loop
               playsInline
               className="w-80 h-80 object-cover"
-              loading="lazy"
               preload="metadata"
             >
               <source src="/videos/Workflo_W_final_3.mp4" type="video/mp4" />
@@ -1049,7 +1044,6 @@ export default function Home() {
               loop
               playsInline
               className="absolute inset-0 w-full h-full object-cover opacity-10"
-              loading="lazy"
               preload="metadata"
             >
               <source src="/videos/Security_1.mp4" type="video/mp4" />
@@ -1064,7 +1058,6 @@ export default function Home() {
               loop
               playsInline
               className="w-64 h-64 object-contain"
-              loading="lazy"
               preload="metadata"
             >
               <source src="/videos/Workflo_W_final_1.mp4" type="video/mp4" />
