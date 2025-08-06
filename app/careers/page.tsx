@@ -210,7 +210,7 @@ export default function CareersPage() {
                   </div>
                 </div>
                 <p className="text-gray-600 mb-6">
-                  Interesse in een stage bij Workflo? Stuur je motivatiebrief en CV naar 
+                  Interesse in een stage bij Workflo? Stuur je motivatiebrief en CV naar{' '}
                   <a href="mailto:work@workflo.nl" className="text-yellow-600 hover:text-yellow-700 font-semibold">work@workflo.nl</a>
                 </p>
               </div>

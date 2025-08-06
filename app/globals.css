@@ -67,21 +67,55 @@
 
   .warning-tape {
     background: repeating-linear-gradient(
+      -45deg,
+      #f2f400 0px,
+      #f2f400 15px,
+      #000000 15px,
+      #000000 30px
+    );
+    position: relative;
+  }
+
+  .warning-tape::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
       45deg,
-      #f2f400,
-      #f2f400 10px,
-      #000000 10px,
-      #000000 20px
+      transparent 0px,
+      transparent 7px,
+      rgba(0,0,0,0.1) 7px,
+      rgba(0,0,0,0.1) 8px
     );
   }
 
   .warning-tape-thin {
     background: repeating-linear-gradient(
+      -45deg,
+      #f2f400 0px,
+      #f2f400 8px,
+      #000000 8px,
+      #000000 16px
+    );
+    position: relative;
+  }
+
+  .warning-tape-thin::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
       45deg,
-      #f2f400,
-      #f2f400 5px,
-      #000000 5px,
-      #000000 10px
+      transparent 0px,
+      transparent 4px,
+      rgba(0,0,0,0.1) 4px,
+      rgba(0,0,0,0.1) 4.5px
     );
   }
 
@@ -98,12 +132,61 @@
   .warning-border {
     border: 3px solid;
     border-image: repeating-linear-gradient(
-      45deg,
+      -45deg,
       #f2f400,
-      #f2f400 10px,
-      #000000 10px,
-      #000000 20px
+      #f2f400 15px,
+      #000000 15px,
+      #000000 30px
     ) 1;
+  }
+
+  /* Enhanced realistic danger tape */
+  .danger-tape-realistic {
+    background: repeating-linear-gradient(
+      -45deg,
+      #f2f400 0px,
+      #f2f400 15px,
+      #000000 15px,
+      #000000 30px
+    );
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1), inset 0 -2px 4px rgba(0,0,0,0.1);
+  }
+
+  .danger-tape-realistic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 7px,
+      rgba(0,0,0,0.15) 7px,
+      rgba(0,0,0,0.15) 8px
+    );
+  }
+
+  .danger-tape-realistic::after {
+    content: 'CAUTION • WERKZAAMHEDEN • ATTENTION • CAUTION • WERKZAAMHEDEN • ATTENTION • ';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 8px;
+    font-weight: bold;
+    color: #000;
+    white-space: nowrap;
+    opacity: 0.7;
+    animation: scroll-text 20s linear infinite;
+    letter-spacing: 1px;
+  }
+
+  @keyframes scroll-text {
+    0% { transform: translateX(100%) translateY(-50%); }
+    100% { transform: translateX(-100%) translateY(-50%); }
   }
 
   .text-warning-yellow {

@@ -213,16 +213,18 @@ const PricingCalculator = () => {
     <div className="max-w-6xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">
-          {language === 'en' 
-            ? 'Calculate Your IT Support Investment'
-            : 'Bereken Uw IT Support Investering'}
-        </h2>
-        <p className="text-xl text-white/90 max-w-3xl mx-auto font-medium drop-shadow-md">
-          {language === 'en'
-            ? 'Find the perfect IT support package for your business. Transparent pricing, no hidden costs.'
-            : 'Vind het perfecte IT-ondersteuningspakket voor uw bedrijf. Transparante prijzen, geen verborgen kosten.'}
-        </p>
+        <div className="bg-black/50 backdrop-blur-sm rounded-xl p-8 inline-block">
+          <h2 className="text-4xl font-bold text-white mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.8)' }}>
+            {language === 'en' 
+              ? 'Calculate Your IT Support Investment'
+              : 'Bereken Uw IT Support Investering'}
+          </h2>
+          <p className="text-xl text-white max-w-3xl mx-auto font-medium" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.7)' }}>
+            {language === 'en'
+              ? 'Find the perfect IT support package for your business. Transparent pricing, no hidden costs.'
+              : 'Vind het perfecte IT-ondersteuningspakket voor uw bedrijf. Transparante prijzen, geen verborgen kosten.'}
+          </p>
+        </div>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-8">

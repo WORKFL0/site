@@ -40,7 +40,8 @@ export default function OverOnsPage() {
           </motion.div>
           
           {/* Warning Tape at Top */}
-          <div className="absolute top-0 left-0 right-0 h-8 warning-tape"></div>
+          <div className="absolute top-0 left-0 right-0 h-12 danger-tape-realistic z-20 overflow-hidden"></div>
+          <div className="absolute top-12 left-0 right-0 h-1 bg-black/20 z-20"></div>
           
           <div className="container mx-auto px-4 relative z-10">
             <motion.div 
@@ -87,7 +88,9 @@ export default function OverOnsPage() {
         </section>
 
         {/* Our Story */}
-        <section className="py-20 bg-gray-50" ref={storyRef}>
+        <section className="py-20 bg-gray-50 relative" ref={storyRef}>
+          {/* Subtle warning tape decoration */}
+          <div className="absolute top-0 left-0 w-32 h-2 warning-tape-thin opacity-30"></div>
           <div className="container mx-auto px-4">
             <motion.div 
               className="text-center mb-16"
@@ -158,7 +161,7 @@ export default function OverOnsPage() {
                 >
                   <div className="relative">
                     {/* Mini warning tape decoration */}
-                    <div className="absolute top-0 right-0 w-24 h-3 warning-tape-thin rounded"></div>
+                    <div className="absolute top-0 right-0 w-24 h-4 warning-tape-thin rounded"></div>
                     
                     <h3 className="text-2xl font-bold mb-6 text-yellow-400">Amsterdam Expertise</h3>
                     <p className="text-gray-300 mb-6">
@@ -364,7 +367,7 @@ export default function OverOnsPage() {
                   whileTap={{ scale: 0.98 }}
                 >
                   {/* Background decoration */}
-                  <div className="absolute top-0 right-0 w-20 h-3 warning-tape-thin opacity-50"></div>
+                  <div className="absolute top-0 right-0 w-20 h-4 warning-tape-thin opacity-60"></div>
                   
                   <div className="w-24 h-24 bg-yellow-400 rounded-2xl mx-auto mb-6 flex items-center justify-center transition-transform group-hover:scale-110">
                     <span className="text-4xl">{value.icon}</span>
