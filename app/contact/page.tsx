@@ -28,6 +28,9 @@ export default function ContactPage() {
   
   // Enable debug mode with keyboard shortcut (Ctrl/Cmd + Shift + D)
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return
+    
     const handleKeyPress = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
         setShowDebug(prev => !prev)
@@ -39,6 +42,9 @@ export default function ContactPage() {
   }, [])
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return;
+    
     // Skip if using component form
     if (useComponentForm) return;
     

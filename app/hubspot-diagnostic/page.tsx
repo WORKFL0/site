@@ -18,6 +18,9 @@ export default function HubSpotDiagnosticPage() {
   })
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return
+    
     // Override console.error to capture HubSpot errors
     const originalConsoleError = console.error
     console.error = (...args) => {
