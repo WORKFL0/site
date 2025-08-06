@@ -763,6 +763,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   // Initialize language from localStorage on mount
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return
+    
     try {
       const savedLanguage = localStorage.getItem('workflo-language') as Language | null
       if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'nl')) {
@@ -777,6 +780,9 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   // Save language to localStorage when it changes
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return
+    
     if (isInitialized) {
       try {
         localStorage.setItem('workflo-language', language)

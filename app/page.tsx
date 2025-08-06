@@ -40,6 +40,9 @@ export default function Home() {
   const ySpring = useSpring(yRange, springConfig)
 
   useEffect(() => {
+    // Only run on client side
+    if (typeof window === 'undefined') return
+
     // Animate elements on scroll
     const observerOptions = {
       threshold: 0.1,
