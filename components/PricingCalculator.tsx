@@ -172,41 +172,98 @@ const PricingCalculator = () => {
   ], [language])
 
   useEffect(() => {
-    const option = pricingOptions.find(o => o.id === selectedOption)
-    if (!option) return
+    try {
+      // Validate inputs
+      if (!selectedOption || !pricingOptions || pricingOptions.length === 0) {
+        console.warn('PricingCalculator: Missing pricing options or selected option')
+        return
+      }
+      
+      if (typeof employees !== 'number' || employees < 0 || typeof servers !== 'number' || servers < 0) {
+        console.warn('PricingCalculator: Invalid employees or servers count')
+        return
+      }
 
-    let total = 0
-    
-    if (option.type === 'hourly') {
-      // Estimate 5 hours per month for ad-hoc support
-      total = option.price * 5
-    } else if (option.type === 'strippenkaart') {
-      // Monthly cost = total price / 12 months
-      total = option.price / 12
-    } else if (option.type === 'fixed') {
-      // Fixed price per user/server
-      total = option.price * (employees + servers)
+      const option = pricingOptions.find(o => o?.id === selectedOption)
+      if (!option || typeof option.price !== 'number') {
+        console.warn('PricingCalculator: Invalid pricing option found')
+        return
+      }
+
+      let total = 0
+      
+      try {
+        if (option.type === 'hourly') {
+          // Estimate 5 hours per month for ad-hoc support
+          total = option.price * 5
+        } else if (option.type === 'strippenkaart') {
+          // Monthly cost = total price / 12 months
+          total = option.price / 12
+        } else if (option.type === 'fixed') {
+          // Fixed price per user/server
+          total = option.price * (employees + servers)
+        }
+        
+        // Validate calculated total
+        if (isNaN(total) || total < 0) {
+          console.warn('PricingCalculator: Invalid total calculated:', total)
+          total = 0
+        }
+      } catch (calculationError) {
+        console.error('PricingCalculator: Error calculating base price:', calculationError)
+        total = 0
+      }
+
+      // Add Office 365 costs with error handling
+      try {
+        if (office365Packages && selectedOffice365 && selectedOffice365 !== 'none') {
+          const office365Package = office365Packages.find(p => p?.id === selectedOffice365)
+          if (office365Package && typeof office365Package.price === 'number' && office365Package.price > 0) {
+            const licensesToUse = (office365Licenses && office365Licenses > 0) ? office365Licenses : employees
+            if (typeof licensesToUse === 'number' && licensesToUse > 0) {
+              total += office365Package.price * licensesToUse
+            }
+          }
+        }
+      } catch (office365Error) {
+        console.error('PricingCalculator: Error calculating Office 365 costs:', office365Error)
+      }
+
+      // Validate final total and set price
+      const finalTotal = isNaN(total) || total < 0 ? 0 : Math.round(total)
+      setTotalPrice(finalTotal)
+      
+      // Calculate savings vs break-fix (estimated 8 hours/month at €110/hour)
+      try {
+        const breakFixCost = 8 * 110
+        const calculatedSavings = Math.max(0, breakFixCost - finalTotal)
+        setSavings(isNaN(calculatedSavings) ? 0 : calculatedSavings)
+      } catch (savingsError) {
+        console.error('PricingCalculator: Error calculating savings:', savingsError)
+        setSavings(0)
+      }
+    } catch (effectError) {
+      console.error('PricingCalculator: Error in price calculation effect:', effectError)
+      // Set fallback values
+      setTotalPrice(0)
+      setSavings(0)
     }
-
-    // Add Office 365 costs
-    const office365Package = office365Packages.find(p => p.id === selectedOffice365)
-    if (office365Package && office365Package.price > 0) {
-      const licensesToUse = office365Licenses > 0 ? office365Licenses : employees
-      total += office365Package.price * licensesToUse
-    }
-
-    setTotalPrice(Math.round(total))
-    
-    // Calculate savings vs break-fix (estimated 8 hours/month at €110/hour)
-    const breakFixCost = 8 * 110
-    setSavings(Math.max(0, breakFixCost - total))
   }, [selectedOption, employees, servers, selectedOffice365, office365Licenses, pricingOptions, office365Packages])
 
   const getCompanySize = () => {
-    if (employees <= 5) return language === 'en' ? 'Micro Business' : 'Micro Bedrijf'
-    if (employees <= 25) return language === 'en' ? 'Small Business' : 'Klein Bedrijf'
-    if (employees <= 100) return language === 'en' ? 'Medium Business' : 'Middelgroot Bedrijf'
-    return 'Enterprise'
+    try {
+      if (typeof employees !== 'number' || isNaN(employees) || employees < 0) {
+        return language === 'en' ? 'Unknown' : 'Onbekend'
+      }
+      
+      if (employees <= 5) return language === 'en' ? 'Micro Business' : 'Micro Bedrijf'
+      if (employees <= 25) return language === 'en' ? 'Small Business' : 'Klein Bedrijf'
+      if (employees <= 100) return language === 'en' ? 'Medium Business' : 'Middelgroot Bedrijf'
+      return 'Enterprise'
+    } catch (error) {
+      console.error('PricingCalculator: Error determining company size:', error)
+      return language === 'en' ? 'Unknown' : 'Onbekend'
+    }
   }
 
   return (

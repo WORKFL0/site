@@ -35,152 +35,250 @@ const NewsFeed = ({
         setLoading(true)
         setError(null)
         
-        // Fetch RSS feed via our API endpoint (handles CORS server-side)
-        const response = await fetch('/api/rss-feed', {
-          cache: 'no-store',
-          headers: {
-            'Accept': 'application/xml, text/xml, application/rss+xml'
+        // Check if we're in browser environment
+        if (typeof window === 'undefined') {
+          console.warn('NewsFeed: Not in browser environment, skipping RSS fetch')
+          setLoading(false)
+          return
+        }
+        
+        // Add timeout for the entire operation
+        const timeoutId = setTimeout(() => {
+          throw new Error('RSS feed request timed out after 15 seconds')
+        }, 15000)
+
+        try {
+          // Fetch RSS feed via our API endpoint (handles CORS server-side)
+          const response = await fetch('/api/rss-feed', {
+            cache: 'no-store',
+            headers: {
+              'Accept': 'application/xml, text/xml, application/rss+xml'
+            },
+            signal: AbortSignal.timeout(10000) // 10 second timeout for fetch
+          }).catch(err => {
+            console.error('RSS fetch network error:', err)
+            if (err.name === 'AbortError') {
+              throw new Error('RSS feed request timed out')
+            }
+            throw new Error('Network error fetching RSS feed')
+          })
+          
+          clearTimeout(timeoutId)
+          
+          if (!response) {
+            throw new Error('No response received from RSS feed API')
           }
-        }).catch(err => {
-          console.error('RSS fetch error:', err)
-          throw new Error('Network error fetching RSS feed')
-        })
-        
-        if (!response.ok) {
-          throw new Error(`Failed to fetch RSS feed: ${response.status} ${response.statusText}`)
-        }
-        
-        // Check which RSS source was used (for debugging)
-        const rssSource = response.headers.get('X-RSS-Source')
-        if (rssSource) {
-          console.log('RSS feed source:', rssSource)
-        }
-        
-        const xmlContent = await response.text()
-        
-        if (!xmlContent) {
-          throw new Error('No RSS content available')
-        }
-        
-        console.log('Received RSS content length:', xmlContent.length)
-        console.log('First 200 chars:', xmlContent.substring(0, 200))
-        
-        const parser = new DOMParser()
-        const xmlDoc = parser.parseFromString(xmlContent, 'text/xml')
-        
-        // Check for parsing errors
-        const parserError = xmlDoc.querySelector('parsererror')
-        if (parserError) {
-          console.error('XML parsing error:', parserError.textContent)
-          // Try to recover by checking if it's a valid RSS structure despite the error
-          if (!xmlContent.includes('<item>') && !xmlContent.includes('<entry>')) {
-            throw new Error('Invalid RSS feed format')
+          
+          if (!response.ok) {
+            throw new Error(`Failed to fetch RSS feed: ${response.status} ${response.statusText}`)
           }
-        }
-        
-        // Try both RSS and Atom feed formats
-        let items = xmlDoc.querySelectorAll('item')
-        if (items.length === 0) {
-          items = xmlDoc.querySelectorAll('entry') // Atom format
-        }
-        
-        console.log(`Found ${items.length} items in RSS feed`)
-        
-        const newsData: NewsItem[] = []
-        
-        items.forEach((item, index) => {
-          if (index < maxItems) {
-            // Handle both RSS and Atom formats
-            const title = item.querySelector('title')?.textContent || ''
-            const description = item.querySelector('description')?.textContent || 
-                              item.querySelector('summary')?.textContent || 
-                              item.querySelector('content')?.textContent || ''
-            const link = item.querySelector('link')?.textContent || 
-                        item.querySelector('link')?.getAttribute('href') || ''
-            const pubDate = item.querySelector('pubDate')?.textContent || 
-                           item.querySelector('published')?.textContent || 
-                           item.querySelector('updated')?.textContent || ''
-            const guid = item.querySelector('guid')?.textContent || 
-                        item.querySelector('id')?.textContent || 
-                        `item-${index}`
-            
-            // Check for special error message items or non-article content
-            const isErrorItem = title.includes('RSS Feed Temporarily Unavailable') || 
-                               title.includes('Feed Unavailable') ||
-                               title.includes('RSS Feed Service Status') ||
-                               title.includes('Alternative: Enable Test Mode')
-            
-            // Filter out any non-article content
-            const isValidArticle = title && 
-                                  !isErrorItem && 
-                                  link && 
-                                  !link.startsWith('/api/') // Exclude internal API links
-            
-            // Only add real content items (not error messages) that have at least a title and valid link
-            if (isValidArticle) {
-              // Clean up description - remove HTML tags and decode entities
-              const cleanDescription = description
-                .replace(/<[^>]*>/g, '') // Remove HTML tags
-                .replace(/&nbsp;/g, ' ')  // Replace nbsp
-                .replace(/&amp;/g, '&')   // Decode ampersand
-                .replace(/&lt;/g, '<')    // Decode less than
-                .replace(/&gt;/g, '>')    // Decode greater than
-                .replace(/&quot;/g, '"')  // Decode quotes
-                .replace(/&#39;/g, "'")   // Decode apostrophe
-                .trim()
-              
-              newsData.push({
-                title: title.trim(),
-                description: cleanDescription,
-                link: link.trim(),
-                pubDate: pubDate.trim(),
-                guid: guid.trim()
-              })
-              
-              console.log(`Added item ${index + 1}: ${title.substring(0, 50)}...`)
-            } else if (isErrorItem) {
-              console.warn('RSS feed returned an error item:', title)
-              setError('RSS feed is temporarily unavailable. Please try again later.')
+          
+          // Check which RSS source was used (for debugging)
+          const rssSource = response.headers.get('X-RSS-Source')
+          if (rssSource) {
+            console.log('RSS feed source:', rssSource)
+          }
+          
+          const xmlContent = await response.text().catch(err => {
+            console.error('Error reading RSS response text:', err)
+            throw new Error('Failed to read RSS feed content')
+          })
+          
+          if (!xmlContent || xmlContent.trim().length === 0) {
+            throw new Error('No RSS content available')
+          }
+          
+          console.log('Received RSS content length:', xmlContent.length)
+          console.log('First 200 chars:', xmlContent.substring(0, 200))
+          
+          // Validate that we have a DOM parser available
+          if (typeof DOMParser === 'undefined') {
+            throw new Error('DOMParser not available in this environment')
+          }
+          
+          const parser = new DOMParser()
+          let xmlDoc: Document
+          
+          try {
+            xmlDoc = parser.parseFromString(xmlContent, 'text/xml')
+          } catch (parseErr) {
+            console.error('XML parsing failed:', parseErr)
+            throw new Error('Failed to parse RSS feed XML')
+          }
+          
+          if (!xmlDoc) {
+            throw new Error('Failed to create XML document from RSS content')
+          }
+          
+          // Check for parsing errors
+          const parserError = xmlDoc.querySelector('parsererror')
+          if (parserError) {
+            console.error('XML parsing error:', parserError.textContent)
+            // Try to recover by checking if it's a valid RSS structure despite the error
+            if (!xmlContent.includes('<item>') && !xmlContent.includes('<entry>')) {
+              throw new Error('Invalid RSS feed format - no items found')
             }
           }
-        })
-        
-        console.log(`Processed ${newsData.length} valid news items`)
-        
-        if (newsData.length === 0) {
-          console.warn('No valid news items found in RSS feed')
-          setError('No articles available from the RSS feed at the moment.')
+          
+          // Try both RSS and Atom feed formats
+          let items: NodeList
+          try {
+            items = xmlDoc.querySelectorAll('item')
+            if (items.length === 0) {
+              items = xmlDoc.querySelectorAll('entry') // Atom format
+            }
+          } catch (queryErr) {
+            console.error('Error querying RSS items:', queryErr)
+            throw new Error('Failed to extract items from RSS feed')
+          }
+          
+          console.log(`Found ${items.length} items in RSS feed`)
+          
+          const newsData: NewsItem[] = []
+          
+          try {
+            items.forEach((item, index) => {
+              if (index < maxItems) {
+                try {
+                  // Handle both RSS and Atom formats with null checks
+                  const title = item.querySelector('title')?.textContent?.trim() || ''
+                  const description = item.querySelector('description')?.textContent?.trim() || 
+                                    item.querySelector('summary')?.textContent?.trim() || 
+                                    item.querySelector('content')?.textContent?.trim() || ''
+                  const link = item.querySelector('link')?.textContent?.trim() || 
+                              item.querySelector('link')?.getAttribute('href')?.trim() || ''
+                  const pubDate = item.querySelector('pubDate')?.textContent?.trim() || 
+                                 item.querySelector('published')?.textContent?.trim() || 
+                                 item.querySelector('updated')?.textContent?.trim() || ''
+                  const guid = item.querySelector('guid')?.textContent?.trim() || 
+                              item.querySelector('id')?.textContent?.trim() || 
+                              `item-${index}`
+                  
+                  // Check for special error message items or non-article content
+                  const isErrorItem = title.includes('RSS Feed Temporarily Unavailable') || 
+                                     title.includes('Feed Unavailable') ||
+                                     title.includes('RSS Feed Service Status') ||
+                                     title.includes('Alternative: Enable Test Mode')
+                  
+                  // Filter out any non-article content
+                  const isValidArticle = title && 
+                                        title.length > 0 &&
+                                        !isErrorItem && 
+                                        link && 
+                                        link.length > 0 &&
+                                        !link.startsWith('/api/') // Exclude internal API links
+                  
+                  // Only add real content items (not error messages) that have at least a title and valid link
+                  if (isValidArticle) {
+                    // Clean up description - remove HTML tags and decode entities
+                    const cleanDescription = description
+                      .replace(/<[^>]*>/g, '') // Remove HTML tags
+                      .replace(/&nbsp;/g, ' ')  // Replace nbsp
+                      .replace(/&amp;/g, '&')   // Decode ampersand
+                      .replace(/&lt;/g, '<')    // Decode less than
+                      .replace(/&gt;/g, '>')    // Decode greater than
+                      .replace(/&quot;/g, '"')  // Decode quotes
+                      .replace(/&#39;/g, "'")   // Decode apostrophe
+                      .trim()
+                    
+                    newsData.push({
+                      title: title,
+                      description: cleanDescription,
+                      link: link,
+                      pubDate: pubDate,
+                      guid: guid
+                    })
+                    
+                    console.log(`Added item ${index + 1}: ${title.substring(0, 50)}...`)
+                  } else if (isErrorItem) {
+                    console.warn('RSS feed returned an error item:', title)
+                    setError('RSS feed is temporarily unavailable. Please try again later.')
+                  }
+                } catch (itemErr) {
+                  console.warn(`Error processing RSS item ${index}:`, itemErr)
+                  // Continue processing other items
+                }
+              }
+            })
+          } catch (iterationErr) {
+            console.error('Error iterating through RSS items:', iterationErr)
+            throw new Error('Failed to process RSS feed items')
+          }
+          
+          console.log(`Processed ${newsData.length} valid news items`)
+          
+          if (newsData.length === 0) {
+            console.warn('No valid news items found in RSS feed')
+            setError('No articles available from the RSS feed at the moment.')
+          } else {
+            // Clear any previous errors if we successfully got items
+            setError(null)
+          }
+          
+          setNewsItems(newsData)
+        } catch (timeoutErr) {
+          clearTimeout(timeoutId)
+          throw timeoutErr
         }
-        
-        setNewsItems(newsData)
       } catch (err) {
-        console.error('Error fetching RSS feed:', err)
-        setError(err instanceof Error ? err.message : 'Failed to load news feed')
+        console.error('Error in RSS feed fetch operation:', err)
+        const errorMessage = err instanceof Error ? err.message : 'Failed to load news feed'
+        setError(errorMessage)
         setNewsItems([])
       } finally {
         setLoading(false)
       }
     }
 
-    fetchRSSFeed()
+    // Add error boundary for the effect itself
+    try {
+      fetchRSSFeed()
+    } catch (effectErr) {
+      console.error('Error in NewsFeed useEffect:', effectErr)
+      setError('Failed to initialize news feed')
+      setLoading(false)
+    }
   }, [maxItems])
 
   const formatDate = (dateString: string) => {
     try {
-      const date = new Date(dateString)
+      if (!dateString || dateString.trim().length === 0) {
+        return 'Recent'
+      }
+      
+      const date = new Date(dateString.trim())
+      
+      // Check if the date is valid
+      if (isNaN(date.getTime())) {
+        return 'Recent'
+      }
+      
       return date.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'short',
         day: 'numeric'
       })
-    } catch {
+    } catch (err) {
+      console.warn('Error formatting date:', dateString, err)
       return 'Recent'
     }
   }
 
   const truncateText = (text: string, maxLength: number) => {
-    if (text.length <= maxLength) return text
-    return text.substring(0, maxLength).trim() + '...'
+    try {
+      if (!text || typeof text !== 'string') {
+        return ''
+      }
+      
+      if (text.length <= maxLength) {
+        return text
+      }
+      
+      return text.substring(0, maxLength).trim() + '...'
+    } catch (err) {
+      console.warn('Error truncating text:', text, err)
+      return ''
+    }
   }
 
   if (loading) {

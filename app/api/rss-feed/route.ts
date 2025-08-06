@@ -26,34 +26,98 @@ const RSS_CONFIG = {
 }
 
 async function tryFetchRSS(url: string): Promise<{ success: boolean; content?: string; error?: string }> {
+  let timeoutId: NodeJS.Timeout | null = null
+  let controller: AbortController | null = null
+  
   try {
+    // Validate URL before attempting fetch
+    if (!url || typeof url !== 'string' || url.trim().length === 0) {
+      return {
+        success: false,
+        error: 'Invalid URL provided'
+      }
+    }
+    
+    // Basic URL validation
+    try {
+      new URL(url)
+    } catch (urlError) {
+      return {
+        success: false,
+        error: 'Malformed URL provided'
+      }
+    }
+    
     console.log('Attempting to fetch RSS feed from:', url)
     
-    const controller = new AbortController()
-    const timeoutId = setTimeout(() => controller.abort(), 8000) // 8 second timeout
+    controller = new AbortController()
+    timeoutId = setTimeout(() => {
+      if (controller) {
+        controller.abort()
+      }
+    }, 8000) // 8 second timeout
     
-    const response = await fetch(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; RSS Reader/1.0)',
-        'Accept': 'application/rss+xml, application/xml, text/xml, application/atom+xml, text/html, */*',
-      },
-      cache: 'no-store',
-      redirect: 'follow',
-      signal: controller.signal
-    })
+    let response: Response
     
-    clearTimeout(timeoutId)
+    try {
+      response = await fetch(url, {
+        headers: {
+          'User-Agent': 'Mozilla/5.0 (compatible; RSS Reader/1.0)',
+          'Accept': 'application/rss+xml, application/xml, text/xml, application/atom+xml, text/html, */*',
+        },
+        cache: 'no-store',
+        redirect: 'follow',
+        signal: controller.signal
+      })
+    } catch (fetchError) {
+      if (timeoutId) clearTimeout(timeoutId)
+      
+      if (fetchError instanceof Error) {
+        if (fetchError.name === 'AbortError') {
+          return {
+            success: false,
+            error: 'Request timeout (8 seconds)'
+          }
+        }
+        return {
+          success: false,
+          error: `Network error: ${fetchError.message}`
+        }
+      }
+      
+      return {
+        success: false,
+        error: 'Unknown network error'
+      }
+    }
+    
+    if (timeoutId) clearTimeout(timeoutId)
+    
+    if (!response) {
+      return {
+        success: false,
+        error: 'No response received'
+      }
+    }
 
     console.log(`Response status for ${url}:`, response.status)
 
     if (!response.ok) {
       return { 
         success: false, 
-        error: `HTTP ${response.status}: ${response.statusText}` 
+        error: `HTTP ${response.status}: ${response.statusText || 'Unknown error'}` 
       }
     }
 
-    const content = await response.text()
+    let content: string
+    try {
+      content = await response.text()
+    } catch (textError) {
+      return {
+        success: false,
+        error: 'Failed to read response content'
+      }
+    }
     
     if (!content || content.trim().length === 0) {
       return { 
@@ -97,77 +161,135 @@ async function tryFetchRSS(url: string): Promise<{ success: boolean; content?: s
       error: 'Invalid RSS feed format' 
     }
   } catch (error: any) {
-    if (error.name === 'AbortError') {
+    if (timeoutId) clearTimeout(timeoutId)
+    
+    console.error(`Error fetching RSS from ${url}:`, error)
+    
+    if (error instanceof Error) {
+      if (error.name === 'AbortError') {
+        return { 
+          success: false, 
+          error: 'Request timeout (8 seconds)' 
+        }
+      }
       return { 
         success: false, 
-        error: 'Request timeout (8 seconds)' 
+        error: error.message || 'Unknown error' 
       }
     }
-    console.error(`Error fetching RSS from ${url}:`, error)
+    
     return { 
       success: false, 
-      error: error.message || 'Unknown error' 
+      error: 'Unknown error occurred' 
     }
   }
 }
 
 export async function GET(request: Request) {
-  // Check for a specific feed parameter in the URL
-  const { searchParams } = new URL(request.url)
-  const feedParam = searchParams.get('feed')
-  const testMode = searchParams.get('test') === 'true'
-  
-  // Determine which feeds to try
-  let feedsToTry: string[] = []
-  
-  // Check for custom RSS feed URL from environment
-  if (process.env.RSS_FEED_URL) {
-    // If a custom feed URL is set in environment, use it exclusively
-    feedsToTry = [process.env.RSS_FEED_URL]
-    console.log('Using custom RSS feed from environment:', process.env.RSS_FEED_URL)
-  } else if (feedParam) {
-    // If a specific feed URL is provided in query params, use only that
-    feedsToTry = [feedParam]
-  } else if (testMode || RSS_CONFIG.USE_FALLBACK_FEED) {
-    // In test mode or if configured, use fallback feeds
-    feedsToTry = RSS_CONFIG.FALLBACK_FEEDS
-  } else {
-    // Normal operation - try primary feeds first
-    feedsToTry = RSS_CONFIG.PRIMARY_FEEDS
-  }
-  
-  console.log('RSS Feed URLs to try:', feedsToTry)
-  
-  // Try each RSS URL in order until one succeeds
-  for (const url of feedsToTry) {
-    const result = await tryFetchRSS(url)
-    
-    if (result.success && result.content) {
-      console.log(`Successfully fetched RSS from: ${url}`)
-      
-      // Return the successful RSS content
-      return new NextResponse(result.content, {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/xml; charset=utf-8',
-          'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
-          'X-RSS-Source': url, // Include source URL for debugging
-        },
-      })
-    } else {
-      console.warn(`Failed to fetch from ${url}: ${result.error}`)
+  try {
+    // Validate request
+    if (!request || !request.url) {
+      console.error('RSS API: Invalid request object received')
+      return new NextResponse('Invalid request', { status: 400 })
     }
-  }
 
-  // All URLs failed - provide informative error RSS
-  console.error('All RSS feed URLs failed.')
-  
-  const errorMessage = testMode 
-    ? 'Test feeds are currently unavailable. Please check your internet connection.'
-    : 'The WorkFlo RSS feed service is currently unavailable. This could be due to server maintenance or configuration issues.'
-  
-  // Return a valid RSS feed with helpful error information
-  const errorRss = `<?xml version="1.0" encoding="UTF-8"?>
+    let searchParams: URLSearchParams
+    let feedParam: string | null = null
+    let testMode = false
+
+    try {
+      const url = new URL(request.url)
+      searchParams = url.searchParams
+      feedParam = searchParams.get('feed')
+      testMode = searchParams.get('test') === 'true'
+    } catch (urlError) {
+      console.error('RSS API: Failed to parse request URL:', urlError)
+      return new NextResponse('Invalid request URL', { status: 400 })
+    }
+    
+    // Determine which feeds to try
+    let feedsToTry: string[] = []
+    
+    try {
+      // Check for custom RSS feed URL from environment
+      if (process.env.RSS_FEED_URL) {
+        // If a custom feed URL is set in environment, use it exclusively
+        feedsToTry = [process.env.RSS_FEED_URL]
+        console.log('Using custom RSS feed from environment:', process.env.RSS_FEED_URL)
+      } else if (feedParam) {
+        // If a specific feed URL is provided in query params, use only that
+        feedsToTry = [feedParam]
+      } else if (testMode || RSS_CONFIG.USE_FALLBACK_FEED) {
+        // In test mode or if configured, use fallback feeds
+        feedsToTry = RSS_CONFIG.FALLBACK_FEEDS
+      } else {
+        // Normal operation - try primary feeds first
+        feedsToTry = RSS_CONFIG.PRIMARY_FEEDS
+      }
+      
+      // Filter out invalid URLs
+      feedsToTry = feedsToTry.filter(url => {
+        try {
+          new URL(url)
+          return true
+        } catch {
+          console.warn('RSS API: Skipping invalid URL:', url)
+          return false
+        }
+      })
+      
+      if (feedsToTry.length === 0) {
+        throw new Error('No valid RSS feed URLs available')
+      }
+      
+      console.log('RSS Feed URLs to try:', feedsToTry)
+      
+    } catch (configError) {
+      console.error('RSS API: Error preparing feed URLs:', configError)
+      return new NextResponse('Configuration error', { status: 500 })
+    }
+    
+    // Try each RSS URL in order until one succeeds
+    const errors: string[] = []
+    
+    for (const url of feedsToTry) {
+      try {
+        const result = await tryFetchRSS(url)
+        
+        if (result.success && result.content) {
+          console.log(`Successfully fetched RSS from: ${url}`)
+          
+          // Return the successful RSS content
+          return new NextResponse(result.content, {
+            status: 200,
+            headers: {
+              'Content-Type': 'application/xml; charset=utf-8',
+              'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
+              'X-RSS-Source': url, // Include source URL for debugging
+            },
+          })
+        } else {
+          const errorMessage = `Failed to fetch from ${url}: ${result.error}`
+          console.warn(errorMessage)
+          errors.push(errorMessage)
+        }
+      } catch (fetchError) {
+        const errorMessage = `Exception fetching from ${url}: ${fetchError instanceof Error ? fetchError.message : 'Unknown error'}`
+        console.error(errorMessage)
+        errors.push(errorMessage)
+      }
+    }
+
+    // All URLs failed - provide informative error RSS
+    console.error('All RSS feed URLs failed:', errors.join('; '))
+    
+    const errorMessage = testMode 
+      ? 'Test feeds are currently unavailable. Please check your internet connection.'
+      : 'The WorkFlo RSS feed service is currently unavailable. This could be due to server maintenance or configuration issues.'
+    
+    // Return a valid RSS feed with helpful error information
+    try {
+      const errorRss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>WorkFlo News Feed</title>
@@ -177,7 +299,15 @@ export async function GET(request: Request) {
     <generator>WorkFlo RSS Service</generator>
     <item>
       <title>RSS Feed Service Status</title>
-      <description>${errorMessage} The feed URLs have been configured but are not responding. Please verify the RSS feed URL with your provider or try again later.</description>
+      <description>${errorMessage.replace(/[<>&"]/g, (match) => {
+        const entityMap: { [key: string]: string } = {
+          '<': '&lt;',
+          '>': '&gt;',
+          '&': '&amp;',
+          '"': '&quot;'
+        }
+        return entityMap[match] || match
+      })} The feed URLs have been configured but are not responding. Please verify the RSS feed URL with your provider or try again later.</description>
       <link>https://rss.workflo.it</link>
       <guid isPermaLink="false">status-${Date.now()}</guid>
       <pubDate>${new Date().toUTCString()}</pubDate>
@@ -191,13 +321,34 @@ export async function GET(request: Request) {
     </item>
   </channel>
 </rss>`
-  
-  return new NextResponse(errorRss, {
-    status: 200, // Return 200 to prevent client errors
-    headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'no-cache', // Don't cache error responses
-      'X-RSS-Status': 'error', // Signal error state
-    },
-  })
+      
+      return new NextResponse(errorRss, {
+        status: 200, // Return 200 to prevent client errors
+        headers: {
+          'Content-Type': 'application/xml; charset=utf-8',
+          'Cache-Control': 'no-cache', // Don't cache error responses
+          'X-RSS-Status': 'error', // Signal error state
+          'X-RSS-Errors': errors.slice(0, 5).join('; ').substring(0, 500), // Include error details (truncated)
+        },
+      })
+    } catch (rssGenerationError) {
+      console.error('RSS API: Failed to generate error RSS:', rssGenerationError)
+      return new NextResponse('RSS feed service unavailable', {
+        status: 503,
+        headers: {
+          'Content-Type': 'text/plain',
+          'Cache-Control': 'no-cache',
+        },
+      })
+    }
+  } catch (error) {
+    console.error('RSS API: Unexpected error:', error)
+    return new NextResponse('Internal server error', {
+      status: 500,
+      headers: {
+        'Content-Type': 'text/plain',
+        'Cache-Control': 'no-cache',
+      },
+    })
+  }
 }

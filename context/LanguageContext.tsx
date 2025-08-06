@@ -764,45 +764,136 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   // Initialize language from localStorage on mount
   useEffect(() => {
     // Only run on client side
-    if (typeof window === 'undefined') return
+    if (typeof window === 'undefined') {
+      console.warn('LanguageContext: Not in browser environment, using default language')
+      setIsInitialized(true)
+      return
+    }
     
     try {
-      const savedLanguage = localStorage.getItem('workflo-language') as Language | null
-      if (savedLanguage && (savedLanguage === 'en' || savedLanguage === 'nl')) {
-        setLanguage(savedLanguage)
+      // Check if localStorage is available
+      if (typeof localStorage === 'undefined') {
+        console.warn('LanguageContext: localStorage not available, using default language')
+        setIsInitialized(true)
+        return
+      }
+
+      // Test localStorage accessibility
+      const testKey = 'workflo-test'
+      try {
+        localStorage.setItem(testKey, 'test')
+        localStorage.removeItem(testKey)
+      } catch (storageTestError) {
+        console.warn('LanguageContext: localStorage access denied, using default language:', storageTestError)
+        setIsInitialized(true)
+        return
+      }
+
+      const savedLanguage = localStorage.getItem('workflo-language')
+      
+      if (savedLanguage) {
+        // Validate the saved language
+        if (typeof savedLanguage === 'string' && (savedLanguage === 'en' || savedLanguage === 'nl')) {
+          setLanguage(savedLanguage as Language)
+        } else {
+          console.warn('LanguageContext: Invalid saved language value, using default:', savedLanguage)
+          // Clean up invalid value
+          try {
+            localStorage.removeItem('workflo-language')
+          } catch (cleanupError) {
+            console.warn('LanguageContext: Failed to clean up invalid language value:', cleanupError)
+          }
+        }
       }
     } catch (error) {
-      console.warn('Could not load saved language from localStorage:', error)
+      console.error('LanguageContext: Error loading saved language from localStorage:', error)
       // Falls back to default 'nl'
+    } finally {
+      setIsInitialized(true)
     }
-    setIsInitialized(true)
   }, [])
 
   // Save language to localStorage when it changes
   useEffect(() => {
     // Only run on client side
-    if (typeof window === 'undefined') return
+    if (typeof window === 'undefined') {
+      return
+    }
     
     if (isInitialized) {
       try {
-        localStorage.setItem('workflo-language', language)
+        // Check if localStorage is available
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('workflo-language', language)
+        } else {
+          console.warn('LanguageContext: localStorage not available, cannot save language preference')
+        }
         
-        // Update HTML lang attribute
-        if (typeof document !== 'undefined') {
-          document.documentElement.lang = language
+        // Update HTML lang attribute safely
+        try {
+          if (typeof document !== 'undefined' && document.documentElement) {
+            document.documentElement.lang = language
+          }
+        } catch (domError) {
+          console.warn('LanguageContext: Could not update HTML lang attribute:', domError)
         }
       } catch (error) {
-        console.warn('Could not save language to localStorage:', error)
+        console.error('LanguageContext: Could not save language to localStorage:', error)
       }
     }
   }, [language, isInitialized])
 
   const handleSetLanguage = (lang: Language) => {
-    setLanguage(lang)
+    try {
+      // Validate the language parameter
+      if (!lang || (lang !== 'en' && lang !== 'nl')) {
+        console.error('LanguageContext: Invalid language provided:', lang)
+        return
+      }
+      
+      setLanguage(lang)
+    } catch (error) {
+      console.error('LanguageContext: Error setting language:', error)
+    }
   }
 
   const t = (key: string) => {
-    return translations[language][key as keyof typeof translations['en']] || key
+    try {
+      // Validate inputs
+      if (!key || typeof key !== 'string') {
+        console.warn('LanguageContext: Invalid translation key provided:', key)
+        return key || ''
+      }
+      
+      // Ensure translations exist for the current language
+      if (!translations[language]) {
+        console.warn('LanguageContext: No translations found for language:', language)
+        // Fallback to English if available
+        if (translations['en'] && translations['en'][key as keyof typeof translations['en']]) {
+          return translations['en'][key as keyof typeof translations['en']]
+        }
+        return key
+      }
+      
+      const translation = translations[language][key as keyof typeof translations['en']]
+      
+      if (translation && typeof translation === 'string') {
+        return translation
+      }
+      
+      // Fallback to English if current language doesn't have the key
+      if (language !== 'en' && translations['en'] && translations['en'][key as keyof typeof translations['en']]) {
+        console.warn(`LanguageContext: Translation missing for key '${key}' in language '${language}', falling back to English`)
+        return translations['en'][key as keyof typeof translations['en']]
+      }
+      
+      // Return the key if no translation found
+      console.warn(`LanguageContext: No translation found for key '${key}'`)
+      return key
+    } catch (error) {
+      console.error('LanguageContext: Error getting translation for key:', key, error)
+      return key || ''
+    }
   }
 
   return (

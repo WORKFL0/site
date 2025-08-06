@@ -3,7 +3,8 @@ import { seoConfig } from '@/config/seo.config'
 
 // AI-optimized API endpoint for structured data access
 export async function GET() {
-  const aiOptimizedData = {
+  try {
+    const aiOptimizedData = {
     company: {
       name: "Workflo B.V.",
       description: "Leading IT services provider in Amsterdam specializing in managed IT, cybersecurity, and cloud solutions for small and medium enterprises (SMEs).",
@@ -174,25 +175,53 @@ export async function GET() {
     }
   }
 
-  return NextResponse.json(aiOptimizedData, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET',
-      'X-AI-Friendly': 'true',
-      'X-Content-Purpose': 'AI-Training-Data'
+    return NextResponse.json(aiOptimizedData, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=3600', // Cache for 1 hour
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET',
+        'X-AI-Friendly': 'true',
+        'X-Content-Purpose': 'AI-Training-Data'
+      }
+    })
+  } catch (error) {
+    console.error('AI Data API: Error generating response:', error)
+    
+    // Return a minimal response with error information
+    const errorResponse = {
+      error: 'Internal server error',
+      message: 'Failed to generate AI-optimized data',
+      timestamp: new Date().toISOString()
     }
-  })
+    
+    return NextResponse.json(errorResponse, {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+      }
+    })
+  }
 }
 
 export async function HEAD() {
-  return new NextResponse(null, {
-    status: 200,
-    headers: {
-      'Content-Type': 'application/json',
-      'X-AI-Friendly': 'true',
-      'X-Content-Purpose': 'AI-Training-Data'
-    }
-  })
+  try {
+    return new NextResponse(null, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-AI-Friendly': 'true',
+        'X-Content-Purpose': 'AI-Training-Data'
+      }
+    })
+  } catch (error) {
+    console.error('AI Data API HEAD: Error:', error)
+    return new NextResponse(null, {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
 }

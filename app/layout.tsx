@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 import CookieConsent from '@/components/CookieConsent'
 import { LanguageProvider } from '@/context/LanguageContext'
 import GoogleAnalytics from '@/components/Analytics/GoogleAnalytics'
+import ErrorBoundary from '@/components/ErrorBoundary'
 import { 
   MicrosoftClarity, 
   HotjarTracking, 
@@ -190,10 +191,24 @@ export default function RootLayout({
         <meta name="entity:revenue-range" content="€1M-€10M" />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <LanguageProvider>
-          {children}
-          <CookieConsent />
-        </LanguageProvider>
+        <ErrorBoundary
+          onError={(error, errorInfo) => {
+            // Log error details for debugging
+            const errorDetails = {
+              message: error.message,
+              stack: error.stack,
+              componentStack: errorInfo.componentStack,
+              timestamp: new Date().toISOString(),
+              url: typeof window !== 'undefined' ? window.location.href : 'N/A'
+            }
+            console.error('Root ErrorBoundary caught error:', errorDetails)
+          }}
+        >
+          <LanguageProvider>
+            {children}
+            <CookieConsent />
+          </LanguageProvider>
+        </ErrorBoundary>
         
         {/* Analytics and Tracking */}
         <Analytics />
