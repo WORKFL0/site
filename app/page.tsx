@@ -9,6 +9,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import MobileMenu from '@/components/layout/MobileMenu'
 import PricingCalculator from '@/components/PricingCalculator'
+import NewsFeed from '@/components/NewsFeed'
 import { useLanguage } from '@/context/LanguageContext'
 
 export default function Home() {
@@ -810,6 +811,13 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Industry News Feed - Gray Background */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <NewsFeed maxItems={6} showDescription={true} />
         </div>
       </section>
 

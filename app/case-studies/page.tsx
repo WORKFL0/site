@@ -14,7 +14,7 @@ export default function CaseStudiesPage() {
     {
       client: 'Schulte & Lestraden',
       industry: language === 'en' ? 'Installation Services' : 'Installatie Diensten',
-      logo: '/images/logos/SchulteLestrade_Logo.jpg',
+      logo: '/images/logos/senl.png',
       duration: 'Managed IT Services',
       linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7236276208433344512',
       challenge: language === 'en'
@@ -38,6 +38,7 @@ export default function CaseStudiesPage() {
       industry: language === 'en' ? 'Scientific & Creative Agency' : 'Wetenschappelijk & Creatief Bureau',
       logo: '/images/logos/duwtje.svg',
       duration: 'Complete IT Partnership',
+      linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7233749063135903744',
       challenge: language === 'en'
         ? 'A scientific and creative behavioral agency needed a reliable IT partner to support their innovative work and ensure their digital infrastructure could keep pace with their creative processes.'
         : 'Een wetenschappelijk en creatief gedragsbureau had een betrouwbare IT-partner nodig om hun innovatieve werk te ondersteunen en ervoor te zorgen dat hun digitale infrastructuur gelijke tred kon houden met hun creatieve processen.',

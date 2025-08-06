@@ -196,9 +196,11 @@ export default function CareersPage() {
                   met de nieuwste technologieën terwijl je bijdraagt aan echte projecten voor Amsterdamse bedrijven.
                 </p>
                 <div className="flex items-center justify-center gap-4 mb-4">
-                  <div className="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center">
-                    <span className="text-3xl font-bold text-black">SBB</span>
-                  </div>
+                  <img 
+                    src="/images/sbb-logo.png" 
+                    alt="SBB Logo" 
+                    className="w-20 h-20 object-contain"
+                  />
                   <div className="text-left">
                     <p className="font-bold text-black">Erkend Leerbedrijf</p>
                     <p className="text-sm text-gray-600">Samenwerkingsorganisatie Beroepsonderwijs Bedrijfsleven</p>
@@ -206,7 +208,7 @@ export default function CareersPage() {
                 </div>
                 <p className="text-gray-600 mb-6">
                   Interesse in een stage bij Workflo? Stuur je motivatiebrief en CV naar 
-                  <a href="mailto:stage@workflo.it" className="text-yellow-600 hover:text-yellow-700 font-semibold">stage@workflo.it</a>
+                  <a href="mailto:work@workflo.nl" className="text-yellow-600 hover:text-yellow-700 font-semibold">work@workflo.nl</a>
                 </p>
               </div>
             </div>

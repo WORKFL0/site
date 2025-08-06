@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useLanguage } from '@/context/LanguageContext'
+import UptimeStatus from '@/components/ui/UptimeStatus'
 
 const Footer = () => {
   const { t } = useLanguage()
@@ -141,13 +142,16 @@ const Footer = () => {
           <p className="text-sm text-gray-500">
             © {currentYear} Workflo. {t('footer.rights')}.
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-sm text-gray-500 hover:text-warning-yellow transition-colors">
-              {t('footer.privacy')}
-            </Link>
-            <Link href="/terms" className="text-sm text-gray-500 hover:text-warning-yellow transition-colors">
-              {t('footer.terms')}
-            </Link>
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 mt-4 md:mt-0">
+            <div className="flex space-x-6">
+              <Link href="/privacy" className="text-sm text-gray-500 hover:text-warning-yellow transition-colors">
+                {t('footer.privacy')}
+              </Link>
+              <Link href="/terms" className="text-sm text-gray-500 hover:text-warning-yellow transition-colors">
+                {t('footer.terms')}
+              </Link>
+            </div>
+            <UptimeStatus />
           </div>
         </div>
       </div>
