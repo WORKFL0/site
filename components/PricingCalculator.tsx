@@ -31,77 +31,31 @@ const PricingCalculator = () => {
 
   const pricingOptions: PricingOption[] = [
     {
-      id: 'break-fix',
-      name: 'Break-Fix / Ad-hoc',
-      nameNL: 'Break-Fix / Ad-hoc',
-      description: 'Direct support when needed, pay only for usage',
-      descriptionNL: 'Direct support bij storing, alleen betalen als je het gebruikt',
-      price: 110,
-      unit: 'per hour',
-      unitNL: 'per uur',
+      id: 'fixed-onsite',
+      name: 'Fixed Fee Onsite Support',
+      nameNL: 'Fixed Fee Onsite Support',
+      description: 'Unlimited on-site + remote support, fully managed IT',
+      descriptionNL: 'Onbeperkte hulp op locatie + remote, volledig beheerde IT',
+      price: 90,
+      unit: 'per user/server per month',
+      unitNL: 'per gebruiker/server per maand',
       features: [
-        'Direct support for issues',
-        'Pay only when you use it',
-        'No commitments',
-        'Response within business hours'
+        'Unlimited on-site visits',
+        'Everything from remote support included',
+        'Priority response (1 hour)',
+        'Dedicated account manager',
+        'Quarterly business reviews',
+        'Strategic IT planning'
       ],
       featuresNL: [
-        'Direct support bij storing',
-        'Alleen betalen als je het gebruikt',
-        'Geen verplichtingen',
-        'Reactie binnen kantooruren'
+        'Onbeperkte locatiebezoeken',
+        'Alles van remote support inbegrepen',
+        'Prioriteit reactie (1 uur)',
+        'Dedicated accountmanager',
+        'Kwartaal business reviews',
+        'Strategische IT planning'
       ],
-      type: 'hourly'
-    },
-    {
-      id: 'strippenkaart-10',
-      name: '10-Hour Support Card',
-      nameNL: 'Strippenkaart 10u',
-      description: 'Pre-purchase 10 hours at discounted rate',
-      descriptionNL: '10 uur vooraf inkopen met korting',
-      price: 950,
-      unit: 'total (€95/hour)',
-      unitNL: 'totaal (€95/uur)',
-      hours: 10,
-      features: [
-        '10 hours pre-purchased',
-        'Quick deployment for problems',
-        'Better rate than individual hours',
-        'Valid for 12 months'
-      ],
-      featuresNL: [
-        '10 uur vooraf inkopen',
-        'Snelle inzet bij problemen',
-        'Voordeliger tarief dan losse uren',
-        'Geldig voor 12 maanden'
-      ],
-      type: 'strippenkaart',
-      savings: '€150'
-    },
-    {
-      id: 'strippenkaart-20',
-      name: '20-Hour Support Card',
-      nameNL: 'Strippenkaart 20u',
-      description: 'Pre-purchase 20 hours with extra discount',
-      descriptionNL: '20 uur vooraf inkopen met extra korting',
-      price: 1800,
-      unit: 'total (€90/hour)',
-      unitNL: 'totaal (€90/uur)',
-      hours: 20,
-      features: [
-        '20 hours pre-purchased',
-        'Extra discount',
-        'Immediately deployable for any IT question',
-        'Valid for 12 months'
-      ],
-      featuresNL: [
-        '20 uur vooraf inkopen',
-        'Extra korting',
-        'Direct inzetbaar bij elke IT-vraag',
-        'Geldig voor 12 maanden'
-      ],
-      type: 'strippenkaart',
-      savings: '€400'
+      type: 'fixed'
     },
     {
       id: 'fixed-remote',
@@ -132,31 +86,77 @@ const PricingCalculator = () => {
       recommended: true
     },
     {
-      id: 'fixed-onsite',
-      name: 'Fixed Fee Onsite Support',
-      nameNL: 'Fixed Fee Onsite Support',
-      description: 'Unlimited on-site + remote support, fully managed IT',
-      descriptionNL: 'Onbeperkte hulp op locatie + remote, volledig beheerde IT',
-      price: 90,
-      unit: 'per user/server per month',
-      unitNL: 'per gebruiker/server per maand',
+      id: 'strippenkaart-20',
+      name: '20-Hour Support Card',
+      nameNL: 'Strippenkaart 20u',
+      description: 'Pre-purchase 20 hours with extra discount',
+      descriptionNL: '20 uur vooraf inkopen met extra korting',
+      price: 1800,
+      unit: 'total (€90/hour)',
+      unitNL: 'totaal (€90/uur)',
+      hours: 20,
       features: [
-        'Unlimited on-site visits',
-        'Everything from remote support included',
-        'Priority response (1 hour)',
-        'Dedicated account manager',
-        'Quarterly business reviews',
-        'Strategic IT planning'
+        '20 hours pre-purchased',
+        'Extra discount',
+        'Immediately deployable for any IT question',
+        'Valid for 12 months'
       ],
       featuresNL: [
-        'Onbeperkte locatiebezoeken',
-        'Alles van remote support inbegrepen',
-        'Prioriteit reactie (1 uur)',
-        'Dedicated accountmanager',
-        'Kwartaal business reviews',
-        'Strategische IT planning'
+        '20 uur vooraf inkopen',
+        'Extra korting',
+        'Direct inzetbaar bij elke IT-vraag',
+        'Geldig voor 12 maanden'
       ],
-      type: 'fixed'
+      type: 'strippenkaart',
+      savings: '€400'
+    },
+    {
+      id: 'strippenkaart-10',
+      name: '10-Hour Support Card',
+      nameNL: 'Strippenkaart 10u',
+      description: 'Pre-purchase 10 hours at discounted rate',
+      descriptionNL: '10 uur vooraf inkopen met korting',
+      price: 950,
+      unit: 'total (€95/hour)',
+      unitNL: 'totaal (€95/uur)',
+      hours: 10,
+      features: [
+        '10 hours pre-purchased',
+        'Quick deployment for problems',
+        'Better rate than individual hours',
+        'Valid for 12 months'
+      ],
+      featuresNL: [
+        '10 uur vooraf inkopen',
+        'Snelle inzet bij problemen',
+        'Voordeliger tarief dan losse uren',
+        'Geldig voor 12 maanden'
+      ],
+      type: 'strippenkaart',
+      savings: '€150'
+    },
+    {
+      id: 'break-fix',
+      name: 'Break-Fix / Ad-hoc',
+      nameNL: 'Break-Fix / Ad-hoc',
+      description: 'Direct support when needed, pay only for usage',
+      descriptionNL: 'Direct support bij storing, alleen betalen als je het gebruikt',
+      price: 110,
+      unit: 'per hour',
+      unitNL: 'per uur',
+      features: [
+        'Direct support for issues',
+        'Pay only when you use it',
+        'No commitments',
+        'Response within business hours'
+      ],
+      featuresNL: [
+        'Direct support bij storing',
+        'Alleen betalen als je het gebruikt',
+        'Geen verplichtingen',
+        'Reactie binnen kantooruren'
+      ],
+      type: 'hourly'
     }
   ]
 

@@ -13,11 +13,11 @@ const Header = () => {
 
   const menuItems = [
     { name: t('nav.services'), href: '/diensten' },
+    { name: t('nav.pricing'), href: '/tarieven' },
+    { name: t('nav.calculator'), href: '/calculator' },
     { name: t('nav.shop'), href: '/shop' },
     { name: t('nav.support'), href: '/support' },
     { name: t('nav.about'), href: '/about' },
-    { name: t('nav.itcheck'), href: '/tevredenheidscheck' },
-    { name: t('nav.networkscan'), href: '/network-scan' },
     { name: t('nav.contact'), href: '/contact' },
   ]
 

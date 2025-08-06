@@ -85,7 +85,7 @@ export default function ShopPage() {
                   </p>
                   <div className="space-y-2">
                     <a 
-                      href="https://shop.workflo.it" 
+                      href="https://app.pax8.com/public/storefronts/workfloit" 
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-block bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500 transition-colors"
@@ -99,7 +99,7 @@ export default function ShopPage() {
 
             <div className="bg-white rounded-lg shadow-lg overflow-hidden" style={{ minHeight: '700px' }}>
               <iframe
-                src="https://shop.workflo.it"
+                src="https://app.pax8.com/public/storefronts/workfloit"
                 width="100%"
                 height="700"
                 style={{ border: 'none', minHeight: '700px' }}
