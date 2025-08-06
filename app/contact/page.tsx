@@ -405,25 +405,46 @@ export default function ContactPage() {
                   </div>
                 </div>
                 
-                {/* Office Info */}
-                <div className="bg-gray-50 rounded-2xl p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{t('contact.office.title')}</h3>
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-primary-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                      </svg>
-                      <div>
-                        <p className="text-gray-900 font-medium">{t('contact.office.name')}</p>
-                        <p className="text-gray-600">
-                          Koivistokade 3<br />
-                          1013AC Amsterdam<br />
-                          Nederland
-                        </p>
+                {/* Office Info with Building Photo */}
+                <div className="bg-gray-50 rounded-2xl p-6 relative overflow-hidden">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 relative z-10">{t('contact.office.title')}</h3>
+                  
+                  {/* Building Photo */}
+                  <div className="mb-6 relative z-10">
+                    <div className="rounded-lg overflow-hidden shadow-lg">
+                      <img 
+                        src="/images/building.jpg" 
+                        alt="Workflo Kantoor - Koivistokade 3, Amsterdam"
+                        className="w-full h-48 object-cover"
+                      />
+                      <div className="absolute bottom-2 left-2 bg-black/70 text-white px-3 py-1 rounded-lg flex items-center gap-2">
+                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                        <span className="text-sm font-medium">Ons kantoor</span>
                       </div>
                     </div>
                     
+                    {/* Address card with modern styling */}
+                    <div className="bg-white rounded-lg p-4 border-l-4 border-yellow-400 shadow-sm">
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-yellow-100 rounded-lg">
+                          <svg className="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                          </svg>
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-gray-900 font-semibold">{t('contact.office.name')}</p>
+                          <div className="text-gray-600 mt-1">
+                            <div className="font-medium text-gray-800">Koivistokade 3</div>
+                            <div>1013AC Amsterdam</div>
+                            <div>Nederland</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3 relative z-10">
                     <div className="flex items-start gap-3">
                       <svg className="w-5 h-5 text-primary-500 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -438,7 +459,7 @@ export default function ContactPage() {
                     </div>
                   </div>
                   
-                  <Button href="https://maps.google.com/maps?q=Koivistokade+3+Amsterdam" target="_blank" variant="outline" size="sm" className="w-full mt-4">
+                  <Button href="https://maps.google.com/maps?q=Koivistokade+3+Amsterdam" target="_blank" variant="outline" size="sm" className="w-full mt-6 relative z-10">
                     {t('contact.route')}
                   </Button>
                 </div>
