@@ -130,12 +130,13 @@ export default function Home() {
 
   // Previous clients we've worked with
   const previousClients = [
+    { name: "Leyden Labs", src: "/images/logos/leydenlabs_Logo.png" },
+    { name: "TBWA", src: "/images/logos/tbwa_Logo.png" },
+    { name: "iO Digital", src: "/images/logos/io_Logo.png" },
+    { name: "Daily Paper", src: "/images/logos/dailypaper_Logo.png" },
     { name: "Greenpeace", src: "/images/logos/Greenpeace_logo.png" },
     { name: "JUMP", src: "/images/logos/JUMP_Logo.jpg" },
-    { name: "L'Adress", src: "/images/logos/ladress.png" },
-    { name: "Daily Paper", src: "/images/logos/dailypaper_Logo.png" },
-    { name: "TBWA", src: "/images/logos/tbwa_Logo.png" },
-    { name: "iO Digital", src: "/images/logos/io_Logo.png" }
+    { name: "L'Adress", src: "/images/logos/ladress.png" }
   ]
 
   // Combine for homepage display

@@ -35,7 +35,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-2">
             <div className="mb-4">
-              <Link href="/" className="inline-block">
+              <Link href="/" className="inline-block bg-white rounded-lg p-2">
                 <Image
                   src="/images/logos/workflo-logo.png"
                   alt="Workflo"

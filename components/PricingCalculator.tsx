@@ -449,13 +449,65 @@ const PricingCalculator = () => {
               </div>
               
               <div className="border-t border-gray-700 pt-4">
-                <div className="flex justify-between items-center text-2xl font-bold mb-2">
-                  <span>{language === 'en' ? 'Monthly:' : 'Maandelijks:'}</span>
-                  <span className="text-yellow-400">€{totalPrice.toLocaleString()}</span>
-                </div>
-                <div className="text-sm text-gray-400">
-                  {language === 'en' ? 'Annual:' : 'Jaarlijks:'} €{(totalPrice * 12).toLocaleString()}
-                </div>
+                {selectedOption === 'break-fix' ? (
+                  <>
+                    <div className="text-center">
+                      <div className="text-xl font-bold mb-2">
+                        <span className="text-yellow-400">€110</span>
+                        <span className="text-gray-300"> {language === 'en' ? 'per hour' : 'per uur'}</span>
+                      </div>
+                      <div className="text-sm text-gray-400">
+                        {language === 'en' 
+                          ? 'Pay only when you need support'
+                          : 'Betaal alleen wanneer u ondersteuning nodig heeft'}
+                      </div>
+                    </div>
+                  </>
+                ) : selectedOption.startsWith('strippenkaart') ? (
+                  <>
+                    <div className="flex justify-between items-center text-2xl font-bold mb-2">
+                      <span>{language === 'en' ? 'Total:' : 'Totaal:'}</span>
+                      <span className="text-yellow-400">€{(() => {
+                        const option = pricingOptions.find(o => o.id === selectedOption)
+                        return option ? option.price : 0
+                      })()}</span>
+                    </div>
+                    <div className="text-sm text-gray-400 mb-2">
+                      {language === 'en' ? 'Monthly average:' : 'Maandelijks gemiddelde:'} €{totalPrice}
+                    </div>
+                    {/* ETA Calculator for Prepaid */}
+                    <div className="mt-3 p-3 bg-blue-500/20 rounded-lg border border-blue-500">
+                      <div className="text-blue-400 text-sm font-medium mb-1">
+                        {language === 'en' ? 'Estimated Duration:' : 'Geschatte Duur:'}
+                      </div>
+                      <div className="text-white text-lg font-bold">
+                        {(() => {
+                          const option = pricingOptions.find(o => o.id === selectedOption)
+                          if (!option?.hours) return ''
+                          // Estimate 2 hours per employee per month average
+                          const hoursPerMonth = employees * 2
+                          const months = Math.ceil(option.hours / hoursPerMonth)
+                          return `${months} ${language === 'en' ? 'months' : 'maanden'}`
+                        })()}
+                      </div>
+                      <div className="text-xs text-gray-400 mt-1">
+                        {language === 'en' 
+                          ? '*Based on average usage, depends on your team\'s needs'
+                          : '*Gebaseerd op gemiddeld gebruik, afhankelijk van uw team'}
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex justify-between items-center text-2xl font-bold mb-2">
+                      <span>{language === 'en' ? 'Monthly:' : 'Maandelijks:'}</span>
+                      <span className="text-yellow-400">€{totalPrice.toLocaleString()}</span>
+                    </div>
+                    <div className="text-sm text-gray-400">
+                      {language === 'en' ? 'Annual:' : 'Jaarlijks:'} €{(totalPrice * 12).toLocaleString()}
+                    </div>
+                  </>
+                )}
               </div>
               
               {savings > 0 && selectedOption.startsWith('fixed') && (
@@ -502,13 +554,21 @@ const PricingCalculator = () => {
             {/* License Info */}
             <div className="bg-yellow-50 border border-yellow-400 rounded-xl p-4 mt-6">
               <h4 className="font-bold text-black mb-2 text-sm">
-                {language === 'en' ? '💡 All Licenses Included' : '💡 Alle Licenties Inbegrepen'}
+                {language === 'en' ? '💡 Software Licenses' : '💡 Software Licenties'}
               </h4>
-              <p className="text-xs text-gray-700">
-                {language === 'en' 
-                  ? 'Fixed Fee packages include all software licenses (except Office 365)'
-                  : 'Fixed Fee pakketten zijn inclusief alle software licenties (behalve Office 365)'}
-              </p>
+              {selectedOption.startsWith('fixed') ? (
+                <p className="text-xs text-gray-700">
+                  {language === 'en' 
+                    ? 'Fixed Fee includes ALL licenses (Backup, EDR/MDR, Monitoring, etc.) except Office 365'
+                    : 'Fixed Fee inclusief ALLE licenties (Backup, EDR/MDR, Monitoring, etc.) behalve Office 365'}
+                </p>
+              ) : (
+                <p className="text-xs text-gray-700">
+                  {language === 'en' 
+                    ? 'Break-Fix: Additional licenses needed for Backup, EDR/MDR, Monitoring (RMM), etc.'
+                    : 'Break-Fix: Extra licenties nodig voor Backup, EDR/MDR, Monitoring (RMM), etc.'}
+                </p>
+              )}
             </div>
 
             {/* Why Fixed Fee */}
