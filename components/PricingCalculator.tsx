@@ -213,12 +213,12 @@ const PricingCalculator = () => {
     <div className="max-w-6xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-white mb-4">
+        <h2 className="text-4xl font-bold text-white mb-4 drop-shadow-lg">
           {language === 'en' 
             ? 'Calculate Your IT Support Investment'
             : 'Bereken Uw IT Support Investering'}
         </h2>
-        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+        <p className="text-xl text-white/90 max-w-3xl mx-auto font-medium drop-shadow-md">
           {language === 'en'
             ? 'Find the perfect IT support package for your business. Transparent pricing, no hidden costs.'
             : 'Vind het perfecte IT-ondersteuningspakket voor uw bedrijf. Transparante prijzen, geen verborgen kosten.'}
@@ -280,10 +280,10 @@ const PricingCalculator = () => {
 
           {/* Office 365 Package Selection */}
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-2xl font-bold text-black mb-4">
+            <h3 className="text-2xl font-bold text-gray-900 mb-4">
               {language === 'en' ? 'Microsoft 365 Licenses (Optional)' : 'Microsoft 365 Licenties (Optioneel)'}
             </h3>
-            <p className="text-gray-600 text-sm mb-4">
+            <p className="text-gray-800 text-sm mb-4 font-medium">
               {language === 'en' 
                 ? 'Add Microsoft 365 licenses to see your complete monthly IT investment'
                 : 'Voeg Microsoft 365 licenties toe om uw complete maandelijkse IT-investering te zien'}

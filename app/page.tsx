@@ -16,6 +16,7 @@ export default function Home() {
   const { t, language } = useLanguage()
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const [activeService, setActiveService] = useState(0)
+  const [videosInView, setVideosInView] = useState({})
   
   // Scroll-triggered animation refs
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -24,6 +25,12 @@ export default function Home() {
   const [teamRef, teamInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [testimonialsRef, testimonialsInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [industryRef, industryInView] = useInView({ triggerOnce: true, threshold: 0.1 })
+  
+  // Video lazy loading refs
+  const [statsVideoRef, statsVideoInView] = useInView({ triggerOnce: true, threshold: 0.3 })
+  const [servicesVideoRef, servicesVideoInView] = useInView({ triggerOnce: true, threshold: 0.3 })
+  const [teamVideoRef, teamVideoInView] = useInView({ triggerOnce: true, threshold: 0.3 })
+  const [ctaVideoRef, ctaVideoInView] = useInView({ triggerOnce: true, threshold: 0.3 })
   
   // Scroll-based animations
   const { scrollYProgress } = useScroll()
@@ -61,7 +68,7 @@ export default function Home() {
       icon: "🛡️",
       highlight: t('services.managed_it.highlight'),
       outcome: t('services.managed_it.outcome'),
-      animation: "/videos/workflo-code-animation.mp4"
+      animation: "/videos/Workflo-code-animatie-2.mp4"
     },
     {
       title: t('services.cybersecurity.title'),
@@ -69,7 +76,7 @@ export default function Home() {
       icon: "🔒",
       highlight: t('services.cybersecurity.highlight'),
       outcome: t('services.cybersecurity.outcome'),
-      animation: "/videos/security-animation.gif"
+      animation: "/videos/Security_1.mp4"
     },
     {
       title: t('services.cloud.title'),
@@ -77,7 +84,7 @@ export default function Home() {
       icon: "☁️",
       highlight: t('services.cloud.highlight'),
       outcome: t('services.cloud.outcome'),
-      animation: "/videos/mobile-device-animation.mp4"
+      animation: "/videos/Mobile-Device-Header-1.mp4"
     },
     {
       title: t('services.consulting.title'),
@@ -85,7 +92,7 @@ export default function Home() {
       icon: "💡",
       highlight: t('services.consulting.highlight'),
       outcome: t('services.consulting.outcome'),
-      animation: "/videos/workflo-w-animation.mp4"
+      animation: "/videos/Workflo_W_Mobile_1.mp4"
     },
     {
       title: t('services.gdpr.title'),
@@ -93,7 +100,7 @@ export default function Home() {
       icon: "📊",
       highlight: t('services.gdpr.highlight'),
       outcome: t('services.gdpr.outcome'),
-      animation: null
+      animation: "/videos/Workflo-code-animatie-3.mp4"
     },
     {
       title: t('services.network.title'),
@@ -101,7 +108,7 @@ export default function Home() {
       icon: "📡",
       highlight: t('services.network.highlight'),
       outcome: t('services.network.outcome'),
-      animation: null
+      animation: "/videos/Mobile-Device-Header-3.mp4"
     },
     {
       title: t('services.backup.title'),
@@ -109,7 +116,7 @@ export default function Home() {
       icon: "💾",
       highlight: t('services.backup.highlight'),
       outcome: t('services.backup.outcome'),
-      animation: null
+      animation: "/videos/Workflo_W_final_1.mp4"
     },
     {
       title: t('services.support.title'),
@@ -117,7 +124,7 @@ export default function Home() {
       icon: "📱",
       highlight: t('services.support.highlight'),
       outcome: t('services.support.outcome'),
-      animation: "/videos/mobile-device-header.mp4"
+      animation: "/videos/Mobile-Device-Header-2.mp4"
     }
   ]
 
@@ -214,7 +221,7 @@ export default function Home() {
           }}></div>
         </motion.div>
         
-        {/* Video Background with Workflo Animation */}
+        {/* Primary Video Background with Workflo Code Animation */}
         <motion.div 
           className="absolute inset-0 overflow-hidden"
           style={{ opacity: opacityRange }}
@@ -224,23 +231,40 @@ export default function Home() {
             muted
             loop
             playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-30"
+            className="absolute inset-0 w-full h-full object-cover opacity-20"
             onLoadedData={() => setIsVideoLoaded(true)}
+            preload="metadata"
           >
+            <source src="/videos/Workflo-code-animatie-3.mp4" type="video/mp4" />
             <source src="/videos/workflo-code-animation.mp4" type="video/mp4" />
           </video>
         </motion.div>
         
-        {/* Additional W Animation Overlay */}
+        {/* Secondary W Logo Animation Overlay */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <video
             autoPlay
             muted
             loop
             playsInline
-            className="w-96 h-96 object-contain opacity-10"
+            className="w-96 h-96 object-contain opacity-15"
+            preload="metadata"
           >
-            <source src="/videos/workflo-w-animation.mp4" type="video/mp4" />
+            <source src="/videos/Workflo_W_final_3.mp4" type="video/mp4" />
+            <source src="/videos/Workflo_W_final_1.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        {/* Mobile Device Animation Corner */}
+        <div className="absolute top-20 right-20 opacity-10 pointer-events-none hidden lg:block">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-64 h-64 object-contain"
+          >
+            <source src="/videos/Mobile-Device-Header-2.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -395,8 +419,24 @@ export default function Home() {
       </section>
 
       {/* Client Logos Section - Light with Yellow Border */}
-      <section className="py-20 bg-gray-50 border-y-8 border-yellow-400" ref={statsRef}>
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-gray-50 border-y-8 border-yellow-400 overflow-hidden" ref={statsRef}>
+        {/* Background Video Animation */}
+        <div className="absolute inset-0 pointer-events-none" ref={statsVideoRef}>
+          {statsVideoInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-5"
+              loading="lazy"
+              preload="metadata"
+            >
+              <source src="/videos/Workflo_W_Mobile_1.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div 
             className="text-center mb-12"
             initial={{ opacity: 0, y: 50 }}
@@ -527,8 +567,39 @@ export default function Home() {
       </section>
 
       {/* Services Section - Dark Background */}
-      <section className="py-20 bg-gray-900 text-white" ref={servicesRef}>
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-gray-900 text-white overflow-hidden" ref={servicesRef}>
+        {/* Background Video Elements */}
+        <div className="absolute top-0 left-0 opacity-5 pointer-events-none" ref={servicesVideoRef}>
+          {servicesVideoInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-72 h-72 object-cover"
+              loading="lazy"
+              preload="metadata"
+            >
+              <source src="/videos/Workflo-code-animatie-2.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="absolute bottom-20 right-0 opacity-4 pointer-events-none">
+          {servicesVideoInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-80 h-80 object-contain"
+              loading="lazy"
+              preload="metadata"
+            >
+              <source src="/videos/Workflo_W_final_3.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 50 }}
@@ -651,8 +722,39 @@ export default function Home() {
       </section>
 
       {/* Team Section - Light Background */}
-      <section className="py-20 bg-gray-50" ref={teamRef}>
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-gray-50 overflow-hidden" ref={teamRef}>
+        {/* Background Video Animation */}
+        <div className="absolute top-0 right-0 opacity-3 pointer-events-none" ref={teamVideoRef}>
+          {teamVideoInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-96 h-96 object-cover"
+              loading="lazy"
+              preload="metadata"
+            >
+              <source src="/videos/Mobile-Device-Header-3.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="absolute bottom-0 left-0 opacity-3 pointer-events-none">
+          {teamVideoInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-80 h-80 object-cover"
+              loading="lazy"
+              preload="metadata"
+            >
+              <source src="/videos/Workflo_W_final_3.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 50 }}
@@ -733,8 +835,22 @@ export default function Home() {
       </section>
 
       {/* Testimonials - Light Background */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="relative py-20 bg-white overflow-hidden">
+        {/* Subtle Background Animation */}
+        <div className="absolute top-20 right-10 opacity-2 pointer-events-none hidden lg:block">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-64 h-64 object-contain"
+            loading="lazy"
+            preload="metadata"
+          >
+            <source src="/videos/Mobile-Device-Header-1.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16 fade-in-up">
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
               {t('testimonials.title')}
@@ -923,8 +1039,39 @@ export default function Home() {
       </section>
 
       {/* Professional CTA Section */}
-      <section className="relative py-24 hero-gradient">
-        <div className="container mx-auto px-4 text-center relative z-10">
+      <section className="relative py-24 hero-gradient overflow-hidden">
+        {/* Background Video Animation */}
+        <div className="absolute inset-0 pointer-events-none" ref={ctaVideoRef}>
+          {ctaVideoInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-10"
+              loading="lazy"
+              preload="metadata"
+            >
+              <source src="/videos/Security_1.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="absolute top-10 right-10 opacity-8 pointer-events-none">
+          {ctaVideoInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-64 h-64 object-contain"
+              loading="lazy"
+              preload="metadata"
+            >
+              <source src="/videos/Workflo_W_final_1.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="container mx-auto px-4 text-center relative z-20">
           <h2 className="text-4xl font-bold text-white mb-6">
             {t('cta.ready_title')}
           </h2>

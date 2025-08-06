@@ -100,10 +100,10 @@ const translations = {
     'team.namhoon.role': 'Technical Director',
     'team.namhoon.expertise': 'Infrastructure & Security',
     'team.mas.name': 'Mas',
-    'team.mas.role': 'Operations Manager',
+    'team.mas.role': 'Junior Support Engineer',
     'team.mas.expertise': 'Service Delivery Excellence',
     'team.marcello.name': 'Marcello',
-    'team.marcello.role': 'Solutions Architect',
+    'team.marcello.role': 'Junior Infrastructure Engineer',
     'team.marcello.expertise': 'Cloud & Innovation',
     
     // Testimonials
@@ -392,10 +392,10 @@ const translations = {
     'team.namhoon.role': 'Technisch Directeur',
     'team.namhoon.expertise': 'Infrastructuur & Beveiliging',
     'team.mas.name': 'Mas',
-    'team.mas.role': 'Operations Manager',
+    'team.mas.role': 'Junior Support Engineer',
     'team.mas.expertise': 'Service Delivery Excellence',
     'team.marcello.name': 'Marcello',
-    'team.marcello.role': 'Solutions Architect',
+    'team.marcello.role': 'Junior Infrastructure Engineer',
     'team.marcello.expertise': 'Cloud & Innovatie',
     
     // Testimonials
