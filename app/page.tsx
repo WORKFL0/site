@@ -568,7 +568,8 @@ export default function Home() {
                 role: t('testimonials.role1'),
                 result: t('testimonials.result1'),
                 stats: t('testimonials.stats1'),
-                rating: 5
+                rating: 5,
+                logo: '/images/logos/doctorfeelgood_Logo.jpg'
               },
               {
                 quote: t('testimonials.quote2'),
@@ -576,7 +577,8 @@ export default function Home() {
                 role: t('testimonials.role2'),
                 result: t('testimonials.result2'),
                 stats: t('testimonials.stats2'),
-                rating: 5
+                rating: 5,
+                logo: '/images/logos/Havas_Media.png'
               },
               {
                 quote: t('testimonials.quote3'),
@@ -584,7 +586,8 @@ export default function Home() {
                 role: t('testimonials.role3'),
                 result: t('testimonials.result3'),
                 stats: t('testimonials.stats3'),
-                rating: 5
+                rating: 5,
+                logo: '/images/logos/Winix_Logo.jpg'
               }
             ].map((testimonial, index) => (
               <div 
@@ -601,6 +604,19 @@ export default function Home() {
                   "{testimonial.quote}"
                 </p>
                 <div className="border-t pt-6">
+                  {testimonial.logo && (
+                    <div className="mb-4">
+                      <div className="relative h-12 w-32">
+                        <Image
+                          src={testimonial.logo}
+                          alt="Company logo"
+                          fill
+                          className="object-contain"
+                          sizes="128px"
+                        />
+                      </div>
+                    </div>
+                  )}
                   <p className="font-bold text-black text-lg">{testimonial.author}</p>
                   <p className="text-gray-600 mb-3">{testimonial.role}</p>
                   <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3">

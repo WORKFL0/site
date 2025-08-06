@@ -15,7 +15,7 @@ export default function CaseStudiesPage() {
       client: 'Schulte & Lestraden',
       industry: language === 'en' ? 'Installation Services' : 'Installatie Diensten',
       logo: '/images/logos/SchulteLestrade_Logo.jpg',
-      duration: '70+ years in business',
+      duration: '3+ years partnership',
       challenge: language === 'en'
         ? 'A well-established installation company with over 70 years of experience needed a complete IT infrastructure installation and ongoing second-line support to modernize their operations.'
         : 'Een gevestigd installatiebedrijf met meer dan 70 jaar ervaring had een complete IT-infrastructuur installatie en doorlopende tweedelijns ondersteuning nodig om hun activiteiten te moderniseren.',

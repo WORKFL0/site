@@ -14,7 +14,6 @@ const Header = () => {
   const menuItems = [
     { name: t('nav.services'), href: '/diensten' },
     { name: t('nav.pricing'), href: '/tarieven' },
-    { name: t('nav.calculator'), href: '/calculator' },
     { name: t('nav.shop'), href: '/shop' },
     { name: t('nav.support'), href: '/support' },
     { name: t('nav.about'), href: '/about' },
@@ -57,12 +56,12 @@ const Header = () => {
               href="https://get.teamviewer.com/workflo-support"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 text-gray-700 hover:text-primary-600 transition-colors font-medium flex items-center gap-2"
+              className="px-4 py-2 bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-100 transition-all rounded-lg font-medium flex items-center gap-2"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M9 3L7 3C5.9 3 5 3.9 5 5L5 7C5 8.1 5.9 9 7 9L9 9C10.1 9 11 8.1 11 7L11 5C11 3.9 10.1 3 9 3ZM9 7L7 7L7 5L9 5L9 7ZM13 7L13 5C13 3.9 13.9 3 15 3L17 3C18.1 3 19 3.9 19 5L19 7C19 8.1 18.1 9 17 9L15 9C13.9 9 13 8.1 13 7ZM17 7L15 7L15 5L17 5L17 7ZM9 11L7 11C5.9 11 5 11.9 5 13L5 15C5 16.1 5.9 17 7 17L9 17C10.1 17 11 16.1 11 15L11 13C11 11.9 10.1 11 9 11ZM9 15L7 15L7 13L9 13L9 15ZM17 11L15 11C13.9 11 13 11.9 13 13L13 15C13 16.1 13.9 17 15 17L17 17C18.1 17 19 16.1 19 15L19 13C19 11.9 18.1 11 17 11ZM17 15L15 15L15 13L17 13L17 15ZM12 19L12 21L10 21L10 19L7 19C5.9 19 5 18.1 5 17L5 15L7 15L7 17L9 17L9 19L10 19L10 17L14 17L14 19L15 19L15 17L17 17L17 15L19 15L19 17C19 18.1 18.1 19 17 19L14 19L14 21L12 21L12 19Z"/>
               </svg>
-              {t('nav.support_tool')}
+              Remote Support
             </a>
             <Link
               href="/tevredenheidscheck"

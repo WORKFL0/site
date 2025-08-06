@@ -74,7 +74,7 @@ export default function SchedulePage() {
                   </p>
                   <div className="space-y-2">
                     <a 
-                      href="https://outlook.office365.com/owa/calendar/20306080465@82f1e73c-fa8e-4530-a1ef-6a2f86e5c0be/58de87ed43f94c588c91797f09e821831684323654674849@82f1e73c-fa8e-4530-a1ef-6a2f86e5c0be/booking/"
+                      href="https://outlook.office.com/book/PlaneenafspraakmeteenITengineer@workflo.nl/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-block bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500 transition-colors"
@@ -88,7 +88,7 @@ export default function SchedulePage() {
 
             <div className="bg-white rounded-lg shadow-lg overflow-hidden" style={{ minHeight: '700px' }}>
               <iframe
-                src="https://outlook.office365.com/owa/calendar/20306080465@82f1e73c-fa8e-4530-a1ef-6a2f86e5c0be/58de87ed43f94c588c91797f09e821831684323654674849@82f1e73c-fa8e-4530-a1ef-6a2f86e5c0be/booking/"
+                src="https://outlook.office.com/book/PlaneenafspraakmeteenITengineer@workflo.nl/"
                 width="100%"
                 height="700"
                 style={{ border: 'none', minHeight: '700px' }}

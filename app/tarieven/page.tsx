@@ -74,7 +74,7 @@ export default function PricingPage() {
       description: language === 'en'
         ? 'Pre-purchase 20 hours with extra discount'
         : '20 uur vooraf inkopen met extra korting',
-      monthlyPrice: 150,
+      monthlyPrice: 1800,
       yearlyPrice: 1800,
       perUnit: language === 'en' ? 'total (€90/hour)' : 'totaal (€90/uur)',
       features: language === 'en' ? [
@@ -102,7 +102,7 @@ export default function PricingPage() {
       description: language === 'en'
         ? 'Pre-purchase 10 hours at discounted rate'
         : '10 uur vooraf inkopen met korting',
-      monthlyPrice: 79,
+      monthlyPrice: 950,
       yearlyPrice: 950,
       perUnit: language === 'en' ? 'total (€95/hour)' : 'totaal (€95/uur)',
       features: language === 'en' ? [
