@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
 
@@ -31,7 +31,7 @@ const PricingCalculator = () => {
   const [selectedOffice365, setSelectedOffice365] = useState('none')
   const [office365Licenses, setOffice365Licenses] = useState(0)
 
-  const pricingOptions: PricingOption[] = [
+  const pricingOptions: PricingOption[] = useMemo(() => [
     {
       id: 'fixed-onsite',
       name: 'Fixed Fee Onsite Support',
@@ -160,16 +160,16 @@ const PricingCalculator = () => {
       ],
       type: 'hourly'
     }
-  ]
+  ], [])
 
-  const office365Packages = [
+  const office365Packages = useMemo(() => [
     { id: 'none', name: language === 'en' ? 'No Office 365' : 'Geen Office 365', price: 0 },
     { id: 'basic', name: 'Microsoft 365 Basic', price: 6 },
     { id: 'standard', name: 'Microsoft 365 Business Standard', price: 12 },
     { id: 'premium', name: 'Microsoft 365 Business Premium', price: 22 },
     { id: 'e3', name: 'Microsoft 365 E3', price: 36 },
     { id: 'e5', name: 'Microsoft 365 E5', price: 57 }
-  ]
+  ], [language])
 
   useEffect(() => {
     const option = pricingOptions.find(o => o.id === selectedOption)

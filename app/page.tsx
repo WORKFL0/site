@@ -240,7 +240,7 @@ export default function Home() {
             preload="metadata"
           >
             <source src="/videos/Workflo-code-animatie-3.mp4" type="video/mp4" />
-            <source src="/videos/workflo-code-animation.mp4" type="video/mp4" />
+            <source src="/videos/Workflo-code-animatie.mp4" type="video/mp4" />
           </video>
         </motion.div>
         
@@ -1156,7 +1156,7 @@ export default function Home() {
               preload="metadata"
               style={{ animationDelay: '2.5s' }}
             >
-              <source src="/videos/Mobile-Device-Header.mp4" type="video/mp4" />
+              <source src="/videos/Mobile-Device-Header-1.mp4" type="video/mp4" />
             </video>
           )}
         </div>
