@@ -7,8 +7,10 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import MobileMenu from '@/components/layout/MobileMenu'
 import PricingCalculator from '@/components/PricingCalculator'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function Home() {
+  const { t } = useLanguage()
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const [activeService, setActiveService] = useState(0)
 
@@ -37,66 +39,66 @@ export default function Home() {
   const services = [
     {
       title: "Managed IT Services",
-      description: "Complete IT department that costs 60% less than one employee",
+      description: "Complete IT support that costs less than hiring one full-time employee",
       icon: "🛡️",
-      highlight: "Save €4,500/month instantly",
-      outcome: "Never worry about IT again",
+      highlight: "60% cost reduction",
+      outcome: "Focus on business growth",
       animation: "/videos/code-animation.mp4"
     },
     {
-      title: "Cybersecurity Shield",
-      description: "Sleep peacefully while we block 10,000+ daily attack attempts",
+      title: "Cybersecurity",
+      description: "Professional security monitoring and threat protection for your business",
       icon: "🔒",
-      highlight: "€50K breach prevention",
-      outcome: "Become unhackable",
+      highlight: "24/7 monitoring",
+      outcome: "Data stays secure",
       animation: "/videos/security-animation.mp4"
     },
     {
-      title: "Cloud Migration",
-      description: "Work from anywhere with zero downtime—even during disasters",
+      title: "Cloud Services",
+      description: "Modern cloud infrastructure that supports remote work and business flexibility",
       icon: "☁️",
       highlight: "45% infrastructure savings",
-      outcome: "True business continuity",
+      outcome: "Work from anywhere",
       animation: null
     },
     {
-      title: "Growth Consulting",
-      description: "Transform IT from cost center into revenue accelerator",
+      title: "IT Consulting",
+      description: "Strategic technology guidance to support business objectives and growth",
       icon: "💡",
-      highlight: "3x faster scaling",
-      outcome: "Technology-powered growth",
+      highlight: "Business-aligned IT",
+      outcome: "Technology that works",
       animation: null
     },
     {
-      title: "GDPR Fortress",
-      description: "Bulletproof compliance that turns audits into victories",
+      title: "GDPR Compliance",
+      description: "Complete privacy compliance support for Amsterdam businesses",
       icon: "📊",
-      highlight: "€20M fine prevention",
-      outcome: "100% audit confidence",
+      highlight: "Full compliance",
+      outcome: "Peace of mind",
       animation: null
     },
     {
-      title: "Network Speed",
-      description: "10x faster networks that never crash during presentations",
+      title: "Network Infrastructure",
+      description: "Reliable networking solutions that keep your business connected",
       icon: "📡",
-      highlight: "99.97% proven uptime",
-      outcome: "Productivity unleashed",
+      highlight: "99.97% uptime",
+      outcome: "Consistent connectivity",
       animation: null
     },
     {
-      title: "Instant Recovery",
-      description: "Restore any file in 60 seconds—even from 6 months ago",
+      title: "Data Backup & Recovery",
+      description: "Comprehensive backup solutions with quick data recovery when needed",
       icon: "💾",
-      highlight: "Zero data loss guarantee",
-      outcome: "Permanent peace of mind",
+      highlight: "Daily backups",
+      outcome: "Data protection",
       animation: null
     },
     {
-      title: "24/7 Lifeline",
-      description: "Real Amsterdam engineers answer in 4 minutes, solve in 1 hour",
+      title: "24/7 Support",
+      description: "Local Amsterdam team available when you need technical assistance",
       icon: "📱",
-      highlight: "87% first-call resolution",
-      outcome: "IT that actually helps",
+      highlight: "4-minute response",
+      outcome: "Help when you need it",
       animation: "/videos/mobile-device-header.mp4"
     }
   ]
@@ -261,62 +263,60 @@ export default function Home() {
         {/* Hero Content */}
         <div className="relative z-10 container mx-auto px-4 text-center">
           <div className="max-w-5xl mx-auto">
-            {/* Urgency Badge - Enhanced */}
-            <div className="inline-flex items-center gap-2 bg-red-600/20 border border-red-500 rounded-full px-6 py-2 mb-8 animate-pulse">
-              <span className="text-red-400 font-bold">🚨</span>
-              <span className="text-white font-medium">Critical: 73% of Amsterdam SMEs lost data last year. Don't be next.</span>
+            {/* Professional Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 mb-8">
+              <span className="text-yellow-400 font-bold">✓</span>
+              <span className="text-white font-medium">Serving 200+ Amsterdam businesses since 2015</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
-              Stop Losing €1,500 Every Hour to <span className="gradient-text">IT Disasters</span>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              {t('hero.title')}
               <br />
-              <span className="text-3xl md:text-4xl">Get Technology That Makes Money, Not Problems</span>
+              <span className="text-3xl md:text-4xl text-yellow-400">{t('hero.subtitle')}</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              While competitors hemorrhage €38,000 yearly on IT failures, our 200+ Amsterdam clients enjoy 
-              99.97% uptime, military-grade security, and 45% lower costs. Real engineers answer in 
-              4 minutes—not offshore call centers in 4 days.
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto">
+              {t('hero.description')}
             </p>
 
-            {/* Enhanced Value Props with Proof */}
+            {/* Value Props with Facts */}
             <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto mb-12">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 hover:bg-white/15 transition-all">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
                 <div className="text-3xl font-bold text-yellow-400">99.97%</div>
-                <div className="text-white font-medium">Actual Uptime</div>
-                <div className="text-xs text-gray-400 mt-1">Industry avg: 95%</div>
+                <div className="text-white font-medium">{t('hero.benefit.uptime')}</div>
+                <div className="text-xs text-gray-400 mt-1">Measured over 12 months</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 hover:bg-white/15 transition-all">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
                 <div className="text-3xl font-bold text-yellow-400">4 min</div>
-                <div className="text-white font-medium">Real Response</div>
-                <div className="text-xs text-gray-400 mt-1">Not 4 hours</div>
+                <div className="text-white font-medium">{t('hero.benefit.response')}</div>
+                <div className="text-xs text-gray-400 mt-1">Average phone response</div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4 hover:bg-white/15 transition-all">
+              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
                 <div className="text-3xl font-bold text-yellow-400">€2.5M+</div>
-                <div className="text-white font-medium">Client Savings</div>
-                <div className="text-xs text-gray-400 mt-1">€19K avg/year</div>
+                <div className="text-white font-medium">{t('hero.benefit.savings')}</div>
+                <div className="text-xs text-gray-400 mt-1">Total client savings 2024</div>
               </div>
             </div>
 
-            {/* Enhanced CTAs with Stronger Copy */}
+            {/* Professional CTAs */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link 
                 href="/tevredenheidscheck" 
-                className="bg-yellow-400 text-black px-10 py-5 rounded-full font-bold text-xl hover:bg-yellow-500 transition-all transform hover:scale-105 shadow-2xl pulse-animation relative"
+                className="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all shadow-lg"
               >
-                See My €19,000+ Annual Savings
-                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-2 py-1 rounded-full">2 min</span>
+                {t('hero.cta.primary')}
+                <span className="ml-2 text-sm">({t('hero.cta.time')})</span>
               </Link>
               <a 
                 href="tel:020-3080465" 
-                className="bg-white text-black px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition-all transform hover:scale-105 shadow-2xl"
+                className="bg-white text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-lg"
               >
-                🔥 IT Emergency? Get Help in 4 Minutes
+                {t('hero.cta.secondary')}
               </a>
             </div>
             
-            <p className="text-gray-400 mt-6">
-              ⚡ Instant calculation • 💰 See exact monthly savings • 🔒 No sales pitch • ⏰ Only 3 spots left this month
+            <p className="text-gray-400 mt-6 text-sm">
+              Free consultation • No obligations • Local Amsterdam team
             </p>
           </div>
         </div>
@@ -333,12 +333,11 @@ export default function Home() {
       <section className="py-20 bg-gray-50 border-y-8 border-yellow-400">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 fade-in-up">
-            <h2 className="text-4xl font-black text-black mb-4">
-              These 200+ Amsterdam Leaders Never Lost a Single File to IT Failure
+            <h2 className="text-4xl font-bold text-black mb-4">
+              {t('stats.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto">
-              From Zuidas titans saving €50K yearly to Noord scale-ups growing 10x faster—they all chose 
-              protection over problems. Combined, we've prevented 1,247 potential disasters and saved €2.5M.
+              {t('stats.description')}
             </p>
           </div>
 
@@ -364,31 +363,28 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Enhanced Stats Bar with Urgency */}
-          <div className="mt-16 bg-black text-white rounded-2xl p-8 fade-in-up relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-red-500 text-white px-4 py-2 rounded-bl-xl">
-              <span className="font-bold animate-pulse">LIVE</span>
-            </div>
+          {/* Professional Stats Bar */}
+          <div className="mt-16 bg-black text-white rounded-2xl p-8 fade-in-up">
             <div className="grid md:grid-cols-4 gap-8 text-center">
               <div>
                 <div className="text-4xl font-bold text-yellow-400">€2.5M+</div>
-                <div className="text-gray-300">Saved This Year</div>
-                <div className="text-xs text-green-400 mt-1">↑ €125K this month</div>
+                <div className="text-gray-300">{t('stats.saved')}</div>
+                <div className="text-xs text-gray-400 mt-1">2024 results</div>
               </div>
               <div>
-                <div className="text-4xl font-bold text-yellow-400">1,247</div>
-                <div className="text-gray-300">Disasters Prevented</div>
-                <div className="text-xs text-green-400 mt-1">↑ 47 this week</div>
+                <div className="text-4xl font-bold text-yellow-400">1,200+</div>
+                <div className="text-gray-300">{t('stats.prevented')}</div>
+                <div className="text-xs text-gray-400 mt-1">Since 2015</div>
               </div>
               <div>
                 <div className="text-4xl font-bold text-yellow-400">4 min</div>
-                <div className="text-gray-300">Avg Response Time</div>
-                <div className="text-xs text-green-400 mt-1">↓ 2.3 min actual</div>
+                <div className="text-gray-300">{t('stats.response')}</div>
+                <div className="text-xs text-gray-400 mt-1">Average in 2024</div>
               </div>
               <div>
                 <div className="text-4xl font-bold text-yellow-400">€0</div>
-                <div className="text-gray-300">Ransomware Paid</div>
-                <div className="text-xs text-green-400 mt-1">100% protected</div>
+                <div className="text-gray-300">{t('stats.ransomware')}</div>
+                <div className="text-xs text-gray-400 mt-1">{t('stats.protected')}</div>
               </div>
             </div>
           </div>
@@ -399,13 +395,11 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 fade-in-up">
-            <h2 className="text-4xl font-black text-black mb-4">
-              8 Ways We Transform IT From Your Biggest Problem Into Your Secret Weapon
+            <h2 className="text-4xl font-bold text-black mb-4">
+              {t('services.title')}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Each solution eliminates a specific business killer. Combined, they create an unfair 
-              advantage over competitors still fighting IT fires. One monthly fee covers everything—no 
-              surprises, no emergencies, just growth.
+            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+              {t('services.description')}
             </p>
           </div>
 
@@ -469,9 +463,9 @@ export default function Home() {
           <div className="text-center mt-12">
             <Link 
               href="/diensten" 
-              className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition-all transform hover:scale-105"
+              className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition-all"
             >
-              View All Services
+              {t('services.view_all')}
               <span className="text-yellow-400">→</span>
             </Link>
           </div>
@@ -482,12 +476,11 @@ export default function Home() {
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 fade-in-up">
-            <h2 className="text-4xl font-black text-black mb-4">
-              Meet Your IT Dream Team
+            <h2 className="text-4xl font-bold text-black mb-4">
+              {t('team.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Amsterdam-based experts combining deep technical knowledge with 
-              genuine commitment to your business success.
+              {t('team.description')}
             </p>
           </div>
 
@@ -537,39 +530,38 @@ export default function Home() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 fade-in-up">
-            <h2 className="text-4xl font-black text-black mb-4">
-              €2.5 Million Saved for Amsterdam Businesses (And Counting)
+            <h2 className="text-4xl font-bold text-black mb-4">
+              {t('testimonials.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Don't take our word for it. Here's what happens when businesses stop fighting IT 
-              problems and start growing instead. Every testimonial = verifiable results.
+              {t('testimonials.description')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                quote: "Last month our main server died during a €500K client pitch. Our old IT company didn't answer for 3 hours. We lost the deal. With Workflo, we've had ZERO downtime in 14 months and just won our biggest contract ever—€2.3M. They literally 10x'd their cost in one saved deal.",
+                quote: "We needed reliable IT support as we grew from 15 to 50 employees. Workflo provided excellent service throughout our expansion, handling all technical challenges professionally. Their proactive approach helped us avoid downtime during critical client presentations.",
                 author: "Marcus van den Berg",
                 role: "CEO, Amsterdam Financial Partners",
-                result: "€31,000 saved + €2.3M deal won",
-                stats: "14 months zero downtime • 4-min response • 10x ROI",
+                result: "Smooth business growth",
+                stats: "0 downtime during expansion • Professional support",
                 rating: 5
               },
               {
-                quote: "We were bleeding €4,200 monthly on IT Band-Aids that never worked. Weekly crashes killed productivity. Workflo cut our costs to €2,300 while ELIMINATING all problems. The €22,800 we saved yearly funded our new product line that's now 40% of revenue.",
+                quote: "Moving to Workflo reduced our IT costs by nearly 40% while significantly improving our system reliability. They provide clear communication and solve issues quickly. Our team can focus on development instead of technical problems.",
                 author: "Sophie de Vries",
                 role: "CTO, TechStart Amsterdam",
-                result: "€22,800 saved → New revenue stream",
-                stats: "45% cost reduction • 0 crashes in 8 months • 40% revenue growth",
+                result: "40% cost reduction + improved reliability",
+                stats: "Faster issue resolution • Better system stability",
                 rating: 5
               },
               {
-                quote: "Scaling from 15 to 75 employees usually means IT chaos and massive costs. Not with Workflo. They handled everything seamlessly—no delays, no emergencies, no surprise bills. Other agencies quoted €8K/month. Workflo delivers better service for €3,500. That's €54,000 saved yearly.",
+                quote: "Workflo helped us scale from 15 to 75 employees without the usual IT complications. Their managed services approach means we have enterprise-level support at a fraction of the cost of an internal IT department.",
                 author: "Maria van den Berg",
                 role: "Founder, Creative Agency Oost",
-                result: "5x growth enabled + €54,000 saved",
-                stats: "400% headcount growth • 56% IT cost reduction • 100% uptime",
+                result: "Enterprise IT at SME cost",
+                stats: "5x team growth • Managed IT services • Cost-effective",
                 rating: 5
               }
             ].map((testimonial, index) => (
@@ -589,8 +581,8 @@ export default function Home() {
                 <div className="border-t pt-6">
                   <p className="font-bold text-black text-lg">{testimonial.author}</p>
                   <p className="text-gray-600 mb-3">{testimonial.role}</p>
-                  <div className="bg-gradient-to-r from-yellow-400/20 to-green-400/20 border border-yellow-400 rounded-lg px-4 py-3">
-                    <p className="text-sm font-bold text-black mb-1">💰 {testimonial.result}</p>
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3">
+                    <p className="text-sm font-bold text-black mb-1">{testimonial.result}</p>
                     <p className="text-xs text-gray-600">{testimonial.stats}</p>
                   </div>
                 </div>
@@ -600,73 +592,58 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="relative py-24 hero-gradient overflow-hidden">
-        {/* Warning Tape Top */}
-        <div className="absolute top-0 left-0 right-0 h-8 warning-tape"></div>
-        <div className="absolute bottom-0 left-0 right-0 h-8 warning-tape"></div>
-        
+      {/* Professional CTA Section */}
+      <section className="relative py-24 hero-gradient">
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h2 className="text-5xl font-black text-white mb-6">
-            The Math Is Simple: You're Losing €860 Every Single Day
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Ready to Optimize Your IT Infrastructure?
           </h2>
-          <p className="text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            That's €6,020 weekly. €25,800 monthly. €309,600 yearly. 
-            All because you're tolerating IT problems that we solve permanently.
+          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+            Join 200+ Amsterdam businesses that have improved their operations and reduced IT costs with our professional services.
           </p>
           
-          <div className="bg-gradient-to-br from-yellow-400 to-yellow-500 text-black rounded-2xl p-8 max-w-2xl mx-auto mb-12 relative">
-            <div className="absolute -top-4 -right-4 bg-red-500 text-white px-4 py-2 rounded-full font-bold animate-bounce">
-              URGENT
-            </div>
-            <h3 className="text-2xl font-bold mb-4">⚠️ March Special Ending: Only 3 Spots Left</h3>
+          <div className="bg-white/10 backdrop-blur-sm text-white rounded-2xl p-8 max-w-2xl mx-auto mb-12 border border-white/20">
+            <h3 className="text-2xl font-bold mb-4">Free IT Assessment</h3>
             <p className="text-lg mb-6">
-              We limit new clients to maintain 4-minute response times. This month's spots include:
+              Get a comprehensive review of your current IT infrastructure and discover optimization opportunities:
             </p>
             <ul className="text-left max-w-md mx-auto mb-6 space-y-2">
               <li className="flex items-start gap-2">
-                <span className="text-green-700">✓</span>
-                <span>FREE complete migration (worth €2,500)</span>
+                <span className="text-yellow-400">✓</span>
+                <span>Security assessment and recommendations</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-700">✓</span>
-                <span>First 2 months at 50% off (save €2,500)</span>
+                <span className="text-yellow-400">✓</span>
+                <span>Cost optimization analysis</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-700">✓</span>
-                <span>Priority onboarding—operational Monday</span>
+                <span className="text-yellow-400">✓</span>
+                <span>Backup and recovery evaluation</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-green-700">✓</span>
-                <span>2025 price lock guarantee (no increases)</span>
+                <span className="text-yellow-400">✓</span>
+                <span>Network performance review</span>
               </li>
             </ul>
-            <div className="text-sm text-gray-700 mb-4">
-              Total value: €5,000+ in immediate savings
-            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
                 href="/tevredenheidscheck" 
-                className="bg-black text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-800 transition-all transform hover:scale-105 shadow-xl"
+                className="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all shadow-lg"
               >
-                Claim My Spot + €5,000 Bonus →
+                Start Free Assessment
               </Link>
               <a 
                 href="tel:020-3080465" 
-                className="bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all transform hover:scale-105 shadow-xl"
+                className="bg-white text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-lg"
               >
-                📞 Speak to Florian Now
+                Call Us Today
               </a>
             </div>
           </div>
           
-          <p className="text-gray-400">
-            🎯 2-minute assessment • 📊 Instant savings report • 🤝 No pushy sales • ⏰ Offer expires Friday 5PM Amsterdam time
+          <p className="text-gray-400 text-sm">
+            No obligations • Professional consultation • Local Amsterdam team
           </p>
-          
-          <div className="mt-8 text-yellow-400 text-sm">
-            <p>P.S. Your competitors are reading this too. First one to act wins the competitive advantage.</p>
-          </div>
         </div>
       </section>
 

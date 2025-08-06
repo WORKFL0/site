@@ -1,22 +1,12 @@
+'use client'
+
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+
 export default function CareersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <a href="/" className="text-2xl font-bold text-black">WORKFLO</a>
-            <nav className="hidden md:flex gap-6">
-              <a href="/diensten" className="text-gray-700 hover:text-black">Diensten</a>
-              <a href="/over-ons" className="text-gray-700 hover:text-black">Over Ons</a>
-              <a href="/contact" className="text-gray-700 hover:text-black">Contact</a>
-              <a href="/tevredenheidscheck" className="bg-yellow-400 text-black px-4 py-2 rounded font-bold hover:bg-yellow-500">
-                IT Health Check
-              </a>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <main>
         {/* Hero Section */}
