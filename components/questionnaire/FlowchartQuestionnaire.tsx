@@ -12,19 +12,27 @@ const FlowchartQuestionnaire = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [showResult, setShowResult] = useState(false)
   const [isPositiveResult, setIsPositiveResult] = useState(false)
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
 
-  const handleAnswer = (next: number | string) => {
-    if (typeof next === 'string') {
-      setIsPositiveResult(next === 'satisfied')
-      setShowResult(true)
-    } else {
-      setCurrentQuestionIndex(next - 1)
-    }
+  const handleAnswer = (next: number | string, optionIndex: number) => {
+    setSelectedAnswer(optionIndex)
+    
+    // Add a small delay to show the selection before moving to next question
+    setTimeout(() => {
+      if (typeof next === 'string') {
+        setIsPositiveResult(next === 'satisfied')
+        setShowResult(true)
+      } else {
+        setCurrentQuestionIndex(next - 1)
+        setSelectedAnswer(null) // Reset for next question
+      }
+    }, 300)
   }
 
   const restart = () => {
     setCurrentQuestionIndex(0)
     setShowResult(false)
+    setSelectedAnswer(null)
   }
 
   const currentQuestion = questions[currentQuestionIndex]
@@ -42,17 +50,31 @@ const FlowchartQuestionnaire = () => {
               {currentQuestion.question}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {currentQuestion.options.map((option, index) => (
-                <Button
-                  key={index}
-                  onClick={() => handleAnswer(currentQuestion.next[index])}
-                  variant={currentQuestion.type[index] === 'positive' ? 'primary' : 'danger'}
-                  size="lg"
-                  className="w-full text-center"
-                >
-                  {option}
-                </Button>
-              ))}
+              {currentQuestion.options.map((option, index) => {
+                const isSelected = selectedAnswer === index
+                const buttonType = currentQuestion.type[index]
+                
+                // Determine variant based on selection state
+                let variant: 'neutral' | 'primary' | 'danger' = 'neutral'
+                if (isSelected) {
+                  variant = buttonType === 'positive' ? 'primary' : 'danger'
+                }
+                
+                return (
+                  <Button
+                    key={index}
+                    onClick={() => handleAnswer(currentQuestion.next[index], index)}
+                    variant={variant}
+                    size="lg"
+                    className={`w-full text-center transition-all duration-200 ${
+                      isSelected ? 'transform scale-105 shadow-lg' : ''
+                    }`}
+                    disabled={selectedAnswer !== null && !isSelected}
+                  >
+                    {option}
+                  </Button>
+                )
+              })}
             </div>
           </div>
         </QuestionnaireCard>

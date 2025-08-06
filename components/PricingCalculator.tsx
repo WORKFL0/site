@@ -101,13 +101,13 @@ const PricingCalculator = () => {
         '20 hours pre-purchased',
         'Extra discount',
         'Immediately deployable for any IT question',
-        'Valid for 12 months'
+        'No expiration date'
       ],
       featuresNL: [
         '20 uur vooraf inkopen',
         'Extra korting',
         'Direct inzetbaar bij elke IT-vraag',
-        'Geldig voor 12 maanden'
+        'Geen vervaldatum'
       ],
       type: 'strippenkaart',
       savings: '€400'
@@ -126,13 +126,13 @@ const PricingCalculator = () => {
         '10 hours pre-purchased',
         'Quick deployment for problems',
         'Better rate than individual hours',
-        'Valid for 12 months'
+        'No expiration date'
       ],
       featuresNL: [
         '10 uur vooraf inkopen',
         'Snelle inzet bij problemen',
         'Voordeliger tarief dan losse uren',
-        'Geldig voor 12 maanden'
+        'Geen vervaldatum'
       ],
       type: 'strippenkaart',
       savings: '€150'
@@ -213,12 +213,12 @@ const PricingCalculator = () => {
     <div className="max-w-6xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-black mb-4">
+        <h2 className="text-4xl font-bold text-white mb-4">
           {language === 'en' 
             ? 'Calculate Your IT Support Investment'
             : 'Bereken Uw IT Support Investering'}
         </h2>
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
           {language === 'en'
             ? 'Find the perfect IT support package for your business. Transparent pricing, no hidden costs.'
             : 'Vind het perfecte IT-ondersteuningspakket voor uw bedrijf. Transparante prijzen, geen verborgen kosten.'}

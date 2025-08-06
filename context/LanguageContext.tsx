@@ -320,18 +320,18 @@ const translations = {
     // Hero Section - Dutch professional tone
     'hero.title': 'Betrouwbare IT-oplossingen voor Amsterdamse Bedrijven',
     'hero.subtitle': 'Professionele IT-ondersteuning die uw bedrijf helpt efficiënt te groeien',
-    'hero.description': 'Wij leveren complete IT-diensten aan meer dan 200 Amsterdamse bedrijven en helpen hen kosten te verlagen, beveiliging te verbeteren en zich te concentreren op waar ze goed in zijn. Lokale expertise, bewezen resultaten.',
+    'hero.description': 'Wij leveren complete IT-diensten aan meer dan 100 Amsterdamse bedrijven en helpen hen kosten te verlagen, beveiliging te verbeteren en zich te concentreren op waar ze goed in zijn. Lokale expertise, bewezen resultaten.',
     'hero.cta.primary': 'Vraag Uw IT-scan Aan',
     'hero.cta.secondary': 'Bel Ons Nu',
     'hero.cta.time': '2 minuten',
     'hero.benefit.uptime': 'Bewezen Uptime',
     'hero.benefit.response': 'Snelle Reactie',
     'hero.benefit.savings': 'Klantbesparingen',
-    'hero.badge.text': 'Meer dan 200 Amsterdamse bedrijven vertrouwen ons sinds 2015',
+    'hero.badge.text': 'Meer dan 100 Amsterdamse bedrijven vertrouwen ons sinds 2015',
     'hero.bottom.guarantee': 'Gratis consultatie • Geen verplichtingen • Lokaal Amsterdams team',
     
     // Stats Section
-    'stats.title': 'Meer dan 200 Amsterdamse Bedrijven Vertrouwen Onze IT-oplossingen',
+    'stats.title': 'Meer dan 100 Amsterdamse Bedrijven Vertrouwen Onze IT-oplossingen',
     'stats.description': 'Van financiële bedrijven op de Zuidas tot creatieve bureaus in de Jordaan, wij helpen bedrijven door heel Amsterdam hun technologie-infrastructuur te optimaliseren en IT-kosten te verlagen.',
     'stats.saved': 'Bespaard Dit Jaar',
     'stats.prevented': 'Problemen Voorkomen',

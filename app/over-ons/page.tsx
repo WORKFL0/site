@@ -148,7 +148,7 @@ export default function OverOnsPage() {
           </div>
           <div className="container mx-auto px-4 text-center relative z-10">
             <h2 className="text-4xl font-bold mb-4">Ready to Experience IT That Just Works?</h2>
-            <p className="text-xl mb-8">Join 200+ Amsterdam businesses who trust Workflo</p>
+            <p className="text-xl mb-8">Join 100+ Amsterdam businesses who trust Workflo</p>
             <a href="/tevredenheidscheck" className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition">
               Start Your Free IT Assessment
             </a>

@@ -81,14 +81,14 @@ export default function PricingPage() {
         '20 hours pre-purchased',
         'Extra discount',
         'Immediately deployable for any IT question',
-        'Valid for 12 months',
+        'No expiration date',
         'Flexible usage',
         'No monthly commitment'
       ] : [
         '20 uur vooraf inkopen',
         'Extra korting',
         'Direct inzetbaar bij elke IT-vraag',
-        'Geldig voor 12 maanden',
+        'Geen vervaldatum',
         'Flexibel in te zetten',
         'Geen maandelijkse verplichting'
       ],
@@ -109,14 +109,14 @@ export default function PricingPage() {
         '10 hours pre-purchased',
         'Quick deployment for problems',
         'Better rate than individual hours',
-        'Valid for 12 months',
+        'No expiration date',
         'Ideal for smaller teams',
         'Pay once, use when needed'
       ] : [
         '10 uur vooraf inkopen',
         'Snelle inzet bij problemen',
         'Voordeliger tarief dan losse uren',
-        'Geldig voor 12 maanden',
+        'Geen vervaldatum',
         'Ideaal voor kleinere teams',
         'Eenmalig betalen, gebruiken wanneer nodig'
       ],

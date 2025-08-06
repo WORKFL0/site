@@ -51,51 +51,33 @@ export default function SupportPage() {
           </div>
         </section>
 
-        {/* Support Portal Iframe */}
-        <section className="py-4">
+        {/* Support Portal Link */}
+        <section className="py-12">
           <div className="container mx-auto px-4">
-            {!isIframeLoaded && !hasIframeError && (
-              <div className="text-center py-16">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-yellow-400"></div>
-                <p className="mt-4 text-gray-600">Support portal wordt geladen...</p>
+            <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto text-center">
+              <div className="w-20 h-20 bg-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
               </div>
-            )}
-
-            {hasIframeError && (
-              <div className="text-center py-16">
-                <div className="bg-red-50 border border-red-200 rounded-lg p-8 max-w-md mx-auto">
-                  <svg className="w-16 h-16 text-red-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 18.5c-.77.833.192 2.5 1.732 2.5z" />
-                  </svg>
-                  <h3 className="text-lg font-semibold text-red-800 mb-2">Support portal niet beschikbaar</h3>
-                  <p className="text-red-600 mb-4">
-                    Het support portal kan momenteel niet geladen worden. Gebruik een van de onderstaande alternatieven.
-                  </p>
-                  <div className="space-y-2">
-                    <a 
-                      href="https://servicedesk.workflo.it/portal/" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500 transition-colors"
-                    >
-                      Open in nieuw venster
-                    </a>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden" style={{ minHeight: '600px' }}>
-              <iframe
-                src="https://servicedesk.workflo.it/portal/"
-                width="100%"
-                height="600"
-                style={{ border: 'none', minHeight: '600px' }}
-                title="Workflo Support Portal"
-                onLoad={handleIframeLoad}
-                onError={handleIframeError}
-                className={hasIframeError ? 'hidden' : 'block'}
-              />
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                Toegang tot Support Portal
+              </h2>
+              <p className="text-gray-600 mb-6">
+                Klik op de knop hieronder om ons support portal te openen in een nieuw venster. 
+                Hier kunt u tickets indienen, de status van uw aanvragen volgen en documentatie raadplegen.
+              </p>
+              <a 
+                href="https://servicedesk.workflo.it/portal/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-colors shadow-lg"
+              >
+                Open Support Portal →
+              </a>
+              <p className="text-sm text-gray-500 mt-4">
+                Opens in een nieuw venster
+              </p>
             </div>
           </div>
         </section>

@@ -192,7 +192,7 @@ export default function ManagedITPage() {
           </div>
           <div className="container mx-auto px-4 text-center relative z-10">
             <h2 className="text-4xl font-bold mb-4">Stop Fighting IT Problems. Start Growing Your Business.</h2>
-            <p className="text-xl mb-8">Join 200+ Amsterdam businesses that trust Workflo for their IT</p>
+            <p className="text-xl mb-8">Join 100+ Amsterdam businesses that trust Workflo for their IT</p>
             <a href="/tevredenheidscheck" className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition">
               Schedule Your Free IT Assessment
             </a>

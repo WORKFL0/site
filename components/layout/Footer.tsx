@@ -59,7 +59,7 @@ const Footer = () => {
             </div>
             <div className="mt-4">
               <a 
-                href="https://www.google.com/maps/place/Workflo/@52.3849551,4.8885719,17z/data=!4m8!3m7!1s0x47c609c0c0000001:0xd7c8f4e8a1234567!8m2!3d52.3849551!4d4.8885719!9m1!1b1!16s%2Fg%2F11c5q8n9nj?entry=ttu" 
+                href="https://www.google.com/search?sca_esv=78cfef7a28cb5e8a&hl=en-GB&authuser=0&biw=1800&bih=1004&sxsrf=AE3TifNQGcWtzZo0c4N_-c1Sp0V9RjUHqA:1754494880597&si=AMgyJEtREmoPL4P1I5IDCfuA8gybfVI2d5Uj7QMwYCZHKDZ-E_BYTrZBdjxKNl5V86D-tXL9y_JsxQTZJuNeRMIXnNqSWJDLI3beSEwKWfbXUtNzAsGcvjmMIEMgjaAo0PM6qR8rQQGS&q=WORKFLO+B.V.+Reviews&sa=X&ved=2ahUKEwiHpfjgwvaOAxUY8rsIHSqxFkoQ0bkNegQIOhAE&cshid=1754494885929881" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors text-sm"

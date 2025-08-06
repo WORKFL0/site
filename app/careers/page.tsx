@@ -14,12 +14,17 @@ export default function CareersPage() {
           <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-yellow-400 via-black to-yellow-400"></div>
           <div className="container mx-auto px-4">
             <h1 className="text-5xl font-bold text-center text-black mb-6">
-              Join the Team That's Transforming Amsterdam IT
+              Word Onderdeel van het Team dat Amsterdam IT Transformeert
             </h1>
             <p className="text-xl text-gray-700 text-center max-w-3xl mx-auto">
-              At Workflo, we don't just provide IT services – we're building the future of 
-              business technology in Amsterdam. Join our team of passionate professionals who 
-              believe that great technology should drive business success, not create headaches.
+              Bij Workflo leveren we niet alleen IT-diensten – we bouwen de toekomst van 
+              bedrijfstechnologie in Amsterdam. Sluit je aan bij ons team van gepassioneerde 
+              professionals die geloven dat geweldige technologie bedrijfssucces moet stimuleren, 
+              geen hoofdpijn moet veroorzaken.
+            </p>
+            {/* Fun Rihanna reference */}
+            <p className="text-sm text-gray-500 text-center mt-4 italic">
+              Want bij ons draait het om work, work, work, work, work – maar dan met plezier en passie! 🎵
             </p>
           </div>
         </section>
@@ -27,36 +32,36 @@ export default function CareersPage() {
         {/* Why Work With Us */}
         <section className="py-16 bg-gray-100">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12 text-black">Why Work With Workflo?</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-black">Waarom Werken bij Workflo?</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               <div className="bg-white p-8 rounded-lg shadow-md">
                 <div className="w-16 h-16 bg-yellow-400 rounded-lg mb-4 flex items-center justify-center">
                   <span className="text-3xl">🚀</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-black">Make Real Impact</h3>
+                <h3 className="text-xl font-bold mb-3 text-black">Maak Echt Impact</h3>
                 <p className="text-gray-600">
-                  Every solution you build directly helps Amsterdam businesses grow. See your 
-                  work transform how companies operate and succeed.
+                  Elke oplossing die je bouwt helpt Amsterdamse bedrijven direct groeien. Zie hoe 
+                  jouw werk bedrijven transformeert en succesvol maakt.
                 </p>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-md">
                 <div className="w-16 h-16 bg-yellow-400 rounded-lg mb-4 flex items-center justify-center">
                   <span className="text-3xl">🎯</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-black">Professional Growth</h3>
+                <h3 className="text-xl font-bold mb-3 text-black">Professionele Groei</h3>
                 <p className="text-gray-600">
-                  Work with cutting-edge technology and continuous learning opportunities. 
-                  We invest in your development because your growth drives our success.
+                  Werk met cutting-edge technologie en continue leermogelijkheden. 
+                  We investeren in jouw ontwikkeling omdat jouw groei ons succes drijft.
                 </p>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-md">
                 <div className="w-16 h-16 bg-yellow-400 rounded-lg mb-4 flex items-center justify-center">
                   <span className="text-3xl">🤝</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-black">Collaborative Culture</h3>
+                <h3 className="text-xl font-bold mb-3 text-black">Samenwerkingscultuur</h3>
                 <p className="text-gray-600">
-                  Join a team that values directness, innovation, and mutual support. 
-                  We succeed together and celebrate each other's achievements.
+                  Word deel van een team dat directheid, innovatie en wederzijdse steun waardeert. 
+                  We slagen samen en vieren elkaars prestaties.
                 </p>
               </div>
             </div>
@@ -66,110 +71,40 @@ export default function CareersPage() {
         {/* Current Openings */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12 text-black">Current Opportunities</h2>
-            <div className="max-w-4xl mx-auto space-y-6">
-              <div className="bg-gray-50 p-8 rounded-lg border-l-4 border-yellow-400">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold text-black">IT Support Specialist</h3>
-                  <span className="bg-yellow-400 text-black px-3 py-1 rounded font-bold text-sm">Full-time</span>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Join our frontline team providing exceptional IT support to Amsterdam businesses. 
-                  Perfect for someone passionate about solving problems and helping companies succeed.
+            <h2 className="text-3xl font-bold text-center mb-12 text-black">Open Sollicitaties</h2>
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gray-50 p-12 rounded-lg border-l-4 border-yellow-400 text-center">
+                <h3 className="text-2xl font-bold text-black mb-4">
+                  Momenteel Geen Openstaande Vacatures
+                </h3>
+                <p className="text-gray-700 text-lg mb-6">
+                  Hoewel we momenteel geen specifieke vacatures hebben, zijn we altijd op zoek naar 
+                  getalenteerde professionals die onze passie voor excellente IT-dienstverlening delen.
                 </p>
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <h4 className="font-bold mb-2 text-black">What You'll Do:</h4>
-                    <ul className="space-y-1 text-gray-600 text-sm">
-                      <li>• Provide technical support via phone, email, and on-site</li>
-                      <li>• Troubleshoot hardware and software issues</li>
-                      <li>• Manage user accounts and security settings</li>
-                      <li>• Document solutions and maintain client relationships</li>
+                <div className="bg-white p-8 rounded-lg mb-8">
+                  <h4 className="text-xl font-bold mb-4 text-black">We Zoeken Altijd Talent in:</h4>
+                  <div className="grid md:grid-cols-2 gap-4 text-left max-w-2xl mx-auto">
+                    <ul className="space-y-2 text-gray-600">
+                      <li>• IT Support & Helpdesk</li>
+                      <li>• Systeem- en Netwerkbeheer</li>
+                      <li>• Cloud Infrastructure</li>
+                      <li>• Cybersecurity</li>
                     </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-2 text-black">What We're Looking For:</h4>
-                    <ul className="space-y-1 text-gray-600 text-sm">
-                      <li>• 2+ years IT support experience</li>
-                      <li>• Strong communication skills in Dutch and English</li>
-                      <li>• Experience with Windows, Microsoft 365, and networking</li>
-                      <li>• Customer service mindset and problem-solving skills</li>
+                    <ul className="space-y-2 text-gray-600">
+                      <li>• Software Development</li>
+                      <li>• Project Management</li>
+                      <li>• Business Development</li>
+                      <li>• Customer Success</li>
                     </ul>
                   </div>
                 </div>
-                <a href="mailto:careers@workflo.it?subject=IT Support Specialist Application" 
-                   className="inline-block bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition">
-                  Apply Now
-                </a>
-              </div>
-
-              <div className="bg-gray-50 p-8 rounded-lg border-l-4 border-yellow-400">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold text-black">Systems Engineer</h3>
-                  <span className="bg-yellow-400 text-black px-3 py-1 rounded font-bold text-sm">Full-time</span>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Design and implement robust IT infrastructure solutions for growing Amsterdam 
-                  businesses. Shape the technology backbone that drives business success.
+                <p className="text-gray-600 mb-8">
+                  Denk je dat jij perfect bij ons team past? Stuur ons jouw CV en motivatiebrief, 
+                  en vertel ons waarom jij de volgende Workflo-ster wordt!
                 </p>
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <h4 className="font-bold mb-2 text-black">What You'll Do:</h4>
-                    <ul className="space-y-1 text-gray-600 text-sm">
-                      <li>• Design and implement cloud and on-premise solutions</li>
-                      <li>• Manage server infrastructure and virtualization</li>
-                      <li>• Implement security protocols and compliance measures</li>
-                      <li>• Lead complex projects and mentor junior team members</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-2 text-black">What We're Looking For:</h4>
-                    <ul className="space-y-1 text-gray-600 text-sm">
-                      <li>• 5+ years systems administration experience</li>
-                      <li>• Expertise in Azure, AWS, or hybrid cloud environments</li>
-                      <li>• Strong networking and security knowledge</li>
-                      <li>• Project management and leadership experience</li>
-                    </ul>
-                  </div>
-                </div>
-                <a href="mailto:careers@workflo.it?subject=Systems Engineer Application" 
-                   className="inline-block bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition">
-                  Apply Now
-                </a>
-              </div>
-
-              <div className="bg-gray-50 p-8 rounded-lg border-l-4 border-yellow-400">
-                <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-2xl font-bold text-black">Business Development Manager</h3>
-                  <span className="bg-yellow-400 text-black px-3 py-1 rounded font-bold text-sm">Full-time</span>
-                </div>
-                <p className="text-gray-600 mb-4">
-                  Help grow Workflo by connecting with Amsterdam businesses that need better IT. 
-                  Combine your sales skills with technical knowledge to make a real difference.
-                </p>
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <h4 className="font-bold mb-2 text-black">What You'll Do:</h4>
-                    <ul className="space-y-1 text-gray-600 text-sm">
-                      <li>• Identify and engage potential clients in Amsterdam</li>
-                      <li>• Conduct IT assessments and present solutions</li>
-                      <li>• Build long-term relationships with business owners</li>
-                      <li>• Collaborate with technical team on client solutions</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-2 text-black">What We're Looking For:</h4>
-                    <ul className="space-y-1 text-gray-600 text-sm">
-                      <li>• 3+ years B2B sales experience, preferably IT services</li>
-                      <li>• Strong understanding of business technology needs</li>
-                      <li>• Excellent communication and presentation skills</li>
-                      <li>• Results-driven with a consultative sales approach</li>
-                    </ul>
-                  </div>
-                </div>
-                <a href="mailto:careers@workflo.it?subject=Business Development Manager Application" 
-                   className="inline-block bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition">
-                  Apply Now
+                <a href="mailto:careers@workflo.it?subject=Open Sollicitatie" 
+                   className="inline-block bg-black text-white px-8 py-3 rounded-lg font-bold hover:bg-gray-800 transition">
+                  Stuur Je Open Sollicitatie
                 </a>
               </div>
             </div>
@@ -179,46 +114,46 @@ export default function CareersPage() {
         {/* Benefits */}
         <section className="py-16 bg-gray-100">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12 text-black">What We Offer</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-black">Wat Wij Bieden</h2>
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="font-bold mb-3 text-black">Competitive Package</h3>
+                <h3 className="font-bold mb-3 text-black">Competitief Pakket</h3>
                 <ul className="space-y-2 text-gray-600 text-sm">
-                  <li>• Market-competitive salary</li>
-                  <li>• Performance-based bonuses</li>
-                  <li>• Comprehensive health insurance</li>
-                  <li>• Pension contribution</li>
-                  <li>• 25 vacation days + public holidays</li>
+                  <li>• Marktconform salaris</li>
+                  <li>• Prestatiegerichte bonussen</li>
+                  <li>• 25 vakantiedagen + feestdagen</li>
+                  <li>• Reiskostenvergoeding</li>
+                  <li>• Laptop en telefoon van de zaak</li>
                 </ul>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="font-bold mb-3 text-black">Professional Development</h3>
+                <h3 className="font-bold mb-3 text-black">Professionele Ontwikkeling</h3>
                 <ul className="space-y-2 text-gray-600 text-sm">
-                  <li>• Certification and training budget</li>
-                  <li>• Conference attendance opportunities</li>
-                  <li>• Access to latest technology and tools</li>
-                  <li>• Mentorship and career guidance</li>
-                  <li>• Cross-team project opportunities</li>
+                  <li>• Budget voor certificeringen en trainingen</li>
+                  <li>• Mogelijkheden voor conferentiebezoek</li>
+                  <li>• Toegang tot de nieuwste technologie en tools</li>
+                  <li>• Mentorship en loopbaanbegeleiding</li>
+                  <li>• Cross-team projectmogelijkheden</li>
                 </ul>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h3 className="font-bold mb-3 text-black">Work-Life Balance</h3>
                 <ul className="space-y-2 text-gray-600 text-sm">
-                  <li>• Flexible working hours</li>
-                  <li>• Hybrid remote/office options</li>
-                  <li>• Modern Amsterdam office location</li>
-                  <li>• Team events and outings</li>
-                  <li>• Wellness programs</li>
+                  <li>• Flexibele werktijden</li>
+                  <li>• Hybride werken (kantoor/thuis)</li>
+                  <li>• Modern kantoor in Amsterdam</li>
+                  <li>• Teamuitjes en borrels</li>
+                  <li>• Vrijdagmiddagborrels</li>
                 </ul>
               </div>
               <div className="bg-white p-6 rounded-lg shadow-md">
-                <h3 className="font-bold mb-3 text-black">Growth Opportunities</h3>
+                <h3 className="font-bold mb-3 text-black">Groeimogelijkheden</h3>
                 <ul className="space-y-2 text-gray-600 text-sm">
-                  <li>• Clear career progression paths</li>
-                  <li>• Leadership development programs</li>
-                  <li>• Opportunity to shape company direction</li>
-                  <li>• Innovation and idea sharing encouraged</li>
-                  <li>• Cross-functional skill development</li>
+                  <li>• Duidelijke carrièrepaden</li>
+                  <li>• Leadership development programma's</li>
+                  <li>• Kans om bedrijfsrichting mede te bepalen</li>
+                  <li>• Innovatie en ideeën delen aangemoedigd</li>
+                  <li>• Cross-functionele vaardigheidsontwikkeling</li>
                 </ul>
               </div>
             </div>
@@ -228,17 +163,18 @@ export default function CareersPage() {
         {/* Culture */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12 text-black">Our Culture</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-black">Onze Cultuur</h2>
             <div className="max-w-3xl mx-auto bg-gray-100 p-8 rounded-lg">
               <p className="text-lg text-gray-700 italic mb-4">
-                "At Workflo, we believe the best work happens when people feel valued, challenged, 
-                and supported. We've built a culture where expertise is respected, ideas are heard, 
-                and everyone contributes to our collective success. Join us and be part of 
-                transforming how Amsterdam businesses use technology."
+                "Bij Workflo geloven we dat het beste werk gebeurt wanneer mensen zich gewaardeerd, 
+                uitgedaagd en gesteund voelen. We hebben een cultuur gebouwd waar expertise wordt 
+                gerespecteerd, ideeën worden gehoord, en iedereen bijdraagt aan ons collectieve succes. 
+                Sluit je bij ons aan en wees onderdeel van de transformatie van hoe Amsterdamse 
+                bedrijven technologie gebruiken."
               </p>
               <p className="text-gray-600">
                 <strong>— Florian</strong><br />
-                Founder & CEO, Workflo
+                Oprichter & CEO, Workflo
               </p>
             </div>
           </div>
@@ -247,7 +183,7 @@ export default function CareersPage() {
         {/* Application Process */}
         <section className="py-16 bg-gray-100">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12 text-black">How to Apply</h2>
+            <h2 className="text-3xl font-bold text-center mb-12 text-black">Hoe te Solliciteren</h2>
             <div className="max-w-3xl mx-auto">
               <div className="space-y-6">
                 <div className="flex gap-4 items-start">
@@ -255,10 +191,10 @@ export default function CareersPage() {
                     <span className="font-bold text-black">1</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold mb-2 text-black">Submit Your Application</h3>
+                    <h3 className="text-lg font-bold mb-2 text-black">Stuur Je Sollicitatie</h3>
                     <p className="text-gray-600">
-                      Send your CV and cover letter to careers@workflo.it. Tell us why you're 
-                      passionate about helping Amsterdam businesses succeed through technology.
+                      Stuur je CV en motivatiebrief naar careers@workflo.it. Vertel ons waarom je 
+                      gepassioneerd bent om Amsterdamse bedrijven te helpen slagen met technologie.
                     </p>
                   </div>
                 </div>
@@ -267,10 +203,10 @@ export default function CareersPage() {
                     <span className="font-bold text-black">2</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold mb-2 text-black">Initial Interview</h3>
+                    <h3 className="text-lg font-bold mb-2 text-black">Eerste Gesprek</h3>
                     <p className="text-gray-600">
-                      We'll have a conversation about your experience, goals, and how you align 
-                      with our values. This is also your chance to ask questions about the role.
+                      We hebben een gesprek over jouw ervaring, doelen en hoe je aansluit bij 
+                      onze waarden. Dit is ook jouw kans om vragen te stellen over de rol.
                     </p>
                   </div>
                 </div>
@@ -279,10 +215,10 @@ export default function CareersPage() {
                     <span className="font-bold text-black">3</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold mb-2 text-black">Technical Assessment</h3>
+                    <h3 className="text-lg font-bold mb-2 text-black">Technische Beoordeling</h3>
                     <p className="text-gray-600">
-                      Depending on the role, you may complete a practical assessment or meet 
-                      with our technical team to discuss your expertise.
+                      Afhankelijk van de rol, maak je mogelijk een praktische opdracht of ontmoet 
+                      je ons technische team om je expertise te bespreken.
                     </p>
                   </div>
                 </div>
@@ -291,10 +227,10 @@ export default function CareersPage() {
                     <span className="font-bold text-black">4</span>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold mb-2 text-black">Welcome to the Team</h3>
+                    <h3 className="text-lg font-bold mb-2 text-black">Welkom bij het Team</h3>
                     <p className="text-gray-600">
-                      Once we make an offer and you accept, we'll provide comprehensive onboarding 
-                      to set you up for success from day one.
+                      Zodra we een aanbod doen en je accepteert, zorgen we voor een uitgebreide 
+                      onboarding om je vanaf dag één voor succes klaar te stomen.
                     </p>
                   </div>
                 </div>
@@ -311,10 +247,10 @@ export default function CareersPage() {
             }}></div>
           </div>
           <div className="container mx-auto px-4 text-center relative z-10">
-            <h2 className="text-4xl font-bold mb-4">Ready to Make Your Mark?</h2>
-            <p className="text-xl mb-8">Join the team that's transforming Amsterdam IT</p>
-            <a href="mailto:careers@workflo.it?subject=General Inquiry" className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition">
-              Start Your Journey With Us
+            <h2 className="text-4xl font-bold mb-4">Klaar om Je Stempel te Drukken?</h2>
+            <p className="text-xl mb-8">Word deel van het team dat Amsterdam IT transformeert</p>
+            <a href="mailto:careers@workflo.it?subject=Open Sollicitatie" className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition">
+              Start Je Reis Bij Ons
             </a>
           </div>
         </section>

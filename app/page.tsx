@@ -345,7 +345,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Client Logos Section */}
+      {/* Client Logos Section - Light with Yellow Border */}
       <section className="py-20 bg-gray-50 border-y-8 border-yellow-400">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12 fade-in-up">
@@ -413,14 +413,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section with Animations */}
-      <section className="py-20 bg-white">
+      {/* Services Section - Dark Background */}
+      <section className="py-20 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 fade-in-up">
-            <h2 className="text-4xl font-bold text-black mb-4">
+            <h2 className="text-4xl font-bold text-white mb-4">
               {t('services.title')}
             </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-4xl mx-auto">
               {t('services.description')}
             </p>
           </div>
@@ -429,15 +429,15 @@ export default function Home() {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="group relative bg-gray-50 rounded-xl overflow-hidden hover-lift fade-in-up cursor-pointer"
+                className="group relative bg-gray-800 border border-gray-700 rounded-xl overflow-hidden hover-lift fade-in-up cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onMouseEnter={() => setActiveService(index)}
               >
                 {/* Service Card */}
                 <div className="p-6">
                   <div className="text-4xl mb-4">{service.icon}</div>
-                  <h3 className="text-xl font-bold text-black mb-2">{service.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{service.description}</p>
+                  <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
+                  <p className="text-gray-300 text-sm mb-4">{service.description}</p>
                   <div className="bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full inline-block mb-2">
                     {service.highlight}
                   </div>
@@ -485,20 +485,20 @@ export default function Home() {
           <div className="text-center mt-12">
             <Link 
               href="/diensten" 
-              className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition-all"
+              className="inline-flex items-center gap-2 bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all"
             >
               {t('services.view_all')}
-              <span className="text-yellow-400">→</span>
+              <span>→</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Team Section with Real Photos */}
+      {/* Team Section - Light Background */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 fade-in-up">
-            <h2 className="text-4xl font-bold text-black mb-4">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
               {t('team.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -533,7 +533,7 @@ export default function Home() {
                   )}
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-black mb-1">{member.name}</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
                   <p className="text-gray-600 mb-2">{member.role}</p>
                   <p className="text-sm text-yellow-600 font-medium">{member.expertise}</p>
                 </div>
@@ -543,16 +543,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Pricing Calculator Section */}
-      <section className="py-20 bg-gray-50">
+      {/* Pricing Calculator Section - Dark Background */}
+      <section className="py-20 bg-black">
         <PricingCalculator />
       </section>
 
-      {/* Testimonials with Enhanced Design */}
+      {/* Testimonials - Light Background */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 fade-in-up">
-            <h2 className="text-4xl font-bold text-black mb-4">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">
               {t('testimonials.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -617,10 +617,10 @@ export default function Home() {
                       </div>
                     </div>
                   )}
-                  <p className="font-bold text-black text-lg">{testimonial.author}</p>
+                  <p className="font-bold text-gray-900 text-lg">{testimonial.author}</p>
                   <p className="text-gray-600 mb-3">{testimonial.role}</p>
                   <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3">
-                    <p className="text-sm font-bold text-black mb-1">{testimonial.result}</p>
+                    <p className="text-sm font-bold text-gray-900 mb-1">{testimonial.result}</p>
                     <p className="text-xs text-gray-600">{testimonial.stats}</p>
                   </div>
                 </div>
@@ -630,14 +630,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Industry Experience Section */}
-      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+      {/* Industry Experience Section - Dark Background */}
+      <section className="py-16 bg-gray-900 text-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+            <h3 className="text-2xl font-semibold text-white mb-4">
               {language === 'en' ? 'Industry Experience Since 2015' : 'Sector Ervaring Sinds 2015'}
             </h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-300 max-w-2xl mx-auto">
               {language === 'en' 
                 ? "Over the years, we've had the privilege of serving diverse organizations across multiple sectors, building expertise that benefits all our clients."
                 : "Door de jaren heen hebben we het voorrecht gehad om diverse organisaties in meerdere sectoren te bedienen, waarbij we expertise hebben opgebouwd die al onze klanten ten goede komt."}
@@ -650,16 +650,22 @@ export default function Home() {
               {[...previousClients, ...previousClients].map((logo, index) => (
                 <div key={index} className="flex-shrink-0">
                   <div className="relative w-32 h-16 flex items-center justify-center">
-                    <Image
-                      src={logo.src}
-                      alt={`${logo.name} logo`}
-                      fill
-                      className="object-contain filter grayscale hover:grayscale-0 transition-all opacity-40 hover:opacity-70"
-                      sizes="128px"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none'
-                      }}
-                    />
+                    {logo.src && (logo.src.includes('JUMP') || logo.src.includes('ladress') || logo.src.includes('Greenpeace')) ? (
+                      <Image
+                        src={logo.src}
+                        alt={`${logo.name} logo`}
+                        fill
+                        className="object-contain filter grayscale hover:grayscale-0 transition-all opacity-40 hover:opacity-70"
+                        sizes="128px"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none'
+                        }}
+                      />
+                    ) : (
+                      <div className="text-gray-400 font-semibold text-sm whitespace-nowrap hover:text-gray-200 transition-colors">
+                        {logo.name}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

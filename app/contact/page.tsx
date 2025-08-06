@@ -1,12 +1,14 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Button from '@/components/ui/Button'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import HubSpotForm from '@/components/forms/HubSpotForm'
 import { useLanguage } from '@/context/LanguageContext'
+import { debugHubSpot } from '@/utils/hubspot-debug'
 
 // Declare HubSpot global types
 declare global {
@@ -20,100 +22,271 @@ export default function ContactPage() {
   const [formRef, formInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const [infoRef, infoInView] = useInView({ triggerOnce: true, threshold: 0.1 })
   const { t } = useLanguage()
+  const [useComponentForm] = useState(true) // Set to true to use the component-based approach
+  const [showDebug, setShowDebug] = useState(false)
+  
+  // Enable debug mode with keyboard shortcut (Ctrl/Cmd + Shift + D)
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'D') {
+        setShowDebug(prev => !prev)
+        setTimeout(() => debugHubSpot(), 100)
+      }
+    }
+    window.addEventListener('keydown', handleKeyPress)
+    return () => window.removeEventListener('keydown', handleKeyPress)
+  }, [])
 
   useEffect(() => {
-    // Load HubSpot forms script
-    const script = document.createElement('script')
-    script.src = '//js-eu1.hsforms.net/forms/embed/v2.js'
-    script.async = true
-    script.defer = true
-    document.body.appendChild(script)
+    // Skip if using component form
+    if (useComponentForm) return;
+    
+    let retryCount = 0;
+    const maxRetries = 3;
+    let retryTimeout: NodeJS.Timeout;
+    let formCreated = false;
 
-    script.onload = () => {
-      // Create HubSpot form
-      if (window.hbspt) {
+    const createHubSpotForm = () => {
+      // Check if container exists
+      const container = document.getElementById('hubspot-form-container');
+      if (!container) {
+        console.error('HubSpot form container not found');
+        return false;
+      }
+
+      // Check if HubSpot object exists
+      if (!window.hbspt || !window.hbspt.forms) {
+        console.error('HubSpot forms API not available');
+        return false;
+      }
+
+      try {
+        // Clear any existing content in the container
+        container.innerHTML = '';
+        
+        // Create the form
         window.hbspt.forms.create({
           region: "eu1",
           portalId: "143658118",
           formId: "7350bc35-4e24-4f1e-9ce0-ddc0b7e00ff8",
           target: "#hubspot-form-container",
-          onFormReady: () => {
-            // Style the HubSpot form to match our design
-            const style = document.createElement('style')
-            style.textContent = `
-              .hs-form-field label {
-                font-size: 0.875rem;
-                font-weight: 500;
-                color: #374151;
-                margin-bottom: 0.5rem;
-                display: block;
-              }
-              .hs-input {
-                width: 100%;
-                padding: 0.75rem 1rem;
-                border: 1px solid #d1d5db;
-                border-radius: 0.5rem;
-                transition: all 0.2s;
-                font-size: 1rem;
-              }
-              .hs-input:focus {
-                outline: none;
-                border-color: #f16e13;
-                box-shadow: 0 0 0 3px rgba(241, 110, 19, 0.1);
-              }
-              .hs-form-field {
-                margin-bottom: 1.5rem;
-              }
-              .hs-button {
-                width: 100%;
-                padding: 0.875rem 1.5rem;
-                background-color: #f16e13;
-                color: white;
-                border: none;
-                border-radius: 0.5rem;
-                font-size: 1.125rem;
-                font-weight: 500;
-                cursor: pointer;
-                transition: background-color 0.2s;
-              }
-              .hs-button:hover {
-                background-color: #e54f0d;
-              }
-              .hs-error-msgs {
-                margin-top: 0.5rem;
-                color: #dc2626;
-                font-size: 0.875rem;
-              }
-              .submitted-message {
-                padding: 1rem;
-                background-color: #d1fae5;
-                border: 1px solid #6ee7b7;
-                border-radius: 0.5rem;
-                color: #065f46;
-              }
-            `
-            document.head.appendChild(style)
+          onFormReady: (form: any) => {
+            console.log('HubSpot form ready', form);
+            formCreated = true;
+            
+            // Add custom styles
+            const styleId = 'hubspot-custom-styles';
+            if (!document.getElementById(styleId)) {
+              const style = document.createElement('style');
+              style.id = styleId;
+              style.textContent = `
+                .hs-form-field label {
+                  font-size: 0.875rem;
+                  font-weight: 500;
+                  color: #374151;
+                  margin-bottom: 0.5rem;
+                  display: block;
+                }
+                .hs-input {
+                  width: 100%;
+                  padding: 0.75rem 1rem;
+                  border: 1px solid #d1d5db;
+                  border-radius: 0.5rem;
+                  transition: all 0.2s;
+                  font-size: 1rem;
+                }
+                .hs-input:focus {
+                  outline: none;
+                  border-color: #f16e13;
+                  box-shadow: 0 0 0 3px rgba(241, 110, 19, 0.1);
+                }
+                .hs-form-field {
+                  margin-bottom: 1.5rem;
+                }
+                .hs-button {
+                  width: 100%;
+                  padding: 0.875rem 1.5rem;
+                  background-color: #f16e13;
+                  color: white;
+                  border: none;
+                  border-radius: 0.5rem;
+                  font-size: 1.125rem;
+                  font-weight: 500;
+                  cursor: pointer;
+                  transition: background-color 0.2s;
+                }
+                .hs-button:hover {
+                  background-color: #e54f0d;
+                }
+                .hs-error-msgs {
+                  margin-top: 0.5rem;
+                  color: #dc2626;
+                  font-size: 0.875rem;
+                }
+                .submitted-message {
+                  padding: 1rem;
+                  background-color: #d1fae5;
+                  border: 1px solid #6ee7b7;
+                  border-radius: 0.5rem;
+                  color: #065f46;
+                }
+              `;
+              document.head.appendChild(style);
+            }
           },
           onFormSubmit: () => {
-            // Track form submission in analytics if needed
-            console.log('Form submitted successfully')
+            console.log('Form submitted successfully');
+          },
+          onFormSubmitted: () => {
+            console.log('Form submission completed');
           }
-        })
+        });
+        
+        return true;
+      } catch (error) {
+        console.error('Error creating HubSpot form:', error);
+        return false;
       }
-    }
+    };
+
+    const loadHubSpotScript = () => {
+      // Check if script is already loaded
+      const existingScript = document.querySelector('script[src*="hsforms.net"]');
+      
+      if (existingScript) {
+        // Script already exists, try to create form
+        if (window.hbspt && window.hbspt.forms) {
+          createHubSpotForm();
+        } else {
+          // Wait for script to fully load
+          const checkInterval = setInterval(() => {
+            if (window.hbspt && window.hbspt.forms) {
+              clearInterval(checkInterval);
+              createHubSpotForm();
+            }
+          }, 100);
+          
+          // Clear interval after 5 seconds to prevent infinite loop
+          setTimeout(() => clearInterval(checkInterval), 5000);
+        }
+        return;
+      }
+
+      // Create and load the script
+      const script = document.createElement('script');
+      script.src = 'https://js-eu1.hsforms.net/forms/embed/v2.js';
+      script.async = true;
+      script.charset = 'utf-8';
+      
+      script.onload = () => {
+        console.log('HubSpot script loaded');
+        
+        // Wait a bit for the HubSpot object to be fully initialized
+        const waitForHubSpot = () => {
+          if (window.hbspt && window.hbspt.forms) {
+            const success = createHubSpotForm();
+            
+            if (!success && retryCount < maxRetries) {
+              retryCount++;
+              console.log(`Retrying form creation (${retryCount}/${maxRetries})...`);
+              retryTimeout = setTimeout(waitForHubSpot, 1000);
+            }
+          } else if (retryCount < maxRetries) {
+            retryCount++;
+            console.log(`Waiting for HubSpot API (${retryCount}/${maxRetries})...`);
+            retryTimeout = setTimeout(waitForHubSpot, 1000);
+          } else {
+            console.error('Failed to load HubSpot forms after maximum retries');
+            // Show fallback content
+            const container = document.getElementById('hubspot-form-container');
+            if (container) {
+              container.innerHTML = `
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <p class="text-red-600 mb-3">Het contactformulier kon niet worden geladen.</p>
+                  <p class="text-sm text-gray-600 mb-3">U kunt ons bereiken via:</p>
+                  <a href="tel:0203080465" class="block text-primary-600 hover:underline mb-2">📞 020-30 80 465</a>
+                  <a href="mailto:info@workflo.nl" class="block text-primary-600 hover:underline">✉️ info@workflo.nl</a>
+                </div>
+              `;
+            }
+          }
+        };
+        
+        // Start the initialization check
+        setTimeout(waitForHubSpot, 100);
+      };
+      
+      script.onerror = (error) => {
+        console.error('Failed to load HubSpot script:', error);
+        
+        // Show fallback content
+        const container = document.getElementById('hubspot-form-container');
+        if (container) {
+          container.innerHTML = `
+            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+              <p class="text-red-600 mb-3">Het contactformulier kon niet worden geladen.</p>
+              <p class="text-sm text-gray-600 mb-3">U kunt ons bereiken via:</p>
+              <a href="tel:0203080465" class="block text-primary-600 hover:underline mb-2">📞 020-30 80 465</a>
+              <a href="mailto:info@workflo.nl" class="block text-primary-600 hover:underline">✉️ info@workflo.nl</a>
+            </div>
+          `;
+        }
+      };
+      
+      document.body.appendChild(script);
+    };
+
+    // Start loading after a small delay to ensure DOM is ready
+    const loadTimeout = setTimeout(loadHubSpotScript, 100);
 
     return () => {
       // Cleanup
-      const hubspotScript = document.querySelector('script[src*="hsforms.net"]')
-      if (hubspotScript) {
-        hubspotScript.remove()
+      clearTimeout(loadTimeout);
+      clearTimeout(retryTimeout);
+      
+      // Only remove script if form wasn't created successfully
+      if (!formCreated) {
+        const hubspotScript = document.querySelector('script[src*="hsforms.net"]');
+        if (hubspotScript) {
+          hubspotScript.remove();
+        }
       }
-    }
-  }, [])
+    };
+  }, [useComponentForm])
 
   return (
     <>
       <Header />
+      
+      {/* Debug Panel */}
+      {showDebug && (
+        <div className="fixed bottom-4 right-4 bg-black text-white p-4 rounded-lg shadow-xl z-50 max-w-sm">
+          <div className="flex justify-between items-center mb-2">
+            <h3 className="font-bold">HubSpot Debug</h3>
+            <button 
+              onClick={() => setShowDebug(false)}
+              className="text-gray-400 hover:text-white"
+            >
+              ✕
+            </button>
+          </div>
+          <div className="text-xs space-y-1">
+            <div>Mode: {useComponentForm ? 'Component' : 'Direct'}</div>
+            <div>Portal: 143658118</div>
+            <div>Form: 7350bc35-4e24-4f1e-9ce0-ddc0b7e00ff8</div>
+            <div>Region: eu1</div>
+            <button 
+              onClick={() => debugHubSpot()} 
+              className="mt-2 px-2 py-1 bg-blue-500 rounded text-xs"
+            >
+              Run Debug Check
+            </button>
+          </div>
+          <div className="mt-2 pt-2 border-t border-gray-700 text-xs">
+            Press Ctrl/Cmd + Shift + D to toggle
+          </div>
+        </div>
+      )}
       <main className="pt-20">
         {/* Hero Section */}
         <section className="relative min-h-[40vh] flex items-center bg-gradient-to-br from-primary-50 to-white overflow-hidden">
@@ -154,15 +327,26 @@ export default function ContactPage() {
                   </p>
                   
                   {/* HubSpot Form Container */}
-                  <div id="hubspot-form-container" className="min-h-[400px]">
-                    <div className="animate-pulse">
-                      <div className="h-10 bg-gray-200 rounded mb-4"></div>
-                      <div className="h-10 bg-gray-200 rounded mb-4"></div>
-                      <div className="h-10 bg-gray-200 rounded mb-4"></div>
-                      <div className="h-20 bg-gray-200 rounded mb-4"></div>
-                      <div className="h-12 bg-gray-300 rounded w-32"></div>
+                  {useComponentForm ? (
+                    <HubSpotForm
+                      region="eu1"
+                      portalId="143658118"
+                      formId="7350bc35-4e24-4f1e-9ce0-ddc0b7e00ff8"
+                      onFormReady={() => console.log('Contact form ready')}
+                      onFormSubmit={() => console.log('Contact form submitted')}
+                      onFormSubmitted={() => console.log('Contact form submission completed')}
+                    />
+                  ) : (
+                    <div id="hubspot-form-container" className="min-h-[400px]">
+                      <div className="animate-pulse">
+                        <div className="h-10 bg-gray-200 rounded mb-4"></div>
+                        <div className="h-10 bg-gray-200 rounded mb-4"></div>
+                        <div className="h-10 bg-gray-200 rounded mb-4"></div>
+                        <div className="h-20 bg-gray-200 rounded mb-4"></div>
+                        <div className="h-12 bg-gray-300 rounded w-32"></div>
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </motion.div>
               
