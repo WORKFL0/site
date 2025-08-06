@@ -19,6 +19,7 @@ const translations = {
     'nav.pricing': 'Pricing',
     'nav.calculator': 'Price Calculator',
     'nav.about': 'About',
+    'nav.faq': 'FAQ',
     'nav.itcheck': 'IT Check',
     'nav.networkscan': 'Network Scan',
     'nav.contact': 'Contact',
@@ -290,6 +291,73 @@ const translations = {
     'diensten.bottom.cta1': 'Do the Industry IT Scan',
     'diensten.bottom.cta2': 'Call for Sector Advice',
     
+    // FAQ Page
+    'faq.hero.title': 'Frequently Asked Questions',
+    'faq.hero.subtitle': 'Get answers to common questions about our IT services',
+    'faq.hero.description': 'Find quick answers to the most common questions about Workflo\'s IT services, pricing, support, and more. Can\'t find what you\'re looking for? Contact us directly.',
+    'faq.search.placeholder': 'Search frequently asked questions...',
+    'faq.category.all': 'All Questions',
+    'faq.category.pricing': 'Pricing & Contracts',
+    'faq.category.support': 'Support & Response Times',
+    'faq.category.services': 'Services & Solutions',
+    'faq.category.security': 'Security & Compliance',
+    'faq.category.onboarding': 'Getting Started',
+    
+    // Pricing & Contracts
+    'faq.pricing.q1': 'What are your standard pricing models?',
+    'faq.pricing.a1': 'We offer flexible pricing models including monthly managed services packages starting from €150/month for small businesses, hourly project work at €85/hour, and custom enterprise packages. All pricing is transparent with no hidden fees.',
+    'faq.pricing.q2': 'Do you require long-term contracts?',
+    'faq.pricing.a2': 'No, we believe in earning your trust through excellent service. Most of our managed services work on monthly agreements with 30-day notice periods. Project work is typically quoted upfront with clear deliverables.',
+    'faq.pricing.q3': 'Are there setup or onboarding fees?',
+    'faq.pricing.a3': 'Initial IT assessments and consultations are always free. For managed services, we include the setup and onboarding process in your first month\'s fee. Project work includes all necessary setup in the quoted price.',
+    'faq.pricing.q4': 'What\'s included in your managed IT packages?',
+    'faq.pricing.a4': '24/7 monitoring, regular maintenance, security updates, backup management, help desk support, strategic IT planning, and unlimited support calls. Premium packages include cybersecurity monitoring and compliance reporting.',
+    
+    // Support & Response Times
+    'faq.support.q1': 'What are your support response times?',
+    'faq.support.a1': 'Critical issues: 15 minutes or less. High priority: Within 2 hours. Standard requests: Within 4 business hours. We provide 24/7 emergency support for all managed service clients.',
+    'faq.support.q2': 'How do we contact support?',
+    'faq.support.a2': 'Multiple ways: Call +31 (0)20 3456789, email support@workflo.it, use our client portal, or WhatsApp for urgent issues. We also provide remote support tools for immediate assistance.',
+    'faq.support.q3': 'Do you provide weekend and evening support?',
+    'faq.support.a3': 'Yes, we provide 24/7 emergency support for critical issues. Standard support is available Monday-Friday 9:00-17:00, with after-hours emergency support always available for managed service clients.',
+    'faq.support.q4': 'Can you work with our existing IT systems?',
+    'faq.support.a4': 'Absolutely. We work with all major systems and platforms including Windows, Mac, Linux, cloud services (Microsoft 365, Google Workspace, AWS), and industry-specific software. We assess your current setup and integrate seamlessly.',
+    
+    // Services & Solutions
+    'faq.services.q1': 'What IT services do you provide?',
+    'faq.services.a1': 'Complete IT solutions including managed IT services, cybersecurity, cloud migrations, backup & recovery, network setup, Microsoft 365 implementation, hardware procurement, and strategic IT consulting.',
+    'faq.services.q2': 'Do you work with specific industries?',
+    'faq.services.a2': 'Yes, we have expertise in healthcare (GDPR/NEN 7510 compliant), financial services (DNB/AFM compliant), retail, legal firms, creative agencies, and professional services. We understand industry-specific compliance requirements.',
+    'faq.services.q3': 'Can you help with cloud migration?',
+    'faq.services.a3': 'Yes, we specialize in cloud migrations to Microsoft Azure, AWS, and Google Cloud. We handle everything from planning and migration to ongoing management, typically reducing infrastructure costs by 30-50%.',
+    'faq.services.q4': 'Do you provide hardware procurement?',
+    'faq.services.a4': 'Yes, we source and provide all types of business hardware including computers, servers, networking equipment, and mobile devices. We offer competitive pricing and handle warranty management.',
+    
+    // Security & Compliance
+    'faq.security.q1': 'How do you ensure our data security?',
+    'faq.security.a1': 'Multi-layered security including 24/7 monitoring, endpoint protection, email security, backup encryption, network firewalls, and regular security audits. We maintain ISO 27001 practices and provide quarterly security reports.',
+    'faq.security.q2': 'Are you GDPR compliant?',
+    'faq.security.a2': 'Yes, we are fully GDPR compliant and help our clients maintain compliance. We provide data processing agreements, conduct privacy impact assessments, and ensure all systems meet GDPR requirements.',
+    'faq.security.q3': 'What backup and disaster recovery do you provide?',
+    'faq.security.a3': 'Automated daily backups with multiple restore points, cloud and local backup options, disaster recovery planning, and regular restore testing. We guarantee data recovery within agreed timeframes.',
+    'faq.security.q4': 'How do you handle cybersecurity threats?',
+    'faq.security.a4': '24/7 threat monitoring, real-time incident response, employee security training, phishing protection, and regular security assessments. We\'ve maintained a 100% track record of preventing successful ransomware attacks.',
+    
+    // Getting Started
+    'faq.onboarding.q1': 'How quickly can you start helping us?',
+    'faq.onboarding.a1': 'Emergency support is available immediately. For new clients, we can typically begin managed services within 1-2 weeks after our initial assessment. Project work can often start within days.',
+    'faq.onboarding.q2': 'What information do you need to get started?',
+    'faq.onboarding.a2': 'Current IT inventory, network diagrams (if available), business objectives, compliance requirements, current pain points, and budget parameters. We help gather this information during our free consultation.',
+    'faq.onboarding.q3': 'Do you work with businesses outside Amsterdam?',
+    'faq.onboarding.a3': 'While we\'re based in Amsterdam, we serve clients throughout the Netherlands. We provide on-site support in the greater Amsterdam area and remote support everywhere, with periodic on-site visits as needed.',
+    'faq.onboarding.q4': 'What size businesses do you work with?',
+    'faq.onboarding.a4': 'We work with businesses from 5 to 500 employees, from startups to established enterprises. Our solutions scale with your business growth, and we have expertise across all business sizes.',
+    
+    'faq.cta.title': 'Still Have Questions?',
+    'faq.cta.description': 'Our IT experts are ready to help with personalized answers to your specific situation.',
+    'faq.cta.button': 'Contact Our Experts',
+    'faq.cta.phone': 'Or call us directly: +31 (0)20 3456789',
+    
     // Footer
     'footer.tagline': "Amsterdam's Most Trusted IT Partner",
     'footer.write_review': 'Write a Review',
@@ -311,6 +379,7 @@ const translations = {
     'nav.pricing': 'Tarieven',
     'nav.calculator': 'Prijs Calculator',
     'nav.about': 'Over Ons',
+    'nav.faq': 'FAQ',
     'nav.itcheck': 'IT Check',
     'nav.networkscan': 'Netwerk Scan',
     'nav.contact': 'Contact',
@@ -581,6 +650,73 @@ const translations = {
     'diensten.bottom.description': 'Geen probleem! Wij hebben voor elke sector een oplossing.',
     'diensten.bottom.cta1': 'Doe de Branche IT-Scan',
     'diensten.bottom.cta2': 'Bel voor Sectoradvies',
+    
+    // FAQ Page (Dutch)
+    'faq.hero.title': 'Veelgestelde Vragen',
+    'faq.hero.subtitle': 'Krijg antwoorden op veelgestelde vragen over onze IT-diensten',
+    'faq.hero.description': 'Vind snel antwoorden op de meest gestelde vragen over Workflo\'s IT-diensten, prijzen, support en meer. Kunt u niet vinden wat u zoekt? Neem direct contact met ons op.',
+    'faq.search.placeholder': 'Zoek veelgestelde vragen...',
+    'faq.category.all': 'Alle Vragen',
+    'faq.category.pricing': 'Prijzen & Contracten',
+    'faq.category.support': 'Support & Reactietijden',
+    'faq.category.services': 'Diensten & Oplossingen',
+    'faq.category.security': 'Beveiliging & Compliance',
+    'faq.category.onboarding': 'Aan de Slag',
+    
+    // Prijzen & Contracten
+    'faq.pricing.q1': 'Wat zijn uw standaard prijsmodellen?',
+    'faq.pricing.a1': 'Wij bieden flexibele prijsmodellen inclusief maandelijkse managed service pakketten vanaf €150/maand voor kleine bedrijven, projectwerk per uur à €85/uur, en aangepaste enterprise pakketten. Alle prijzen zijn transparant zonder verborgen kosten.',
+    'faq.pricing.q2': 'Vereist u langetermijncontracten?',
+    'faq.pricing.a2': 'Nee, wij geloven erin uw vertrouwen te verdienen door uitstekende service. De meeste van onze managed services werken met maandelijkse overeenkomsten met 30 dagen opzegtermijn. Projectwerk wordt doorgaans vooraf gecalculeerd met duidelijke deliverables.',
+    'faq.pricing.q3': 'Zijn er setup- of onboardingkosten?',
+    'faq.pricing.a3': 'Initiële IT-assessments en consultaties zijn altijd gratis. Voor managed services nemen wij de setup en onboarding mee in de eerste maand. Projectwerk bevat alle benodigde setup in de gecalculeerde prijs.',
+    'faq.pricing.q4': 'Wat is inbegrepen in uw managed IT-pakketten?',
+    'faq.pricing.a4': '24/7 monitoring, regelmatig onderhoud, beveiligingsupdates, backupbeheer, helpdesk support, strategische IT-planning, en onbeperkte supportgesprekken. Premium pakketten bevatten cybersecurity monitoring en compliance rapportage.',
+    
+    // Support & Reactietijden
+    'faq.support.q1': 'Wat zijn uw support reactietijden?',
+    'faq.support.a1': 'Kritieke problemen: 15 minuten of minder. Hoge prioriteit: Binnen 2 uur. Standaard verzoeken: Binnen 4 werkuren. Wij bieden 24/7 emergency support voor alle managed service klanten.',
+    'faq.support.q2': 'Hoe nemen we contact op met support?',
+    'faq.support.a2': 'Op meerdere manieren: Bel +31 (0)20 3456789, email support@workflo.it, gebruik ons klantportaal, of WhatsApp voor urgente zaken. Wij bieden ook remote support tools voor directe hulp.',
+    'faq.support.q3': 'Bieden jullie weekend- en avondondersteuning?',
+    'faq.support.a3': 'Ja, wij bieden 24/7 emergency support voor kritieke problemen. Standaard support is beschikbaar maandag-vrijdag 9:00-17:00, met 24/7 emergency support altijd beschikbaar voor managed service klanten.',
+    'faq.support.q4': 'Kunnen jullie werken met onze bestaande IT-systemen?',
+    'faq.support.a4': 'Absoluut. Wij werken met alle belangrijke systemen en platformen inclusief Windows, Mac, Linux, cloud services (Microsoft 365, Google Workspace, AWS), en branche-specifieke software. Wij beoordelen uw huidige setup en integreren naadloos.',
+    
+    // Diensten & Oplossingen
+    'faq.services.q1': 'Welke IT-diensten bieden jullie?',
+    'faq.services.a1': 'Complete IT-oplossingen inclusief managed IT services, cybersecurity, cloud migraties, backup & recovery, netwerk setup, Microsoft 365 implementatie, hardware inkoop, en strategische IT-consultancy.',
+    'faq.services.q2': 'Werken jullie met specifieke branches?',
+    'faq.services.a2': 'Ja, wij hebben expertise in zorg (GDPR/NEN 7510 compliant), financiële dienstverlening (DNB/AFM compliant), retail, advocatenkantoren, creatieve bureaus, en professionele dienstverlening. Wij begrijpen branche-specifieke compliance vereisten.',
+    'faq.services.q3': 'Kunnen jullie helpen met cloud migratie?',
+    'faq.services.a3': 'Ja, wij zijn gespecialiseerd in cloud migraties naar Microsoft Azure, AWS, en Google Cloud. Wij regelen alles van planning en migratie tot doorlopend beheer, waarbij we doorgaans infrastructuurkosten met 30-50% verlagen.',
+    'faq.services.q4': 'Bieden jullie hardware inkoop?',
+    'faq.services.a4': 'Ja, wij sourcen en leveren alle soorten zakelijke hardware inclusief computers, servers, netwerkapparatuur, en mobiele apparaten. Wij bieden competitieve prijzen en regelen garantiebeheer.',
+    
+    // Beveiliging & Compliance
+    'faq.security.q1': 'Hoe zorgen jullie voor onze databeveiliging?',
+    'faq.security.a1': 'Meerlaagse beveiliging inclusief 24/7 monitoring, endpoint protection, email beveiliging, backup encryptie, netwerk firewalls, en regelmatige security audits. Wij hanteren ISO 27001 praktijken en leveren kwartaalrapportages.',
+    'faq.security.q2': 'Zijn jullie GDPR compliant?',
+    'faq.security.a2': 'Ja, wij zijn volledig GDPR compliant en helpen onze klanten compliance te behouden. Wij leveren verwerkingsovereenkomsten, voeren privacy impact assessments uit, en zorgen dat alle systemen voldoen aan GDPR vereisten.',
+    'faq.security.q3': 'Welke backup en disaster recovery bieden jullie?',
+    'faq.security.a3': 'Geautomatiseerde dagelijkse backups met meerdere herstelpunten, cloud en lokale backup opties, disaster recovery planning, en regelmatige restore tests. Wij garanderen dataherstel binnen afgesproken tijdsframes.',
+    'faq.security.q4': 'Hoe gaan jullie om met cybersecurity bedreigingen?',
+    'faq.security.a4': '24/7 threat monitoring, real-time incident response, medewerker security training, phishing bescherming, en regelmatige security assessments. Wij hebben een 100% track record in het voorkomen van succesvolle ransomware aanvallen.',
+    
+    // Aan de Slag
+    'faq.onboarding.q1': 'Hoe snel kunnen jullie ons helpen?',
+    'faq.onboarding.a1': 'Emergency support is direct beschikbaar. Voor nieuwe klanten kunnen wij doorgaans managed services starten binnen 1-2 weken na onze eerste assessment. Projectwerk kan vaak binnen dagen beginnen.',
+    'faq.onboarding.q2': 'Welke informatie hebben jullie nodig om te starten?',
+    'faq.onboarding.a2': 'Huidige IT-inventaris, netwerkdiagrammen (indien beschikbaar), bedrijfsdoelstellingen, compliance vereisten, huidige knelpunten, en budgetparameters. Wij helpen deze informatie verzamelen tijdens onze gratis consultatie.',
+    'faq.onboarding.q3': 'Werken jullie met bedrijven buiten Amsterdam?',
+    'faq.onboarding.a3': 'Hoewel wij gevestigd zijn in Amsterdam, bedienen wij klanten door heel Nederland. Wij bieden on-site support in de regio Amsterdam en remote support overal, met periodieke on-site bezoeken waar nodig.',
+    'faq.onboarding.q4': 'Met welke bedrijfsgroottes werken jullie?',
+    'faq.onboarding.a4': 'Wij werken met bedrijven van 5 tot 500 medewerkers, van startups tot gevestigde ondernemingen. Onze oplossingen schalen mee met uw bedrijfsgroei, en wij hebben expertise voor alle bedrijfsgroottes.',
+    
+    'faq.cta.title': 'Nog Vragen?',
+    'faq.cta.description': 'Onze IT-experts staan klaar om te helpen met gepersonaliseerde antwoorden voor uw specifieke situatie.',
+    'faq.cta.button': 'Neem Contact Op',
+    'faq.cta.phone': 'Of bel ons direct: +31 (0)20 3456789',
     
     // Footer
     'footer.tagline': "Amsterdam's Meest Vertrouwde IT Partner",

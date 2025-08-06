@@ -839,7 +839,6 @@ export default function Home() {
             loop
             playsInline
             className="w-64 h-64 object-contain"
-            loading="lazy"
             preload="metadata"
           >
             <source src="/videos/Mobile-Device-Header-1.mp4" type="video/mp4" />
