@@ -156,13 +156,13 @@ export default function Home() {
 
   // Previous clients we've worked with
   const previousClients = [
-    { name: "Leyden Labs", src: "/grapics/All/leydenlabs_Logo.png" },
-    { name: "TBWA", src: "/grapics/All/tbwa_Logo.png" },
-    { name: "iO Digital", src: "/grapics/All/iO-logo-1024x1024.jpg" },
-    { name: "Daily Paper", src: "/grapics/All/daily-papor.png" },
-    { name: "Greenpeace", src: "/grapics/All/Greenpeace_logo.png" },
-    { name: "JUMP", src: "/grapics/All/JUMP_Logo.jpg" },
-    { name: "L'Adress", src: "/grapics/All/laDress_Logo.png" }
+    { name: "Leyden Labs", src: "/images/logos/leydenlabs_Logo.png" },
+    { name: "TBWA", src: "/images/logos/tbwa_Logo.png" },
+    { name: "iO Digital", src: "/images/logos/io_Logo.png" },
+    { name: "Daily Paper", src: "/images/logos/dailypaper_Logo.png" },
+    { name: "Greenpeace", src: "/images/logos/greenpeace.png" },
+    { name: "JUMP", src: "/images/logos/jump.jpg" },
+    { name: "L'Adress", src: "/images/logos/ladress.png" }
   ]
 
   // Combine for homepage display
@@ -1205,7 +1205,7 @@ export default function Home() {
               {[...previousClients, ...previousClients].map((logo, index) => (
                 <div key={index} className="flex-shrink-0">
                   <div className="relative w-32 h-16 flex items-center justify-center">
-                    {logo.src && (logo.src.includes('JUMP') || logo.src.includes('ladress') || logo.src.includes('Greenpeace') || logo.src.includes('leyden') || logo.src.includes('tbwa') || logo.src.includes('iO') || logo.src.includes('daily')) ? (
+                    {logo.src && (logo.src.includes('jump') || logo.src.includes('ladress') || logo.src.includes('greenpeace') || logo.src.includes('leyden') || logo.src.includes('tbwa') || logo.src.includes('io_Logo') || logo.src.includes('dailypaper')) ? (
                       <Image
                         src={logo.src}
                         alt={`${logo.name} logo`}
@@ -1213,6 +1213,7 @@ export default function Home() {
                         className="object-contain filter grayscale hover:grayscale-0 transition-all opacity-40 hover:opacity-70"
                         sizes="128px"
                         onError={(e) => {
+                          console.warn(`Failed to load logo: ${logo.src}`)
                           e.currentTarget.style.display = 'none'
                         }}
                       />

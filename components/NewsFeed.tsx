@@ -36,10 +36,21 @@ const NewsFeed = ({
         setError(null)
         
         // Fetch RSS feed via our API endpoint (handles CORS server-side)
-        const response = await fetch('/api/rss-feed')
+        const response = await fetch('/api/rss-feed', {
+          cache: 'no-store',
+          headers: {
+            'Accept': 'application/xml, text/xml, application/rss+xml'
+          }
+        })
         
         if (!response.ok) {
-          throw new Error('Failed to fetch RSS feed')
+          throw new Error(`Failed to fetch RSS feed: ${response.status} ${response.statusText}`)
+        }
+        
+        // Check which RSS source was used (for debugging)
+        const rssSource = response.headers.get('X-RSS-Source')
+        if (rssSource) {
+          console.log('RSS feed source:', rssSource)
         }
         
         const xmlContent = await response.text()
@@ -48,47 +59,100 @@ const NewsFeed = ({
           throw new Error('No RSS content available')
         }
         
+        console.log('Received RSS content length:', xmlContent.length)
+        console.log('First 200 chars:', xmlContent.substring(0, 200))
+        
         const parser = new DOMParser()
         const xmlDoc = parser.parseFromString(xmlContent, 'text/xml')
         
         // Check for parsing errors
         const parserError = xmlDoc.querySelector('parsererror')
         if (parserError) {
-          console.warn('RSS feed parsing error, attempting to extract RSS from HTML')
-          // The content might be HTML with embedded RSS, try to extract it
-          // For now, we'll just set empty items
-          setNewsItems([])
-          return
+          console.error('XML parsing error:', parserError.textContent)
+          // Try to recover by checking if it's a valid RSS structure despite the error
+          if (!xmlContent.includes('<item>') && !xmlContent.includes('<entry>')) {
+            throw new Error('Invalid RSS feed format')
+          }
         }
         
-        const items = xmlDoc.querySelectorAll('item')
+        // Try both RSS and Atom feed formats
+        let items = xmlDoc.querySelectorAll('item')
+        if (items.length === 0) {
+          items = xmlDoc.querySelectorAll('entry') // Atom format
+        }
+        
+        console.log(`Found ${items.length} items in RSS feed`)
+        
         const newsData: NewsItem[] = []
         
         items.forEach((item, index) => {
           if (index < maxItems) {
+            // Handle both RSS and Atom formats
             const title = item.querySelector('title')?.textContent || ''
-            const description = item.querySelector('description')?.textContent || ''
-            const link = item.querySelector('link')?.textContent || ''
-            const pubDate = item.querySelector('pubDate')?.textContent || ''
-            const guid = item.querySelector('guid')?.textContent || `item-${index}`
+            const description = item.querySelector('description')?.textContent || 
+                              item.querySelector('summary')?.textContent || 
+                              item.querySelector('content')?.textContent || ''
+            const link = item.querySelector('link')?.textContent || 
+                        item.querySelector('link')?.getAttribute('href') || ''
+            const pubDate = item.querySelector('pubDate')?.textContent || 
+                           item.querySelector('published')?.textContent || 
+                           item.querySelector('updated')?.textContent || ''
+            const guid = item.querySelector('guid')?.textContent || 
+                        item.querySelector('id')?.textContent || 
+                        `item-${index}`
             
-            // Only add items that have at least a title and link
-            if (title && link) {
+            // Check for special error message items or non-article content
+            const isErrorItem = title.includes('RSS Feed Temporarily Unavailable') || 
+                               title.includes('Feed Unavailable') ||
+                               title.includes('RSS Feed Service Status') ||
+                               title.includes('Alternative: Enable Test Mode')
+            
+            // Filter out any non-article content
+            const isValidArticle = title && 
+                                  !isErrorItem && 
+                                  link && 
+                                  !link.startsWith('/api/') // Exclude internal API links
+            
+            // Only add real content items (not error messages) that have at least a title and valid link
+            if (isValidArticle) {
+              // Clean up description - remove HTML tags and decode entities
+              const cleanDescription = description
+                .replace(/<[^>]*>/g, '') // Remove HTML tags
+                .replace(/&nbsp;/g, ' ')  // Replace nbsp
+                .replace(/&amp;/g, '&')   // Decode ampersand
+                .replace(/&lt;/g, '<')    // Decode less than
+                .replace(/&gt;/g, '>')    // Decode greater than
+                .replace(/&quot;/g, '"')  // Decode quotes
+                .replace(/&#39;/g, "'")   // Decode apostrophe
+                .trim()
+              
               newsData.push({
                 title: title.trim(),
-                description: description.trim(),
+                description: cleanDescription,
                 link: link.trim(),
                 pubDate: pubDate.trim(),
                 guid: guid.trim()
               })
+              
+              console.log(`Added item ${index + 1}: ${title.substring(0, 50)}...`)
+            } else if (isErrorItem) {
+              console.warn('RSS feed returned an error item:', title)
+              setError('RSS feed is temporarily unavailable. Please try again later.')
             }
           }
         })
         
+        console.log(`Processed ${newsData.length} valid news items`)
+        
+        if (newsData.length === 0) {
+          console.warn('No valid news items found in RSS feed')
+          setError('No articles available from the RSS feed at the moment.')
+        }
+        
         setNewsItems(newsData)
       } catch (err) {
         console.error('Error fetching RSS feed:', err)
-        setError('Failed to load news feed')
+        setError(err instanceof Error ? err.message : 'Failed to load news feed')
         setNewsItems([])
       } finally {
         setLoading(false)

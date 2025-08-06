@@ -119,24 +119,13 @@ export default function NewsletterSignup({
 
       {/* HubSpot Form Integration */}
       <div className="newsletter-form-container">
-        {formId === 'e92de02c-71b0-4a68-aedd-3b6acb0f5f67' ? (
-          // Fallback when newsletter form isn't configured yet
-          <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 text-center">
-            <p className="text-yellow-800 text-sm mb-2">
-              <strong>Newsletter Form Not Configured</strong>
-            </p>
-            <p className="text-yellow-700 text-xs">
-              Please replace the formId prop with your HubSpot newsletter form ID from portal 26510736
-            </p>
-          </div>
-        ) : (
-          <HubSpotForm
-            portalId="26510736"
-            formId={formId}
-            className="newsletter-hubspot-form"
-            onFormSubmitted={handleFormSubmitted}
-          />
-        )}
+        <HubSpotForm
+          portalId="26510736"
+          formId={formId}
+          region="eu1"
+          className="newsletter-hubspot-form"
+          onFormSubmitted={handleFormSubmitted}
+        />
       </div>
 
       {/* Custom Styling for Newsletter Form */}
