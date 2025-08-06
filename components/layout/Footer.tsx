@@ -7,22 +7,22 @@ const Footer = () => {
 
   const footerLinks = {
     services: [
-      { name: 'Cloud Diensten', href: '/diensten' },
-      { name: 'Cybersecurity', href: '/diensten' },
-      { name: 'Beheerd IT', href: '/diensten' },
-      { name: 'IT Consultancy', href: '/diensten' },
+      { name: 'Managed IT Services', href: '/diensten/managed-it' },
+      { name: 'Cybersecurity', href: '/diensten/cybersecurity' },
+      { name: 'Cloud Services', href: '/diensten/cloud' },
+      { name: 'IT Consulting', href: '/diensten/it-consulting' },
     ],
     company: [
-      { name: 'Over Ons', href: '/about' },
+      { name: 'About Us', href: '/over-ons' },
       { name: 'Case Studies', href: '/case-studies' },
-      { name: 'Werken bij', href: '/careers' },
+      { name: 'Careers', href: '/careers' },
       { name: 'Contact', href: '/contact' },
     ],
     industries: [
-      { name: 'Marketing & Media', href: '/diensten' },
-      { name: 'Non-Profit', href: '/diensten' },
-      { name: 'Retail', href: '/diensten' },
-      { name: 'Zakelijke Dienstverlening', href: '/diensten' },
+      { name: 'Marketing & Media', href: '/diensten#marketing' },
+      { name: 'Non-Profit', href: '/diensten#nonprofit' },
+      { name: 'Retail', href: '/diensten#retail' },
+      { name: 'Business Services', href: '/diensten#business' },
     ],
   }
 
@@ -40,9 +40,6 @@ const Footer = () => {
               </div>
               <span className="text-xl font-bold text-white">Workflo</span>
             </div>
-            <p className="text-sm mb-4 max-w-md">
-              {t('footer.tagline')}
-            </p>
             <div className="flex space-x-4">
               <a href="https://linkedin.com/company/workflo" target="_blank" rel="noopener noreferrer" className="hover:text-warning-yellow transition-colors">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
