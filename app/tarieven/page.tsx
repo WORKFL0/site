@@ -247,6 +247,25 @@ export default function PricingPage() {
                 {language === 'en' ? 'Why Choose Fixed Fee?' : 'Waarom kiezen voor Fixed Fee?'}
               </h2>
               
+              {/* Important Note about Licenses */}
+              <div className="bg-yellow-50 border-2 border-yellow-400 rounded-xl p-6 mb-8">
+                <div className="flex items-start gap-3">
+                  <svg className="w-6 h-6 text-yellow-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <div>
+                    <h3 className="font-bold text-gray-900 mb-2">
+                      {language === 'en' ? 'All Software Licenses Included!' : 'Alle Software Licenties Inbegrepen!'}
+                    </h3>
+                    <p className="text-gray-700">
+                      {language === 'en' 
+                        ? 'With our Fixed Fee packages, all software licenses are included in the price (except Microsoft 365, which has variable pricing based on your specific needs). This means no hidden costs for antivirus, monitoring tools, backup software, or other essential business applications.'
+                        : 'Bij onze Fixed Fee pakketten zijn alle software licenties inbegrepen in de prijs (behalve Microsoft 365, dat variabele prijzen heeft op basis van uw specifieke behoeften). Dit betekent geen verborgen kosten voor antivirus, monitoring tools, backup software of andere essentiële bedrijfsapplicaties.'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              
               <div className="grid md:grid-cols-2 gap-8 mb-12">
                 <div className="bg-gray-50 rounded-xl p-6">
                   <h3 className="font-bold text-gray-900 mb-3">

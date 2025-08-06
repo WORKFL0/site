@@ -103,11 +103,10 @@ export default function Home() {
     }
   ]
 
-  const clientLogos = [
+  // Current active clients
+  const currentClients = [
     { name: "Havas Media", src: "/images/logos/Havas_Media.png" },
     { name: "Podimo", src: "/images/logos/Podimo_Logo.png" },
-    { name: "Greenpeace", src: "/images/logos/Greenpeace_logo.png" },
-    { name: "JUMP", src: "/images/logos/JUMP_Logo.jpg" },
     { name: "DoctorFeelgood", src: "/images/logos/doctorfeelgood_Logo.jpg" },
     { name: "Aescap", src: "/images/logos/Aescap2_Logo.png" },
     { name: "Hunt Amsterdam", src: "/images/logos/huntamsterdam_logo.jpeg" },
@@ -125,10 +124,22 @@ export default function Home() {
     { name: "Open Boek", src: "/images/logos/open-boek_Logo.png" },
     { name: "Bijvoorkeur", src: "/images/logos/Bijvoorkeur_Logo.jpg" },
     { name: "BLC Financeview", src: "/images/logos/blc-financeview.png" },
-    { name: "L'Adress", src: "/images/logos/ladress.png" },
-    { name: "Koschuch", src: "/images/logos/koschuch.png" },
-    { name: "John Doornik", src: "/images/logos/john-doornik.png" }
+    { name: "John Doornik", src: "/images/logos/john-doornik.png" },
+    { name: "Koschuch", src: "/images/logos/koschuch.png" }
   ]
+
+  // Previous clients we've worked with
+  const previousClients = [
+    { name: "Greenpeace", src: "/images/logos/Greenpeace_logo.png" },
+    { name: "JUMP", src: "/images/logos/JUMP_Logo.jpg" },
+    { name: "L'Adress", src: "/images/logos/ladress.png" },
+    { name: "Daily Paper", src: "/images/logos/dailypaper_Logo.png" },
+    { name: "TBWA", src: "/images/logos/tbwa_Logo.png" },
+    { name: "iO Digital", src: "/images/logos/io_Logo.png" }
+  ]
+
+  // Combine for homepage display
+  const clientLogos = currentClients
 
   const teamMembers = [
     {
@@ -346,25 +357,59 @@ export default function Home() {
           </div>
 
           {/* Logo Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center">
-            {clientLogos.map((logo, index) => (
+          <h3 className="text-2xl font-bold text-center text-black mb-8">
+            {language === 'en' ? 'Current Clients' : 'Huidige Klanten'}
+          </h3>
+          <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
+            {currentClients.map((logo, index) => (
               <div 
                 key={index}
-                className="bg-white rounded-lg p-6 flex items-center justify-center hover-lift h-32 fade-in-up"
-                style={{ animationDelay: `${index * 0.05}s` }}
+                className="bg-white rounded-lg p-3 flex items-center justify-center hover-lift h-20 fade-in-up group"
+                style={{ animationDelay: `${index * 0.03}s` }}
               >
-                <Image
-                  src={logo.src}
-                  alt={`${logo.name} logo`}
-                  width={150}
-                  height={80}
-                  className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none'
-                  }}
-                />
+                <div className="relative w-24 h-14 flex items-center justify-center">
+                  <Image
+                    src={logo.src}
+                    alt={`${logo.name} logo`}
+                    fill
+                    className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                    sizes="96px"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none'
+                    }}
+                  />
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* Previous Clients Section */}
+          <div className="mt-12">
+            <h3 className="text-xl font-semibold text-center text-gray-700 mb-6">
+              {language === 'en' ? 'Previously Worked With' : 'Eerder Gewerkt Voor'}
+            </h3>
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
+              {previousClients.map((logo, index) => (
+                <div 
+                  key={index}
+                  className="bg-gray-100 rounded-lg p-3 flex items-center justify-center h-16 fade-in-up"
+                  style={{ animationDelay: `${(index + currentClients.length) * 0.03}s` }}
+                >
+                  <div className="relative w-20 h-12 flex items-center justify-center">
+                    <Image
+                      src={logo.src}
+                      alt={`${logo.name} logo`}
+                      fill
+                      className="object-contain filter grayscale opacity-60"
+                      sizes="80px"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none'
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Professional Stats Bar */}

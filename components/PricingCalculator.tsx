@@ -400,6 +400,18 @@ const PricingCalculator = () => {
               </p>
             </div>
 
+            {/* License Info */}
+            <div className="bg-yellow-50 border border-yellow-400 rounded-xl p-4 mt-6">
+              <h4 className="font-bold text-black mb-2 text-sm">
+                {language === 'en' ? '💡 All Licenses Included' : '💡 Alle Licenties Inbegrepen'}
+              </h4>
+              <p className="text-xs text-gray-700">
+                {language === 'en' 
+                  ? 'Fixed Fee packages include all software licenses (except Office 365)'
+                  : 'Fixed Fee pakketten zijn inclusief alle software licenties (behalve Office 365)'}
+              </p>
+            </div>
+
             {/* Why Fixed Fee */}
             <div className="bg-gray-50 rounded-xl p-6 mt-6">
               <h4 className="font-bold text-black mb-3">
