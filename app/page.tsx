@@ -10,7 +10,7 @@ import PricingCalculator from '@/components/PricingCalculator'
 import { useLanguage } from '@/context/LanguageContext'
 
 export default function Home() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const [activeService, setActiveService] = useState(0)
 

@@ -28,6 +28,8 @@ const PricingCalculator = () => {
   const [selectedOption, setSelectedOption] = useState('fixed-remote')
   const [totalPrice, setTotalPrice] = useState(0)
   const [savings, setSavings] = useState(0)
+  const [selectedOffice365, setSelectedOffice365] = useState('none')
+  const [office365Licenses, setOffice365Licenses] = useState(0)
 
   const pricingOptions: PricingOption[] = [
     {
@@ -160,6 +162,15 @@ const PricingCalculator = () => {
     }
   ]
 
+  const office365Packages = [
+    { id: 'none', name: language === 'en' ? 'No Office 365' : 'Geen Office 365', price: 0 },
+    { id: 'basic', name: 'Microsoft 365 Basic', price: 6 },
+    { id: 'standard', name: 'Microsoft 365 Business Standard', price: 12 },
+    { id: 'premium', name: 'Microsoft 365 Business Premium', price: 22 },
+    { id: 'e3', name: 'Microsoft 365 E3', price: 36 },
+    { id: 'e5', name: 'Microsoft 365 E5', price: 57 }
+  ]
+
   useEffect(() => {
     const option = pricingOptions.find(o => o.id === selectedOption)
     if (!option) return
@@ -177,12 +188,19 @@ const PricingCalculator = () => {
       total = option.price * (employees + servers)
     }
 
+    // Add Office 365 costs
+    const office365Package = office365Packages.find(p => p.id === selectedOffice365)
+    if (office365Package && office365Package.price > 0) {
+      const licensesToUse = office365Licenses > 0 ? office365Licenses : employees
+      total += office365Package.price * licensesToUse
+    }
+
     setTotalPrice(Math.round(total))
     
     // Calculate savings vs break-fix (estimated 8 hours/month at €110/hour)
     const breakFixCost = 8 * 110
     setSavings(Math.max(0, breakFixCost - total))
-  }, [selectedOption, employees, servers])
+  }, [selectedOption, employees, servers, selectedOffice365, office365Licenses])
 
   const getCompanySize = () => {
     if (employees <= 5) return language === 'en' ? 'Micro Business' : 'Micro Bedrijf'
@@ -260,6 +278,54 @@ const PricingCalculator = () => {
             </div>
           </div>
 
+          {/* Office 365 Package Selection */}
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-2xl font-bold text-black mb-4">
+              {language === 'en' ? 'Microsoft 365 Licenses (Optional)' : 'Microsoft 365 Licenties (Optioneel)'}
+            </h3>
+            <p className="text-gray-600 text-sm mb-4">
+              {language === 'en' 
+                ? 'Add Microsoft 365 licenses to see your complete monthly IT investment'
+                : 'Voeg Microsoft 365 licenties toe om uw complete maandelijkse IT-investering te zien'}
+            </p>
+            
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                {language === 'en' ? 'Select Package:' : 'Selecteer Pakket:'}
+              </label>
+              <select
+                value={selectedOffice365}
+                onChange={(e) => setSelectedOffice365(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              >
+                {office365Packages.map((pkg) => (
+                  <option key={pkg.id} value={pkg.id}>
+                    {pkg.name} {pkg.price > 0 && `(€${pkg.price}/user/month)`}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {selectedOffice365 !== 'none' && (
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  {language === 'en' 
+                    ? `Number of Licenses (default: ${employees} employees):`
+                    : `Aantal Licenties (standaard: ${employees} medewerkers):`}
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  max="500"
+                  value={office365Licenses || employees}
+                  onChange={(e) => setOffice365Licenses(Number(e.target.value))}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  placeholder={employees.toString()}
+                />
+              </div>
+            )}
+          </div>
+
           {/* Service Selection */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <h3 className="text-2xl font-bold text-black mb-6">
@@ -335,18 +401,51 @@ const PricingCalculator = () => {
               </h3>
               
               <div className="space-y-4 mb-6">
-                <div className="flex justify-between items-start">
-                  <div className="flex-1">
-                    <div className="font-medium">
-                      {pricingOptions.find(o => o.id === selectedOption)?.[language === 'en' ? 'name' : 'nameNL']}
-                    </div>
-                    {selectedOption.startsWith('fixed') && (
-                      <div className="text-sm text-gray-400">
-                        {employees} {language === 'en' ? 'users' : 'gebruikers'} + {servers} servers
+                <div className="pb-3 border-b border-gray-700">
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      <div className="font-medium">
+                        {pricingOptions.find(o => o.id === selectedOption)?.[language === 'en' ? 'name' : 'nameNL']}
                       </div>
-                    )}
+                      {selectedOption.startsWith('fixed') && (
+                        <div className="text-sm text-gray-400">
+                          {employees} {language === 'en' ? 'users' : 'gebruikers'} + {servers} servers
+                        </div>
+                      )}
+                    </div>
+                    <div className="text-lg">
+                      €{(() => {
+                        const option = pricingOptions.find(o => o.id === selectedOption)
+                        if (!option) return 0
+                        if (option.type === 'hourly') return option.price * 5
+                        if (option.type === 'strippenkaart') return Math.round(option.price / 12)
+                        return option.price * (employees + servers)
+                      })()}
+                    </div>
                   </div>
                 </div>
+                
+                {selectedOffice365 !== 'none' && (
+                  <div className="pb-3 border-b border-gray-700">
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <div className="font-medium">
+                          {office365Packages.find(p => p.id === selectedOffice365)?.name}
+                        </div>
+                        <div className="text-sm text-gray-400">
+                          {office365Licenses || employees} {language === 'en' ? 'licenses' : 'licenties'}
+                        </div>
+                      </div>
+                      <div className="text-lg">
+                        €{(() => {
+                          const pkg = office365Packages.find(p => p.id === selectedOffice365)
+                          if (!pkg) return 0
+                          return pkg.price * (office365Licenses || employees)
+                        })()}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
               
               <div className="border-t border-gray-700 pt-4">
