@@ -38,67 +38,67 @@ export default function Home() {
 
   const services = [
     {
-      title: "Managed IT Services",
-      description: "Complete IT support that costs less than hiring one full-time employee",
+      title: t('services.managed_it.title'),
+      description: t('services.managed_it.description'),
       icon: "🛡️",
-      highlight: "60% cost reduction",
-      outcome: "Focus on business growth",
+      highlight: t('services.managed_it.highlight'),
+      outcome: t('services.managed_it.outcome'),
       animation: "/videos/code-animation.mp4"
     },
     {
-      title: "Cybersecurity",
-      description: "Professional security monitoring and threat protection for your business",
+      title: t('services.cybersecurity.title'),
+      description: t('services.cybersecurity.description'),
       icon: "🔒",
-      highlight: "24/7 monitoring",
-      outcome: "Data stays secure",
+      highlight: t('services.cybersecurity.highlight'),
+      outcome: t('services.cybersecurity.outcome'),
       animation: "/videos/security-animation.mp4"
     },
     {
-      title: "Cloud Services",
-      description: "Modern cloud infrastructure that supports remote work and business flexibility",
+      title: t('services.cloud.title'),
+      description: t('services.cloud.description'),
       icon: "☁️",
-      highlight: "45% infrastructure savings",
-      outcome: "Work from anywhere",
+      highlight: t('services.cloud.highlight'),
+      outcome: t('services.cloud.outcome'),
       animation: null
     },
     {
-      title: "IT Consulting",
-      description: "Strategic technology guidance to support business objectives and growth",
+      title: t('services.consulting.title'),
+      description: t('services.consulting.description'),
       icon: "💡",
-      highlight: "Business-aligned IT",
-      outcome: "Technology that works",
+      highlight: t('services.consulting.highlight'),
+      outcome: t('services.consulting.outcome'),
       animation: null
     },
     {
-      title: "GDPR Compliance",
-      description: "Complete privacy compliance support for Amsterdam businesses",
+      title: t('services.gdpr.title'),
+      description: t('services.gdpr.description'),
       icon: "📊",
-      highlight: "Full compliance",
-      outcome: "Peace of mind",
+      highlight: t('services.gdpr.highlight'),
+      outcome: t('services.gdpr.outcome'),
       animation: null
     },
     {
-      title: "Network Infrastructure",
-      description: "Reliable networking solutions that keep your business connected",
+      title: t('services.network.title'),
+      description: t('services.network.description'),
       icon: "📡",
-      highlight: "99.97% uptime",
-      outcome: "Consistent connectivity",
+      highlight: t('services.network.highlight'),
+      outcome: t('services.network.outcome'),
       animation: null
     },
     {
-      title: "Data Backup & Recovery",
-      description: "Comprehensive backup solutions with quick data recovery when needed",
+      title: t('services.backup.title'),
+      description: t('services.backup.description'),
       icon: "💾",
-      highlight: "Daily backups",
-      outcome: "Data protection",
+      highlight: t('services.backup.highlight'),
+      outcome: t('services.backup.outcome'),
       animation: null
     },
     {
-      title: "24/7 Support",
-      description: "Local Amsterdam team available when you need technical assistance",
+      title: t('services.support.title'),
+      description: t('services.support.description'),
       icon: "📱",
-      highlight: "4-minute response",
-      outcome: "Help when you need it",
+      highlight: t('services.support.highlight'),
+      outcome: t('services.support.outcome'),
       animation: "/videos/mobile-device-header.mp4"
     }
   ]
@@ -128,27 +128,27 @@ export default function Home() {
 
   const teamMembers = [
     {
-      name: "Florian",
-      role: "Founder & CEO",
-      expertise: "Strategic IT Leadership",
+      name: t('team.florian.name'),
+      role: t('team.florian.role'),
+      expertise: t('team.florian.expertise'),
       image: "/images/team/florian.jpg"
     },
     {
-      name: "Nam-Hoon",
-      role: "Technical Director",
-      expertise: "Infrastructure & Security",
+      name: t('team.namhoon.name'),
+      role: t('team.namhoon.role'),
+      expertise: t('team.namhoon.expertise'),
       image: "/images/team/nam.jpg"
     },
     {
-      name: "Samir",
-      role: "Operations Manager",
-      expertise: "Service Delivery Excellence",
+      name: t('team.samir.name'),
+      role: t('team.samir.role'),
+      expertise: t('team.samir.expertise'),
       image: "/images/team/samir.jpg"
     },
     {
-      name: "Marcello",
-      role: "Solutions Architect",
-      expertise: "Cloud & Innovation",
+      name: t('team.marcello.name'),
+      role: t('team.marcello.role'),
+      expertise: t('team.marcello.expertise'),
       image: "/images/team/marcello.jpg"
     }
   ]
@@ -266,7 +266,7 @@ export default function Home() {
             {/* Professional Badge */}
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 mb-8">
               <span className="text-yellow-400 font-bold">✓</span>
-              <span className="text-white font-medium">Serving 200+ Amsterdam businesses since 2015</span>
+              <span className="text-white font-medium">{t('hero.badge.text')}</span>
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
@@ -284,17 +284,17 @@ export default function Home() {
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
                 <div className="text-3xl font-bold text-yellow-400">99.97%</div>
                 <div className="text-white font-medium">{t('hero.benefit.uptime')}</div>
-                <div className="text-xs text-gray-400 mt-1">Measured over 12 months</div>
+                <div className="text-xs text-gray-400 mt-1">{t('stats.measured')}</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
                 <div className="text-3xl font-bold text-yellow-400">4 min</div>
                 <div className="text-white font-medium">{t('hero.benefit.response')}</div>
-                <div className="text-xs text-gray-400 mt-1">Average phone response</div>
+                <div className="text-xs text-gray-400 mt-1">{t('stats.phone_response')}</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-4">
                 <div className="text-3xl font-bold text-yellow-400">€2.5M+</div>
                 <div className="text-white font-medium">{t('hero.benefit.savings')}</div>
-                <div className="text-xs text-gray-400 mt-1">Total client savings 2024</div>
+                <div className="text-xs text-gray-400 mt-1">{t('stats.total_savings')}</div>
               </div>
             </div>
 
@@ -316,7 +316,7 @@ export default function Home() {
             </div>
             
             <p className="text-gray-400 mt-6 text-sm">
-              Free consultation • No obligations • Local Amsterdam team
+              {t('hero.bottom.guarantee')}
             </p>
           </div>
         </div>
@@ -374,12 +374,12 @@ export default function Home() {
               <div>
                 <div className="text-4xl font-bold text-yellow-400">1,200+</div>
                 <div className="text-gray-300">{t('stats.prevented')}</div>
-                <div className="text-xs text-gray-400 mt-1">Since 2015</div>
+                <div className="text-xs text-gray-400 mt-1">{t('stats.since_2015')}</div>
               </div>
               <div>
                 <div className="text-4xl font-bold text-yellow-400">4 min</div>
                 <div className="text-gray-300">{t('stats.response')}</div>
-                <div className="text-xs text-gray-400 mt-1">Average in 2024</div>
+                <div className="text-xs text-gray-400 mt-1">{t('stats.average_2024')}</div>
               </div>
               <div>
                 <div className="text-4xl font-bold text-yellow-400">€0</div>
@@ -451,7 +451,7 @@ export default function Home() {
                         href={`/diensten/${service.title.toLowerCase().replace(/\s+/g, '-')}`}
                         className="bg-yellow-400 text-black px-6 py-3 rounded-full font-bold hover:bg-yellow-500 transition-all"
                       >
-                        Learn More →
+                        {t('services.learn_more')} →
                       </Link>
                     </div>
                   </div>
@@ -541,27 +541,27 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                quote: "We needed reliable IT support as we grew from 15 to 50 employees. Workflo provided excellent service throughout our expansion, handling all technical challenges professionally. Their proactive approach helped us avoid downtime during critical client presentations.",
-                author: "Marcus van den Berg",
-                role: "CEO, Amsterdam Financial Partners",
-                result: "Smooth business growth",
-                stats: "0 downtime during expansion • Professional support",
+                quote: t('testimonials.quote1'),
+                author: t('testimonials.author1'),
+                role: t('testimonials.role1'),
+                result: t('testimonials.result1'),
+                stats: t('testimonials.stats1'),
                 rating: 5
               },
               {
-                quote: "Moving to Workflo reduced our IT costs by nearly 40% while significantly improving our system reliability. They provide clear communication and solve issues quickly. Our team can focus on development instead of technical problems.",
-                author: "Sophie de Vries",
-                role: "CTO, TechStart Amsterdam",
-                result: "40% cost reduction + improved reliability",
-                stats: "Faster issue resolution • Better system stability",
+                quote: t('testimonials.quote2'),
+                author: t('testimonials.author2'),
+                role: t('testimonials.role2'),
+                result: t('testimonials.result2'),
+                stats: t('testimonials.stats2'),
                 rating: 5
               },
               {
-                quote: "Workflo helped us scale from 15 to 75 employees without the usual IT complications. Their managed services approach means we have enterprise-level support at a fraction of the cost of an internal IT department.",
-                author: "Maria van den Berg",
-                role: "Founder, Creative Agency Oost",
-                result: "Enterprise IT at SME cost",
-                stats: "5x team growth • Managed IT services • Cost-effective",
+                quote: t('testimonials.quote3'),
+                author: t('testimonials.author3'),
+                role: t('testimonials.role3'),
+                result: t('testimonials.result3'),
+                stats: t('testimonials.stats3'),
                 rating: 5
               }
             ].map((testimonial, index) => (
@@ -596,33 +596,33 @@ export default function Home() {
       <section className="relative py-24 hero-gradient">
         <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Optimize Your IT Infrastructure?
+            {t('cta.ready_title')}
           </h2>
           <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Join 200+ Amsterdam businesses that have improved their operations and reduced IT costs with our professional services.
+            {t('cta.ready_description')}
           </p>
           
           <div className="bg-white/10 backdrop-blur-sm text-white rounded-2xl p-8 max-w-2xl mx-auto mb-12 border border-white/20">
-            <h3 className="text-2xl font-bold mb-4">Free IT Assessment</h3>
+            <h3 className="text-2xl font-bold mb-4">{t('cta.assessment_title')}</h3>
             <p className="text-lg mb-6">
-              Get a comprehensive review of your current IT infrastructure and discover optimization opportunities:
+              {t('cta.assessment_description')}
             </p>
             <ul className="text-left max-w-md mx-auto mb-6 space-y-2">
               <li className="flex items-start gap-2">
                 <span className="text-yellow-400">✓</span>
-                <span>Security assessment and recommendations</span>
+                <span>{t('cta.assessment.security')}</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-yellow-400">✓</span>
-                <span>Cost optimization analysis</span>
+                <span>{t('cta.assessment.cost')}</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-yellow-400">✓</span>
-                <span>Backup and recovery evaluation</span>
+                <span>{t('cta.assessment.backup')}</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-yellow-400">✓</span>
-                <span>Network performance review</span>
+                <span>{t('cta.assessment.network')}</span>
               </li>
             </ul>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -630,19 +630,19 @@ export default function Home() {
                 href="/tevredenheidscheck" 
                 className="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all shadow-lg"
               >
-                Start Free Assessment
+                {t('cta.start_assessment')}
               </Link>
               <a 
                 href="tel:020-3080465" 
                 className="bg-white text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-lg"
               >
-                Call Us Today
+                {t('cta.call_today')}
               </a>
             </div>
           </div>
           
           <p className="text-gray-400 text-sm">
-            No obligations • Professional consultation • Local Amsterdam team
+            {t('cta.no_obligations')}
           </p>
         </div>
       </section>

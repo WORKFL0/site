@@ -4,8 +4,11 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import FlowchartQuestionnaire from '@/components/questionnaire/FlowchartQuestionnaire'
 import { motion } from 'framer-motion'
+import { useLanguage } from '@/context/LanguageContext'
 
 export default function TevredenheidscheckPage() {
+  const { t } = useLanguage()
+  
   return (
     <>
       <Header />
@@ -34,7 +37,7 @@ export default function TevredenheidscheckPage() {
                     transition={{ delay: 0.2 }}
                     className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
                   >
-                    IT-Dienstverlener Check
+                    {t('tevredenheidscheck.title')}
                   </motion.h1>
                   <motion.p
                     initial={{ opacity: 0, y: -20 }}
@@ -42,7 +45,7 @@ export default function TevredenheidscheckPage() {
                     transition={{ delay: 0.3 }}
                     className="text-lg sm:text-xl opacity-90"
                   >
-                    Ontdek in 2 minuten of jouw IT-partner écht voor je zorgt
+                    {t('tevredenheidscheck.subtitle')}
                   </motion.p>
                   <motion.div
                     initial={{ opacity: 0 }}
@@ -50,7 +53,7 @@ export default function TevredenheidscheckPage() {
                     transition={{ delay: 0.4 }}
                     className="mt-4 text-sm"
                   >
-                    Eerlijk advies • Geen verplichtingen • Direct resultaat
+                    {t('tevredenheidscheck.guarantee')}
                   </motion.div>
                 </div>
 
