@@ -28,10 +28,10 @@ export default function HubSpotDiagnosticPage() {
     }
     
     // Load script if not already loaded
-    let script = document.querySelector('script[src*="hsforms.net"]')
+    let script = document.querySelector('script[src*="hsforms.net"]') as HTMLScriptElement
     
     if (!script) {
-      script = document.createElement('script')
+      script = document.createElement('script') as HTMLScriptElement
       script.src = `https://js-${region}.hsforms.net/forms/embed/v2.js`
       script.defer = true
       document.body.appendChild(script)

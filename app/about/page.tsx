@@ -141,8 +141,12 @@ export default function AboutPage() {
                     alt={t('team.marcello.name')}
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                      e.currentTarget.parentElement.innerHTML = '<span class="text-5xl font-bold text-white flex items-center justify-center w-full h-full">M</span>';
+                      const target = e.currentTarget as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        parent.innerHTML = '<span class="text-5xl font-bold text-white flex items-center justify-center w-full h-full">M</span>';
+                      }
                     }}
                   />
                 </div>
