@@ -358,7 +358,7 @@ export default function Home() {
             >
               {t('hero.bottom.guarantee')}
             </motion.p>
-          </div>
+          </motion.div>
         </div>
 
         {/* Scroll Indicator with enhanced animation */}
