@@ -14,7 +14,7 @@ export default function CaseStudiesPage() {
     {
       client: 'Schulte & Lestraden',
       industry: language === 'en' ? 'Installation Services' : 'Installatie Diensten',
-      logo: '/images/logos/senl.png',
+      logo: '/images/logos/SenL.png',
       duration: 'Managed IT Services',
       linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7236276208433344512',
       challenge: language === 'en'

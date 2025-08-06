@@ -23,8 +23,8 @@ export default function TestHubSpotPage() {
           <h2 className="text-xl font-semibold mb-4">Form Configuration</h2>
           <ul className="space-y-2 text-sm">
             <li><strong>Region:</strong> eu1</li>
-            <li><strong>Portal ID:</strong> 143658118</li>
-            <li><strong>Form ID:</strong> 7350bc35-4e24-4f1e-9ce0-ddc0b7e00ff8</li>
+            <li><strong>Portal ID:</strong> 26510736</li>
+            <li><strong>Form ID:</strong> acf3fe0b-c542-4fc2-aa14-f3cb2fc356c0</li>
             <li><strong>Script URL:</strong> https://js-eu1.hsforms.net/forms/embed/v2.js</li>
           </ul>
         </div>
@@ -61,8 +61,8 @@ export default function TestHubSpotPage() {
           
           <HubSpotForm
             region="eu1"
-            portalId="143658118"
-            formId="7350bc35-4e24-4f1e-9ce0-ddc0b7e00ff8"
+            portalId="26510736"
+            formId="acf3fe0b-c542-4fc2-aa14-f3cb2fc356c0"
             onFormReady={() => {
               setFormReady(true)
               addLog('Form is ready!')

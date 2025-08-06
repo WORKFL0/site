@@ -68,8 +68,8 @@ export default function ContactPage() {
         // Create the form
         window.hbspt.forms.create({
           region: "eu1",
-          portalId: "143658118",
-          formId: "7350bc35-4e24-4f1e-9ce0-ddc0b7e00ff8",
+          portalId: "26510736",
+          formId: "acf3fe0b-c542-4fc2-aa14-f3cb2fc356c0",
           target: "#hubspot-form-container",
           onFormReady: (form: any) => {
             console.log('HubSpot form ready', form);
@@ -273,8 +273,8 @@ export default function ContactPage() {
           </div>
           <div className="text-xs space-y-1">
             <div>Mode: {useComponentForm ? 'Component' : 'Direct'}</div>
-            <div>Portal: 143658118</div>
-            <div>Form: 7350bc35-4e24-4f1e-9ce0-ddc0b7e00ff8</div>
+            <div>Portal: 26510736</div>
+            <div>Form: acf3fe0b-c542-4fc2-aa14-f3cb2fc356c0</div>
             <div>Region: eu1</div>
             <button 
               onClick={() => debugHubSpot()} 
@@ -331,8 +331,8 @@ export default function ContactPage() {
                   {useComponentForm ? (
                     <HubSpotForm
                       region="eu1"
-                      portalId="143658118"
-                      formId="7350bc35-4e24-4f1e-9ce0-ddc0b7e00ff8"
+                      portalId="26510736"
+                      formId="acf3fe0b-c542-4fc2-aa14-f3cb2fc356c0"
                       onFormReady={() => console.log('Contact form ready')}
                       onFormSubmit={() => console.log('Contact form submitted')}
                       onFormSubmitted={() => console.log('Contact form submission completed')}
@@ -415,7 +415,7 @@ export default function ContactPage() {
                     <div className="rounded-lg overflow-hidden shadow-lg">
                       <Image 
                         src="/images/building.jpg" 
-                        alt="Workflo Kantoor - Koivistokade 3, Amsterdam"
+                        alt="Workflo kantoorpand Amsterdam"
                         width={400}
                         height={192}
                         className="w-full h-48 object-cover"
@@ -425,23 +425,23 @@ export default function ContactPage() {
                         <span className="text-sm font-medium">Ons kantoor</span>
                       </div>
                     </div>
-                    
-                    {/* Address card with modern styling */}
-                    <div className="bg-white rounded-lg p-4 border-l-4 border-yellow-400 shadow-sm">
-                      <div className="flex items-start gap-3">
-                        <div className="p-2 bg-yellow-100 rounded-lg">
-                          <svg className="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                          </svg>
-                        </div>
-                        <div className="flex-1">
-                          <p className="text-gray-900 font-semibold">{t('contact.office.name')}</p>
-                          <div className="text-gray-600 mt-1">
-                            <div className="font-medium text-gray-800">Koivistokade 3</div>
-                            <div>1013AC Amsterdam</div>
-                            <div>Nederland</div>
-                          </div>
+                  </div>
+                  
+                  {/* Address Information */}
+                  <div className="bg-white rounded-lg p-6 border-l-4 border-yellow-400 shadow-sm mb-4">
+                    <div className="flex items-start gap-4">
+                      <div className="p-3 bg-yellow-100 rounded-lg">
+                        <svg className="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">{t('contact.office.name')}</h4>
+                        <div className="text-gray-700 space-y-1">
+                          <div className="font-medium">Koivistokade 3</div>
+                          <div>1013AC Amsterdam</div>
+                          <div>Nederland</div>
                         </div>
                       </div>
                     </div>

@@ -184,7 +184,7 @@ export default function Home() {
       name: t('team.mas.name'),
       role: t('team.mas.role'),
       expertise: t('team.mas.expertise'),
-      image: "/images/team/mas.jpg"
+      image: "/images/team/samir.jpg"
     },
     {
       name: t('team.marcello.name'),
@@ -265,6 +265,34 @@ export default function Home() {
             className="w-64 h-64 object-contain"
           >
             <source src="/videos/Mobile-Device-Header-2.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        {/* Additional Security Animation - Bottom Left */}
+        <div className="absolute bottom-20 left-20 opacity-8 pointer-events-none hidden lg:block">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-48 h-48 object-contain"
+            style={{ animationDelay: '2s' }}
+          >
+            <source src="/videos/Security_1.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        {/* Mobile Device Animation - Top Left */}
+        <div className="absolute top-32 left-10 opacity-6 pointer-events-none hidden xl:block">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-40 h-40 object-contain"
+            style={{ animationDelay: '4s' }}
+          >
+            <source src="/videos/Mobile-Device-Header-1.mp4" type="video/mp4" />
           </video>
         </div>
 
@@ -418,6 +446,105 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* Simplicity Message Section - New */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="max-w-4xl mx-auto text-center"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              {language === 'en' 
+                ? 'IT Made Simple. Really Simple.' 
+                : 'IT Simpel Gemaakt. Echt Simpel.'}
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
+              {language === 'en'
+                ? "We know you didn't start your business to become an IT expert. That's why we've stripped away all the technical jargon and complicated contracts. No confusing terms, no hidden fees, no 200-page manuals."
+                : "We weten dat je je bedrijf niet bent gestart om IT-expert te worden. Daarom hebben we alle technische jargon en ingewikkelde contracten weggelaten. Geen verwarrende termen, geen verborgen kosten, geen handleidingen van 200 pagina's."}
+            </p>
+            <div className="grid md:grid-cols-3 gap-8 mt-12">
+              <motion.div 
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">🎯</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {language === 'en' ? 'One Clear Price' : 'Één Duidelijke Prijs'}
+                </h3>
+                <p className="text-gray-600">
+                  {language === 'en' 
+                    ? 'You know exactly what you pay. Every month. No surprises.'
+                    : 'Je weet precies wat je betaalt. Elke maand. Geen verrassingen.'}
+                </p>
+              </motion.div>
+              <motion.div 
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <div className="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">💬</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {language === 'en' ? 'Plain Language' : 'Gewone Taal'}
+                </h3>
+                <p className="text-gray-600">
+                  {language === 'en' 
+                    ? 'We explain everything in words you actually understand.'
+                    : 'We leggen alles uit in woorden die je echt begrijpt.'}
+                </p>
+              </motion.div>
+              <motion.div 
+                className="text-center"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                <div className="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">✅</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {language === 'en' ? 'It Just Works' : 'Het Werkt Gewoon'}
+                </h3>
+                <p className="text-gray-600">
+                  {language === 'en' 
+                    ? 'Your IT works. You can focus on your business. Simple as that.'
+                    : 'Je IT werkt. Jij kunt je op je bedrijf richten. Zo simpel is het.'}
+                </p>
+              </motion.div>
+            </div>
+            <motion.div 
+              className="mt-12 p-8 bg-gray-50 rounded-xl"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-lg text-gray-700 italic">
+                {language === 'en'
+                  ? '"If you can order a pizza online, you can understand our IT services. That\'s our promise."'
+                  : '"Als je online een pizza kunt bestellen, kun je onze IT-diensten begrijpen. Dat is onze belofte."'}
+              </p>
+              <p className="text-sm text-gray-600 mt-3 font-semibold">
+                — Florian, {language === 'en' ? 'Founder Workflo' : 'Oprichter Workflo'}
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Client Logos Section - Light with Yellow Border */}
       <section className="relative py-20 bg-gray-50 border-y-8 border-yellow-400 overflow-hidden" ref={statsRef}>
         {/* Background Video Animation */}
@@ -479,8 +606,8 @@ export default function Home() {
               return (
                 <motion.div 
                   key={index}
-                  className={`bg-white rounded-lg p-3 flex items-center justify-center group ${
-                    isBiggerLogo ? 'h-28 md:col-span-2' : 'h-20'
+                  className={`bg-white rounded-lg flex items-center justify-center group ${
+                    isBiggerLogo ? 'h-28 p-4 shadow-lg border-2 border-yellow-400' : 'h-20 p-3'
                   }`}
                   initial={{ opacity: 0, y: 30 }}
                   animate={statsInView ? { opacity: 1, y: 0 } : {}}
@@ -491,21 +618,23 @@ export default function Home() {
                   }}
                   whileHover={{ 
                     y: -8, 
-                    scale: 1.05,
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
+                    scale: isBiggerLogo ? 1.08 : 1.05,
+                    boxShadow: isBiggerLogo ? "0 25px 50px rgba(242,244,0,0.3)" : "0 20px 40px rgba(0,0,0,0.15)",
                     transition: { duration: 0.3 }
                   }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className={`relative flex items-center justify-center ${
-                    isBiggerLogo ? 'w-32 h-20' : 'w-24 h-14'
+                    isBiggerLogo ? 'w-36 h-20' : 'w-24 h-14'
                   }`}>
                     <Image
                       src={logo.src}
                       alt={`${logo.name} logo`}
                       fill
-                      className="object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                      sizes={isBiggerLogo ? '128px' : '96px'}
+                      className={`object-contain filter transition-all duration-300 ${
+                        isBiggerLogo ? 'grayscale-0' : 'grayscale group-hover:grayscale-0'
+                      }`}
+                      sizes={isBiggerLogo ? '144px' : '96px'}
                       onError={(e) => {
                         e.currentTarget.style.display = 'none'
                       }}
@@ -593,6 +722,37 @@ export default function Home() {
               preload="metadata"
             >
               <source src="/videos/Workflo_W_final_3.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        {/* Additional Floating Animations */}
+        <div className="absolute top-32 right-32 opacity-3 pointer-events-none hidden lg:block">
+          {servicesVideoInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-56 h-56 object-contain"
+              preload="metadata"
+              style={{ animationDelay: '1.5s' }}
+            >
+              <source src="/videos/Mobile-Device-Header-3.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="absolute bottom-40 left-16 opacity-3 pointer-events-none hidden xl:block">
+          {servicesVideoInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-44 h-44 object-contain"
+              preload="metadata"
+              style={{ animationDelay: '3s' }}
+            >
+              <source src="/videos/Workflo-code-animatie.mp4" type="video/mp4" />
             </video>
           )}
         </div>
@@ -830,19 +990,52 @@ export default function Home() {
       </section>
 
       {/* Testimonials - Light Background */}
-      <section className="relative py-20 bg-white overflow-hidden">
+      <section className="relative py-20 bg-white overflow-hidden" ref={testimonialsRef}>
         {/* Subtle Background Animation */}
         <div className="absolute top-20 right-10 opacity-2 pointer-events-none hidden lg:block">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-64 h-64 object-contain"
-            preload="metadata"
-          >
-            <source src="/videos/Mobile-Device-Header-1.mp4" type="video/mp4" />
-          </video>
+          {testimonialsInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-64 h-64 object-contain"
+              preload="metadata"
+            >
+              <source src="/videos/Mobile-Device-Header-1.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        {/* Additional Background Elements */}
+        <div className="absolute bottom-16 left-10 opacity-2 pointer-events-none hidden lg:block">
+          {testimonialsInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-48 h-48 object-contain"
+              preload="metadata"
+              style={{ animationDelay: '2s' }}
+            >
+              <source src="/videos/Workflo_W_Mobile_1.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="absolute top-40 left-20 opacity-1 pointer-events-none hidden xl:block">
+          {testimonialsInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-36 h-36 object-contain"
+              preload="metadata"
+              style={{ animationDelay: '4s' }}
+            >
+              <source src="/videos/Workflo-code-animatie-3.mp4" type="video/mp4" />
+            </video>
+          )}
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16 fade-in-up">
@@ -932,8 +1125,53 @@ export default function Home() {
       </section>
 
       {/* Industry Experience Section - White Background */}
-      <section className="py-16 bg-white" ref={industryRef}>
-        <div className="container mx-auto px-4">
+      <section className="relative py-16 bg-white overflow-hidden" ref={industryRef}>
+        {/* Background Video Elements */}
+        <div className="absolute top-10 left-10 opacity-2 pointer-events-none hidden lg:block">
+          {industryInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-52 h-52 object-contain"
+              preload="metadata"
+            >
+              <source src="/videos/Workflo_W_final_1.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="absolute bottom-10 right-16 opacity-2 pointer-events-none hidden lg:block">
+          {industryInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-40 h-40 object-contain"
+              preload="metadata"
+              style={{ animationDelay: '2.5s' }}
+            >
+              <source src="/videos/Mobile-Device-Header.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="absolute top-32 right-32 opacity-1 pointer-events-none hidden xl:block">
+          {industryInView && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-32 h-32 object-contain"
+              preload="metadata"
+              style={{ animationDelay: '5s' }}
+            >
+              <source src="/videos/Workflo-code-animatie-2.mp4" type="video/mp4" />
+            </video>
+          )}
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div 
             className="text-center mb-12"
             initial={{ opacity: 0, y: 50 }}

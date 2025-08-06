@@ -55,11 +55,14 @@ export default function HubSpotForm({
         // Clear loading state
         container.innerHTML = ''
         
+        console.log(`Creating HubSpot form with Portal: ${portalId}, Form: ${formId}, Region: ${region}`)
+        
         window.hbspt.forms.create({
           region,
           portalId,
           formId,
           target: `#${containerId}`,
+          css: '',  // Disable default HubSpot styles to use our custom ones
           onFormReady: (form: any) => {
             console.log(`HubSpot form ${formId} ready`)
             if (mounted) {
@@ -173,13 +176,13 @@ export default function HubSpotForm({
         return
       }
 
-      // Load the script
+      // Load the script with defer attribute as in the client's working site
       const script = document.createElement('script')
       script.src = `https://js-${region}.hsforms.net/forms/embed/v2.js`
-      script.async = true
+      script.defer = true
       script.charset = 'utf-8'
       script.type = 'text/javascript'
-      script.crossOrigin = 'anonymous'
+      script.id = 'hs-script-loader'
       
       script.onload = () => {
         if (!mounted) return
@@ -250,14 +253,15 @@ export default function HubSpotForm({
             <p className="text-red-600 mb-3">Het contactformulier kon niet worden geladen.</p>
             <p className="text-sm text-gray-600 mb-3">U kunt ons bereiken via:</p>
             <a href="tel:0203080465" className="block text-primary-600 hover:underline mb-2">
-              📞 020-30 80 465
+              Tel: 020-30 80 465
             </a>
             <a href="mailto:info@workflo.nl" className="block text-primary-600 hover:underline">
-              ✉️ info@workflo.nl
+              Email: info@workflo.nl
             </a>
             <details className="mt-4">
               <summary className="text-xs text-gray-500 cursor-pointer">Technische details</summary>
               <p className="text-xs text-gray-500 mt-2">{error}</p>
+              <p className="text-xs text-gray-500 mt-1">Portal: {portalId} | Form: {formId}</p>
             </details>
           </div>
         )}
