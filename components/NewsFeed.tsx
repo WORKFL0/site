@@ -41,6 +41,9 @@ const NewsFeed = ({
           headers: {
             'Accept': 'application/xml, text/xml, application/rss+xml'
           }
+        }).catch(err => {
+          console.error('RSS fetch error:', err)
+          throw new Error('Network error fetching RSS feed')
         })
         
         if (!response.ok) {
