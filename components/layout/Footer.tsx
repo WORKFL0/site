@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useLanguage } from '@/context/LanguageContext'
 import UptimeStatus from '@/components/ui/UptimeStatus'
+import NewsletterSignup from '@/components/forms/NewsletterSignup'
 
 const Footer = () => {
   const { t } = useLanguage()
@@ -31,6 +32,16 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto container-padding py-12">
+        {/* Newsletter Signup Section */}
+        <div className="mb-12">
+          <NewsletterSignup
+            variant="footer"
+            showTitle={true}
+            showDescription={true}
+            formId="REPLACE_WITH_NEWSLETTER_FORM_ID" // Replace this with the actual HubSpot newsletter form ID from portal 26510736
+          />
+        </div>
+
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}

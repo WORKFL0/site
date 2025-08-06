@@ -358,6 +358,17 @@ const translations = {
     'faq.cta.button': 'Contact Our Experts',
     'faq.cta.phone': 'Or call us directly: +31 (0)20 3456789',
     
+    // Newsletter
+    'newsletter.title': 'Stay Updated with IT Insights',
+    'newsletter.description': 'Get monthly tips, security alerts, and industry insights delivered to your inbox.',
+    'newsletter.frequency': 'Monthly newsletter',
+    'newsletter.privacy_note': 'No spam, unsubscribe anytime',
+    'newsletter.benefit1': 'Monthly IT tips and best practices',
+    'newsletter.benefit2': 'Security alerts and threat updates',
+    'newsletter.benefit3': 'Exclusive insights for Amsterdam businesses',
+    'newsletter.success.title': 'Successfully Subscribed!',
+    'newsletter.success.description': 'Thank you for subscribing to our newsletter. You\'ll receive your first insights soon.',
+
     // Footer
     'footer.tagline': "Amsterdam's Most Trusted IT Partner",
     'footer.write_review': 'Write a Review',
@@ -718,6 +729,17 @@ const translations = {
     'faq.cta.button': 'Neem Contact Op',
     'faq.cta.phone': 'Of bel ons direct: +31 (0)20 3456789',
     
+    // Newsletter
+    'newsletter.title': 'Blijf Op de Hoogte van IT-Inzichten',
+    'newsletter.description': 'Ontvang maandelijkse tips, beveiligingswaarschuwingen en branche-inzichten in uw inbox.',
+    'newsletter.frequency': 'Maandelijkse nieuwsbrief',
+    'newsletter.privacy_note': 'Geen spam, altijd uitschrijven mogelijk',
+    'newsletter.benefit1': 'Maandelijkse IT-tips en best practices',
+    'newsletter.benefit2': 'Beveiligingswaarschuwingen en dreiging-updates',
+    'newsletter.benefit3': 'Exclusieve inzichten voor Amsterdamse bedrijven',
+    'newsletter.success.title': 'Succesvol Ingeschreven!',
+    'newsletter.success.description': 'Bedankt voor het inschrijven op onze nieuwsbrief. U ontvangt binnenkort uw eerste inzichten.',
+
     // Footer
     'footer.tagline': "Amsterdam's Meest Vertrouwde IT Partner",
     'footer.write_review': 'Schrijf een Review',
