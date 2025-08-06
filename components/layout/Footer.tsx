@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLanguage } from '@/context/LanguageContext'
 
 const Footer = () => {
@@ -33,12 +34,16 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="relative w-10 h-10">
-                <div className="absolute inset-0 bg-warning-yellow rounded-lg"></div>
-                <span className="absolute inset-0 flex items-center justify-center text-black font-bold text-lg">W</span>
-              </div>
-              <span className="text-xl font-bold text-white">Workflo</span>
+            <div className="mb-4">
+              <Link href="/" className="inline-block">
+                <Image
+                  src="/images/logos/workflo-logo.png"
+                  alt="Workflo"
+                  width={150}
+                  height={45}
+                  className="h-10 w-auto"
+                />
+              </Link>
             </div>
             <div className="flex space-x-4">
               <a href="https://linkedin.com/company/workflo" target="_blank" rel="noopener noreferrer" className="hover:text-warning-yellow transition-colors">

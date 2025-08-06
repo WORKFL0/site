@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import PricingCalculator from '@/components/PricingCalculator'
 import { useLanguage } from '@/context/LanguageContext'
 import Link from 'next/link'
 
@@ -326,6 +327,23 @@ export default function PricingPage() {
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Pricing Calculator Section */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                {language === 'en' ? 'Calculate Your IT Support Investment' : 'Bereken Uw IT Support Investering'}
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                {language === 'en'
+                  ? 'Use our interactive calculator to see your complete monthly IT investment including optional Office 365 licenses.'
+                  : 'Gebruik onze interactieve calculator om uw complete maandelijkse IT-investering te zien inclusief optionele Office 365 licenties.'}
+              </p>
+            </div>
+            <PricingCalculator />
           </div>
         </section>
 

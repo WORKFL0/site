@@ -119,10 +119,10 @@ export default function AboutPage() {
                 <div className="w-40 h-40 bg-yellow-400 rounded-full mx-auto mb-4 flex items-center justify-center">
                   <span className="text-5xl font-bold text-black">M</span>
                 </div>
-                <h3 className="text-xl font-bold text-black mb-2">{t('team.samir.name')}</h3>
-                <p className="text-gray-600 mb-3">{t('team.samir.role')}</p>
+                <h3 className="text-xl font-bold text-black mb-2">{t('team.mas.name')}</h3>
+                <p className="text-gray-600 mb-3">{t('team.mas.role')}</p>
                 <p className="text-gray-500 text-sm">
-                  {t('about.team.samir.description')}
+                  {t('about.team.mas.description')}
                 </p>
               </div>
               <div className="text-center">

@@ -383,34 +383,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Previous Clients Section */}
-          <div className="mt-12">
-            <h3 className="text-xl font-semibold text-center text-gray-700 mb-6">
-              {language === 'en' ? 'Previously Worked With' : 'Eerder Gewerkt Voor'}
-            </h3>
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
-              {previousClients.map((logo, index) => (
-                <div 
-                  key={index}
-                  className="bg-gray-100 rounded-lg p-3 flex items-center justify-center h-16 fade-in-up"
-                  style={{ animationDelay: `${(index + currentClients.length) * 0.03}s` }}
-                >
-                  <div className="relative w-20 h-12 flex items-center justify-center">
-                    <Image
-                      src={logo.src}
-                      alt={`${logo.name} logo`}
-                      fill
-                      className="object-contain filter grayscale opacity-60"
-                      sizes="80px"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none'
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
           {/* Professional Stats Bar */}
           <div className="mt-16 bg-black text-white rounded-2xl p-8 fade-in-up">
@@ -637,6 +609,60 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industry Experience Section */}
+      <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-semibold text-gray-800 mb-4">
+              {language === 'en' ? 'Industry Experience Since 2015' : 'Sector Ervaring Sinds 2015'}
+            </h3>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              {language === 'en' 
+                ? "Over the years, we've had the privilege of serving diverse organizations across multiple sectors, building expertise that benefits all our clients."
+                : "Door de jaren heen hebben we het voorrecht gehad om diverse organisaties in meerdere sectoren te bedienen, waarbij we expertise hebben opgebouwd die al onze klanten ten goede komt."}
+            </p>
+          </div>
+          
+          {/* Horizontal scrolling logo strip */}
+          <div className="relative overflow-hidden py-8">
+            <div className="flex items-center space-x-12 animate-scroll" style={{ animation: 'scroll 30s linear infinite' }}>
+              {[...previousClients, ...previousClients].map((logo, index) => (
+                <div key={index} className="flex-shrink-0">
+                  <div className="relative w-32 h-16 flex items-center justify-center">
+                    <Image
+                      src={logo.src}
+                      alt={`${logo.name} logo`}
+                      fill
+                      className="object-contain filter grayscale hover:grayscale-0 transition-all opacity-40 hover:opacity-70"
+                      sizes="128px"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none'
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Industry sectors */}
+          <div className="mt-8 flex flex-wrap justify-center gap-2">
+            <span className="px-4 py-2 bg-yellow-100 text-yellow-800 text-sm rounded-full font-medium">
+              {language === 'en' ? 'Media & Marketing' : 'Media & Marketing'}
+            </span>
+            <span className="px-4 py-2 bg-blue-100 text-blue-800 text-sm rounded-full font-medium">
+              {language === 'en' ? 'Non-Profit' : 'Non-Profit'}
+            </span>
+            <span className="px-4 py-2 bg-green-100 text-green-800 text-sm rounded-full font-medium">
+              {language === 'en' ? 'Technology' : 'Technologie'}
+            </span>
+            <span className="px-4 py-2 bg-purple-100 text-purple-800 text-sm rounded-full font-medium">
+              {language === 'en' ? 'Fashion & Retail' : 'Mode & Retail'}
+            </span>
           </div>
         </div>
       </section>
