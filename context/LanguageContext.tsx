@@ -759,17 +759,19 @@ const translations = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  // CRITICAL FIX: Initialize with null to prevent hydration mismatch
   const [language, setLanguage] = useState<Language>('nl')
   const [isInitialized, setIsInitialized] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
-  // Initialize language from localStorage on mount
+  // First effect: Mark client-side rendering
   useEffect(() => {
-    // Only run on client side
-    if (typeof window === 'undefined') {
-      console.warn('LanguageContext: Not in browser environment, using default language')
-      setIsInitialized(true)
-      return
-    }
+    setIsClient(true)
+  }, [])
+
+  // Second effect: Initialize language from localStorage ONLY after client is confirmed
+  useEffect(() => {
+    if (!isClient) return
     
     try {
       const savedLanguage = safeLocalStorage.getItem('workflo-language')
@@ -794,7 +796,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     } finally {
       setIsInitialized(true)
     }
-  }, [])
+  }, [isClient])
 
   // Save language to localStorage when it changes
   useEffect(() => {

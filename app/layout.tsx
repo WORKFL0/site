@@ -12,6 +12,8 @@ import {
   FacebookPixel, 
   EnhancedLinkAttribution 
 } from '@/components/Analytics/ConversionTracking'
+import HydrationProvider from '@/components/HydrationProvider'
+import GlobalErrorHandler from '@/components/GlobalErrorHandler'
 import { seoConfig } from '@/config/seo.config'
 import './globals.css'
 
@@ -191,20 +193,23 @@ export default function RootLayout({
         <meta name="entity:revenue-range" content="€1M-€10M" />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <LanguageProvider>
-          {children}
-          <CookieConsent />
-        </LanguageProvider>
-        
-        {/* Analytics and Tracking */}
-        <Analytics />
-        <GoogleAnalytics />
-        <MicrosoftClarity />
-        <HotjarTracking />
-        <LinkedInInsight />
-        <FacebookPixel />
-        <EnhancedLinkAttribution />
-        <HubSpotScript />
+        <GlobalErrorHandler />
+        <HydrationProvider>
+          <LanguageProvider>
+            {children}
+            <CookieConsent />
+          </LanguageProvider>
+          
+          {/* Analytics and Tracking - Delayed after hydration */}
+          <Analytics />
+          <GoogleAnalytics />
+          <MicrosoftClarity />
+          <HotjarTracking />
+          <LinkedInInsight />
+          <FacebookPixel />
+          <EnhancedLinkAttribution />
+          <HubSpotScript />
+        </HydrationProvider>
         
         {/* Noscript fallback */}
         <noscript>

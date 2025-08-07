@@ -25,6 +25,39 @@ class SafeErrorBoundary extends Component<Props, State> {
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     console.error(`SafeErrorBoundary caught an error in ${this.props.componentName || 'component'}:`, error, errorInfo)
+    
+    // CRITICAL: Log detailed error info for debugging crashes
+    console.error('🚨 CRITICAL ERROR DETAILS:', {
+      componentName: this.props.componentName,
+      error: {
+        name: error.name,
+        message: error.message,
+        stack: error.stack,
+      },
+      errorInfo: {
+        componentStack: errorInfo.componentStack,
+      },
+      url: typeof window !== 'undefined' ? window.location.href : 'server',
+      userAgent: typeof window !== 'undefined' ? navigator.userAgent : 'server',
+      timestamp: new Date().toISOString()
+    })
+    
+    // Additional safety: Try to prevent cascade failures
+    if (typeof window !== 'undefined') {
+      try {
+        // Clear any problematic localStorage entries
+        const problematicKeys = ['workflo-language', 'workflo-error-logs']
+        problematicKeys.forEach(key => {
+          try {
+            localStorage.removeItem(key)
+          } catch (e) {
+            // Ignore cleanup errors
+          }
+        })
+      } catch (cleanupError) {
+        console.warn('Error during cleanup:', cleanupError)
+      }
+    }
   }
 
   render() {

@@ -3,6 +3,7 @@
 import Script from 'next/script'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useEffect, Suspense } from 'react'
+import { useHydration } from '@/components/HydrationProvider'
 
 // Replace with your actual GA4 Measurement ID
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX'
@@ -91,60 +92,94 @@ export function trackScrollDepth(percentage: number) {
 function GoogleAnalyticsInner() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
+  const { isStageComplete } = useHydration()
 
+  // CRITICAL FIX: Only track pageviews after analytics stage is complete
   useEffect(() => {
-    const url = pathname + searchParams.toString()
-    pageview(url)
-  }, [pathname, searchParams])
+    if (!isStageComplete('analytics')) return
+    
+    try {
+      const url = pathname + searchParams.toString()
+      pageview(url)
+    } catch (error) {
+      console.warn('GoogleAnalytics: Failed to track pageview:', error)
+    }
+  }, [pathname, searchParams, isStageComplete])
 
-  // Set up scroll tracking
+  // CRITICAL FIX: Set up scroll tracking ONLY after analytics stage is complete
   useEffect(() => {
+    if (!isStageComplete('analytics') || typeof window === 'undefined') return
+    
     let ticking = false
     const scrollDepths = [25, 50, 75, 90, 100]
     const scrolled = new Set<number>()
 
     const handleScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const windowHeight = window.innerHeight
-          const documentHeight = document.documentElement.scrollHeight
-          const scrollTop = window.scrollY
-          const scrollPercentage = Math.round((scrollTop + windowHeight) / documentHeight * 100)
+        try {
+          window.requestAnimationFrame(() => {
+            const windowHeight = window.innerHeight
+            const documentHeight = document.documentElement.scrollHeight
+            const scrollTop = window.scrollY
+            const scrollPercentage = Math.round((scrollTop + windowHeight) / documentHeight * 100)
 
-          scrollDepths.forEach(depth => {
-            if (scrollPercentage >= depth && !scrolled.has(depth)) {
-              scrolled.add(depth)
-              trackScrollDepth(depth)
-            }
+            scrollDepths.forEach(depth => {
+              if (scrollPercentage >= depth && !scrolled.has(depth)) {
+                scrolled.add(depth)
+                trackScrollDepth(depth)
+              }
+            })
+
+            ticking = false
           })
-
+          ticking = true
+        } catch (error) {
+          console.warn('GoogleAnalytics: Error in scroll tracking:', error)
           ticking = false
-        })
-        ticking = true
+        }
       }
     }
 
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    try {
+      window.addEventListener('scroll', handleScroll, { passive: true })
+      return () => window.removeEventListener('scroll', handleScroll)
+    } catch (error) {
+      console.warn('GoogleAnalytics: Failed to set up scroll tracking:', error)
+    }
+  }, [isStageComplete])
 
-  // Track time on page
+  // CRITICAL FIX: Track time on page ONLY after analytics stage is complete
   useEffect(() => {
+    if (!isStageComplete('analytics') || typeof window === 'undefined') return
+    
     const startTime = Date.now()
     
     const handleUnload = () => {
-      const timeOnPage = Math.round((Date.now() - startTime) / 1000)
-      event({
-        action: 'timing',
-        category: 'engagement',
-        label: pathname,
-        value: timeOnPage
-      })
+      try {
+        const timeOnPage = Math.round((Date.now() - startTime) / 1000)
+        event({
+          action: 'timing',
+          category: 'engagement',
+          label: pathname,
+          value: timeOnPage
+        })
+      } catch (error) {
+        console.warn('GoogleAnalytics: Error tracking time on page:', error)
+      }
     }
 
-    window.addEventListener('beforeunload', handleUnload)
-    return () => window.removeEventListener('beforeunload', handleUnload)
-  }, [pathname])
+    try {
+      window.addEventListener('beforeunload', handleUnload)
+      return () => window.removeEventListener('beforeunload', handleUnload)
+    } catch (error) {
+      console.warn('GoogleAnalytics: Failed to set up time tracking:', error)
+    }
+  }, [pathname, isStageComplete])
+
+  // CRITICAL FIX: Only render scripts after analytics stage is complete
+  if (!isStageComplete('analytics')) {
+    return null
+  }
 
   return (
     <>

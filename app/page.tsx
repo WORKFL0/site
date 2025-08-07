@@ -12,12 +12,17 @@ import PricingCalculator from '@/components/PricingCalculator'
 import NewsFeed from '@/components/NewsFeed'
 import SafeErrorBoundary from '@/components/SafeErrorBoundary'
 import { useLanguage } from '@/context/LanguageContext'
+import { useHydration } from '@/components/HydrationProvider'
 
 export default function Home() {
   const { t, language } = useLanguage()
+  const { isHydrated, isStageComplete } = useHydration()
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const [activeService, setActiveService] = useState(0)
   const [videosInView, setVideosInView] = useState({})
+  
+  // CRITICAL FIX: Disable animations until hydration and animations stage are complete
+  const animationsEnabled = isHydrated && isStageComplete('animations')
   
   // Scroll-triggered animation refs
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -41,6 +46,9 @@ export default function Home() {
   const ySpring = useSpring(yRange, springConfig)
 
   useEffect(() => {
+    // CRITICAL FIX: Only setup scroll animations after animations stage is complete
+    if (!animationsEnabled) return
+
     // Wrap entire effect in error handling
     const safeSetupScrollAnimation = () => {
       try {
@@ -102,7 +110,7 @@ export default function Home() {
     // Execute safely
     const cleanup = safeSetupScrollAnimation()
     return cleanup || (() => {})
-  }, [])
+  }, [animationsEnabled])
 
   const services = [
     {
@@ -344,9 +352,9 @@ export default function Home() {
         <div className="relative z-10 container mx-auto px-4 text-center" ref={heroRef}>
           <motion.div 
             className="max-w-5xl mx-auto"
-            initial={{ opacity: 0, y: 50 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial={animationsEnabled ? { opacity: 0, y: 50 } : { opacity: 1, y: 0 }}
+            animate={animationsEnabled && heroInView ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+            transition={animationsEnabled ? { duration: 0.8, ease: "easeOut" } : { duration: 0 }}
           >
             {/* Professional Badge */}
             <motion.div 

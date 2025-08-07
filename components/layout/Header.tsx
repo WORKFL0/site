@@ -6,10 +6,12 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
 import LanguageSwitcher from '@/components/LanguageSwitcher'
+import { useHydration } from '@/components/HydrationProvider'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { t } = useLanguage()
+  const { isHydrated } = useHydration()
 
   const menuItems = [
     { name: t('nav.services'), href: '/diensten' },
@@ -21,19 +23,30 @@ const Header = () => {
     { name: t('nav.contact'), href: '/contact' },
   ]
 
-  // Prevent body scroll when menu is open
+  // CRITICAL FIX: Prevent body scroll when menu is open - ONLY after hydration
   useEffect(() => {
-    if (isMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
+    // Only manipulate DOM after hydration is complete
+    if (!isHydrated || typeof document === 'undefined') return
+    
+    try {
+      if (isMenuOpen) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = 'unset'
+      }
 
-    // Cleanup function to restore scroll when component unmounts
-    return () => {
-      document.body.style.overflow = 'unset'
+      // Cleanup function to restore scroll when component unmounts
+      return () => {
+        try {
+          document.body.style.overflow = 'unset'
+        } catch (e) {
+          // Ignore cleanup errors
+        }
+      }
+    } catch (error) {
+      console.warn('Header: Failed to manipulate body scroll:', error)
     }
-  }, [isMenuOpen])
+  }, [isMenuOpen, isHydrated])
 
   const handleMenuClose = () => {
     setIsMenuOpen(false)
