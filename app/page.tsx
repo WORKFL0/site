@@ -687,57 +687,7 @@ export default function Home() {
 
         {/* REMOVED: Client Logos Grid Section - Duplicate with "Sector Ervaring" section below */}
         {/* Keeping only the carousel version as requested in todo2.md */}
-        <section className="relative py-20 bg-gray-50 border-y-8 border-yellow-400 overflow-hidden" ref={statsRef} style={{ display: 'none' }}>
-          {/* Background Video Animation */}
-          <div className="absolute inset-0 pointer-events-none" ref={statsVideoRef}>
-            {statsVideoInView && (
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover opacity-5"
-                preload="metadata"
-              >
-                <source src="/videos/Workflo_W_Mobile_1.mp4" type="video/mp4" />
-              </video>
-            )}
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div 
-              className="text-center mb-12"
-              initial={{ opacity: 0, y: 50 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8 }}
-            >
-              <motion.h2 
-                className="text-4xl font-bold text-black mb-4"
-                initial={{ opacity: 0, y: 30 }}
-                animate={statsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                Vertrouwd door Amsterdam's Beste Bedrijven
-              </motion.h2>
-              <motion.p 
-                className="text-xl text-gray-600 max-w-4xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={statsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                Meer dan 100+ organisaties vertrouwen dagelijks op onze IT-expertise
-              </motion.p>
-            </motion.div>
-
-            {/* Logo Grid */}
-            <motion.h3 
-              className="text-2xl font-bold text-center text-black mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              Huidige Klanten
-            </motion.h3>
-            <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-7 gap-4">
+        {/* REMOVED: Stats section completely to avoid any layout issues */}
               {currentClients.map((logo, index) => {
                 // Check if this is one of the logos that should be bigger
                 const isBiggerLogo = logo.name === 'John Doornik' || 
@@ -1375,7 +1325,7 @@ export default function Home() {
         </section>
 
         {/* Newsletter & Contact Forms Section */}
-        <section className="relative py-24 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+        <section className="relative py-12 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
           {/* Background Animation */}
           <div className="absolute inset-0 opacity-10">
             <video
@@ -1411,7 +1361,7 @@ export default function Home() {
         </section>
 
         {/* Professional CTA Section */}
-        <section className="relative py-24 hero-gradient overflow-hidden">
+        <section className="relative py-16 hero-gradient overflow-hidden">
           {/* Background Video Animation */}
           <div className="absolute inset-0 pointer-events-none" ref={ctaVideoRef}>
             {ctaVideoInView && (
@@ -1555,6 +1505,7 @@ export default function Home() {
                 <li><Link href="/tarieven" className="text-gray-400 hover:text-primary-600">Tarieven</Link></li>
                 <li><Link href="/faq" className="text-gray-400 hover:text-primary-600">FAQ</Link></li>
                 <li><Link href="/support" className="text-gray-400 hover:text-primary-600">Support</Link></li>
+                <li><a href="/api/rss-feed" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary-600">RSS Feed</a></li>
               </ul>
             </div>
           </div>
