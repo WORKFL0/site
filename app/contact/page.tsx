@@ -147,62 +147,78 @@ export default function ContactPage() {
                 </div>
                 
                 {/* Office Info */}
-                <div className="bg-gray-50 rounded-2xl p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Ons Kantoor</h3>
-                  
+                <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                   {/* Building Photo */}
-                  <div className="mb-6">
-                    <div className="rounded-lg overflow-hidden shadow-lg">
-                      <Image
-                        src="/images/building.jpg"
-                        alt="Workflo Kantoor Amsterdam"
-                        width={400}
-                        height={300}
-                        className="w-full h-48 object-cover"
-                      />
+                  <div className="relative h-64 overflow-hidden">
+                    <Image
+                      src="/images/building.jpg"
+                      alt="Workflo Kantoor Amsterdam - Koivistokade 3"
+                      width={600}
+                      height={300}
+                      className="w-full h-full object-cover"
+                      priority
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-4 left-6 right-6">
+                      <h3 className="text-2xl font-bold text-white mb-1">Ons Kantoor</h3>
+                      <p className="text-white/90 text-sm">Modern kantoor in het hart van Amsterdam Noord</p>
                     </div>
                   </div>
                   
-                  {/* Address Information */}
-                  <div className="bg-white rounded-lg p-6 border-l-4 border-primary-600 shadow-sm mb-4">
-                    <div className="flex items-start gap-4">
-                      <div className="p-3 bg-primary-100 rounded-lg">
-                        <MapPinIcon className="w-6 h-6 text-primary-600" />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-gray-900 mb-2">Workflo B.V.</h4>
-                        <div className="text-gray-700 space-y-1">
-                          <div className="font-medium">Koivistokade 3</div>
-                          <div>1013 AC Amsterdam</div>
-                          <div>Nederland</div>
+                  <div className="p-8">
+                    {/* Address Section */}
+                    <div className="mb-8">
+                      <div className="flex items-start gap-4 p-6 bg-primary-50 rounded-xl border border-primary-100">
+                        <div className="flex-shrink-0">
+                          <div className="w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center">
+                            <MapPinIcon className="w-6 h-6 text-white" />
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="text-xl font-bold text-gray-900 mb-3">Workflo B.V.</h4>
+                          <div className="text-gray-700 space-y-1 text-lg">
+                            <div className="font-semibold">Koivistokade 3</div>
+                            <div>1013 AC Amsterdam</div>
+                            <div>Nederland</div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-primary-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <div>
-                        <p className="text-gray-900 font-medium">Kantoor Uren</p>
-                        <p className="text-gray-600">
-                          Ma-Vr: 8:00 - 18:00<br />
-                          24/7 Support voor contractklanten
-                        </p>
+                    
+                    {/* Office Hours */}
+                    <div className="mb-8">
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center">
+                          <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </div>
+                        <div className="flex-1">
+                          <h5 className="text-lg font-semibold text-gray-900 mb-2">Kantoor Uren</h5>
+                          <div className="text-gray-600 space-y-1">
+                            <div className="flex justify-between items-center">
+                              <span>Maandag - Vrijdag</span>
+                              <span className="font-medium">8:00 - 18:00</span>
+                            </div>
+                            <div className="text-sm text-primary-600 font-medium mt-2">
+                              24/7 Support voor contractklanten
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    
+                    {/* Action Button */}
+                    <a 
+                      href="https://maps.google.com/maps?q=Koivistokade+3+Amsterdam" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-3 w-full px-6 py-4 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-all duration-200 font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-[1.02]"
+                    >
+                      <MapPinIcon className="w-6 h-6" />
+                      Route plannen via Google Maps
+                    </a>
                   </div>
-                  
-                  <a 
-                    href="https://maps.google.com/maps?q=Koivistokade+3+Amsterdam" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-block w-full mt-6 px-4 py-2 bg-white border border-primary-600 text-primary-600 rounded-lg text-center hover:bg-primary-50 transition-colors"
-                  >
-                    Route plannen
-                  </a>
                 </div>
                 
                 {/* Quick Help */}
