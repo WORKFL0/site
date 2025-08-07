@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 
 declare global {
   interface Window {
@@ -21,8 +22,15 @@ export default function HubSpotContactForm({
 }: HubSpotContactFormProps) {
   const [isLoaded, setIsLoaded] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+    
     // Create unique container ID
     const containerId = `hubspot-form-${formId}-${Date.now()}`
     
@@ -109,7 +117,7 @@ export default function HubSpotContactForm({
     return () => {
       // Cleanup is handled by React
     }
-  }, [formId, portalId, region])
+  }, [formId, portalId, region, mounted])
 
   return (
     <div className="bg-white rounded-2xl p-8 shadow-lg">

@@ -23,13 +23,30 @@ import {
   LockClosedIcon
 } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
+import dynamic from 'next/dynamic'
 import NewsletterFormSafe from '../components/forms/NewsletterFormSafe'
 import NewsFeed from '../components/NewsFeed'
-import NewsTicker from '../components/NewsTicker'
 import DangerTape from '../components/DangerTape'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import HubSpotContactForm from '@/components/forms/HubSpotContactForm'
+
+// Import these components dynamically to avoid SSR issues
+const NewsTicker = dynamic(() => import('../components/NewsTicker'), { 
+  ssr: false,
+  loading: () => null
+})
+const HubSpotContactForm = dynamic(() => import('@/components/forms/HubSpotContactForm'), { 
+  ssr: false,
+  loading: () => (
+    <div className="bg-white rounded-2xl p-8 shadow-lg">
+      <div className="animate-pulse">
+        <div className="h-8 bg-gray-200 rounded w-1/3 mb-4"></div>
+        <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+        <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+      </div>
+    </div>
+  )
+})
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
