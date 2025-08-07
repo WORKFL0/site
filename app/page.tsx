@@ -28,6 +28,7 @@ import NewsletterFormSafe from '../components/forms/NewsletterFormSafe'
 import DangerTape from '../components/DangerTape'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import HelloSection from '@/components/sections/HelloSection'
 import { useLanguage } from '@/context/LanguageContext'
 
 // Import these components dynamically to avoid SSR issues
@@ -543,6 +544,9 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </section>
+
+        {/* Apple-inspired Hello Section */}
+        <HelloSection />
 
         {/* Simplicity Message Section */}
         <section className="py-20 bg-white">
