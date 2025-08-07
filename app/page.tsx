@@ -1204,53 +1204,21 @@ export default function Home() {
           
           {/* Horizontal scrolling logo strip */}
           <div className="relative overflow-hidden py-8">
-            <div className="flex items-center space-x-12 animate-scroll" style={{ animation: 'scroll 30s linear infinite' }}>
-              {[...previousClients, ...previousClients].map((logo, index) => (
+            <div className="flex items-center space-x-12 animate-scroll" style={{ animation: 'scroll 60s linear infinite' }}>
+              {[...currentClients, ...previousClients, ...currentClients, ...previousClients].map((logo, index) => (
                 <div key={index} className="flex-shrink-0">
-                  <div className="relative w-32 h-16 flex items-center justify-center">
-                    {logo.src ? (
-                      <Image
-                        src={logo.src}
-                        alt={`${logo.name} logo`}
-                        fill
-                        className="object-contain filter grayscale hover:grayscale-0 transition-all opacity-40 hover:opacity-70"
-                        sizes="128px"
-                        onError={(e) => {
-                          console.warn(`Failed to load logo: ${logo.src}`)
-                          e.currentTarget.style.display = 'none'
-                        }}
-                      />
-                    ) : (
-                      <div className="group relative">
-                        {/* Professional text-based logo placeholder */}
-                        <div className={`
-                          relative px-4 py-3 rounded-lg transition-all duration-300 group-hover:shadow-md
-                          ${logo.name === 'Leyden Labs' ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white' :
-                            logo.name === 'TBWA' ? 'bg-gradient-to-r from-red-600 to-red-700 text-white' :
-                            logo.name === 'iO Digital' ? 'bg-gradient-to-r from-green-600 to-green-700 text-white' :
-                            logo.name === 'Daily Paper' ? 'bg-gradient-to-r from-purple-600 to-purple-700 text-white' :
-                            'bg-gradient-to-r from-gray-600 to-gray-700 text-white'
-                          }
-                        `}>
-                          <div className="font-bold text-sm tracking-wider uppercase">
-                            {logo.name === 'Leyden Labs' ? 'LEYDEN' :
-                             logo.name === 'TBWA' ? 'TBWA\\' :
-                             logo.name === 'iO Digital' ? 'iO' :
-                             logo.name === 'Daily Paper' ? 'DAILY' :
-                             logo.name}
-                          </div>
-                          {logo.name === 'Leyden Labs' && (
-                            <div className="text-xs opacity-90 -mt-1">LABS</div>
-                          )}
-                          {logo.name === 'iO Digital' && (
-                            <div className="text-xs opacity-90 -mt-1">DIGITAL</div>
-                          )}
-                          {logo.name === 'Daily Paper' && (
-                            <div className="text-xs opacity-90 -mt-1">PAPER</div>
-                          )}
-                        </div>
-                      </div>
-                    )}
+                  <div className="relative w-36 h-20 flex items-center justify-center">
+                    <Image
+                      src={logo.src}
+                      alt={`${logo.name} logo`}
+                      fill
+                      className="object-contain filter grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
+                      sizes="144px"
+                      onError={(e) => {
+                        console.warn(`Failed to load logo: ${logo.src}`)
+                        e.currentTarget.style.display = 'none'
+                      }}
+                    />
                   </div>
                 </div>
               ))}

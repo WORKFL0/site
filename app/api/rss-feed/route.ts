@@ -4,8 +4,8 @@ export const dynamic = 'force-dynamic' // Disable static generation for this rou
 
 // Configuration for RSS feeds
 const RSS_CONFIG = {
-  // Use environment variable or default to false
-  USE_FALLBACK_FEED: process.env.RSS_USE_FALLBACK === 'true',
+  // Use environment variable or default to true (temporarily until WorkFlo RSS is fixed)
+  USE_FALLBACK_FEED: process.env.RSS_USE_FALLBACK !== 'false',
   
   // Primary WorkFlo RSS URLs to try
   PRIMARY_FEEDS: [
@@ -15,13 +15,13 @@ const RSS_CONFIG = {
     'https://rss.workflo.it/api/greader.php/reader/api/0/stream/contents/feed/4',
   ].filter(Boolean), // Remove any undefined values
   
-  // Fallback feeds (working tech news feeds for testing)
+  // Fallback feeds (IT and cybersecurity news feeds)
   FALLBACK_FEEDS: process.env.RSS_FALLBACK_FEEDS 
     ? process.env.RSS_FALLBACK_FEEDS.split(',').map(url => url.trim())
     : [
-        'https://hnrss.org/frontpage', // Hacker News RSS
-        'https://feeds.feedburner.com/TechCrunch/', // TechCrunch
-        'https://www.wired.com/feed/rss', // Wired
+        'https://feeds.feedburner.com/TheHackersNews', // The Hacker News - Cybersecurity
+        'https://www.bleepingcomputer.com/feed/', // BleepingComputer - IT Security
+        'https://krebsonsecurity.com/feed/', // Krebs on Security
       ]
 }
 
