@@ -5,6 +5,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { PhoneIcon, EnvelopeIcon, MapPinIcon, CheckIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import DangerTape from '@/components/DangerTape'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 export default function DienstenPage() {
   return (
@@ -12,37 +14,7 @@ export default function DienstenPage() {
       {/* Header with Warning Tape */}
       <DangerTape height="h-3" showText={false} />
       
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/images/logos/workflo-logo-yellow.png"
-                  alt="Workflo Logo"
-                  width={150}
-                  height={45}
-                  className="h-12 w-auto"
-                />
-              </Link>
-            </div>
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-                Home
-              </Link>
-              <Link href="/diensten" className="text-primary-600 font-medium">
-                Diensten
-              </Link>
-              <Link href="/over-ons" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-                Over Ons
-              </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-                Contact
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       <main className="pt-8 pb-16">
         {/* Hero Section - Simple & Clear */}
@@ -309,71 +281,7 @@ export default function DienstenPage() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-            <div>
-              <div className="flex items-center mb-4">
-                <Image
-                  src="/images/logos/workflo-logo-yellow.png"
-                  alt="Workflo Logo"
-                  width={150}
-                  height={45}
-                  className="h-10 w-auto"
-                />
-              </div>
-              <p className="text-gray-400 mb-4">
-                Uw betrouwbare IT-partner in Amsterdam sinds 2015.
-              </p>
-              <div className="space-y-2">
-                <div className="flex items-center">
-                  <MapPinIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">Koivistokade 3, 1013 AC Amsterdam</span>
-                </div>
-                <div className="flex items-center">
-                  <PhoneIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">020 308 0465</span>
-                </div>
-                <div className="flex items-center">
-                  <EnvelopeIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">info@workflo.it</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-4">Legal</h3>
-              <ul className="space-y-2">
-                <li><Link href="/privacy" className="text-gray-400 hover:text-primary-600">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="text-gray-400 hover:text-primary-600">Terms of Service</Link></li>
-                <li><Link href="/cookies" className="text-gray-400 hover:text-primary-600">Cookie Policy</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-4">Company</h3>
-              <ul className="space-y-2">
-                <li><Link href="/over-ons" className="text-gray-400 hover:text-primary-600">Over Ons</Link></li>
-                <li><Link href="/contact" className="text-gray-400 hover:text-primary-600">Contact</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-4">Services</h3>
-              <ul className="space-y-2">
-                <li><Link href="/diensten" className="text-gray-400 hover:text-primary-600">All Services</Link></li>
-                <li><Link href="/tevredenheidscheck" className="text-gray-400 hover:text-primary-600">Satisfaction Check</Link></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              &copy; 2025 Workflo B.V. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Warning Tape Bottom */}
       <DangerTape height="h-3" showText={false} />
