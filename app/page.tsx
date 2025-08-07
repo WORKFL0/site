@@ -29,6 +29,7 @@ import NewsTicker from '../components/NewsTicker'
 import DangerTape from '../components/DangerTape'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import HubSpotContactForm from '@/components/forms/HubSpotContactForm'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -254,62 +255,7 @@ export default function Home() {
     }
   ]
 
-  // HubSpot Contact Form Component
-  const HubSpotContactForm = () => {
-    const [isLoaded, setIsLoaded] = useState(false)
-
-    useEffect(() => {
-      // Load HubSpot script
-      const script = document.createElement('script')
-      script.src = '//js-eu1.hsforms.net/forms/embed/v2.js'
-      script.charset = 'utf-8'
-      script.type = 'text/javascript'
-      script.async = true
-      script.defer = true
-      
-      script.onload = () => {
-        // Create form when script is loaded
-        if (window.hbspt) {
-          window.hbspt.forms.create({
-            region: "eu1",
-            portalId: "26510736",
-            formId: "acf3fe0b-c542-4fc2-aa14-f3cb2fc356c0",
-            target: '#hubspot-contact-form-container'
-          })
-        }
-        setIsLoaded(true)
-      }
-      
-      document.body.appendChild(script)
-      
-      return () => {
-        // Cleanup
-        if (document.body.contains(script)) {
-          document.body.removeChild(script)
-        }
-      }
-    }, [])
-
-    return (
-      <div className="bg-white rounded-2xl p-8 shadow-lg">
-        <h3 className="text-2xl font-bold text-gray-900 mb-4">
-          Neem Contact Op
-        </h3>
-        <p className="text-gray-700 mb-6 leading-relaxed">
-          Klaar om uw IT-uitdagingen aan te pakken? Laat uw gegevens achter en we nemen binnen 24 uur contact op.
-        </p>
-        
-        <div id="hubspot-contact-form-container">
-          {!isLoaded && (
-            <div className="flex items-center justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mr-3"></div>
-              <div className="text-gray-600">Formulier wordt geladen...</div>
-            </div>
-          )}
-        </div>
-      </div>
-    )
-  }
+  // HubSpot form is now imported as a component
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
