@@ -16,16 +16,20 @@ const Footer = () => {
       { name: 'IT Consulting', href: '/diensten/it-consulting' },
     ],
     company: [
-      { name: 'About Us', href: '/over-ons' },
+      { name: 'Over Ons', href: '/over-ons' },
       { name: 'Case Studies', href: '/case-studies' },
-      { name: 'Careers', href: '/careers' },
+      { name: 'Werken Bij Workflo', href: '/careers' },
       { name: 'Contact', href: '/contact' },
+      { name: 'IT Health Check', href: '/it-health-check' },
+      { name: 'Tevredenheidscheck', href: '/tevredenheidscheck' },
+      { name: 'FAQ', href: '/faq' },
+      { name: 'Tarieven', href: '/tarieven' },
     ],
     industries: [
-      { name: 'Marketing & Media', href: '/diensten#marketing' },
-      { name: 'Non-Profit', href: '/diensten#nonprofit' },
-      { name: 'Retail', href: '/diensten#retail' },
-      { name: 'Business Services', href: '/diensten#business' },
+      { name: 'Project Management', href: '/diensten/project-management' },
+      { name: 'Audio Visueel', href: '/diensten/audio-visueel' },
+      { name: 'Connectivity', href: '/diensten/connectivity' },
+      { name: 'Mobile Device Management', href: '/diensten/mobile-device-management' },
     ],
   }
 
@@ -86,7 +90,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-white font-semibold mb-4">{t('footer.services')}</h3>
+            <h3 className="text-white font-semibold mb-4">Diensten</h3>
             <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
@@ -100,7 +104,7 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h3 className="text-white font-semibold mb-4">{t('footer.company')}</h3>
+            <h3 className="text-white font-semibold mb-4">Bedrijf</h3>
             <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
@@ -114,7 +118,7 @@ const Footer = () => {
 
           {/* Industries */}
           <div>
-            <h3 className="text-white font-semibold mb-4">{t('footer.industries')}</h3>
+            <h3 className="text-white font-semibold mb-4">Sectoren</h3>
             <ul className="space-y-2">
               {footerLinks.industries.map((link) => (
                 <li key={link.name}>
