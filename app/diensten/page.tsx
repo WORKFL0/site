@@ -1,11 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import Button from '@/components/ui/Button'
-import { useState } from 'react'
-import { useLanguage } from '@/context/LanguageContext'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import { 
   BuildingOfficeIcon,
   ShoppingCartIcon,
@@ -18,27 +15,41 @@ import {
   CheckCircleIcon
 } from '@heroicons/react/24/outline'
 
-
 export default function DienstenPage() {
+  const [mounted, setMounted] = useState(false)
   const [expandedIndustry, setExpandedIndustry] = useState<string | null>(null)
-  const { t } = useLanguage()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading...</p>
+        </div>
+      </div>
+    )
+  }
 
   const industries = [
     {
       id: 'retail',
-      industry: t('diensten.retail.industry'),
-      mainProblem: t('diensten.retail.main_problem'),
+      industry: 'Retail & E-commerce',
+      mainProblem: 'Uw webshop piekt tijdens sales, maar op rustige dagen betaalt u voor ongebruikte capaciteit',
       subProblems: [
-        t('diensten.retail.sub1'),
-        t('diensten.retail.sub2'),
-        t('diensten.retail.sub3')
+        'Black Friday crasht uw site, kost u duizenden euros per minuut',
+        'Voorraadsysteem loopt niet synchroon met online bestellingen',
+        'Betaalprocessen haperen tijdens piekverkeer'
       ],
-      emotion: t('diensten.retail.emotion'),
-      solution: t('diensten.retail.solution'),
+      emotion: 'U voelt de druk van concurrenten met betere online prestaties',
+      solution: 'Workflo implementeert auto-scaling cloudinfrastructuur die meegroeit met uw drukte. Betaal alleen wat u gebruikt.',
       caseStudy: {
-        client: t('diensten.retail.case_client'),
-        problem: t('diensten.retail.case_problem'),
-        result: t('diensten.retail.case_result')
+        client: 'Mode retailer Amsterdam',
+        problem: '70% downtime tijdens sales',
+        result: '99.9% uptime, 300% meer conversie'
       },
       icon: ShoppingCartIcon,
       color: 'purple',
@@ -46,19 +57,19 @@ export default function DienstenPage() {
     },
     {
       id: 'office',
-      industry: t('diensten.office.industry'),
-      mainProblem: t('diensten.office.main_problem'),
+      industry: 'Kantoororganisaties',
+      mainProblem: 'Hybride werken zorgt voor chaos in uw IT-beheer en veiligheid',
       subProblems: [
-        t('diensten.office.sub1'),
-        t('diensten.office.sub2'),
-        t('diensten.office.sub3')
+        'Medewerkers kunnen niet bij bestanden vanaf thuis',
+        'VPN verbindingen vallen constant weg',
+        'Shadow IT door frustratie over trage systemen'
       ],
-      emotion: t('diensten.office.emotion'),
-      solution: t('diensten.office.solution'),
+      emotion: 'Uw IT-afdeling is overwerkt en werknemers zijn gefrustreerd',
+      solution: 'Complete Microsoft 365 transformatie met veilige cloud werkplekken. Werken alsof iedereen op kantoor zit.',
       caseStudy: {
-        client: t('diensten.office.case_client'),
-        problem: t('diensten.office.case_problem'),
-        result: t('diensten.office.case_result')
+        client: 'Advocatenkantoor Zuidas',
+        problem: 'Geen veilige thuiswerkomgeving',
+        result: 'Volledig hybride, ISO27001 compliant'
       },
       icon: BuildingOfficeIcon,
       color: 'blue',
@@ -66,259 +77,278 @@ export default function DienstenPage() {
     },
     {
       id: 'healthcare',
-      industry: t('diensten.healthcare.industry'),
-      mainProblem: t('diensten.healthcare.main_problem'),
+      industry: 'Zorg & Medisch',
+      mainProblem: 'Patiëntgegevens zijn kwetsbaar en systemen voldoen niet aan NEN7510',
       subProblems: [
-        t('diensten.healthcare.sub1'),
-        t('diensten.healthcare.sub2'),
-        t('diensten.healthcare.sub3')
+        'Angst voor datalek met AVG boetes tot 20 miljoen',
+        'Verschillende systemen communiceren niet met elkaar',
+        'Backup strategie is onduidelijk bij calamiteiten'
       ],
-      emotion: t('diensten.healthcare.emotion'),
-      solution: t('diensten.healthcare.solution'),
+      emotion: 'De verantwoordelijkheid voor patiëntdata houdt u wakker',
+      solution: 'NEN7510 gecertificeerde oplossingen met encrypted backups en 24/7 monitoring. Slaap weer rustig.',
       caseStudy: {
-        client: t('diensten.healthcare.case_client'),
-        problem: t('diensten.healthcare.case_problem'),
-        result: t('diensten.healthcare.case_result')
+        client: 'Huisartsenpraktijk Noord-Holland',
+        problem: 'Niet compliant, risico op boetes',
+        result: 'Volledig NEN7510 compliant binnen 3 maanden'
       },
       icon: HeartIcon,
       color: 'red',
       techStack: 'NEN 7510 compliant hosting, encrypted backups, GDPR tools, medical device integration'
-    },
-    {
-      id: 'financial',
-      industry: t('diensten.financial.industry'),
-      mainProblem: t('diensten.financial.main_problem'),
-      subProblems: [
-        t('diensten.financial.sub1'),
-        t('diensten.financial.sub2'),
-        t('diensten.financial.sub3')
-      ],
-      emotion: t('diensten.financial.emotion'),
-      solution: t('diensten.financial.solution'),
-      caseStudy: {
-        client: t('diensten.financial.case_client'),
-        problem: t('diensten.financial.case_problem'),
-        result: t('diensten.financial.case_result')
-      },
-      icon: BanknotesIcon,
-      color: 'green',
-      techStack: 'DNB compliant infrastructure, audit logging, encryption at rest, MFA everywhere'
-    },
-    {
-      id: 'education',
-      industry: t('diensten.education.industry'),
-      mainProblem: t('diensten.education.main_problem'),
-      subProblems: [
-        t('diensten.education.sub1'),
-        t('diensten.education.sub2'),
-        t('diensten.education.sub3')
-      ],
-      emotion: t('diensten.education.emotion'),
-      solution: t('diensten.education.solution'),
-      caseStudy: {
-        client: t('diensten.education.case_client'),
-        problem: t('diensten.education.case_problem'),
-        result: t('diensten.education.case_result')
-      },
-      icon: AcademicCapIcon,
-      color: 'indigo',
-      techStack: 'Canvas LMS hosting, Zoom education license, exam proctoring, SSO integration'
-    },
-    {
-      id: 'logistics',
-      industry: t('diensten.logistics.industry'),
-      mainProblem: t('diensten.logistics.main_problem'),
-      subProblems: [
-        t('diensten.logistics.sub1'),
-        t('diensten.logistics.sub2'),
-        t('diensten.logistics.sub3')
-      ],
-      emotion: t('diensten.logistics.emotion'),
-      solution: t('diensten.logistics.solution'),
-      caseStudy: {
-        client: t('diensten.logistics.case_client'),
-        problem: t('diensten.logistics.case_problem'),
-        result: t('diensten.logistics.case_result')
-      },
-      icon: TruckIcon,
-      color: 'amber',
-      techStack: 'API gateway for tracking, mobile device management, WMS integration, IoT sensors'
     }
   ]
 
   return (
-    <>
-      <Header />
-      <main className="pt-20">
-        {/* Hero Section */}
-        <section className="relative py-20 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
-          <div className="absolute inset-0 bg-grid-gray-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-          
-          <div className="container mx-auto px-4 relative z-10">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-4xl mx-auto text-center"
-            >
-              <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-                {t('diensten.hero.title')}
-              </h1>
-              <p className="text-xl lg:text-2xl text-gray-600 mb-8">
-                {t('diensten.hero.description')}
-              </p>
-              
-              {/* Stats */}
-              <motion.div 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="flex flex-wrap gap-6 justify-center"
-              >
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary-600">15+</div>
-                  <div className="text-sm text-gray-600">{t('diensten.years_experience')}</div>
+    <div className="min-h-screen bg-white">
+      {/* Header with Warning Tape */}
+      <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
+      
+      <header className="bg-white shadow-sm sticky top-0 z-50">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center">
+              <Link href="/" className="flex items-center space-x-2">
+                <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
+                  <span className="text-black font-bold text-xl">W</span>
                 </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary-600">6</div>
-                  <div className="text-sm text-gray-600">{t('diensten.specializations')}</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-primary-600">100%</div>
-                  <div className="text-sm text-gray-600">{t('diensten.industry_knowledge')}</div>
-                </div>
-              </motion.div>
-            </motion.div>
+                <span className="text-2xl font-bold text-gray-900">Workflo</span>
+              </Link>
+            </div>
+            <nav className="hidden md:flex items-center space-x-8">
+              <Link href="/" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+                Home
+              </Link>
+              <Link href="/diensten" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+                Diensten
+              </Link>
+              <Link href="/over-ons" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+                Over Ons
+              </Link>
+              <Link href="/contact" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+                Contact
+              </Link>
+            </nav>
           </div>
-        </section>
+        </div>
+      </header>
 
-        {/* Industries Grid */}
-        <section className="py-20 bg-white">
+      <main className="pt-8 pb-16">
+        {/* Hero Section */}
+        <section className="py-20 bg-gradient-to-br from-gray-900 to-black text-white">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {industries.map((industry, index) => (
-                <motion.div
-                  key={industry.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="relative"
-                >
-                  <div className={`p-8 rounded-2xl border-2 border-gray-100 hover:border-${industry.color}-200 transition-all duration-300 hover:shadow-xl`}>
-                    {/* Industry Header */}
-                    <div className="flex items-start gap-4 mb-6">
-                      <div className={`p-3 bg-${industry.color}-100 rounded-xl`}>
-                        <industry.icon className={`w-8 h-8 text-${industry.color}-600`} />
-                      </div>
-                      <div className="flex-1">
-                        <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                          {industry.industry}
-                        </h2>
-                        <h3 className="text-lg font-semibold text-red-600">
-                          {industry.mainProblem}
-                        </h3>
-                      </div>
-                    </div>
-
-                    {/* Common Problems */}
-                    <div className="mb-6">
-                      <p className="text-sm text-gray-500 mb-2">{t('diensten.retail.also_problems')}</p>
-                      <ul className="space-y-1">
-                        {industry.subProblems.map((problem, idx) => (
-                          <li key={idx} className="flex items-center gap-2 text-sm text-gray-700">
-                            <ExclamationCircleIcon className="w-4 h-4 text-amber-500" />
-                            {problem}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Solution */}
-                    <div className="mb-6">
-                      <p className="text-lg font-medium text-gray-900 mb-2 italic">
-                        {`"${industry.emotion}"`}
-                      </p>
-                      <p className="text-gray-600">
-                        {industry.solution}
-                      </p>
-                    </div>
-
-                    {/* Case Study */}
-                    <div className="mb-6 p-4 bg-gray-50 rounded-lg">
-                      <div className="flex items-center gap-2 mb-2">
-                        <CheckCircleIcon className="w-5 h-5 text-green-500" />
-                        <span className="font-semibold text-gray-900">{t('diensten.case_example')}</span>
-                      </div>
-                      <p className="text-sm text-gray-700 mb-1">
-                        <span className="font-medium">{industry.caseStudy.client}:</span> {industry.caseStudy.problem}
-                      </p>
-                      <p className="text-sm text-green-600 font-medium">
-                        {t('diensten.case_result')} {industry.caseStudy.result}
-                      </p>
-                    </div>
-
-                    {/* Tech Stack Accordion */}
-                    <div className="mb-6">
-                      <button
-                        onClick={() => setExpandedIndustry(expandedIndustry === industry.id ? null : industry.id)}
-                        className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 transition-colors"
-                      >
-                        <ChevronDownIcon className={`w-4 h-4 transition-transform ${expandedIndustry === industry.id ? 'rotate-180' : ''}`} />
-                        {t('diensten.tech_specs')}
-                      </button>
-                      {expandedIndustry === industry.id && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="mt-3 p-4 bg-gray-50 rounded-lg text-sm text-gray-600"
-                        >
-                          {industry.techStack}
-                        </motion.div>
-                      )}
-                    </div>
-
-                    {/* CTA */}
-                    <Button 
-                      href={`/contact?industry=${industry.id}`}
-                      className={`w-full bg-${industry.color}-600 hover:bg-${industry.color}-700`}
-                    >
-                      {t(`diensten.${industry.id}.cta`)}
-                    </Button>
-                  </div>
-                </motion.div>
-              ))}
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6">
+                IT-oplossingen voor uw sector
+              </h1>
+              <p className="text-xl lg:text-2xl opacity-90">
+                Specifieke expertise voor uw unieke uitdagingen
+              </p>
             </div>
           </div>
         </section>
 
-        {/* Bottom CTA */}
-        <section className="py-20 bg-primary-50">
-          <div className="container mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                {t('diensten.bottom.title')}
-              </h2>
-              <p className="text-xl text-gray-600 mb-8">
-                {t('diensten.bottom.description')}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button href="/tevredenheidscheck" size="lg">
-                  {t('diensten.bottom.cta1')}
-                </Button>
-                <Button href="tel:0203080465" variant="outline" size="lg">
-                  {t('diensten.bottom.cta2')}
-                </Button>
+        {/* Industries Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                  Kies uw sector
+                </h2>
+                <p className="text-xl text-gray-600">
+                  Ontdek hoe we bedrijven zoals die van u helpen groeien
+                </p>
               </div>
-            </motion.div>
+
+              <div className="space-y-8">
+                {industries.map((item) => {
+                  const Icon = item.icon
+                  const isExpanded = expandedIndustry === item.id
+                  
+                  return (
+                    <div 
+                      key={item.id}
+                      className="bg-white rounded-2xl shadow-lg overflow-hidden border-2 border-gray-100 hover:border-primary-600 transition-all duration-300"
+                    >
+                      <button
+                        onClick={() => setExpandedIndustry(isExpanded ? null : item.id)}
+                        className="w-full px-8 py-6 flex items-center justify-between hover:bg-gray-50 transition-colors"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className={`p-3 bg-${item.color}-100 rounded-lg`}>
+                            <Icon className={`w-8 h-8 text-${item.color}-600`} />
+                          </div>
+                          <div className="text-left">
+                            <h3 className="text-2xl font-bold text-gray-900">
+                              {item.industry}
+                            </h3>
+                            <p className="text-gray-600 mt-1">
+                              {item.mainProblem}
+                            </p>
+                          </div>
+                        </div>
+                        <ChevronDownIcon className={`w-6 h-6 text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                      </button>
+
+                      {isExpanded && (
+                        <div className="px-8 pb-8 border-t border-gray-100">
+                          <div className="grid md:grid-cols-2 gap-8 mt-6">
+                            {/* Problems */}
+                            <div>
+                              <h4 className="font-bold text-lg text-gray-900 mb-4 flex items-center gap-2">
+                                <ExclamationCircleIcon className="w-5 h-5 text-red-500" />
+                                Herkenbare problemen
+                              </h4>
+                              <ul className="space-y-3">
+                                {item.subProblems.map((problem, idx) => (
+                                  <li key={idx} className="flex items-start gap-2">
+                                    <span className="text-red-500 mt-1">•</span>
+                                    <span className="text-gray-700">{problem}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                              <div className="mt-4 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                                <p className="text-sm text-yellow-800 italic">
+                                  "{item.emotion}"
+                                </p>
+                              </div>
+                            </div>
+
+                            {/* Solution */}
+                            <div>
+                              <h4 className="font-bold text-lg text-gray-900 mb-4 flex items-center gap-2">
+                                <CheckCircleIcon className="w-5 h-5 text-green-500" />
+                                Onze oplossing
+                              </h4>
+                              <p className="text-gray-700 mb-4">
+                                {item.solution}
+                              </p>
+                              <div className="p-4 bg-green-50 rounded-lg border border-green-200">
+                                <p className="font-semibold text-green-900 mb-2">Case Study</p>
+                                <p className="text-sm text-green-800">
+                                  <strong>Klant:</strong> {item.caseStudy.client}<br />
+                                  <strong>Probleem:</strong> {item.caseStudy.problem}<br />
+                                  <strong>Resultaat:</strong> {item.caseStudy.result}
+                                </p>
+                              </div>
+                              <div className="mt-4 p-3 bg-gray-100 rounded-lg">
+                                <p className="text-xs text-gray-600">
+                                  <strong>Tech Stack:</strong> {item.techStack}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="mt-6 flex gap-4">
+                            <Link 
+                              href="/contact" 
+                              className="px-6 py-3 bg-primary-600 text-black rounded-lg font-semibold hover:bg-primary-700 transition-colors"
+                            >
+                              Gratis adviesgesprek
+                            </Link>
+                            <Link 
+                              href="/tevredenheidscheck" 
+                              className="px-6 py-3 bg-white border-2 border-primary-600 text-primary-600 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
+                            >
+                              Start IT-check
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 bg-black text-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl font-bold mb-4">
+                Niet gevonden wat u zocht?
+              </h2>
+              <p className="text-xl opacity-90 mb-8">
+                We hebben expertise in meer dan 15 verschillende sectoren
+              </p>
+              <Link 
+                href="/contact" 
+                className="inline-block px-8 py-4 bg-primary-600 text-black rounded-lg font-semibold hover:bg-primary-700 transition-colors text-lg"
+              >
+                Bespreek uw specifieke situatie
+              </Link>
+            </div>
           </div>
         </section>
       </main>
-      <Footer />
-    </>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-16">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
+                  <span className="text-black font-bold text-xl">W</span>
+                </div>
+                <span className="text-2xl font-bold">Workflo</span>
+              </div>
+              <p className="text-gray-400 mb-4">
+                Uw betrouwbare IT-partner in Amsterdam sinds 2015.
+              </p>
+              <div className="space-y-2">
+                <div className="flex items-center">
+                  <MapPinIcon className="w-5 h-5 text-primary-600 mr-2" />
+                  <span className="text-sm">Koivistokade 3, Amsterdam</span>
+                </div>
+                <div className="flex items-center">
+                  <PhoneIcon className="w-5 h-5 text-primary-600 mr-2" />
+                  <span className="text-sm">020 308 0465</span>
+                </div>
+                <div className="flex items-center">
+                  <EnvelopeIcon className="w-5 h-5 text-primary-600 mr-2" />
+                  <span className="text-sm">info@workflo.it</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-4">Legal</h3>
+              <ul className="space-y-2">
+                <li><Link href="/privacy" className="text-gray-400 hover:text-primary-600">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-gray-400 hover:text-primary-600">Terms of Service</Link></li>
+                <li><Link href="/cookies" className="text-gray-400 hover:text-primary-600">Cookie Policy</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-4">Company</h3>
+              <ul className="space-y-2">
+                <li><Link href="/over-ons" className="text-gray-400 hover:text-primary-600">Over Ons</Link></li>
+                <li><Link href="/contact" className="text-gray-400 hover:text-primary-600">Contact</Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-bold text-lg mb-4">Services</h3>
+              <ul className="space-y-2">
+                <li><Link href="/diensten" className="text-gray-400 hover:text-primary-600">All Services</Link></li>
+                <li><Link href="/tevredenheidscheck" className="text-gray-400 hover:text-primary-600">Satisfaction Check</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm mb-4 md:mb-0">
+              &copy; 2025 Workflo B.V. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+
+      {/* Warning Tape Bottom */}
+      <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
+    </div>
   )
 }
