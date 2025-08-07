@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useMemo } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
 
 interface PricingOption {
@@ -31,6 +31,9 @@ const PricingCalculator = () => {
   const [selectedOffice365, setSelectedOffice365] = useState('none')
   const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('monthly')
   const [office365Licenses, setOffice365Licenses] = useState(0)
+  const [showComparison, setShowComparison] = useState(false)
+  const [activeTooltip, setActiveTooltip] = useState<string | null>(null)
+  const [hoursPerMonth, setHoursPerMonth] = useState(8)
 
   const pricingOptions: PricingOption[] = useMemo(() => [
     {
@@ -272,8 +275,59 @@ const PricingCalculator = () => {
     }
   }
 
+  const calculateBreakFixCosts = () => {
+    const baseCost = hoursPerMonth * 110 // €110 per hour
+    const softwareCosts = employees * 27 + servers * 35 // Estimated software licensing per month
+    return baseCost + softwareCosts
+  }
+
+  const calculateFixedFeeCosts = () => {
+    const option = pricingOptions.find(o => o.id === 'fixed-remote')
+    if (!option) return 0
+    return option.price * (employees + servers)
+  }
+
+  const getRecommendation = () => {
+    const breakFixTotal = calculateBreakFixCosts()
+    const fixedFeeTotal = calculateFixedFeeCosts()
+    
+    if (employees <= 3 && hoursPerMonth <= 4) {
+      return 'strippenkaart'
+    } else if (employees <= 8 && hoursPerMonth <= 6) {
+      return 'break-fix'
+    } else {
+      return 'fixed-fee'
+    }
+  }
+
+  const Tooltip = ({ content, children, id }: { content: string; children: React.ReactNode; id: string }) => (
+    <div className="relative inline-block">
+      <div
+        onMouseEnter={() => setActiveTooltip(id)}
+        onMouseLeave={() => setActiveTooltip(null)}
+        className="cursor-help"
+      >
+        {children}
+      </div>
+      <AnimatePresence>
+        {activeTooltip === id && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: -10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="absolute z-50 px-3 py-2 text-sm bg-gray-900 text-white rounded-lg shadow-lg -top-12 left-1/2 transform -translate-x-1/2 w-64 text-center"
+          >
+            {content}
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-12">
         <div className="bg-gray-900 rounded-xl p-8 inline-block shadow-2xl">
@@ -290,31 +344,221 @@ const PricingCalculator = () => {
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-3 gap-8">
+      {/* Comparison Toggle */}
+      <div className="text-center mb-8">
+        <button
+          onClick={() => setShowComparison(!showComparison)}
+          className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-all inline-flex items-center gap-2"
+        >
+          {showComparison ? '📊' : '⚡'} 
+          {language === 'en' 
+            ? (showComparison ? 'Hide Comparison' : 'Compare All Options')
+            : (showComparison ? 'Verberg Vergelijking' : 'Vergelijk Alle Opties')}
+        </button>
+      </div>
+
+      {/* Comparison Section */}
+      <AnimatePresence>
+        {showComparison && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mb-12"
+          >
+            <div className="bg-white rounded-xl shadow-xl p-8 mb-8">
+              <h3 className="text-3xl font-bold text-center mb-8 text-gray-900">
+                {language === 'en' ? 'Break-Fix vs Fixed Fee Comparison' : 'Break-Fix vs Fixed Fee Vergelijking'}
+              </h3>
+              
+              <div className="grid md:grid-cols-3 gap-6 mb-8">
+                {/* Break-Fix Column */}
+                <div className="bg-red-50 border-2 border-red-200 rounded-xl p-6">
+                  <div className="text-center mb-4">
+                    <div className="w-16 h-16 bg-red-500 rounded-full mx-auto mb-3 flex items-center justify-center">
+                      <span className="text-2xl">🚨</span>
+                    </div>
+                    <h4 className="text-xl font-bold text-red-800 mb-2">
+                      {language === 'en' ? 'Break-Fix Model' : 'Break-Fix Model'}
+                    </h4>
+                    <p className="text-sm text-red-600">
+                      {language === 'en' ? 'Pay per incident' : 'Betaal per incident'}
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="bg-white rounded-lg p-3">
+                      <div className="text-lg font-bold text-red-800">
+                        €110 {language === 'en' ? 'per hour' : 'per uur'}
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        {language === 'en' ? 'Support costs only' : 'Alleen support kosten'}
+                      </div>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-3">
+                      <div className="text-lg font-bold text-red-800">
+                        +€{Math.round((employees * 27 + servers * 35))}/month
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        {language === 'en' ? 'Software licenses' : 'Software licenties'}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="border-t pt-4">
+                    <div className="text-center">
+                      <Tooltip 
+                        content={language === 'en' 
+                          ? 'Based on estimated usage patterns for your company size'
+                          : 'Gebaseerd op geschatte gebruikspatronen voor uw bedrijfsgrootte'}
+                        id="breakfix-estimate"
+                      >
+                        <div className="text-xl font-bold text-red-800 cursor-help border-b border-dotted border-red-400">
+                          €{calculateBreakFixCosts()}/month
+                        </div>
+                      </Tooltip>
+                      <div className="text-xs text-red-600 mt-1">
+                        {language === 'en' ? 'Estimated total' : 'Geschatte totaal'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* VS Column */}
+                <div className="flex items-center justify-center md:block">
+                  <div className="bg-gray-900 rounded-full w-20 h-20 flex items-center justify-center mx-auto">
+                    <span className="text-yellow-400 text-2xl font-bold">VS</span>
+                  </div>
+                </div>
+
+                {/* Fixed Fee Column */}
+                <div className="bg-green-50 border-2 border-green-200 rounded-xl p-6">
+                  <div className="text-center mb-4">
+                    <div className="w-16 h-16 bg-green-500 rounded-full mx-auto mb-3 flex items-center justify-center">
+                      <span className="text-2xl">✅</span>
+                    </div>
+                    <h4 className="text-xl font-bold text-green-800 mb-2">
+                      {language === 'en' ? 'Fixed Fee Model' : 'Fixed Fee Model'}
+                    </h4>
+                    <p className="text-sm text-green-600">
+                      {language === 'en' ? 'Unlimited support' : 'Onbeperkte support'}
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="bg-white rounded-lg p-3">
+                      <div className="text-lg font-bold text-green-800">
+                        €{pricingOptions.find(o => o.id === 'fixed-remote')?.price || 60}/user/month
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        {language === 'en' ? 'All-inclusive' : 'Alles inclusief'}
+                      </div>
+                    </div>
+                    
+                    <div className="bg-white rounded-lg p-3">
+                      <div className="text-lg font-bold text-green-800">
+                        €0 {language === 'en' ? 'extra' : 'extra'}
+                      </div>
+                      <div className="text-sm text-gray-600">
+                        {language === 'en' ? 'Software included' : 'Software inbegrepen'}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="border-t pt-4">
+                    <div className="text-center">
+                      <div className="text-xl font-bold text-green-800">
+                        €{calculateFixedFeeCosts()}/month
+                      </div>
+                      <div className="text-xs text-green-600 mt-1">
+                        {language === 'en' ? 'Fixed price' : 'Vaste prijs'}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Savings Highlight */}
+              {calculateBreakFixCosts() > calculateFixedFeeCosts() && (
+                <div className="bg-yellow-400 text-black rounded-xl p-6 text-center">
+                  <h4 className="text-2xl font-bold mb-2">
+                    {language === 'en' ? 'You Save' : 'U Bespaart'} €{(calculateBreakFixCosts() - calculateFixedFeeCosts()).toLocaleString()}/month
+                  </h4>
+                  <p className="text-lg">
+                    {language === 'en' 
+                      ? `That's €${((calculateBreakFixCosts() - calculateFixedFeeCosts()) * 12).toLocaleString()} per year!`
+                      : `Dat is €${((calculateBreakFixCosts() - calculateFixedFeeCosts()) * 12).toLocaleString()} per jaar!`}
+                  </p>
+                  <div className="mt-4 text-sm font-medium">
+                    {Math.round(((calculateBreakFixCosts() - calculateFixedFeeCosts()) / calculateBreakFixCosts()) * 100)}% 
+                    {language === 'en' ? ' cost reduction with Fixed Fee' : ' kostenreductie met Fixed Fee'}
+                  </div>
+                </div>
+              )}
+              
+              {/* Usage Estimator */}
+              <div className="mt-8 bg-gray-50 rounded-xl p-6">
+                <h4 className="text-xl font-bold mb-4 text-gray-900">
+                  {language === 'en' ? 'Adjust Your Usage Estimate' : 'Pas Uw Gebruiksschatting Aan'}
+                </h4>
+                <div className="mb-4">
+                  <label className="block text-base font-semibold text-gray-900 mb-2">
+                    {language === 'en' ? `Estimated IT Support Hours per Month: ${hoursPerMonth}` : `Geschatte IT Support Uren per Maand: ${hoursPerMonth}`}
+                  </label>
+                  <input
+                    type="range"
+                    min="1"
+                    max="40"
+                    value={hoursPerMonth}
+                    onChange={(e) => setHoursPerMonth(Number(e.target.value))}
+                    className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                    style={{
+                      background: `linear-gradient(to right, #f2f400 0%, #f2f400 ${(hoursPerMonth / 40) * 100}%, #e5e5e5 ${(hoursPerMonth / 40) * 100}%, #e5e5e5 100%)`
+                    }}
+                  />
+                  <div className="flex justify-between text-sm text-gray-700 font-medium mt-2">
+                    <span>1h</span>
+                    <span className="text-center">
+                      {hoursPerMonth <= 4 && '💚 Light usage'}
+                      {hoursPerMonth > 4 && hoursPerMonth <= 12 && '🟡 Moderate usage'}
+                      {hoursPerMonth > 12 && '🔴 Heavy usage'}
+                    </span>
+                    <span>40h+</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="grid lg:grid-cols-4 gap-6 lg:gap-8">
         {/* Configuration Panel */}
-        <div className="lg:col-span-2 space-y-8">
+        <div className="lg:col-span-3 space-y-6 md:space-y-8">
           {/* Billing Period Toggle */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <h3 className="text-2xl font-bold text-black mb-4">
               {language === 'en' ? 'Billing Period' : 'Facturatieperiode'}
             </h3>
-            <div className="flex gap-4 mb-2">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-2">
               <button
                 onClick={() => setBillingPeriod('monthly')}
-                className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-all ${
+                className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-all touch-manipulation ${
                   billingPeriod === 'monthly' 
                     ? 'bg-yellow-400 text-black shadow-lg' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300'
                 }`}
               >
                 {language === 'en' ? 'Monthly' : 'Maandelijks'}
               </button>
               <button
                 onClick={() => setBillingPeriod('yearly')}
-                className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-all ${
+                className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-all touch-manipulation ${
                   billingPeriod === 'yearly' 
                     ? 'bg-yellow-400 text-black shadow-lg' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300'
                 }`}
               >
                 {language === 'en' ? 'Yearly (-10%)' : 'Jaarlijks (-10%)'}
@@ -336,9 +580,21 @@ const PricingCalculator = () => {
             </h3>
             
             <div className="mb-6">
-              <label className="block text-base font-semibold text-gray-900 mb-2">
-                {language === 'en' ? `Number of Employees: ${employees}` : `Aantal Medewerkers: ${employees}`}
-              </label>
+              <div className="flex items-center gap-2 mb-2">
+                <label className="block text-base font-semibold text-gray-900">
+                  {language === 'en' ? `Number of Employees: ${employees}` : `Aantal Medewerkers: ${employees}`}
+                </label>
+                <Tooltip 
+                  content={language === 'en' 
+                    ? 'Include all staff who use computers, tablets, or phones for work. This affects your IT support needs and software licensing.'
+                    : 'Voeg alle medewerkers toe die computers, tablets, of telefoons voor werk gebruiken. Dit beïnvloedt uw IT-ondersteuning en software licenties.'}
+                  id="employees-tooltip"
+                >
+                  <div className="w-4 h-4 bg-gray-400 rounded-full flex items-center justify-center text-white text-xs cursor-help">
+                    ?
+                  </div>
+                </Tooltip>
+              </div>
               <input
                 type="range"
                 min="1"
@@ -358,9 +614,21 @@ const PricingCalculator = () => {
             </div>
 
             <div className="mb-6">
-              <label className="block text-base font-semibold text-gray-900 mb-2">
-                {language === 'en' ? `Number of Servers: ${servers}` : `Aantal Servers: ${servers}`}
-              </label>
+              <div className="flex items-center gap-2 mb-2">
+                <label className="block text-base font-semibold text-gray-900">
+                  {language === 'en' ? `Number of Servers: ${servers}` : `Aantal Servers: ${servers}`}
+                </label>
+                <Tooltip 
+                  content={language === 'en' 
+                    ? 'Physical or virtual servers, including file servers, domain controllers, and application servers. Cloud servers (Azure, AWS) count too.'
+                    : 'Fysieke of virtuele servers, inclusief bestandsservers, domeincontrollers, en applicatieservers. Cloud servers (Azure, AWS) tellen ook mee.'}
+                  id="servers-tooltip"
+                >
+                  <div className="w-4 h-4 bg-gray-400 rounded-full flex items-center justify-center text-white text-xs cursor-help">
+                    ?
+                  </div>
+                </Tooltip>
+              </div>
               <input
                 type="range"
                 min="0"
@@ -381,9 +649,21 @@ const PricingCalculator = () => {
 
           {/* Office 365 Package Selection */}
           <div className="bg-white rounded-xl shadow-lg p-6">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              {language === 'en' ? 'Microsoft 365 Licenses (Optional)' : 'Microsoft 365 Licenties (Optioneel)'}
-            </h3>
+            <div className="flex items-center gap-2 mb-4">
+              <h3 className="text-2xl font-bold text-gray-900">
+                {language === 'en' ? 'Microsoft 365 Licenses (Optional)' : 'Microsoft 365 Licenties (Optioneel)'}
+              </h3>
+              <Tooltip 
+                content={language === 'en' 
+                  ? 'Microsoft 365 includes Office apps, email, OneDrive, Teams, and security features. We can manage and optimize your licenses.'
+                  : 'Microsoft 365 bevat Office apps, email, OneDrive, Teams, en beveiligingsfeatures. Wij kunnen uw licenties beheren en optimaliseren.'}
+                id="office365-tooltip"
+              >
+                <div className="w-4 h-4 bg-gray-400 rounded-full flex items-center justify-center text-white text-xs cursor-help">
+                  ?
+                </div>
+              </Tooltip>
+            </div>
             <p className="text-gray-700 text-base mb-4 font-medium">
               {language === 'en' 
                 ? 'Add Microsoft 365 licenses to see your complete monthly IT investment'
@@ -427,6 +707,46 @@ const PricingCalculator = () => {
             )}
           </div>
 
+          {/* AI Recommendation */}
+          <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 mb-8">
+            <div className="flex items-center mb-4">
+              <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                <span className="text-white text-sm font-bold">AI</span>
+              </div>
+              <h3 className="text-xl font-bold text-blue-800">
+                {language === 'en' ? 'Recommended for Your Business' : 'Aanbevolen voor Uw Bedrijf'}
+              </h3>
+            </div>
+            <div className="bg-white rounded-lg p-4">
+              <div className="text-lg font-bold text-blue-800 mb-2">
+                {(() => {
+                  const rec = getRecommendation()
+                  if (rec === 'strippenkaart') return language === 'en' ? 'Strip Cards (Pre-paid Hours)' : 'Strippenkaarten (Vooruitbetaalde Uren)'
+                  if (rec === 'break-fix') return language === 'en' ? 'Break-Fix Support' : 'Break-Fix Support'
+                  return language === 'en' ? 'Fixed Fee Support' : 'Fixed Fee Support'
+                })()}
+              </div>
+              <p className="text-sm text-blue-700">
+                {(() => {
+                  const rec = getRecommendation()
+                  if (rec === 'strippenkaart') {
+                    return language === 'en' 
+                      ? 'Perfect for small teams with occasional IT needs. Great control over costs.'
+                      : 'Perfect voor kleine teams met incidentele IT-behoeften. Goede kostencontrole.'
+                  }
+                  if (rec === 'break-fix') {
+                    return language === 'en'
+                      ? 'Suitable for your current size, but consider Fixed Fee as you grow.'
+                      : 'Geschikt voor uw huidige omvang, maar overweeg Fixed Fee als u groeit.'
+                  }
+                  return language === 'en'
+                    ? 'Best value for your business size. Predictable costs and comprehensive coverage.'
+                    : 'Beste waarde voor uw bedrijfsomvang. Voorspelbare kosten en uitgebreide dekking.'
+                })()}
+              </p>
+            </div>
+          </div>
+
           {/* Service Selection */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <h3 className="text-2xl font-bold text-black mb-6">
@@ -439,8 +759,12 @@ const PricingCalculator = () => {
                   whileHover={{ scale: 1.01 }}
                   className={`relative p-6 rounded-lg border-2 cursor-pointer transition-all ${
                     selectedOption === option.id
-                      ? 'border-yellow-400 bg-yellow-50'
-                      : 'border-gray-200 hover:border-gray-300'
+                      ? 'border-yellow-400 bg-yellow-50 shadow-lg transform scale-[1.02]'
+                      : 'border-gray-200 hover:border-gray-300 hover:shadow-md'
+                  } ${
+                    getRecommendation() === 'strippenkaart' && option.type === 'strippenkaart' ? 'ring-2 ring-blue-300' :
+                    getRecommendation() === 'break-fix' && option.type === 'hourly' ? 'ring-2 ring-blue-300' :
+                    getRecommendation() === 'fixed-fee' && option.type === 'fixed' ? 'ring-2 ring-blue-300' : ''
                   }`}
                   onClick={() => setSelectedOption(option.id)}
                 >
@@ -494,8 +818,8 @@ const PricingCalculator = () => {
         </div>
 
         {/* Price Summary */}
-        <div className="lg:col-span-1">
-          <div className="sticky top-20">
+        <div className="lg:col-span-1 order-first lg:order-last">
+          <div className="lg:sticky lg:top-20">
             <div className="bg-black text-white rounded-xl p-6 mb-6">
               <h3 className="text-2xl font-bold mb-6 text-yellow-400">
                 {language === 'en' ? 'Your Investment' : 'Uw Investering'}
@@ -622,13 +946,96 @@ const PricingCalculator = () => {
               
               {savings > 0 && selectedOption.startsWith('fixed') && (
                 <div className="mt-4 p-4 bg-green-500/20 rounded-lg border border-green-500">
-                  <div className="text-green-400 font-bold">
+                  <div className="text-green-400 font-bold mb-2">
                     {language === 'en' ? 'Monthly Savings:' : 'Maandelijkse Besparing:'} €{savings.toLocaleString()}
                   </div>
-                  <div className="text-sm text-gray-600 font-medium">
+                  <div className="text-sm text-gray-600 font-medium mb-3">
                     {language === 'en' 
                       ? 'vs. average break-fix costs'
                       : 'vs. gemiddelde break-fix kosten'}
+                  </div>
+                  {/* Savings Progress Bar */}
+                  <div className="mb-2">
+                    <div className="flex justify-between text-xs text-gray-600 mb-1">
+                      <span>{language === 'en' ? 'Break-Fix Cost' : 'Break-Fix Kosten'}</span>
+                      <span>{Math.round((savings / (calculateBreakFixCosts() || 1)) * 100)}% {language === 'en' ? 'saved' : 'bespaard'}</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div 
+                        className="bg-green-500 h-2 rounded-full transition-all duration-1000"
+                        style={{ width: `${Math.min((savings / (calculateBreakFixCosts() || 1)) * 100, 100)}%` }}
+                      />
+                    </div>
+                  </div>
+                  <div className="text-xs text-green-600">
+                    {language === 'en' 
+                      ? `Annual savings: €${(savings * 12).toLocaleString()}`
+                      : `Jaarlijkse besparing: €${(savings * 12).toLocaleString()}`}
+                  </div>
+                </div>
+              )}
+              
+              {/* ROI Calculator */}
+              {selectedOption.startsWith('fixed') && (
+                <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                  <h5 className="font-bold text-blue-800 mb-3 text-sm">
+                    {language === 'en' ? '📊 Return on Investment' : '📊 Return on Investment'}
+                  </h5>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-blue-700">
+                        {language === 'en' ? 'Payback period:' : 'Terugverdientijd:'}
+                      </span>
+                      <span className="font-bold text-blue-800">
+                        {savings > 0 ? `${Math.ceil((totalPrice * 3) / savings)} months` : 'Immediate'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-blue-700">
+                        {language === 'en' ? 'Risk reduction:' : 'Risicoreductie:'}
+                      </span>
+                      <span className="font-bold text-green-600">85%</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-blue-700">
+                        {language === 'en' ? 'Predictability:' : 'Voorspelbaarheid:'}
+                      </span>
+                      <span className="font-bold text-green-600">100%</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {/* Risk Assessment for Break-Fix */}
+              {selectedOption === 'break-fix' && (
+                <div className="mt-4 p-4 bg-red-50 rounded-lg border border-red-200">
+                  <h5 className="font-bold text-red-800 mb-3 text-sm">
+                    {language === 'en' ? '⚠️ Cost Risk Assessment' : '⚠️ Kostenrisico Beoordeling'}
+                  </h5>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-red-700">
+                        {language === 'en' ? 'Monthly variation:' : 'Maandelijkse variatie:'}
+                      </span>
+                      <span className="font-bold text-red-800">€0 - €2,000+</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-red-700">
+                        {language === 'en' ? 'Budget predictability:' : 'Budget voorspelbaarheid:'}
+                      </span>
+                      <span className="font-bold text-red-600">Low</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-red-700">
+                        {language === 'en' ? 'Emergency costs:' : 'Noodkosten:'}
+                      </span>
+                      <span className="font-bold text-red-600">High risk</span>
+                    </div>
+                  </div>
+                  <div className="mt-3 p-2 bg-yellow-100 rounded text-xs text-yellow-800">
+                    {language === 'en' 
+                      ? '💡 Tip: Fixed Fee eliminates these risks entirely'
+                      : '💡 Tip: Fixed Fee elimineert deze risico\'s volledig'}
                   </div>
                 </div>
               )}
