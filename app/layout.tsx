@@ -4,7 +4,6 @@ import { Analytics } from '@vercel/analytics/react'
 import CookieConsent from '@/components/CookieConsent'
 import { LanguageProvider } from '@/context/LanguageContext'
 import GoogleAnalytics from '@/components/Analytics/GoogleAnalytics'
-import ErrorBoundary from '@/components/ErrorBoundary'
 import HubSpotScript from '@/components/forms/HubSpotScript'
 import { 
   MicrosoftClarity, 
@@ -192,12 +191,10 @@ export default function RootLayout({
         <meta name="entity:revenue-range" content="€1M-€10M" />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <ErrorBoundary>
-          <LanguageProvider>
-            {children}
-            <CookieConsent />
-          </LanguageProvider>
-        </ErrorBoundary>
+        <LanguageProvider>
+          {children}
+          <CookieConsent />
+        </LanguageProvider>
         
         {/* Analytics and Tracking */}
         <Analytics />
