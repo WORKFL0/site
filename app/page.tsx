@@ -28,11 +28,14 @@ import NewsletterFormSafe from '../components/forms/NewsletterFormSafe'
 import DangerTape from '../components/DangerTape'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
-import HelloSection from '@/components/sections/HelloSection'
 import { useLanguage } from '@/context/LanguageContext'
 
 // Import these components dynamically to avoid SSR issues
 const NewsTicker = dynamic(() => import('../components/NewsTicker'), { 
+  ssr: false,
+  loading: () => null
+})
+const HelloSection = dynamic(() => import('@/components/sections/HelloSection'), {
   ssr: false,
   loading: () => null
 })
