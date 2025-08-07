@@ -177,8 +177,14 @@ export default function ContactPage() {
                   
                   {/* Building Photo */}
                   <div className="mb-6">
-                    <div className="rounded-lg overflow-hidden shadow-lg bg-gray-200 h-48 flex items-center justify-center">
-                      <span className="text-gray-500">Kantoor Amsterdam</span>
+                    <div className="rounded-lg overflow-hidden shadow-lg">
+                      <Image
+                        src="/images/building.jpg"
+                        alt="Workflo Kantoor Amsterdam"
+                        width={400}
+                        height={300}
+                        className="w-full h-48 object-cover"
+                      />
                     </div>
                   </div>
                   
