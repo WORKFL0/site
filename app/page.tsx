@@ -2,25 +2,55 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import SafeErrorBoundary from '@/components/SafeErrorBoundary'
 
-function HomeContent() {
-  const [isLoaded, setIsLoaded] = useState(false)
+export default function Home() {
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setIsLoaded(true)
+    setMounted(true)
   }, [])
 
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
+          <p className="mt-4">Loading...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <>
-      <Header />
-      
-      <main className="flex min-h-screen flex-col">
+    <div className="min-h-screen">
+      {/* Simple Header */}
+      <header className="bg-white shadow-sm border-b">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <Link href="/" className="text-2xl font-bold text-primary-600">
+                Workflo
+              </Link>
+            </div>
+            <nav className="hidden md:flex space-x-8">
+              <Link href="/diensten" className="text-gray-600 hover:text-gray-900">
+                Diensten
+              </Link>
+              <Link href="/over-ons" className="text-gray-600 hover:text-gray-900">
+                Over Ons
+              </Link>
+              <Link href="/contact" className="text-gray-600 hover:text-gray-900">
+                Contact
+              </Link>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-primary-50 to-white pt-20">
-          <div className="container mx-auto px-4 py-16">
+        <section className="bg-gradient-to-br from-blue-50 to-white py-20">
+          <div className="container mx-auto px-4">
             <div className="max-w-4xl">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                 Your IT Should Drive Growth, Not Hold You Back
@@ -32,7 +62,7 @@ function HomeContent() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link 
                   href="/tevredenheidscheck" 
-                  className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-black bg-primary-600 hover:bg-primary-700 transition-colors"
+                  className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
                 >
                   Start Tevredenheidscheck
                 </Link>
@@ -48,15 +78,15 @@ function HomeContent() {
             {/* Stats */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
               <div className="text-center md:text-left">
-                <div className="text-3xl font-bold text-primary-600">35%</div>
+                <div className="text-3xl font-bold text-blue-600">35%</div>
                 <div className="text-gray-600">Kostenbesparing</div>
               </div>
               <div className="text-center md:text-left">
-                <div className="text-3xl font-bold text-primary-600">95%</div>
+                <div className="text-3xl font-bold text-blue-600">95%</div>
                 <div className="text-gray-600">Uptime Garantie</div>
               </div>
               <div className="text-center md:text-left">
-                <div className="text-3xl font-bold text-primary-600">24/7</div>
+                <div className="text-3xl font-bold text-blue-600">24/7</div>
                 <div className="text-gray-600">Support</div>
               </div>
             </div>
@@ -72,22 +102,28 @@ function HomeContent() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-gray-50 rounded-lg p-6">
                 <h3 className="text-xl font-semibold mb-4">Managed IT Services</h3>
-                <p className="text-gray-600">Complete IT-ondersteuning voor uw bedrijf, 24/7 monitoring en proactief beheer.</p>
+                <p className="text-gray-600">
+                  Complete IT-ondersteuning voor uw bedrijf, 24/7 monitoring en proactief beheer.
+                </p>
               </div>
               <div className="bg-gray-50 rounded-lg p-6">
                 <h3 className="text-xl font-semibold mb-4">Cloud Solutions</h3>
-                <p className="text-gray-600">Veilige en schaalbare cloud-infrastructuur, perfect voor groeiende bedrijven.</p>
+                <p className="text-gray-600">
+                  Veilige en schaalbare cloud-infrastructuur, perfect voor groeiende bedrijven.
+                </p>
               </div>
               <div className="bg-gray-50 rounded-lg p-6">
                 <h3 className="text-xl font-semibold mb-4">Cybersecurity</h3>
-                <p className="text-gray-600">Bescherm uw bedrijf tegen digitale dreigingen met onze security-oplossingen.</p>
+                <p className="text-gray-600">
+                  Bescherm uw bedrijf tegen digitale dreigingen met onze security-oplossingen.
+                </p>
               </div>
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-primary-50">
+        <section className="py-16 bg-blue-50">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Klaar om uw IT te transformeren?
@@ -97,23 +133,39 @@ function HomeContent() {
             </p>
             <Link 
               href="/contact" 
-              className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-black bg-primary-600 hover:bg-primary-700 transition-colors"
+              className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors"
             >
               Neem Contact Op
             </Link>
           </div>
         </section>
       </main>
-      
-      <Footer />
-    </>
-  )
-}
 
-export default function Home() {
-  return (
-    <SafeErrorBoundary componentName="HomePage">
-      <HomeContent />
-    </SafeErrorBoundary>
+      {/* Simple Footer */}
+      <footer className="bg-gray-900 text-white py-8">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-4 md:mb-0">
+              <p className="text-lg font-semibold">Workflo IT Services</p>
+              <p className="text-gray-400">Amsterdam, Netherlands</p>
+            </div>
+            <div className="flex space-x-6">
+              <Link href="/privacy" className="text-gray-400 hover:text-white">
+                Privacy
+              </Link>
+              <Link href="/terms" className="text-gray-400 hover:text-white">
+                Terms
+              </Link>
+              <Link href="/contact" className="text-gray-400 hover:text-white">
+                Contact
+              </Link>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
+            <p>&copy; 2025 Workflo B.V. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
   )
 }
