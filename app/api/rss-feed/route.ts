@@ -1,28 +1,29 @@
 import { NextResponse } from 'next/server'
+import { getEnvConfig } from '@/lib/env-config'
 
 export const dynamic = 'force-dynamic' // Disable static generation for this route
 
-// Configuration for RSS feeds
+// Get failsafe configuration
+const envConfig = getEnvConfig()
+
+// Configuration for RSS feeds with failsafe defaults
 const RSS_CONFIG = {
-  // Use environment variable or default to true (temporarily until WorkFlo RSS is fixed)
-  USE_FALLBACK_FEED: process.env.RSS_USE_FALLBACK !== 'false',
+  // Always have a working configuration
+  USE_FALLBACK_FEED: envConfig.RSS_USE_FALLBACK,
   
   // Primary WorkFlo RSS URLs to try
   PRIMARY_FEEDS: [
-    // Use environment variable if set, otherwise use defaults
-    process.env.RSS_PRIMARY_FEED || 'https://rss.workflo.it/i/?a=rss&get=c_4&rid=6893c5809212b&hours=168',
+    envConfig.RSS_PRIMARY_FEED,
     'https://rss.workflo.it/i/?a=rss&get=c_4',
     'https://rss.workflo.it/api/greader.php/reader/api/0/stream/contents/feed/4',
   ].filter(Boolean), // Remove any undefined values
   
-  // Fallback feeds (IT and cybersecurity news feeds)
-  FALLBACK_FEEDS: process.env.RSS_FALLBACK_FEEDS 
-    ? process.env.RSS_FALLBACK_FEEDS.split(',').map(url => url.trim())
-    : [
-        'https://feeds.feedburner.com/TheHackersNews', // The Hacker News - Cybersecurity
-        'https://www.bleepingcomputer.com/feed/', // BleepingComputer - IT Security
-        'https://krebsonsecurity.com/feed/', // Krebs on Security
-      ]
+  // Fallback feeds - ALWAYS have working feeds
+  FALLBACK_FEEDS: [
+    'https://feeds.feedburner.com/TheHackersNews', // The Hacker News - Cybersecurity
+    'https://www.bleepingcomputer.com/feed/', // BleepingComputer - IT Security
+    'https://krebsonsecurity.com/feed/', // Krebs on Security
+  ]
 }
 
 async function tryFetchRSS(url: string): Promise<{ success: boolean; content?: string; error?: string }> {
