@@ -3,20 +3,12 @@
 import { useState } from 'react'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import IframeLoader from '@/components/iframes/IframeLoader'
 import { useLanguage } from '@/context/LanguageContext'
 
 export default function SupportPage() {
-  const [isRedirecting, setIsRedirecting] = useState(false)
+  const [showIframe, setShowIframe] = useState(false)
   const { language } = useLanguage()
-
-  const handleSupportRedirect = () => {
-    setIsRedirecting(true)
-    // Small delay to show the loading state
-    setTimeout(() => {
-      window.open('https://servicedesk.workflo.it/portal', '_blank', 'noopener,noreferrer')
-      setIsRedirecting(false)
-    }, 500)
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -44,50 +36,75 @@ export default function SupportPage() {
           </div>
         </section>
 
-        {/* Support Portal Link */}
+        {/* Support Portal Section */}
         <section className="py-12">
           <div className="container mx-auto px-4">
-            <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto text-center">
-              <div className="w-20 h-20 bg-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
-                <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                {language === 'en' ? 'Access Support Portal' : 'Toegang tot Support Portal'}
-              </h2>
-              <p className="text-gray-600 mb-6">
-                {language === 'en'
-                  ? 'Click the button below to open our support portal in a new window. Here you can submit tickets, track the status of your requests and consult documentation.'
-                  : 'Klik op de knop hieronder om ons support portal te openen in een nieuw venster. Hier kunt u tickets indienen, de status van uw aanvragen volgen en documentatie raadplegen.'}
-              </p>
-              
-              {isRedirecting ? (
-                <div className="inline-flex items-center justify-center bg-gray-100 text-gray-600 px-8 py-4 rounded-lg font-bold text-lg">
-                  <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-yellow-400 mr-3"></div>
-                  {language === 'en' ? 'Opening portal...' : 'Portal wordt geopend...'}
+            {!showIframe ? (
+              <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto text-center">
+                <div className="w-20 h-20 bg-yellow-400 rounded-full mx-auto mb-6 flex items-center justify-center">
+                  <svg className="w-10 h-10 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
                 </div>
-              ) : (
-                <button 
-                  onClick={handleSupportRedirect}
-                  className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-colors shadow-lg"
-                >
-                  {language === 'en' ? 'Open Support Portal →' : 'Open Support Portal →'}
-                </button>
-              )}
-              
-              <p className="text-sm text-gray-500 mt-4">
-                {language === 'en' ? 'Opens in a new window' : 'Opent in een nieuw venster'}
-              </p>
-              
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <p className="text-sm text-blue-800">
-                  {language === 'en' 
-                    ? 'Secure access to your dedicated support environment'
-                    : 'Veilige toegang tot uw toegewijde support omgeving'}
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                  {language === 'en' ? 'Access Support Portal' : 'Toegang tot Support Portal'}
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  {language === 'en'
+                    ? 'Access our support portal directly on this page or open it in a new window. Submit tickets, track requests, and get help from our team.'
+                    : 'Toegang tot ons support portal direct op deze pagina of open het in een nieuw venster. Dien tickets in, volg aanvragen en krijg hulp van ons team.'}
                 </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <button 
+                    onClick={() => setShowIframe(true)}
+                    className="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-colors shadow-lg"
+                  >
+                    {language === 'en' ? 'Open Portal Here' : 'Open Portal Hier'}
+                  </button>
+                  <a
+                    href="https://servicedesk.workflo.it/portal"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gray-200 text-gray-700 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-300 transition-colors shadow-lg inline-block"
+                  >
+                    {language === 'en' ? 'Open in New Tab →' : 'Open in Nieuw Tabblad →'}
+                  </a>
+                </div>
+                
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                  <p className="text-sm text-blue-800">
+                    {language === 'en' 
+                      ? 'Secure access to your dedicated support environment'
+                      : 'Veilige toegang tot uw toegewijde support omgeving'}
+                  </p>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div className="max-w-7xl mx-auto">
+                <div className="mb-6 flex items-center justify-between">
+                  <h2 className="text-2xl font-bold text-gray-900">
+                    {language === 'en' ? 'Support Portal' : 'Support Portal'}
+                  </h2>
+                  <button
+                    onClick={() => setShowIframe(false)}
+                    className="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-300 transition-colors"
+                  >
+                    {language === 'en' ? '← Back' : '← Terug'}
+                  </button>
+                </div>
+                
+                <IframeLoader
+                  src="https://servicedesk.workflo.it/portal"
+                  title={language === 'en' ? 'WorkFlo Support Portal' : 'WorkFlo Support Portal'}
+                  height="900px"
+                  loadingText={language === 'en' ? 'Loading support portal...' : 'Support portal wordt geladen...'}
+                  errorText={language === 'en' ? 'Unable to load support portal' : 'Kan support portal niet laden'}
+                  fallbackUrl="https://servicedesk.workflo.it/portal"
+                  maxLoadTime={15000}
+                />
+              </div>
+            )}
           </div>
         </section>
 
