@@ -1,6 +1,7 @@
 'use client'
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
+import { safeLocalStorage } from '@/lib/safe-client'
 
 type Language = 'en' | 'nl'
 

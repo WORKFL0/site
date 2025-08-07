@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect } from 'react'
-import { ExclamationTriangleIcon, ArrowPathIcon, HomeIcon } from '@heroicons/react/24/outline'
+import { useEffect, useState } from 'react'
+import { ExclamationTriangleIcon, ArrowPathIcon, HomeIcon, ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'
+import { errorLogger } from '@/lib/error-logger'
 
 export default function Error({
   error,
@@ -10,22 +11,43 @@ export default function Error({
   error: Error & { digest?: string }
   reset: () => void
 }) {
+  const [showDetails, setShowDetails] = useState(false)
+  const [errorLogs, setErrorLogs] = useState<any[]>([])
+
   useEffect(() => {
-    // Log the error to console for debugging
+    // Log the error using our error logger
+    errorLogger.logError(error, 'ErrorBoundary', {
+      digest: error.digest,
+      url: typeof window !== 'undefined' ? window.location.href : 'N/A'
+    })
+    
+    // Get stored error logs for debugging
+    const logs = errorLogger.getStoredLogs()
+    setErrorLogs(logs)
+    
+    // Log to console for debugging
     console.error('Application error occurred:', error)
     
-    // In production, you might want to log this to an error reporting service
-    const errorDetails = {
-      message: error.message,
-      stack: error.stack,
-      digest: error.digest,
-      timestamp: new Date().toISOString(),
-      userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : 'N/A',
-      url: typeof window !== 'undefined' ? window.location.href : 'N/A'
+    // Check for common issues
+    checkCommonIssues()
+  }, [error])
+
+  const checkCommonIssues = () => {
+    // Check if error is related to hydration
+    if (error.message.includes('Hydration') || error.message.includes('Text content does not match')) {
+      errorLogger.logWarning('Hydration mismatch detected', 'ErrorBoundary')
     }
     
-    console.error('Detailed error information:', errorDetails)
-  }, [error])
+    // Check if error is related to missing environment variables
+    if (error.message.includes('undefined') || error.message.includes('null')) {
+      errorLogger.logWarning('Possible missing configuration', 'ErrorBoundary')
+    }
+    
+    // Check if error is network related
+    if (error.message.includes('fetch') || error.message.includes('network')) {
+      errorLogger.logWarning('Network error detected', 'ErrorBoundary')
+    }
+  }
 
   const handleReload = () => {
     if (typeof window !== 'undefined') {
@@ -52,26 +74,48 @@ export default function Error({
               We're sorry, but an unexpected error occurred. Our team has been notified and is working to fix this issue.
             </p>
             
+            {/* Enhanced Error Details */}
             {process.env.NODE_ENV === 'development' && (
-              <details className="text-left mb-6 p-4 bg-red-50 rounded border border-red-200">
-                <summary className="cursor-pointer text-sm font-medium text-red-800 mb-2">
-                  Error Details (Development Only)
-                </summary>
-                <div className="text-xs text-red-700 font-mono">
-                  <p className="mb-2"><strong>Message:</strong> {error.message}</p>
-                  {error.digest && (
-                    <p className="mb-2"><strong>Error ID:</strong> {error.digest}</p>
-                  )}
-                  {error.stack && (
-                    <div>
-                      <strong>Stack Trace:</strong>
-                      <pre className="whitespace-pre-wrap mt-1 text-xs overflow-auto max-h-32">
-                        {error.stack}
-                      </pre>
+              <>
+                <details className="text-left mb-6 p-4 bg-red-50 rounded border border-red-200">
+                  <summary className="cursor-pointer text-sm font-medium text-red-800 mb-2">
+                    Error Details (Development Only)
+                  </summary>
+                  <div className="text-xs text-red-700 font-mono">
+                    <p className="mb-2"><strong>Message:</strong> {error.message}</p>
+                    {error.digest && (
+                      <p className="mb-2"><strong>Error ID:</strong> {error.digest}</p>
+                    )}
+                    <p className="mb-2"><strong>URL:</strong> {typeof window !== 'undefined' ? window.location.href : 'N/A'}</p>
+                    <p className="mb-2"><strong>Time:</strong> {new Date().toISOString()}</p>
+                    {error.stack && (
+                      <div>
+                        <strong>Stack Trace:</strong>
+                        <pre className="whitespace-pre-wrap mt-1 text-xs overflow-auto max-h-32">
+                          {error.stack}
+                        </pre>
+                      </div>
+                    )}
+                  </div>
+                </details>
+                
+                {/* Error History */}
+                {errorLogs.length > 0 && (
+                  <details className="text-left mb-6 p-4 bg-yellow-50 rounded border border-yellow-200">
+                    <summary className="cursor-pointer text-sm font-medium text-yellow-800 mb-2">
+                      Recent Error History ({errorLogs.length} logs)
+                    </summary>
+                    <div className="text-xs text-yellow-700 font-mono max-h-48 overflow-auto">
+                      {errorLogs.slice(-5).map((log, idx) => (
+                        <div key={idx} className="mb-2 pb-2 border-b border-yellow-200">
+                          <p><strong>{log.type}:</strong> {log.message}</p>
+                          <p className="text-xs opacity-75">{log.timestamp} - {log.component || 'Unknown'}</p>
+                        </div>
+                      ))}
                     </div>
-                  )}
-                </div>
-              </details>
+                  </details>
+                )}
+              </>
             )}
             
             <div className="space-y-3">
