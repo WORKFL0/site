@@ -153,14 +153,9 @@ export default function StatusPage() {
                     src="https://uptime.workflo.it/status/workflo"
                     width="100%"
                     height="600"
-                    frameBorder="0"
-                    className="w-full"
+                    className="w-full border-0"
                     title="Workflo Status Dashboard"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
                     loading="lazy"
-                    onError={(e) => {
-                      console.warn('Status iframe failed to load:', e)
-                    }}
                   />
                   
                   {/* Fallback content */}
@@ -213,26 +208,6 @@ export default function StatusPage() {
                 <div className="bg-white rounded-xl p-6 text-center shadow-lg">
                   <div className="text-3xl font-bold text-green-600 mb-2">99.95%</div>
                   <div className="text-gray-600">1 Jaar Uptime</div>
-                </div>
-              </div>
-              
-              <div className="mt-8 bg-white rounded-xl p-6 shadow-lg">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">
-                  Service Level Agreement (SLA)
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Website Beschikbaarheid</span>
-                    <span className="font-semibold">99.9% gegarandeerd</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">API Response Tijd</span>
-                    <span className="font-semibold">< 200ms gemiddeld</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Support Response</span>
-                    <span className="font-semibold">< 4 uur werkdagen</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -288,20 +263,6 @@ export default function StatusPage() {
               <p className="text-gray-400 mb-4">
                 Uw betrouwbare IT-partner in Amsterdam sinds 2015.
               </p>
-              <div className="space-y-2">
-                <div className="flex items-center">
-                  <MapPinIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">Koivistokade 3, 1013 AC Amsterdam</span>
-                </div>
-                <div className="flex items-center">
-                  <PhoneIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">020 308 0465</span>
-                </div>
-                <div className="flex items-center">
-                  <EnvelopeIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">info@workflo.it</span>
-                </div>
-              </div>
             </div>
 
             <div>
@@ -325,21 +286,14 @@ export default function StatusPage() {
               <h3 className="font-bold text-lg mb-4">Status</h3>
               <ul className="space-y-2">
                 <li><Link href="/status" className="text-primary-600 font-semibold">System Status</Link></li>
-                <li><a href="https://uptime.workflo.it/status/workflo" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary-600">Live Dashboard</a></li>
               </ul>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0">
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-gray-400 text-sm">
               &copy; 2025 Workflo B.V. All rights reserved.
             </p>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                <span className="text-gray-400 text-sm">All Systems Operational</span>
-              </div>
-            </div>
           </div>
         </div>
       </footer>
