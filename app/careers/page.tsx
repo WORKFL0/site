@@ -1,18 +1,66 @@
 'use client'
 
 import Image from 'next/image'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+
+// Self-contained Header Component
+const CareersHeader = () => (
+  <header className="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+    <div className="container mx-auto px-4">
+      <div className="flex items-center justify-between h-16">
+        <div className="flex items-center">
+          <Image
+            src="/images/logos/workflo-logo-yellow.png"
+            alt="Workflo Logo"
+            width={120}
+            height={40}
+            className="h-8 w-auto"
+          />
+        </div>
+        <nav className="hidden md:flex space-x-6">
+          <a href="/" className="text-gray-600 hover:text-black transition-colors">Home</a>
+          <a href="/services" className="text-gray-600 hover:text-black transition-colors">Diensten</a>
+          <a href="/shop" className="text-gray-600 hover:text-black transition-colors">Shop</a>
+          <a href="/contact" className="text-gray-600 hover:text-black transition-colors">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+)
+
+// Self-contained Footer Component
+const CareersFooter = () => (
+  <footer style={{ backgroundColor: '#f2f400' }} className="text-black py-8">
+    <div className="container mx-auto px-4">
+      <div className="flex flex-col md:flex-row items-center justify-between">
+        <div className="flex items-center mb-4 md:mb-0">
+          <Image
+            src="/images/logos/workflo-logo-yellow.png"
+            alt="Workflo Logo"
+            width={100}
+            height={32}
+            className="h-6 w-auto mr-4"
+          />
+          <span className="font-semibold">Workflo IT Services</span>
+        </div>
+        <div className="flex space-x-6 text-sm">
+          <span>Amsterdam, Nederland</span>
+          <a href="tel:0203080465" className="hover:text-gray-800">020-30 80 465</a>
+          <a href="mailto:info@workflo.nl" className="hover:text-gray-800">info@workflo.nl</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+)
 
 export default function CareersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <CareersHeader />
 
       <main>
         {/* Hero Section */}
         <section className="relative py-20 bg-white">
-          <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-yellow-400 via-black to-yellow-400"></div>
+          <div className="absolute top-0 left-0 right-0 h-2" style={{ background: 'linear-gradient(to right, #f2f400, black, #f2f400)' }}></div>
           <div className="container mx-auto px-4">
             <h1 className="text-5xl font-bold text-center text-black mb-6">
               Word Onderdeel van het Team dat Amsterdam IT Transformeert
@@ -40,7 +88,7 @@ export default function CareersPage() {
             <h2 className="text-3xl font-bold text-center mb-12 text-black">Waarom Werken bij Workflo?</h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="w-16 h-16 bg-yellow-400 rounded-lg mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-lg mb-4 flex items-center justify-center" style={{ backgroundColor: '#f2f400' }}>
                   <span className="text-3xl">🚀</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-black">Maak Echt Impact</h3>
@@ -50,7 +98,7 @@ export default function CareersPage() {
                 </p>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="w-16 h-16 bg-yellow-400 rounded-lg mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-lg mb-4 flex items-center justify-center" style={{ backgroundColor: '#f2f400' }}>
                   <span className="text-3xl">🎯</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-black">Professionele Groei</h3>
@@ -60,7 +108,7 @@ export default function CareersPage() {
                 </p>
               </div>
               <div className="bg-white p-8 rounded-lg shadow-md">
-                <div className="w-16 h-16 bg-yellow-400 rounded-lg mb-4 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-lg mb-4 flex items-center justify-center" style={{ backgroundColor: '#f2f400' }}>
                   <span className="text-3xl">🤝</span>
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-black">Samenwerkingscultuur</h3>
@@ -78,7 +126,7 @@ export default function CareersPage() {
           <div className="container mx-auto px-4">
             <h2 className="text-3xl font-bold text-center mb-12 text-black">Open Sollicitaties</h2>
             <div className="max-w-4xl mx-auto">
-              <div className="bg-gray-50 p-12 rounded-lg border-l-4 border-yellow-400 text-center">
+              <div className="bg-gray-50 p-12 rounded-lg border-l-4 text-center" style={{ borderColor: '#f2f400' }}>
                 <h3 className="text-2xl font-bold text-black mb-4">
                   Momenteel Geen Openstaande Vacatures
                 </h3>
@@ -186,10 +234,10 @@ export default function CareersPage() {
         </section>
 
         {/* SBB Member Section */}
-        <section className="py-16 bg-yellow-50">
+        <section className="py-16" style={{ backgroundColor: '#fefce8' }}>
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="bg-white rounded-lg shadow-lg p-8 border-2 border-yellow-400">
+              <div className="bg-white rounded-lg shadow-lg p-8 border-2" style={{ borderColor: '#f2f400' }}>
                 <h2 className="text-2xl font-bold mb-4 text-black">Stageplekken Beschikbaar</h2>
                 <p className="text-lg text-gray-700 mb-4">
                   Wij zijn lid van SBB en bieden stageplekken voor gemotiveerde studenten die willen leren 
@@ -211,7 +259,7 @@ export default function CareersPage() {
                 </div>
                 <p className="text-gray-600 mb-6">
                   Interesse in een stage bij Workflo? Stuur je motivatiebrief en CV naar{' '}
-                  <a href="mailto:work@workflo.nl" className="text-yellow-600 hover:text-yellow-700 font-semibold">work@workflo.nl</a>
+                  <a href="mailto:work@workflo.nl" className="font-semibold hover:opacity-75" style={{ color: '#f2f400' }}>work@workflo.nl</a>
                 </p>
               </div>
             </div>
@@ -225,7 +273,7 @@ export default function CareersPage() {
             <div className="max-w-3xl mx-auto">
               <div className="space-y-6">
                 <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: '#f2f400' }}>
                     <span className="font-bold text-black">1</span>
                   </div>
                   <div>
@@ -237,7 +285,7 @@ export default function CareersPage() {
                   </div>
                 </div>
                 <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: '#f2f400' }}>
                     <span className="font-bold text-black">2</span>
                   </div>
                   <div>
@@ -249,7 +297,7 @@ export default function CareersPage() {
                   </div>
                 </div>
                 <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: '#f2f400' }}>
                     <span className="font-bold text-black">3</span>
                   </div>
                   <div>
@@ -261,7 +309,7 @@ export default function CareersPage() {
                   </div>
                 </div>
                 <div className="flex gap-4 items-start">
-                  <div className="w-10 h-10 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: '#f2f400' }}>
                     <span className="font-bold text-black">4</span>
                   </div>
                   <div>
@@ -287,14 +335,14 @@ export default function CareersPage() {
           <div className="container mx-auto px-4 text-center relative z-10">
             <h2 className="text-4xl font-bold mb-4">Klaar om Je Stempel te Drukken?</h2>
             <p className="text-xl mb-8">Word deel van het team dat Amsterdam IT transformeert</p>
-            <a href="mailto:careers@workflo.it?subject=Open Sollicitatie" className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition">
+            <a href="mailto:careers@workflo.it?subject=Open Sollicitatie" className="inline-block text-black px-8 py-4 rounded-lg font-bold text-lg hover:opacity-90 transition" style={{ backgroundColor: '#f2f400' }}>
               Start Je Reis Bij Ons
             </a>
           </div>
         </section>
       </main>
 
-      <Footer />
+      <CareersFooter />
     </div>
   )
 }

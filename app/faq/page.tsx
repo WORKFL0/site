@@ -2,10 +2,8 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import { useLanguage } from '@/context/LanguageContext'
-import Button from '@/components/ui/Button'
+import Link from 'next/link'
+import Image from 'next/image'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 
 interface FAQItem {
@@ -15,53 +13,126 @@ interface FAQItem {
   answer: string
 }
 
+// Inline Header component
+function InlineHeader() {
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+      <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/images/logos/workflo-logo-yellow.png"
+            alt="Workflo"
+            width={120}
+            height={40}
+            className="h-10 w-auto"
+          />
+        </Link>
+        <div className="hidden md:flex items-center gap-6">
+          <Link href="/" className="text-gray-700 hover:text-yellow-600">Home</Link>
+          <Link href="/diensten" className="text-gray-700 hover:text-yellow-600">Diensten</Link>
+          <Link href="/faq" className="text-yellow-600 font-medium">FAQ</Link>
+          <Link href="/contact" className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-medium hover:bg-yellow-500">Contact</Link>
+        </div>
+      </nav>
+    </header>
+  )
+}
+
+// Inline Footer component
+function InlineFooter() {
+  return (
+    <footer className="bg-black text-white py-12">
+      <div className="container mx-auto px-4">
+        <div className="grid md:grid-cols-4 gap-8">
+          <div>
+            <Image
+              src="/images/logos/workflo-logo-yellow.png"
+              alt="Workflo"
+              width={120}
+              height={40}
+              className="mb-4"
+            />
+            <p className="text-gray-400">
+              Uw betrouwbare IT-partner in Amsterdam
+            </p>
+          </div>
+          <div>
+            <h3 className="font-bold mb-4 text-yellow-400">Diensten</h3>
+            <ul className="space-y-2 text-gray-400">
+              <li><Link href="/diensten" className="hover:text-yellow-400">Managed IT</Link></li>
+              <li><Link href="/diensten" className="hover:text-yellow-400">Cloud Services</Link></li>
+              <li><Link href="/diensten" className="hover:text-yellow-400">Cybersecurity</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold mb-4 text-yellow-400">Contact</h3>
+            <ul className="space-y-2 text-gray-400">
+              <li>+31 20 123 4567</li>
+              <li>info@workflo.nl</li>
+              <li>Amsterdam, Nederland</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold mb-4 text-yellow-400">Volg Ons</h3>
+            <Link href="https://linkedin.com/company/workflo" className="text-gray-400 hover:text-yellow-400">
+              LinkedIn
+            </Link>
+          </div>
+        </div>
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2024 Workflo. Alle rechten voorbehouden.</p>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
 export default function FAQPage() {
-  const { t } = useLanguage()
   const [activeCategory, setActiveCategory] = useState('all')
   const [searchQuery, setSearchQuery] = useState('')
   const [openItems, setOpenItems] = useState<string[]>([])
 
-  // FAQ data structure
+  // FAQ data structure with hardcoded Dutch content
   const faqData: FAQItem[] = [
     // Pricing & Contracts
-    { id: 'pricing-1', category: 'pricing', question: t('faq.pricing.q1'), answer: t('faq.pricing.a1') },
-    { id: 'pricing-2', category: 'pricing', question: t('faq.pricing.q2'), answer: t('faq.pricing.a2') },
-    { id: 'pricing-3', category: 'pricing', question: t('faq.pricing.q3'), answer: t('faq.pricing.a3') },
-    { id: 'pricing-4', category: 'pricing', question: t('faq.pricing.q4'), answer: t('faq.pricing.a4') },
+    { id: 'pricing-1', category: 'pricing', question: 'Wat kosten jullie IT-diensten?', answer: 'Onze IT-diensten worden op maat geprijsd afhankelijk van uw specifieke behoeften. We bieden transparante vaste maandprijzen zonder verborgen kosten. Neem contact met ons op voor een vrijblijvende offerte.' },
+    { id: 'pricing-2', category: 'pricing', question: 'Hebben jullie contracten met een vaste looptijd?', answer: 'We bieden flexibele contractvormen aan, van maand-tot-maand tot meerjarige overeenkomsten. Langere contracten bieden vaak voordelige tarieven, maar we begrijpen dat flexibiliteit belangrijk is.' },
+    { id: 'pricing-3', category: 'pricing', question: 'Zijn er setup kosten voor nieuwe klanten?', answer: 'Setup kosten zijn afhankelijk van de complexiteit van uw IT-omgeving. Bij de meeste standaard implementaties zijn deze kosten minimaal of worden ze verrekend met de eerste maanden service.' },
+    { id: 'pricing-4', category: 'pricing', question: 'Bieden jullie kortingen voor non-profit organisaties?', answer: 'Ja, we hebben speciale tarieven voor non-profit organisaties en startups. Neem contact met ons op om te bespreken welke mogelijkheden er zijn voor uw organisatie.' },
     
     // Support & Response Times
-    { id: 'support-1', category: 'support', question: t('faq.support.q1'), answer: t('faq.support.a1') },
-    { id: 'support-2', category: 'support', question: t('faq.support.q2'), answer: t('faq.support.a2') },
-    { id: 'support-3', category: 'support', question: t('faq.support.q3'), answer: t('faq.support.a3') },
-    { id: 'support-4', category: 'support', question: t('faq.support.q4'), answer: t('faq.support.a4') },
+    { id: 'support-1', category: 'support', question: 'Wat zijn jullie support tijden?', answer: 'Onze standaard support is beschikbaar van maandag tot vrijdag van 8:00 tot 18:00. Voor kritieke issues bieden we 24/7 emergency support aan al onze managed service klanten.' },
+    { id: 'support-2', category: 'support', question: 'Hoe snel reageren jullie op support verzoeken?', answer: 'Voor hoge prioriteit issues reageren we binnen 1 uur. Normale support verzoeken worden binnen 4 uur opgepakt. We hanteren duidelijke SLA afspraken die worden vastgelegd in uw contract.' },
+    { id: 'support-3', category: 'support', question: 'Kunnen jullie ook ter plekke ondersteuning bieden?', answer: 'Ja, we bieden on-site support in Amsterdam en omgeving. Voor complexere issues of hardware installaties komen we graag langs om direct te helpen.' },
+    { id: 'support-4', category: 'support', question: 'Hoe werkt jullie remote support?', answer: 'We gebruiken veilige remote access tools om snel problemen op te lossen zonder dat we ter plekke hoeven te komen. Dit is vaak de snelste manier om IT-problemen op te lossen.' },
     
     // Services & Solutions
-    { id: 'services-1', category: 'services', question: t('faq.services.q1'), answer: t('faq.services.a1') },
-    { id: 'services-2', category: 'services', question: t('faq.services.q2'), answer: t('faq.services.a2') },
-    { id: 'services-3', category: 'services', question: t('faq.services.q3'), answer: t('faq.services.a3') },
-    { id: 'services-4', category: 'services', question: t('faq.services.q4'), answer: t('faq.services.a4') },
+    { id: 'services-1', category: 'services', question: 'Welke IT-diensten bieden jullie aan?', answer: 'We bieden complete managed IT services, cloud migratie, cybersecurity, backup & disaster recovery, Microsoft 365 beheer, en hardware procurement en installatie.' },
+    { id: 'services-2', category: 'services', question: 'Kunnen jullie ons helpen met cloud migratie?', answer: 'Absoluut! We zijn specialist in cloud migraties naar Microsoft Azure en Office 365. We begeleiden het hele proces van planning tot implementatie en training van uw team.' },
+    { id: 'services-3', category: 'services', question: 'Beheren jullie ook Microsoft 365?', answer: 'Ja, Microsoft 365 beheer is een van onze kernactiviteiten. We zorgen voor gebruikersbeheer, beveiligingsinstellingen, backup, en optimalisatie van uw Office 365 omgeving.' },
+    { id: 'services-4', category: 'services', question: 'Kunnen jullie helpen met cybersecurity?', answer: 'Cybersecurity is cruciaal voor elk bedrijf. We implementeren firewalls, antivirus, email beveiliging, security awareness training, en monitoren continu op bedreigingen.' },
     
     // Security & Compliance
-    { id: 'security-1', category: 'security', question: t('faq.security.q1'), answer: t('faq.security.a1') },
-    { id: 'security-2', category: 'security', question: t('faq.security.q2'), answer: t('faq.security.a2') },
-    { id: 'security-3', category: 'security', question: t('faq.security.q3'), answer: t('faq.security.a3') },
-    { id: 'security-4', category: 'security', question: t('faq.security.q4'), answer: t('faq.security.a4') },
+    { id: 'security-1', category: 'security', question: 'Hoe beschermen jullie onze bedrijfsgegevens?', answer: 'We hanteren strenge beveiligingsprotocollen inclusief encryptie, multi-factor authenticatie, gelaagde beveiliging, en regelmatige security audits om uw data optimaal te beschermen.' },
+    { id: 'security-2', category: 'security', question: 'Zijn jullie AVG/GDPR compliant?', answer: 'Ja, we zijn volledig AVG/GDPR compliant en helpen ook onze klanten met hun compliance eisen. We hebben passende dataverwerking overeenkomsten en privacy procedures op orde.' },
+    { id: 'security-3', category: 'security', question: 'Wat doen jullie bij een cyberaanval?', answer: 'We hebben een 24/7 incident response protocol. Bij een security incident isoleren we getroffen systemen, analyseren de impact, herstellen data waar mogelijk, en implementeren verbeteringen om herhaling te voorkomen.' },
+    { id: 'security-4', category: 'security', question: 'Verzorgen jullie ook backup en disaster recovery?', answer: 'Ja, we implementeren robuuste backup strategieën met regelmatige tests. Onze disaster recovery plans zorgen ervoor dat uw bedrijf snel operationeel is na een incident.' },
     
     // Getting Started
-    { id: 'onboarding-1', category: 'onboarding', question: t('faq.onboarding.q1'), answer: t('faq.onboarding.a1') },
-    { id: 'onboarding-2', category: 'onboarding', question: t('faq.onboarding.q2'), answer: t('faq.onboarding.a2') },
-    { id: 'onboarding-3', category: 'onboarding', question: t('faq.onboarding.q3'), answer: t('faq.onboarding.a3') },
-    { id: 'onboarding-4', category: 'onboarding', question: t('faq.onboarding.q4'), answer: t('faq.onboarding.a4') },
+    { id: 'onboarding-1', category: 'onboarding', question: 'Hoe lang duurt de implementatie?', answer: 'De implementatietijd hangt af van uw huidige IT-situatie. Een standaard setup voor een klein bedrijf kan binnen een week, terwijl complexere migraties enkele weken kunnen duren.' },
+    { id: 'onboarding-2', category: 'onboarding', question: 'Wat hebben jullie nodig om te starten?', answer: 'We beginnen met een grondige IT-assessment van uw huidige systemen, netwerk, beveiliging en behoeften. Op basis daarvan maken we een implementatieplan.' },
+    { id: 'onboarding-3', category: 'onboarding', question: 'Kunnen jullie van onze huidige IT-provider overnemen?', answer: 'Ja, we begeleiden soepele overnames van andere IT-providers. We zorgen voor minimale downtime en een gestructureerde overdracht van alle systemen en documentatie.' },
+    { id: 'onboarding-4', category: 'onboarding', question: 'Bieden jullie training aan ons team?', answer: 'Absoluut! We bieden uitgebreide training aan uw team over nieuwe systemen, security best practices, en hoe ze het beste gebruik kunnen maken van hun IT-omgeving.' },
   ]
 
-  // Categories
+  // Categories with hardcoded Dutch names
   const categories = [
-    { id: 'all', name: t('faq.category.all') },
-    { id: 'pricing', name: t('faq.category.pricing') },
-    { id: 'support', name: t('faq.category.support') },
-    { id: 'services', name: t('faq.category.services') },
-    { id: 'security', name: t('faq.category.security') },
-    { id: 'onboarding', name: t('faq.category.onboarding') },
+    { id: 'all', name: 'Alles' },
+    { id: 'pricing', name: 'Prijzen' },
+    { id: 'support', name: 'Ondersteuning' },
+    { id: 'services', name: 'Diensten' },
+    { id: 'security', name: 'Beveiliging' },
+    { id: 'onboarding', name: 'Aan de slag' },
   ]
 
   // Filter FAQs based on category and search
@@ -84,7 +155,7 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
+      <InlineHeader />
 
       <main className="py-20">
         {/* Hero Section */}
@@ -108,10 +179,10 @@ export default function FAQPage() {
               className="text-center"
             >
               <h1 className="text-5xl font-bold text-white mb-6">
-                {t('faq.hero.title')}
+                Veelgestelde Vragen
               </h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
-                {t('faq.hero.description')}
+                Vind snel antwoorden op de meest gestelde vragen over onze IT-diensten, support, prijzen en meer. Staat uw vraag er niet bij? Neem dan contact met ons op.
               </p>
             </motion.div>
           </div>
@@ -132,7 +203,7 @@ export default function FAQPage() {
                   <MagnifyingGlassIcon className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                   <input
                     type="text"
-                    placeholder={t('faq.search.placeholder')}
+                    placeholder="Zoek in veelgestelde vragen..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent text-lg"
@@ -177,7 +248,7 @@ export default function FAQPage() {
                     exit={{ opacity: 0 }}
                     className="text-center py-12"
                   >
-                    <p className="text-gray-500 text-lg">No questions found matching your search.</p>
+                    <p className="text-gray-500 text-lg">Geen vragen gevonden die overeenkomen met uw zoekopdracht.</p>
                   </motion.div>
                 ) : (
                   <div className="space-y-4">
@@ -254,31 +325,29 @@ export default function FAQPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-4xl font-bold mb-4">{t('faq.cta.title')}</h2>
+              <h2 className="text-4xl font-bold mb-4">Heeft u nog vragen?</h2>
               <p className="text-xl mb-8 text-gray-300">
-                {t('faq.cta.description')}
+                Onze IT-experts staan klaar om al uw vragen te beantwoorden en u te helpen met de beste IT-oplossingen voor uw bedrijf.
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Button 
+                <Link 
                   href="/contact"
-                  variant="primary"
-                  size="lg"
-                  className="bg-yellow-400 text-black hover:bg-yellow-500 px-8 py-4 font-bold"
+                  className="bg-yellow-400 text-black hover:bg-yellow-500 px-8 py-4 font-bold rounded-lg transition-colors"
                 >
-                  {t('faq.cta.button')}
-                </Button>
+                  Neem Contact Op
+                </Link>
               </div>
               
               <p className="text-gray-400 mt-6">
-                {t('faq.cta.phone')}
+                Of bel direct: +31 20 123 4567
               </p>
             </motion.div>
           </div>
         </section>
       </main>
 
-      <Footer />
+      <InlineFooter />
     </div>
   )
 }

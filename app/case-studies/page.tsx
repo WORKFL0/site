@@ -1,86 +1,138 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import { useLanguage } from '@/context/LanguageContext'
 import Link from 'next/link'
 import Image from 'next/image'
 
+// Inline Header component
+function InlineHeader() {
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+      <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/images/logos/workflo-logo-yellow.png"
+            alt="Workflo"
+            width={120}
+            height={40}
+            className="h-10 w-auto"
+          />
+        </Link>
+        <div className="hidden md:flex items-center gap-6">
+          <Link href="/" className="text-gray-700 hover:text-yellow-600">Home</Link>
+          <Link href="/diensten" className="text-gray-700 hover:text-yellow-600">Diensten</Link>
+          <Link href="/case-studies" className="text-yellow-600 font-medium">Case Studies</Link>
+          <Link href="/contact" className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-medium hover:bg-yellow-500">Contact</Link>
+        </div>
+      </nav>
+    </header>
+  )
+}
+
+// Inline Footer component
+function InlineFooter() {
+  return (
+    <footer className="bg-black text-white py-12">
+      <div className="container mx-auto px-4">
+        <div className="grid md:grid-cols-4 gap-8">
+          <div>
+            <Image
+              src="/images/logos/workflo-logo-yellow.png"
+              alt="Workflo"
+              width={120}
+              height={40}
+              className="mb-4"
+            />
+            <p className="text-gray-400">
+              Uw betrouwbare IT-partner in Amsterdam
+            </p>
+          </div>
+          <div>
+            <h3 className="font-bold mb-4 text-yellow-400">Diensten</h3>
+            <ul className="space-y-2 text-gray-400">
+              <li><Link href="/diensten" className="hover:text-yellow-400">Managed IT</Link></li>
+              <li><Link href="/diensten" className="hover:text-yellow-400">Cloud Services</Link></li>
+              <li><Link href="/diensten" className="hover:text-yellow-400">Cybersecurity</Link></li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold mb-4 text-yellow-400">Contact</h3>
+            <ul className="space-y-2 text-gray-400">
+              <li>+31 20 123 4567</li>
+              <li>info@workflo.nl</li>
+              <li>Amsterdam, Nederland</li>
+            </ul>
+          </div>
+          <div>
+            <h3 className="font-bold mb-4 text-yellow-400">Volg Ons</h3>
+            <Link href="https://linkedin.com/company/workflo" className="text-gray-400 hover:text-yellow-400">
+              LinkedIn
+            </Link>
+          </div>
+        </div>
+        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2024 Workflo. Alle rechten voorbehouden.</p>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
 export default function CaseStudiesPage() {
-  const { language } = useLanguage()
 
   const caseStudies = [
     {
       client: 'Schulte & Lestraden',
-      industry: language === 'en' ? 'Installation Services' : 'Installatie Diensten',
-      logo: '/images/logos/SenL.png',
+      industry: 'Installatie Diensten',
+      logo: null, // Removed broken logo
       duration: 'Managed IT Services',
       linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7236276208433344512',
-      challenge: language === 'en'
-        ? 'A well-established installation company with over 70 years of experience needed a complete IT infrastructure installation and ongoing second-line support to modernize their operations.'
-        : 'Een gevestigd installatiebedrijf met meer dan 70 jaar ervaring had een complete IT-infrastructuur installatie en doorlopende tweedelijns ondersteuning nodig om hun activiteiten te moderniseren.',
-      solution: language === 'en'
-        ? 'WORKFLO provided comprehensive IT environment installation including network setup, server configuration, and workstation deployment. We also established a second-line support system to ensure continuous operations.'
-        : 'WORKFLO leverde een uitgebreide IT-omgeving installatie inclusief netwerk setup, server configuratie en werkstation uitrol. We hebben ook een tweedelijns ondersteuningssysteem opgezet om continue bedrijfsvoering te garanderen.',
+      challenge: 'Een gevestigd installatiebedrijf met meer dan 70 jaar ervaring had een complete IT-infrastructuur installatie en doorlopende tweedelijns ondersteuning nodig om hun activiteiten te moderniseren.',
+      solution: 'WORKFLO leverde een uitgebreide IT-omgeving installatie inclusief netwerk setup, server configuratie en werkstation uitrol. We hebben ook een tweedelijns ondersteuningssysteem opgezet om continue bedrijfsvoering te garanderen.',
       results: [
-        language === 'en' ? 'Complete IT infrastructure modernization' : 'Complete IT-infrastructuur modernisering',
-        language === 'en' ? 'Reliable second-line support system' : 'Betrouwbaar tweedelijns ondersteuningssysteem',
-        language === 'en' ? 'Improved operational efficiency' : 'Verbeterde operationele efficiëntie',
-        language === 'en' ? 'Reduced IT-related downtime' : 'Verminderde IT-gerelateerde downtime'
+        'Complete IT-infrastructuur modernisering',
+        'Betrouwbaar tweedelijns ondersteuningssysteem',
+        'Verbeterde operationele efficiëntie',
+        'Verminderde IT-gerelateerde downtime'
       ],
-      testimonial: language === 'en'
-        ? '"WORKFLO helped us modernize our entire IT infrastructure. Their expertise and support have been invaluable to our operations."'
-        : '"WORKFLO heeft ons geholpen onze hele IT-infrastructuur te moderniseren. Hun expertise en ondersteuning zijn van onschatbare waarde voor onze activiteiten."'
+      testimonial: '"WORKFLO heeft ons geholpen onze hele IT-infrastructuur te moderniseren. Hun expertise en ondersteuning zijn van onschatbare waarde voor onze activiteiten."'
     },
     {
       client: 'Duwtje',
-      industry: language === 'en' ? 'Scientific & Creative Agency' : 'Wetenschappelijk & Creatief Bureau',
+      industry: 'Wetenschappelijk & Creatief Bureau',
       logo: '/images/logos/duwtje.svg',
       duration: 'Complete IT Partnership',
       linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7233749063135903744',
-      challenge: language === 'en'
-        ? 'A scientific and creative behavioral agency needed a reliable IT partner to support their innovative work and ensure their digital infrastructure could keep pace with their creative processes.'
-        : 'Een wetenschappelijk en creatief gedragsbureau had een betrouwbare IT-partner nodig om hun innovatieve werk te ondersteunen en ervoor te zorgen dat hun digitale infrastructuur gelijke tred kon houden met hun creatieve processen.',
-      solution: language === 'en'
-        ? 'WORKFLO became their dedicated IT partner, providing comprehensive managed IT services, cloud solutions, and proactive monitoring to ensure their creative teams could work without interruption.'
-        : 'WORKFLO werd hun toegewijde IT-partner en leverde uitgebreide beheerde IT-diensten, cloudoplossingen en proactieve monitoring om ervoor te zorgen dat hun creatieve teams zonder onderbreking konden werken.',
+      challenge: 'Een wetenschappelijk en creatief gedragsbureau had een betrouwbare IT-partner nodig om hun innovatieve werk te ondersteunen en ervoor te zorgen dat hun digitale infrastructuur gelijke tred kon houden met hun creatieve processen.',
+      solution: 'WORKFLO werd hun toegewijde IT-partner en leverde uitgebreide beheerde IT-diensten, cloudoplossingen en proactieve monitoring om ervoor te zorgen dat hun creatieve teams zonder onderbreking konden werken.',
       results: [
-        language === 'en' ? 'Seamless cloud collaboration' : 'Naadloze cloud samenwerking',
-        language === 'en' ? '99.9% uptime achieved' : '99,9% uptime bereikt',
-        language === 'en' ? 'Enhanced creative workflow' : 'Verbeterde creatieve workflow',
-        language === 'en' ? 'Scalable IT infrastructure' : 'Schaalbare IT-infrastructuur'
+        'Naadloze cloud samenwerking',
+        '99,9% uptime bereikt',
+        'Verbeterde creatieve workflow',
+        'Schaalbare IT-infrastructuur'
       ],
-      testimonial: language === 'en'
-        ? '"The importance of a reliable IT partner cannot be overstated. WORKFLO has been instrumental in keeping our creative processes running smoothly."'
-        : '"Het belang van een betrouwbare IT-partner kan niet genoeg benadrukt worden. WORKFLO is essentieel geweest voor het soepel laten verlopen van onze creatieve processen."'
+      testimonial: '"Het belang van een betrouwbare IT-partner kan niet genoeg benadrukt worden. WORKFLO is essentieel geweest voor het soepel laten verlopen van onze creatieve processen."'
     },
     {
       client: 'Havas Media',
-      industry: language === 'en' ? 'Media & Advertising' : 'Media & Reclame',
+      industry: 'Media & Reclame',
       logo: '/images/logos/Havas_Media.png',
       duration: 'Fixed Fee Onsite Support',
-      challenge: language === 'en'
-        ? 'A global media network needed local IT support that could match their fast-paced environment and provide immediate assistance for their Amsterdam office.'
-        : 'Een wereldwijd medianetwerk had lokale IT-ondersteuning nodig die kon meegaan met hun snelle omgeving en directe hulp kon bieden voor hun kantoor in Amsterdam.',
-      solution: language === 'en'
-        ? 'WORKFLO implemented a Fixed Fee Onsite Support package, providing unlimited on-site visits, proactive monitoring, and a dedicated account manager to ensure zero disruption to their media operations.'
-        : 'WORKFLO implementeerde een Fixed Fee Onsite Support pakket, met onbeperkte bezoeken ter plaatse, proactieve monitoring en een toegewijde accountmanager om geen verstoring van hun media-activiteiten te garanderen.',
+      challenge: 'Een wereldwijd medianetwerk had lokale IT-ondersteuning nodig die kon meegaan met hun snelle omgeving en directe hulp kon bieden voor hun kantoor in Amsterdam.',
+      solution: 'WORKFLO implementeerde een Fixed Fee Onsite Support pakket, met onbeperkte bezoeken ter plaatse, proactieve monitoring en een toegewijde accountmanager om geen verstoring van hun media-activiteiten te garanderen.',
       results: [
-        language === 'en' ? '40% reduction in IT incidents' : '40% reductie in IT-incidenten',
-        language === 'en' ? '1-hour response time guarantee' : '1 uur reactietijd garantie',
-        language === 'en' ? 'Predictable IT costs' : 'Voorspelbare IT-kosten',
-        language === 'en' ? 'Improved team productivity' : 'Verbeterde teamproductiviteit'
+        '40% reductie in IT-incidenten',
+        '1 uur reactietijd garantie',
+        'Voorspelbare IT-kosten',
+        'Verbeterde teamproductiviteit'
       ],
-      testimonial: language === 'en'
-        ? '"WORKFLO\'s proactive approach has transformed how we handle IT. Issues are often resolved before we even notice them."'
-        : '"De proactieve aanpak van WORKFLO heeft getransformeerd hoe we met IT omgaan. Problemen worden vaak opgelost voordat we ze zelfs opmerken."'
+      testimonial: '"De proactieve aanpak van WORKFLO heeft getransformeerd hoe we met IT omgaan. Problemen worden vaak opgelost voordat we ze zelfs opmerken."'
     }
   ]
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <InlineHeader />
       
       <main className="pt-24 pb-16">
         {/* Hero Section */}
@@ -88,12 +140,10 @@ export default function CaseStudiesPage() {
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-5xl font-bold text-gray-900 mb-4">
-                {language === 'en' ? 'Client Success Stories' : 'Klantsuccessen'}
+                Klantsuccessen
               </h1>
               <p className="text-xl text-gray-600">
-                {language === 'en' 
-                  ? 'See how we\'ve helped Amsterdam businesses transform their IT infrastructure and achieve their goals.'
-                  : 'Zie hoe we Amsterdamse bedrijven hebben geholpen hun IT-infrastructuur te transformeren en hun doelen te bereiken.'}
+                Zie hoe we Amsterdamse bedrijven hebben geholpen hun IT-infrastructuur te transformeren en hun doelen te bereiken.
               </p>
             </div>
           </div>
@@ -134,14 +184,14 @@ export default function CaseStudiesPage() {
                       <div className="space-y-6">
                         <div>
                           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                            {language === 'en' ? 'The Challenge' : 'De Uitdaging'}
+                            De Uitdaging
                           </h3>
                           <p className="text-gray-600">{study.challenge}</p>
                         </div>
 
                         <div>
                           <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                            {language === 'en' ? 'Our Solution' : 'Onze Oplossing'}
+                            Onze Oplossing
                           </h3>
                           <p className="text-gray-600">{study.solution}</p>
                         </div>
@@ -151,7 +201,7 @@ export default function CaseStudiesPage() {
                             {study.testimonial}
                           </p>
                           <p className="text-sm text-gray-500">
-                            — {study.client} {language === 'en' ? 'Team' : 'Team'}
+                            — {study.client} Team
                           </p>
                         </div>
                       </div>
@@ -160,7 +210,7 @@ export default function CaseStudiesPage() {
                     {/* Results Side */}
                     <div className="bg-gradient-to-br from-yellow-400 to-yellow-500 p-8 lg:p-12">
                       <h3 className="text-2xl font-bold text-black mb-6">
-                        {language === 'en' ? 'Results Achieved' : 'Behaalde Resultaten'}
+                        Behaalde Resultaten
                       </h3>
                       <div className="space-y-4">
                         {study.results.map((result, idx) => (
@@ -176,7 +226,7 @@ export default function CaseStudiesPage() {
                       <div className="mt-8 space-y-4">
                         <div className="bg-black/10 rounded-lg p-4">
                           <p className="text-black font-semibold">
-                            {language === 'en' ? 'Service Type:' : 'Type Dienstverlening:'}
+                            Type Dienstverlening:
                           </p>
                           <p className="text-black">{study.duration}</p>
                         </div>
@@ -190,7 +240,7 @@ export default function CaseStudiesPage() {
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                             </svg>
-                            {language === 'en' ? 'Read on LinkedIn' : 'Lees op LinkedIn'}
+                            Lees op LinkedIn
                           </a>
                         )}
                       </div>
@@ -203,27 +253,23 @@ export default function CaseStudiesPage() {
             {/* CTA Section */}
             <div className="mt-16 text-center">
               <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                {language === 'en' 
-                  ? 'Ready to Be Our Next Success Story?'
-                  : 'Klaar om Ons Volgende Succesverhaal te Worden?'}
+                Klaar om Ons Volgende Succesverhaal te Worden?
               </h2>
               <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-                {language === 'en'
-                  ? 'Join over 100 Amsterdam businesses that trust WORKFLO with their IT infrastructure.'
-                  : 'Sluit u aan bij meer dan 100 Amsterdamse bedrijven die WORKFLO vertrouwen met hun IT-infrastructuur.'}
+                Sluit u aan bij meer dan 100 Amsterdamse bedrijven die WORKFLO vertrouwen met hun IT-infrastructuur.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   href="/tevredenheidscheck"
                   className="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all inline-block"
                 >
-                  {language === 'en' ? 'Start Your IT Assessment' : 'Start Uw IT-Assessment'}
+                  Start Uw IT-Assessment
                 </Link>
                 <Link
                   href="/contact"
                   className="bg-black text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-800 transition-all inline-block"
                 >
-                  {language === 'en' ? 'Contact Our Team' : 'Contact Ons Team'}
+                  Contact Ons Team
                 </Link>
               </div>
             </div>
@@ -231,7 +277,7 @@ export default function CaseStudiesPage() {
         </section>
       </main>
 
-      <Footer />
+      <InlineFooter />
     </div>
   )
 }
