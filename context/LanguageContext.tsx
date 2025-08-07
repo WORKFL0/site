@@ -772,25 +772,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     }
     
     try {
-      // Check if localStorage is available
-      if (typeof localStorage === 'undefined') {
-        console.warn('LanguageContext: localStorage not available, using default language')
-        setIsInitialized(true)
-        return
-      }
-
-      // Test localStorage accessibility
-      const testKey = 'workflo-test'
-      try {
-        localStorage.setItem(testKey, 'test')
-        localStorage.removeItem(testKey)
-      } catch (storageTestError) {
-        console.warn('LanguageContext: localStorage access denied, using default language:', storageTestError)
-        setIsInitialized(true)
-        return
-      }
-
-      const savedLanguage = localStorage.getItem('workflo-language')
+      const savedLanguage = safeLocalStorage.getItem('workflo-language')
       
       if (savedLanguage) {
         // Validate the saved language
@@ -800,7 +782,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
           console.warn('LanguageContext: Invalid saved language value, using default:', savedLanguage)
           // Clean up invalid value
           try {
-            localStorage.removeItem('workflo-language')
+            safeLocalStorage.removeItem('workflo-language')
           } catch (cleanupError) {
             console.warn('LanguageContext: Failed to clean up invalid language value:', cleanupError)
           }
@@ -823,12 +805,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     
     if (isInitialized) {
       try {
-        // Check if localStorage is available
-        if (typeof localStorage !== 'undefined') {
-          localStorage.setItem('workflo-language', language)
-        } else {
-          console.warn('LanguageContext: localStorage not available, cannot save language preference')
-        }
+        safeLocalStorage.setItem('workflo-language', language)
         
         // Update HTML lang attribute safely
         try {
