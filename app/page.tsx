@@ -1252,12 +1252,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* News Feed Section */}
+        {/* News Feed Section - Temporarily hidden to avoid white space */}
+        {/*
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <NewsFeed maxItems={6} showDescription={true} />
           </div>
         </section>
+        */}
 
         {/* Industry Experience Section - White Background */}
         <section className="relative py-16 bg-white overflow-hidden" ref={industryRef}>
