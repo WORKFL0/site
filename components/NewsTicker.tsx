@@ -13,10 +13,23 @@ interface NewsItem {
 export default function NewsTicker() {
   const [newsItems, setNewsItems] = useState<NewsItem[]>([])
   const [loading, setLoading] = useState(true)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    if (!mounted) return
+    
     const fetchNews = async () => {
       try {
+        // Only run on client side
+        if (typeof window === 'undefined') {
+          setLoading(false)
+          return
+        }
+        
         const response = await fetch('/api/rss-feed', {
           cache: 'no-store',
         })
@@ -69,9 +82,9 @@ export default function NewsTicker() {
     const interval = setInterval(fetchNews, 5 * 60 * 1000)
     
     return () => clearInterval(interval)
-  }, [])
+  }, [mounted])
 
-  if (loading || newsItems.length === 0) {
+  if (!mounted || loading || newsItems.length === 0) {
     return null
   }
 
