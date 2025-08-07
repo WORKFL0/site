@@ -7,7 +7,7 @@ export default function TestDiagnostic() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const tests = []
+    const tests: string[] = []
     
     // Test 1: Basic React hooks
     try {
