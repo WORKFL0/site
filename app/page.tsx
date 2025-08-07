@@ -1158,23 +1158,30 @@ export default function Home() {
             {/* Horizontal scrolling logo strip */}
             <div className="relative overflow-hidden py-8">
               <div className="flex items-center space-x-12 animate-scroll" style={{ animation: 'scroll 60s linear infinite' }}>
-                {[...currentClients, ...previousClients, ...currentClients, ...previousClients].map((logo, index) => (
-                  <div key={index} className="flex-shrink-0">
-                    <div className="relative w-36 h-20 flex items-center justify-center">
-                      <Image
-                        src={logo.src}
-                        alt={`${logo.name} logo`}
-                        fill
-                        className="object-contain filter grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
-                        sizes="144px"
-                        onError={(e) => {
-                          console.warn(`Failed to load logo: ${logo.src}`)
-                          e.currentTarget.style.display = 'none'
-                        }}
-                      />
+                {[...currentClients, ...previousClients, ...currentClients, ...previousClients].map((logo, index) => {
+                  // Make specific logos smaller to fit better
+                  const needsResize = logo.name === 'John Doornik Casting' || 
+                                     logo.name === 'DoctorFeelgood' || 
+                                     logo.name === 'BLC Financeview'
+                  
+                  return (
+                    <div key={index} className="flex-shrink-0">
+                      <div className={`relative flex items-center justify-center ${needsResize ? 'w-28 h-16' : 'w-36 h-20'}`}>
+                        <Image
+                          src={logo.src}
+                          alt={`${logo.name} logo`}
+                          fill
+                          className="object-contain filter grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100"
+                          sizes={needsResize ? "112px" : "144px"}
+                          onError={(e) => {
+                            console.warn(`Failed to load logo: ${logo.src}`)
+                            e.currentTarget.style.display = 'none'
+                          }}
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
             </div>
             
