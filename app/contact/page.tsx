@@ -4,13 +4,48 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline'
-import HubSpotForm from '@/components/forms/HubSpotFormClient'
+
+// TypeScript declaration for HubSpot
+declare global {
+  interface Window {
+    hbspt: any
+  }
+}
 
 export default function ContactPage() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
+    
+    // Load HubSpot form script
+    const script = document.createElement('script')
+    script.src = '//js-eu1.hsforms.net/forms/embed/v2.js'
+    script.charset = 'utf-8'
+    script.type = 'text/javascript'
+    script.async = true
+    script.defer = true
+    
+    script.onload = () => {
+      // Create form when script is loaded
+      if (window.hbspt) {
+        window.hbspt.forms.create({
+          region: "eu1",
+          portalId: "26510736",
+          formId: "acf3fe0b-c542-4fc2-aa14-f3cb2fc356c0",
+          target: '#hubspot-contact-form'
+        })
+      }
+    }
+    
+    document.body.appendChild(script)
+    
+    return () => {
+      // Cleanup
+      if (document.body.contains(script)) {
+        document.body.removeChild(script)
+      }
+    }
   }, [])
 
   if (!mounted) {
@@ -84,15 +119,10 @@ export default function ContactPage() {
                     Vul het formulier in en we nemen binnen 24 uur contact met u op.
                   </p>
                   
-                  {/* HubSpot Form */}
-                  <HubSpotForm
-                    region="eu1"
-                    portalId="26510736"
-                    formId="acf3fe0b-c542-4fc2-aa14-f3cb2fc356c0"
-                    onFormReady={() => console.log('Contact form ready')}
-                    onFormSubmit={() => console.log('Contact form submitted')}
-                    onFormSubmitted={() => console.log('Contact form submission completed')}
-                  />
+                  {/* HubSpot Form Container */}
+                  <div id="hubspot-contact-form" className="hubspot-form-container">
+                    <div className="text-gray-500 text-sm">Formulier wordt geladen...</div>
+                  </div>
                 </div>
               </div>
               

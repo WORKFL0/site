@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { 
   ChevronRightIcon, 
   CheckCircleIcon,
@@ -105,17 +106,38 @@ export default function Home() {
   ]
 
   const currentClients = [
-    'Aescap', 'Hunt Amsterdam', 'Rademakkers', '\'t idee! Tonko', 'DMC Makelaars', 
-    'van der Eerde hypotheken', 'Klaar', 'Dag en Nacht', 'Voice Industries', 
-    'Schulte en Lestrade', 'Duwtje', 'Highwood', 'Jager Notarissen', 'PR Mansion', 
-    'Podimo', 'Havas Media Network', 'Havas Lemz', 'Winix', 'DoctorFeelgood', 
-    'All Response Media', 'WorkStuff', 'Open Boek', 'Bijvoorkeur', 
-    'John Doornik Casting', 'Huisart Elings', 'BLC Financeview', 'Koschuch'
+    { name: 'Aescap', logo: 'aescap.png' },
+    { name: 'Hunt Amsterdam', logo: 'hunt-amsterdam.jpeg' },
+    { name: 'Rademakkers', logo: 'rademakkers.png' },
+    { name: '\'t idee! Tonko', logo: 'tonko.png' },
+    { name: 'DMC Makelaars', logo: 'dmc.png' },
+    { name: 'Klaar', logo: 'klaar.jpg' },
+    { name: 'Dag en Nacht', logo: 'dagennacht.png' },
+    { name: 'Voice Industries', logo: 'voice-industries.jpeg' },
+    { name: 'Duwtje', logo: 'duwtje.svg' },
+    { name: 'Highwood', logo: 'highwood.png' },
+    { name: 'PR Mansion', logo: 'prmansion.png' },
+    { name: 'Podimo', logo: 'podimo.png' },
+    { name: 'Havas Media Network', logo: 'havas-media.png' },
+    { name: 'Winix', logo: 'winix.jpg' },
+    { name: 'DoctorFeelgood', logo: 'doctorfeelgood.jpg' },
+    { name: 'WorkStuff', logo: 'workstuff.jpg' },
+    { name: 'Open Boek', logo: 'open-boek.png' },
+    { name: 'Bijvoorkeur', logo: 'bijvoorkeur.jpg' },
+    { name: 'John Doornik Casting', logo: 'john-doornik.png' },
+    { name: 'Huisart Elings', logo: 'hap-elings.png' },
+    { name: 'BLC Financeview', logo: 'blc-financeview.png' },
+    { name: 'Koschuch', logo: 'koschuch.png' }
   ]
 
   const previousClients = [
-    'Leyden labs', 'Jump Retail', 'La Dress', 'Greenpeace', 'TBWA', 
-    'iO Digital', 'Daily Paper'
+    { name: 'Leyden labs', logo: 'leydenlabs_Logo.png' },
+    { name: 'Jump Retail', logo: 'jump.jpg' },
+    { name: 'La Dress', logo: 'ladress.png' },
+    { name: 'Greenpeace', logo: 'greenpeace.png' },
+    { name: 'TBWA', logo: 'tbwa_Logo.png' },
+    { name: 'iO Digital', logo: 'io_Logo.png' },
+    { name: 'Daily Paper', logo: 'dailypaper_Logo.png' }
   ]
 
   // HubSpot Contact Form Component
@@ -155,18 +177,19 @@ export default function Home() {
     }, [])
 
     return (
-      <div className="bg-white rounded-lg p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-3">
+      <div className="bg-white rounded-2xl p-8 shadow-lg">
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">
           Neem Contact Op
         </h3>
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-700 mb-6 leading-relaxed">
           Klaar om uw IT-uitdagingen aan te pakken? Laat uw gegevens achter en we nemen binnen 24 uur contact op.
         </p>
         
         <div id="hubspot-contact-form-container">
           {!isLoaded && (
-            <div className="text-gray-500 text-sm">
-              Formulier wordt geladen...
+            <div className="flex items-center justify-center py-8">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600 mr-3"></div>
+              <div className="text-gray-600">Formulier wordt geladen...</div>
             </div>
           )}
         </div>
@@ -177,16 +200,23 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header with Warning Tape */}
-      <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
+      <div className="relative h-3 bg-gradient-to-r from-primary-600 via-black to-primary-600 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+        <div className="absolute inset-0 bg-repeating-diagonal opacity-20"></div>
+      </div>
       
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
-                  <span className="text-black font-bold text-xl">W</span>
-                </div>
+              <Link href="/" className="flex items-center space-x-3">
+                <Image
+                  src="/images/logos/workflo-logo-yellow.png"
+                  alt="Workflo Logo"
+                  width={40}
+                  height={40}
+                  className="rounded-lg"
+                />
                 <span className="text-2xl font-bold text-gray-900">Workflo</span>
               </Link>
             </div>
@@ -220,84 +250,114 @@ export default function Home() {
       <main>
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-gray-50 to-white py-20 overflow-hidden">
-          <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-          <div className="container mx-auto px-4 relative">
+          {/* Background Video */}
+          <div className="absolute inset-0 opacity-10">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/videos/Workflo-code-animatie-2.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-br from-white/80 to-gray-50/80"></div>
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-5xl">
-              <div className="inline-flex items-center bg-primary-100 text-primary-900 px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                <CheckCircleIcon className="w-4 h-4 mr-2" />
+              <div className="inline-flex items-center bg-primary-600/10 border border-primary-600/20 text-gray-900 px-6 py-3 rounded-full text-sm font-semibold mb-8 animate-fade-in">
+                <CheckCircleIcon className="w-5 h-5 mr-3 text-primary-600" />
                 Amsterdam's Trusted IT Partner Since 2015
               </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-                Your IT Should <span className="text-primary-600">Drive Growth</span>,<br />
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-8 leading-tight animate-slide-in">
+                Your IT Should <span className="text-primary-600 relative">
+                  Drive Growth
+                  <div className="absolute -bottom-2 left-0 w-full h-1 bg-primary-600 opacity-30 animate-pulse"></div>
+                </span>,<br />
                 Not Hold You Back
               </h1>
-              <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
+              <p className="text-xl md:text-2xl text-gray-700 mb-12 leading-relaxed max-w-4xl animate-fade-in">
                 Amsterdam's SMEs trust Workflo to transform their IT from a cost center into a growth engine. 
-                Reduce IT costs by 35% while increasing productivity.
+                <span className="font-semibold text-primary-600">Reduce IT costs by 35%</span> while increasing productivity.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <div className="flex flex-col sm:flex-row gap-6 mb-16 animate-fade-in">
                 <Link 
                   href="/tevredenheidscheck" 
-                  className="inline-flex items-center justify-center px-8 py-4 bg-primary-600 text-black font-bold rounded-lg hover:bg-primary-500 transform hover:scale-105 transition-all shadow-lg"
+                  className="group inline-flex items-center justify-center px-10 py-5 bg-primary-600 text-black font-bold text-lg rounded-xl hover:bg-primary-500 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl border-2 border-primary-600"
                 >
                   Start Gratis Tevredenheidscheck
-                  <ArrowRightIcon className="w-5 h-5 ml-2" />
+                  <ArrowRightIcon className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link 
                   href="/tarieven" 
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 font-bold rounded-lg hover:bg-gray-50 transform hover:scale-105 transition-all shadow-lg border-2 border-gray-200"
+                  className="group inline-flex items-center justify-center px-10 py-5 bg-white text-gray-900 font-bold text-lg rounded-xl hover:bg-gray-50 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl border-2 border-gray-300 hover:border-primary-600"
                 >
                   Bekijk Tarieven
-                  <ChevronRightIcon className="w-5 h-5 ml-2" />
+                  <ChevronRightIcon className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
 
               {/* Trust Indicators */}
-              <div className="flex flex-wrap items-center gap-8">
-                <div className="flex items-center">
-                  <CheckCircleIcon className="w-5 h-5 text-green-600 mr-2" />
-                  <span className="text-gray-700">100+ Tevreden Klanten</span>
+              <div className="flex flex-wrap items-center gap-8 animate-fade-in">
+                <div className="flex items-center bg-white/80 backdrop-blur-sm rounded-lg px-4 py-2 shadow-md">
+                  <CheckCircleIcon className="w-6 h-6 text-green-600 mr-3" />
+                  <span className="text-gray-900 font-semibold">100+ Tevreden Klanten</span>
                 </div>
-                <div className="flex items-center">
-                  <CheckCircleIcon className="w-5 h-5 text-green-600 mr-2" />
-                  <span className="text-gray-700">24/7 Support</span>
+                <div className="flex items-center bg-white/80 backdrop-blur-sm rounded-lg px-4 py-2 shadow-md">
+                  <CheckCircleIcon className="w-6 h-6 text-green-600 mr-3" />
+                  <span className="text-gray-900 font-semibold">24/7 Support</span>
                 </div>
-                <div className="flex items-center">
-                  <CheckCircleIcon className="w-5 h-5 text-green-600 mr-2" />
-                  <span className="text-gray-700">ISO Gecertificeerd</span>
+                <div className="flex items-center bg-white/80 backdrop-blur-sm rounded-lg px-4 py-2 shadow-md">
+                  <CheckCircleIcon className="w-6 h-6 text-green-600 mr-3" />
+                  <span className="text-gray-900 font-semibold">ISO Gecertificeerd</span>
                 </div>
               </div>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-20">
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-                <div className="text-4xl font-bold text-primary-600 mb-2">35%</div>
-                <div className="text-gray-700 font-medium">Kostenbesparing</div>
-                <div className="text-sm text-gray-500 mt-1">Gemiddeld per klant</div>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-24">
+              <div className="group bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl hover:border-primary-600/20 transition-all duration-300 hover:-translate-y-1">
+                <div className="text-5xl font-bold text-primary-600 mb-3 group-hover:scale-110 transition-transform">35%</div>
+                <div className="text-gray-800 font-bold text-lg">Kostenbesparing</div>
+                <div className="text-sm text-gray-600 mt-2">Gemiddeld per klant</div>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-                <div className="text-4xl font-bold text-primary-600 mb-2">99.9%</div>
-                <div className="text-gray-700 font-medium">Uptime Garantie</div>
-                <div className="text-sm text-gray-500 mt-1">SLA gegarandeerd</div>
+              <div className="group bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl hover:border-primary-600/20 transition-all duration-300 hover:-translate-y-1">
+                <div className="text-5xl font-bold text-primary-600 mb-3 group-hover:scale-110 transition-transform">99.9%</div>
+                <div className="text-gray-800 font-bold text-lg">Uptime Garantie</div>
+                <div className="text-sm text-gray-600 mt-2">SLA gegarandeerd</div>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-                <div className="text-4xl font-bold text-primary-600 mb-2">24/7</div>
-                <div className="text-gray-700 font-medium">Support</div>
-                <div className="text-sm text-gray-500 mt-1">Altijd bereikbaar</div>
+              <div className="group bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl hover:border-primary-600/20 transition-all duration-300 hover:-translate-y-1">
+                <div className="text-5xl font-bold text-primary-600 mb-3 group-hover:scale-110 transition-transform">24/7</div>
+                <div className="text-gray-800 font-bold text-lg">Support</div>
+                <div className="text-sm text-gray-600 mt-2">Altijd bereikbaar</div>
               </div>
-              <div className="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
-                <div className="text-4xl font-bold text-primary-600 mb-2">&lt;15min</div>
-                <div className="text-gray-700 font-medium">Response Time</div>
-                <div className="text-sm text-gray-500 mt-1">Gemiddeld</div>
+              <div className="group bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl hover:border-primary-600/20 transition-all duration-300 hover:-translate-y-1">
+                <div className="text-5xl font-bold text-primary-600 mb-3 group-hover:scale-110 transition-transform">&lt;15min</div>
+                <div className="text-gray-800 font-bold text-lg">Response Time</div>
+                <div className="text-sm text-gray-600 mt-2">Gemiddeld</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Services Section */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
+        <section className="relative py-24 bg-white overflow-hidden">
+          {/* Background Video */}
+          <div className="absolute inset-0 opacity-5">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/videos/Security_1.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-white/90"></div>
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
                 Complete IT-Oplossingen voor Uw Bedrijf
@@ -309,23 +369,23 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
-                <div key={index} className="bg-gray-50 rounded-xl p-6 hover:shadow-xl transition-all group">
-                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary-600 transition-colors">
-                    <service.icon className="w-6 h-6 text-primary-900 group-hover:text-black" />
+                <div key={index} className="group bg-white rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 border border-gray-100 hover:border-primary-600/20 hover:-translate-y-2">
+                  <div className="w-16 h-16 bg-primary-600/10 border-2 border-primary-600/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary-600 transition-all duration-300 group-hover:scale-110">
+                    <service.icon className="w-8 h-8 text-primary-600 group-hover:text-black" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <ul className="space-y-2">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-primary-600 transition-colors">{service.title}</h3>
+                  <p className="text-gray-700 mb-6 leading-relaxed">{service.description}</p>
+                  <ul className="space-y-3 mb-6">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start">
-                        <CheckCircleIcon className="w-5 h-5 text-green-600 mr-2 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-gray-700">{feature}</span>
+                        <CheckCircleIcon className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+                        <span className="text-gray-700 font-medium">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  <Link href="/diensten" className="inline-flex items-center text-primary-600 font-semibold mt-4 hover:text-primary-700">
+                  <Link href="/diensten" className="inline-flex items-center text-primary-600 font-bold text-lg hover:text-primary-700 group-hover:gap-2 transition-all">
                     Meer info
-                    <ChevronRightIcon className="w-4 h-4 ml-1" />
+                    <ChevronRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
               ))}
@@ -393,18 +453,24 @@ export default function Home() {
             </div>
 
             {/* Current Clients */}
-            <div className="mb-12">
-              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+            <div className="mb-16">
+              <h3 className="text-3xl font-bold text-gray-900 mb-12 text-center">
                 Huidige Klanten
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
                 {currentClients.map((client, index) => (
-                  <div key={index} className="bg-white rounded-lg p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                  <div key={index} className="group bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl hover:border-primary-600/20 transition-all duration-300 hover:-translate-y-1">
                     <div className="text-center">
-                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                        <BuildingOfficeIcon className="w-6 h-6 text-primary-600" />
+                      <div className="w-16 h-16 mx-auto mb-4 relative overflow-hidden rounded-lg bg-gray-50 flex items-center justify-center">
+                        <Image
+                          src={`/images/logos/${client.logo}`}
+                          alt={`${client.name} logo`}
+                          width={64}
+                          height={64}
+                          className="object-contain max-w-full max-h-full group-hover:scale-110 transition-transform duration-300"
+                        />
                       </div>
-                      <h4 className="text-sm font-semibold text-gray-900">{client}</h4>
+                      <h4 className="text-sm font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">{client.name}</h4>
                     </div>
                   </div>
                 ))}
@@ -413,17 +479,23 @@ export default function Home() {
 
             {/* Previous Clients */}
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+              <h3 className="text-3xl font-bold text-gray-900 mb-12 text-center">
                 Vorige Klanten
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {previousClients.map((client, index) => (
-                  <div key={index} className="bg-white rounded-lg p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow opacity-75">
+                  <div key={index} className="group bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 opacity-80 hover:opacity-100">
                     <div className="text-center">
-                      <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
-                        <BuildingOfficeIcon className="w-6 h-6 text-gray-600" />
+                      <div className="w-16 h-16 mx-auto mb-4 relative overflow-hidden rounded-lg bg-gray-50 flex items-center justify-center">
+                        <Image
+                          src={`/images/logos/${client.logo}`}
+                          alt={`${client.name} logo`}
+                          width={64}
+                          height={64}
+                          className="object-contain max-w-full max-h-full group-hover:scale-110 transition-transform duration-300 grayscale group-hover:grayscale-0"
+                        />
                       </div>
-                      <h4 className="text-sm font-semibold text-gray-600">{client}</h4>
+                      <h4 className="text-sm font-semibold text-gray-700 group-hover:text-gray-900 transition-colors">{client.name}</h4>
                     </div>
                   </div>
                 ))}
@@ -433,22 +505,35 @@ export default function Home() {
         </section>
 
         {/* Newsletter & Contact Forms Section */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4">
+        <section className="relative py-24 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
+          {/* Background Animation */}
+          <div className="absolute inset-0 opacity-10">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/videos/Mobile-Device-Header-1.mp4" type="video/mp4" />
+            </video>
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Blijf Verbonden
               </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-700 max-w-3xl mx-auto">
                 Meld u aan voor onze nieuwsbrief of neem direct contact op voor een gesprek
               </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              <div className="bg-gray-50 rounded-xl p-1">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200">
                 <NewsletterFormSafe />
               </div>
-              <div className="bg-gray-50 rounded-xl p-1">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200">
                 <HubSpotContactForm />
               </div>
             </div>
@@ -456,27 +541,44 @@ export default function Home() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-primary-600">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              Klaar om Uw IT te Transformeren?
+        <section className="relative py-24 bg-primary-600 overflow-hidden">
+          {/* Background Video */}
+          <div className="absolute inset-0 opacity-20">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source src="/videos/Workflo_W_Mobile_1.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-primary-600/70"></div>
+          </div>
+          
+          <div className="container mx-auto px-4 text-center relative z-10">
+            <h2 className="text-5xl md:text-6xl font-bold text-black mb-8 animate-fade-in">
+              Klaar om Uw IT te <span className="relative">
+                Transformeren?
+                <div className="absolute -bottom-2 left-0 w-full h-2 bg-black/20 rounded-full"></div>
+              </span>
             </h2>
-            <p className="text-xl text-gray-900 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl md:text-2xl text-black/80 mb-12 max-w-3xl mx-auto leading-relaxed">
               Ontdek in 5 minuten hoe tevreden u bent met uw huidige IT en krijg direct advies.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in">
               <Link 
                 href="/tevredenheidscheck" 
-                className="inline-flex items-center justify-center px-8 py-4 bg-black text-white font-bold rounded-lg hover:bg-gray-900 transform hover:scale-105 transition-all"
+                className="group inline-flex items-center justify-center px-10 py-5 bg-black text-white font-bold text-lg rounded-xl hover:bg-gray-900 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl"
               >
                 Start Tevredenheidscheck
-                <ArrowRightIcon className="w-5 h-5 ml-2" />
+                <ArrowRightIcon className="w-6 h-6 ml-3 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link 
                 href="/contact" 
-                className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-bold rounded-lg hover:bg-gray-100 transform hover:scale-105 transition-all"
+                className="group inline-flex items-center justify-center px-10 py-5 bg-white text-black font-bold text-lg rounded-xl hover:bg-gray-100 transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl border-2 border-black/10"
               >
-                <PhoneIcon className="w-5 h-5 mr-2" />
+                <PhoneIcon className="w-6 h-6 mr-3 group-hover:scale-110 transition-transform" />
                 Bel 020 308 0465
               </Link>
             </div>
@@ -489,10 +591,14 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
-                  <span className="text-black font-bold text-xl">W</span>
-                </div>
+              <div className="flex items-center space-x-3 mb-4">
+                <Image
+                  src="/images/logos/workflo-logo-yellow.png"
+                  alt="Workflo Logo"
+                  width={40}
+                  height={40}
+                  className="rounded-lg"
+                />
                 <span className="text-2xl font-bold">Workflo</span>
               </div>
               <p className="text-gray-400 mb-4">
@@ -565,7 +671,10 @@ export default function Home() {
       </footer>
 
       {/* Warning Tape Bottom */}
-      <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
+      <div className="relative h-3 bg-gradient-to-r from-primary-600 via-black to-primary-600 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+        <div className="absolute inset-0 bg-repeating-diagonal opacity-20"></div>
+      </div>
     </div>
   )
 }
