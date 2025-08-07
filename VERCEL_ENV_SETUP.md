@@ -31,19 +31,26 @@ Environment: Production, Preview, Development
 #### Analytics IDs (OPTIONAL but recommended)
 If you have these, add them:
 ```
-NEXT_PUBLIC_GA_ID
-NEXT_PUBLIC_GTM_ID
-NEXT_PUBLIC_CLARITY_ID
-NEXT_PUBLIC_HOTJAR_ID
-NEXT_PUBLIC_LINKEDIN_PARTNER_ID
-NEXT_PUBLIC_FB_PIXEL_ID
+#NEXT_PUBLIC_GA_ID
+#NEXT_PUBLIC_GTM_ID
+#NEXT_PUBLIC_CLARITY_ID
+#NEXT_PUBLIC_LINKEDIN_PARTNER_ID
+#NEXT_PUBLIC_FB_PIXEL_ID
 ```
+NEXT_PUBLIC_HOTJAR_ID=6486977
+
+import Hotjar from '@hotjar/browser';
+
+const siteId = 6486977;
+const hotjarVersion = 6;
+
+Hotjar.init(siteId, hotjarVersion);
 
 #### Notion Integration (OPTIONAL)
 Only if you want Notion to work:
 ```
 Name: NOTION_API_KEY
-Value: [Get from your Notion integrations page]
+Value: [Get your API key from Notion integrations]
 Environment: Production, Preview, Development
 
 Name: NOTION_BLOG_DATABASE_ID
