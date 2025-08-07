@@ -25,6 +25,7 @@ import {
 import { StarIcon } from '@heroicons/react/24/solid'
 import NewsletterFormSafe from '../components/forms/NewsletterFormSafe'
 import NewsFeed from '../components/NewsFeed'
+import DangerTape from '../components/DangerTape'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -311,10 +312,7 @@ export default function Home() {
     <div className="min-h-screen bg-white overflow-x-hidden">
 
       {/* Header with Warning Tape */}
-      <div className="relative h-3 bg-gradient-to-r from-primary-600 via-black to-primary-600 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-        <div className="absolute inset-0 bg-repeating-diagonal opacity-20"></div>
-      </div>
+      <DangerTape height="h-3" showText={false} />
       
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
@@ -1588,10 +1586,7 @@ export default function Home() {
       </footer>
 
       {/* Warning Tape Bottom */}
-      <div className="relative h-3 bg-gradient-to-r from-primary-600 via-black to-primary-600 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-        <div className="absolute inset-0 bg-repeating-diagonal opacity-20"></div>
-      </div>
+      <DangerTape height="h-3" showText={false} />
     </div>
   )
 }

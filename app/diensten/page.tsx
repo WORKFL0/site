@@ -10,7 +10,7 @@ export default function DienstenPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header with Warning Tape */}
-      <DangerTape height="h-3" showText={true} />
+      <DangerTape height="h-3" showText={false} />
       
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
@@ -376,7 +376,7 @@ export default function DienstenPage() {
       </footer>
 
       {/* Warning Tape Bottom */}
-      <DangerTape height="h-3" showText={true} />
+      <DangerTape height="h-3" showText={false} />
     </div>
   )
 }

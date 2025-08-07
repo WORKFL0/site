@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { PhoneIcon, EnvelopeIcon, MapPinIcon, CheckIcon } from '@heroicons/react/24/outline'
 import PricingCalculator from '@/components/PricingCalculator'
 import DangerTape from '@/components/DangerTape'
@@ -84,16 +85,20 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header with Warning Tape */}
-      <DangerTape height="h-3" showText={true} />
+      <DangerTape height="h-3" showText={false} />
       
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
               <Link href="/" className="flex items-center">
-                <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
-                  <span className="text-black font-bold text-xl">W</span>
-                </div>
+                <Image
+                  src="/images/logos/workflo-logo-yellow.png"
+                  alt="Workflo Logo"
+                  width={150}
+                  height={45}
+                  className="h-12 w-auto"
+                />
               </Link>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
@@ -310,9 +315,13 @@ export default function PricingPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
               <div className="flex items-center mb-4">
-                <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
-                  <span className="text-black font-bold text-xl">W</span>
-                </div>
+                <Image
+                  src="/images/logos/workflo-logo-yellow.png"
+                  alt="Workflo Logo"
+                  width={150}
+                  height={45}
+                  className="h-10 w-auto"
+                />
               </div>
               <p className="text-gray-400 mb-4">
                 Uw betrouwbare IT-partner in Amsterdam sinds 2015.
@@ -369,7 +378,7 @@ export default function PricingPage() {
       </footer>
 
       {/* Warning Tape Bottom */}
-      <DangerTape height="h-3" showText={true} />
+      <DangerTape height="h-3" showText={false} />
     </div>
   )
 }

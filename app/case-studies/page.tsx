@@ -133,7 +133,7 @@ export default function CaseStudiesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <DangerTape height="h-3" showText={true} />
+      <DangerTape height="h-3" showText={false} />
       <InlineHeader />
       
       <main className="pt-24 pb-16">
@@ -295,7 +295,7 @@ export default function CaseStudiesPage() {
       </main>
 
       <InlineFooter />
-      <DangerTape height="h-3" showText={true} />
+      <DangerTape height="h-3" showText={false} />
     </div>
   )
 }

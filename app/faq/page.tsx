@@ -156,7 +156,7 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <DangerTape height="h-3" showText={true} />
+      <DangerTape height="h-3" showText={false} />
       <InlineHeader />
 
       <main className="py-20">
@@ -354,7 +354,7 @@ export default function FAQPage() {
       </main>
 
       <InlineFooter />
-      <DangerTape height="h-3" showText={true} />
+      <DangerTape height="h-3" showText={false} />
     </div>
   )
 }
