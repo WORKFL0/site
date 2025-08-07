@@ -28,6 +28,7 @@ import NewsletterFormSafe from '../components/forms/NewsletterFormSafe'
 import DangerTape from '../components/DangerTape'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import { useLanguage } from '@/context/LanguageContext'
 
 // Import these components dynamically to avoid SSR issues
 const NewsTicker = dynamic(() => import('../components/NewsTicker'), { 
@@ -63,6 +64,7 @@ const NewsFeed = dynamic(() => import('../components/NewsFeed'), {
 })
 
 export default function Home() {
+  const { t } = useLanguage()
   const [mounted, setMounted] = useState(false)
   const [isVideoLoaded, setIsVideoLoaded] = useState(false)
   const [activeService, setActiveService] = useState(0)
@@ -129,67 +131,67 @@ export default function Home() {
 
   const services = [
     {
-      title: 'Managed IT Services',
-      description: 'Complete IT-ondersteuning voor uw bedrijf met 24/7 monitoring en proactief beheer.',
+      title: t('services.managed_it.title'),
+      description: t('services.managed_it.description'),
       icon: "🛡️",
-      highlight: "€500/maand besparing",
-      outcome: "35% kostenbesparing gemiddeld",
+      highlight: t('services.managed_it.highlight'),
+      outcome: t('services.managed_it.outcome'),
       animation: "/videos/Workflo-code-animatie-2.mp4"
     },
     {
-      title: 'Cybersecurity',
-      description: 'Bescherm uw bedrijf tegen digitale dreigingen met enterprise-grade security.',
+      title: t('services.cybersecurity.title'),
+      description: t('services.cybersecurity.description'),
       icon: "🔒",
-      highlight: "0 ransomware hits",
-      outcome: "100% bescherming sinds 2015",
+      highlight: t('services.cybersecurity.highlight'),
+      outcome: t('services.cybersecurity.outcome'),
       animation: "/videos/Security_1.mp4"
     },
     {
-      title: 'Cloud Solutions',
-      description: 'Veilige en schaalbare cloud-infrastructuur die meegroeit met uw bedrijf.',
+      title: t('services.cloud.title'),
+      description: t('services.cloud.description'),
       icon: "☁️",
-      highlight: "Microsoft 365 Expert",
-      outcome: "99.9% uptime gegarandeerd",
+      highlight: t('services.cloud.highlight'),
+      outcome: t('services.cloud.outcome'),
       animation: "/videos/Mobile-Device-Header-1.mp4"
     },
     {
-      title: 'IT Consulting',
-      description: 'Strategisch IT-advies om uw technologie-investeringen te optimaliseren.',
+      title: t('services.consulting.title'),
+      description: t('services.consulting.description'),
       icon: "💡",
-      highlight: "Strategic Planning",
-      outcome: "Optimale IT-roadmap",
+      highlight: t('services.consulting.highlight'),
+      outcome: t('services.consulting.outcome'),
       animation: "/videos/Workflo_W_Mobile_1.mp4"
     },
     {
-      title: 'GDPR & Compliance',
-      description: 'Volledige GDPR-compliance en data protection voor uw organisatie.',
+      title: t('services.gdpr.title'),
+      description: t('services.gdpr.description'),
       icon: "📊",
-      highlight: "GDPR Gecertificeerd",
-      outcome: "100% compliant sinds AVG",
+      highlight: t('services.gdpr.highlight'),
+      outcome: t('services.gdpr.outcome'),
       animation: "/videos/Workflo-code-animatie-3.mp4"
     },
     {
-      title: 'Network & Connectivity',
-      description: 'Betrouwbare netwerk- en internetoplossingen voor maximale uptime.',
+      title: t('services.network.title'),
+      description: t('services.network.description'),
       icon: "📡",
-      highlight: "Altijd verbonden",
-      outcome: "99.97% netwerkuptime",
+      highlight: t('services.network.highlight'),
+      outcome: t('services.network.outcome'),
       animation: "/videos/Mobile-Device-Header-3.mp4"
     },
     {
-      title: 'Backup & Recovery',
-      description: 'Professionele backup- en disaster recovery oplossingen.',
+      title: t('services.backup.title'),
+      description: t('services.backup.description'),
       icon: "💾",
-      highlight: "3-2-1 Backup Strategy",
-      outcome: "0 dataverlies sinds 2015",
+      highlight: t('services.backup.highlight'),
+      outcome: t('services.backup.outcome'),
       animation: "/videos/Workflo_W_final_1.mp4"
     },
     {
-      title: '24/7 Support',
-      description: 'Altijd bereikbare technische ondersteuning voor uw IT-vragen.',
+      title: t('services.support.title'),
+      description: t('services.support.description'),
       icon: "📱",
-      highlight: "4 min response time",
-      outcome: "24/7 beschikbaarheid",
+      highlight: t('services.support.highlight'),
+      outcome: t('services.support.outcome'),
       animation: "/videos/Mobile-Device-Header-2.mp4"
     }
   ]
@@ -237,27 +239,27 @@ export default function Home() {
 
   const teamMembers = [
     {
-      name: "Florian Meeuws",
-      role: "Founder & CEO",
-      expertise: "Strategic IT Leadership & Business Development",
+      name: t('team.florian.name'),
+      role: t('team.florian.role'),
+      expertise: t('team.florian.expertise'),
       image: "/images/team/florian.jpg"
     },
     {
-      name: "Namhoon Kim",
-      role: "Senior Technical Engineer",
-      expertise: "Network Infrastructure & Cloud Architecture",
+      name: t('team.namhoon.name'),
+      role: t('team.namhoon.role'),
+      expertise: t('team.namhoon.expertise'),
       image: "/images/team/nam.jpg"
     },
     {
-      name: "Mas",
-      role: "Junior Support Engineer",
-      expertise: "Security Audits & Compliance",
+      name: t('team.mas.name'),
+      role: t('team.mas.role'),
+      expertise: t('team.mas.expertise'),
       image: "" // Removed - photo was of Samir, not Mas
     },
     {
-      name: "Marcello van den Berg",
-      role: "Junior Infrastructure Engineer",
-      expertise: "24/7 Support & System Administration",
+      name: t('team.marcello.name'),
+      role: t('team.marcello.role'),
+      expertise: t('team.marcello.expertise'),
       image: "/images/team/marcello.jpg"
     }
   ]
@@ -410,7 +412,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
               >
                 <span className="text-yellow-400 font-bold">✓</span>
-                <span className="text-white font-medium">Amsterdam's Trusted IT Partner Since 2015</span>
+                <span className="text-white font-medium">{t('hero.badge.text')}</span>
               </motion.div>
               
               <motion.h1 
@@ -419,7 +421,7 @@ export default function Home() {
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                IT die uw bedrijf laat groeien,
+                {t('hero.title')}
                 <br />
                 <motion.span 
                   className="text-3xl md:text-4xl text-yellow-400"
@@ -427,7 +429,7 @@ export default function Home() {
                   animate={heroInView ? { opacity: 1 } : {}}
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                  niet tegenhoudt
+                  {t('hero.subtitle')}
                 </motion.span>
               </motion.h1>
               
@@ -437,7 +439,7 @@ export default function Home() {
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                Amsterdam's MKB vertrouwt op Workflo om hun IT van kostenpost naar groeifactor te transformeren.
+                {t('hero.description')}
               </motion.p>
 
               {/* Value Props with Facts */}
@@ -448,9 +450,9 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 1 }}
               >
                 {[
-                  { value: "99.97%", label: "Uptime", subtitle: "Gemeten 2024" },
-                  { value: "4 min", label: "Response Time", subtitle: "Gemiddelde telefoon" },
-                  { value: "€500K+", label: "Besparingen", subtitle: "Totaal sinds 2015" }
+                  { value: "99.97%", label: t('hero.benefit.uptime'), subtitle: t('stats.measured') },
+                  { value: "4 min", label: t('hero.benefit.response'), subtitle: t('stats.phone_response') },
+                  { value: "€500K+", label: t('hero.benefit.savings'), subtitle: t('stats.since_2015') }
                 ].map((stat, index) => (
                   <motion.div 
                     key={index}
@@ -483,7 +485,7 @@ export default function Home() {
                     href="/contact" 
                     className="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all shadow-lg inline-block"
                   >
-                    Gratis IT-check (5 min)
+                    {t('hero.cta.primary')}
                   </Link>
                 </motion.div>
                 <motion.div
@@ -494,7 +496,7 @@ export default function Home() {
                     href="tel:020-3080465" 
                     className="bg-white text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-lg inline-block"
                   >
-                    Bel 020 308 0465
+                    {t('hero.cta.secondary')}
                   </a>
                 </motion.div>
               </motion.div>
@@ -505,7 +507,7 @@ export default function Home() {
                 animate={heroInView ? { opacity: 1 } : {}}
                 transition={{ duration: 0.6, delay: 1.8 }}
               >
-                ✓ Geen verplichtingen ✓ Binnen 24u reactie ✓ Gratis adviesrapport
+                {t('hero.bottom.guarantee')}
               </motion.p>
             </motion.div>
           </div>
@@ -553,10 +555,10 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                IT Simpel Gemaakt. Echt Simpel.
+                {t('simplicity.title')}
               </h2>
               <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
-                U bent ondernemer, geen IT-expert. Wij zorgen ervoor dat uw technologie gewoon werkt, zonder technische jargon of ingewikkelde contracten. IT moet uw bedrijf laten groeien, niet frustreren. Daarom maken wij het zo eenvoudig als het bestellen van een pizza.
+                {t('simplicity.description')}
               </p>
               <div className="grid md:grid-cols-3 gap-8 mt-12">
                 <motion.div 
@@ -570,10 +572,10 @@ export default function Home() {
                     <span className="text-3xl">🎯</span>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    Één Duidelijke Prijs
+                    {t('simplicity.price.title')}
                   </h3>
                   <p className="text-gray-600">
-                    U weet precies wat u betaalt. Elke maand. Geen verrassingen.
+                    {t('simplicity.price.description')}
                   </p>
                 </motion.div>
                 <motion.div 
@@ -587,10 +589,10 @@ export default function Home() {
                     <span className="text-3xl">💬</span>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    Gewone Taal
+                    {t('simplicity.language.title')}
                   </h3>
                   <p className="text-gray-600">
-                    Wij leggen alles uit in woorden die u echt begrijpt.
+                    {t('simplicity.language.description')}
                   </p>
                 </motion.div>
                 <motion.div 
@@ -604,10 +606,10 @@ export default function Home() {
                     <span className="text-3xl">✅</span>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
-                    Het Werkt Gewoon
+                    {t('simplicity.works.title')}
                   </h3>
                   <p className="text-gray-600">
-                    Uw IT werkt. U kunt zich op uw bedrijf richten. Zo simpel is het.
+                    {t('simplicity.works.description')}
                   </p>
                 </motion.div>
               </div>
@@ -619,10 +621,10 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <p className="text-lg text-gray-700 italic">
-                  "Als u online een pizza kunt bestellen, kunt u onze IT-diensten begrijpen. Dat is onze belofte."
+                  {t('simplicity.quote.text')}
                 </p>
                 <p className="text-sm text-gray-600 mt-3 font-semibold">
-                  — Florian, Oprichter Workflo
+                  {t('simplicity.quote.author')}
                 </p>
               </motion.div>
             </motion.div>
@@ -708,7 +710,7 @@ export default function Home() {
                 animate={servicesInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Complete IT-Oplossingen
+                {t('services.title')}
               </motion.h2>
               <motion.p 
                 className="text-xl text-gray-300 max-w-4xl mx-auto"
@@ -716,7 +718,7 @@ export default function Home() {
                 animate={servicesInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Van managed services tot cybersecurity - alles onder één dak voor zorgeloze IT
+                {t('services.description')}
               </motion.p>
             </motion.div>
 
@@ -781,7 +783,7 @@ export default function Home() {
                           href={`/diensten`}
                           className="bg-yellow-400 text-black px-6 py-3 rounded-full font-bold hover:bg-yellow-500 transition-all"
                         >
-                          Meer info →
+                          {t('services.learn_more')} →
                         </Link>
                       </div>
                     </div>
@@ -804,7 +806,7 @@ export default function Home() {
                   href="/diensten" 
                   className="inline-flex items-center gap-2 bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all"
                 >
-                  Bekijk Alle Diensten
+                  {t('services.view_all')}
                   <motion.span
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
@@ -861,7 +863,7 @@ export default function Home() {
                 animate={teamInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Ontmoet Het Team
+                {t('team.title')}
               </motion.h2>
               <motion.p 
                 className="text-xl text-gray-600 max-w-3xl mx-auto"
@@ -869,7 +871,7 @@ export default function Home() {
                 animate={teamInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Ervaren professionals die uw IT-uitdagingen begrijpen en oplossen
+                {t('team.description')}
               </motion.p>
             </motion.div>
 
@@ -974,39 +976,39 @@ export default function Home() {
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16 fade-in-up">
               <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                Wat Onze Klanten Zeggen
+                {t('testimonials.title')}
               </h2>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Meer dan 100 bedrijven vertrouwen dagelijks op onze IT-expertise
+                {t('testimonials.description')}
               </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {[
                 {
-                  quote: "Workflo heeft onze IT-infrastructuur compleet getransformeerd. We besparen nu €2000 per maand en hebben geen downtime meer gehad.",
-                  author: "Dr. Marcel Vrolijk",
-                  role: "Eigenaar",
-                  result: "€24.000 jaarlijkse besparing",
-                  stats: "99.9% uptime sinds 2022",
+                  quote: t('testimonials.quote1'),
+                  author: t('testimonials.author1'),
+                  role: t('testimonials.role1'),
+                  result: t('testimonials.result1'),
+                  stats: t('testimonials.stats1'),
                   rating: 5,
                   logo: '/images/logos/doctorfeelgood.jpg'
                 },
                 {
-                  quote: "De overgang naar de cloud was naadloos. Hun 24/7 support is ongeëvenaard - elke vraag wordt binnen minuten beantwoord.",
-                  author: "Sarah van der Berg",
-                  role: "Operations Director",
-                  result: "100% cloud migratie",
-                  stats: "4 min gemiddelde response tijd",
+                  quote: t('testimonials.quote2'),
+                  author: t('testimonials.author2'),
+                  role: t('testimonials.role2'),
+                  result: t('testimonials.result2'),
+                  stats: t('testimonials.stats2'),
                   rating: 5,
                   logo: '/images/logos/havas-media.png'
                 },
                 {
-                  quote: "Eindelijk een IT-partner die begrijpt wat MKB bedrijven nodig hebben. Transparante tarieven en geen technische jargon.",
-                  author: "Erik Janssen",
-                  role: "Managing Director",
-                  result: "35% kostenbesparing",
-                  stats: "0 security incidenten sinds 2021",
+                  quote: t('testimonials.quote3'),
+                  author: t('testimonials.author3'),
+                  role: t('testimonials.role3'),
+                  result: t('testimonials.result3'),
+                  stats: t('testimonials.stats3'),
                   rating: 5,
                   logo: '/images/logos/winix.jpg'
                 }
@@ -1120,7 +1122,7 @@ export default function Home() {
                 animate={industryInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Sector Ervaring Sinds 2015
+                {t('industry.title')}
               </motion.h3>
               <motion.p 
                 className="text-gray-600 max-w-2xl mx-auto"
@@ -1128,7 +1130,7 @@ export default function Home() {
                 animate={industryInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                Door de jaren heen hebben we het voorrecht gehad om diverse organisaties in meerdere sectoren te bedienen, waarbij we expertise hebben opgebouwd die al onze klanten ten goede komt.
+                {t('industry.description')}
               </motion.p>
             </motion.div>
             
@@ -1165,16 +1167,16 @@ export default function Home() {
             {/* Industry sectors */}
             <div className="mt-8 flex flex-wrap justify-center gap-2">
               <span className="px-4 py-2 bg-yellow-100 text-yellow-800 text-sm rounded-full font-medium">
-                Media & Marketing
+                {t('industry.media')}
               </span>
               <span className="px-4 py-2 bg-blue-100 text-blue-800 text-sm rounded-full font-medium">
-                Non-Profit
+                {t('industry.nonprofit')}
               </span>
               <span className="px-4 py-2 bg-green-100 text-green-800 text-sm rounded-full font-medium">
-                Technologie
+                {t('industry.technology')}
               </span>
               <span className="px-4 py-2 bg-purple-100 text-purple-800 text-sm rounded-full font-medium">
-                Mode & Retail
+                {t('industry.retail')}
               </span>
             </div>
           </div>
@@ -1198,10 +1200,10 @@ export default function Home() {
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Blijf Verbonden
+                {t('newsletter.title')}
               </h2>
               <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-                Meld u aan voor onze nieuwsbrief of neem direct contact op voor een gesprek
+                {t('newsletter.description')}
               </p>
             </div>
 
@@ -1249,33 +1251,33 @@ export default function Home() {
           </div>
           <div className="container mx-auto px-4 text-center relative z-20">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Klaar om Uw IT te Transformeren?
+              {t('cta.ready_title')}
             </h2>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Ontdek in 5 minuten hoe we uw IT kunnen verbeteren
+              {t('cta.ready_description')}
             </p>
             
             <div className="bg-white/10 backdrop-blur-sm text-white rounded-2xl p-8 max-w-2xl mx-auto mb-12 border border-white/20">
-              <h3 className="text-2xl font-bold mb-4">Gratis IT-Gezondheidscheck</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('cta.assessment_title')}</h3>
               <p className="text-lg mb-6">
-                Binnen 5 minuten weet u precies waar uw IT staat en wat er beter kan
+                {t('cta.assessment_description')}
               </p>
               <ul className="text-left max-w-md mx-auto mb-6 space-y-2">
                 <li className="flex items-start gap-2">
                   <span className="text-yellow-400">✓</span>
-                  <span>Security scan van uw systemen</span>
+                  <span>{t('cta.assessment.security')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-yellow-400">✓</span>
-                  <span>Kosten-batenanalyse</span>
+                  <span>{t('cta.assessment.cost')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-yellow-400">✓</span>
-                  <span>Backup & recovery check</span>
+                  <span>{t('cta.assessment.backup')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-yellow-400">✓</span>
-                  <span>Netwerk performance test</span>
+                  <span>{t('cta.assessment.network')}</span>
                 </li>
               </ul>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -1283,19 +1285,19 @@ export default function Home() {
                   href="/contact" 
                   className="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-yellow-500 transition-all shadow-lg"
                 >
-                  Start Gratis Check
+                  {t('cta.start_assessment')}
                 </Link>
                 <a 
                   href="tel:020-3080465" 
                   className="bg-white text-black px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-lg"
                 >
-                  Bel 020 308 0465
+                  {t('cta.call_today')}
                 </a>
               </div>
             </div>
             
             <p className="text-gray-400 text-sm">
-              ✓ Geen verplichtingen ✓ Binnen 24u reactie ✓ Gratis adviesrapport
+              {t('cta.no_obligations')}
             </p>
           </div>
         </section>

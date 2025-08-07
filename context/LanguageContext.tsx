@@ -141,6 +141,26 @@ const translations = {
     'cta.call_today': 'Call Us Today',
     'cta.no_obligations': 'No obligations • Professional consultation • Local Amsterdam team',
     
+    // Simplicity Section
+    'simplicity.title': 'IT Made Simple. Really Simple.',
+    'simplicity.description': 'You are an entrepreneur, not an IT expert. We ensure your technology simply works, without technical jargon or complicated contracts. IT should help your business grow, not frustrate it. That\'s why we make it as simple as ordering a pizza.',
+    'simplicity.price.title': 'One Clear Price',
+    'simplicity.price.description': 'You know exactly what you pay. Every month. No surprises.',
+    'simplicity.language.title': 'Plain Language',
+    'simplicity.language.description': 'We explain everything in words you actually understand.',
+    'simplicity.works.title': 'It Simply Works',
+    'simplicity.works.description': 'Your IT works. You can focus on your business. It\'s that simple.',
+    'simplicity.quote.text': '"If you can order a pizza online, you can understand our IT services. That\'s our promise."',
+    'simplicity.quote.author': '— Florian, Founder Workflo',
+    
+    // Industry Section
+    'industry.title': 'Sector Experience Since 2015',
+    'industry.description': 'Over the years, we have had the privilege to serve diverse organizations across multiple sectors, building expertise that benefits all our clients.',
+    'industry.media': 'Media & Marketing',
+    'industry.nonprofit': 'Non-Profit',
+    'industry.technology': 'Technology',
+    'industry.retail': 'Fashion & Retail',
+    
     // About Page
     'about.hero.title': 'The Amsterdam IT Team That Actually Cares About Your Business Success',
     'about.hero.description': 'We started Workflo because we were tired of seeing Amsterdam businesses held back by their technology. Too many great companies were choosing between growth and IT costs, or worse, losing customers because their systems couldn&apos;t handle success.',
@@ -511,6 +531,26 @@ const translations = {
     'cta.start_assessment': 'Start Gratis Assessment',
     'cta.call_today': 'Bel Ons Vandaag',
     'cta.no_obligations': 'Geen verplichtingen • Professionele consultatie • Lokaal Amsterdams team',
+    
+    // Simplicity Section
+    'simplicity.title': 'IT Simpel Gemaakt. Echt Simpel.',
+    'simplicity.description': 'U bent ondernemer, geen IT-expert. Wij zorgen ervoor dat uw technologie gewoon werkt, zonder technische jargon of ingewikkelde contracten. IT moet uw bedrijf laten groeien, niet frustreren. Daarom maken wij het zo eenvoudig als het bestellen van een pizza.',
+    'simplicity.price.title': 'Één Duidelijke Prijs',
+    'simplicity.price.description': 'U weet precies wat u betaalt. Elke maand. Geen verrassingen.',
+    'simplicity.language.title': 'Gewone Taal',
+    'simplicity.language.description': 'Wij leggen alles uit in woorden die u echt begrijpt.',
+    'simplicity.works.title': 'Het Werkt Gewoon',
+    'simplicity.works.description': 'Uw IT werkt. U kunt zich op uw bedrijf richten. Zo simpel is het.',
+    'simplicity.quote.text': '"Als u online een pizza kunt bestellen, kunt u onze IT-diensten begrijpen. Dat is onze belofte."',
+    'simplicity.quote.author': '— Florian, Oprichter Workflo',
+    
+    // Industry Section
+    'industry.title': 'Sector Ervaring Sinds 2015',
+    'industry.description': 'Door de jaren heen hebben we het voorrecht gehad om diverse organisaties in meerdere sectoren te bedienen, waarbij we expertise hebben opgebouwd die al onze klanten ten goede komt.',
+    'industry.media': 'Media & Marketing',
+    'industry.nonprofit': 'Non-Profit',
+    'industry.technology': 'Technologie',
+    'industry.retail': 'Mode & Retail',
     
     // About Page
     'about.hero.title': 'Het Amsterdamse IT-team Dat Echt Geeft om Uw Bedrijfssucces',
