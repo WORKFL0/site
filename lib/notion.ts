@@ -1,10 +1,12 @@
 import { Client } from '@notionhq/client'
 import { PageObjectResponse, DatabaseObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 
-// Initialize Notion client
-const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
-})
+// Initialize Notion client conditionally
+const notion = process.env.NOTION_API_KEY 
+  ? new Client({
+      auth: process.env.NOTION_API_KEY,
+    })
+  : null
 
 // Database IDs
 const BLOG_DATABASE_ID = process.env.NOTION_BLOG_DATABASE_ID || 'f87fb961e6b74bb1894949a89abf20a0'
@@ -80,6 +82,10 @@ export async function getBlogPosts(limit?: number): Promise<BlogPost[]> {
   try {
     if (!process.env.NOTION_API_KEY) {
       console.warn('Notion API key not configured')
+      return getMockBlogPosts()
+    }
+
+    if (!notion) {
       return getMockBlogPosts()
     }
 
@@ -215,6 +221,8 @@ async function getNotionNews(limit: number): Promise<NewsItem[]> {
   if (!process.env.NOTION_API_KEY) return []
   
   try {
+    if (!notion) return []
+    
     const response = await notion.databases.query({
       database_id: NEWS_DATABASE_ID,
       page_size: limit

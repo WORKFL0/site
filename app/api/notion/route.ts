@@ -1,13 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Client } from '@notionhq/client'
 
-// Initialize Notion client
-const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
-})
+// Initialize Notion client conditionally
+const notion = process.env.NOTION_API_KEY
+  ? new Client({
+      auth: process.env.NOTION_API_KEY,
+    })
+  : null
 
 export async function GET(request: NextRequest) {
   try {
+    if (!notion) {
+      return NextResponse.json(
+        { error: 'Notion API key not configured' },
+        { status: 503 }
+      )
+    }
+
     const searchParams = request.nextUrl.searchParams
     const action = searchParams.get('action')
     const databaseId = process.env.NOTION_BLOG_DATABASE_ID
@@ -85,6 +94,13 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
+    if (!notion) {
+      return NextResponse.json(
+        { error: 'Notion API key not configured' },
+        { status: 503 }
+      )
+    }
+
     const body = await request.json()
     const { title, content, type = 'blog' } = body
     const databaseId = process.env.NOTION_BLOG_DATABASE_ID
@@ -163,6 +179,13 @@ export async function POST(request: NextRequest) {
 
 export async function PATCH(request: NextRequest) {
   try {
+    if (!notion) {
+      return NextResponse.json(
+        { error: 'Notion API key not configured' },
+        { status: 503 }
+      )
+    }
+
     const body = await request.json()
     const { pageId, properties } = body
 
@@ -197,6 +220,13 @@ export async function PATCH(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   try {
+    if (!notion) {
+      return NextResponse.json(
+        { error: 'Notion API key not configured' },
+        { status: 503 }
+      )
+    }
+
     const searchParams = request.nextUrl.searchParams
     const pageId = searchParams.get('id')
 
