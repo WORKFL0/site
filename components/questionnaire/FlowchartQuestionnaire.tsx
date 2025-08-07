@@ -54,10 +54,10 @@ const FlowchartQuestionnaire = () => {
                 const isSelected = selectedAnswer === index
                 const buttonType = currentQuestion.type[index]
                 
-                // Determine variant based on selection state
+                // Always use neutral variant to avoid color hints
                 let variant: 'neutral' | 'primary' | 'danger' = 'neutral'
                 if (isSelected) {
-                  variant = buttonType === 'positive' ? 'primary' : 'danger'
+                  variant = 'primary' // Use primary for all selected items
                 }
                 
                 return (
