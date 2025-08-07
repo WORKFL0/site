@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect } from 'react'
-import { errorLogger } from '@/lib/error-logger'
 
 export default function HubSpotScript() {
   useEffect(() => {
@@ -37,7 +36,7 @@ export default function HubSpotScript() {
 
         script.onload = () => {
           loadedCount++
-          errorLogger.logInfo(`HubSpot script loaded: ${scriptConfig.id}`, 'HubSpotScript')
+          console.log(`HubSpot script loaded: ${scriptConfig.id}`)
           
           // Dispatch custom event when all scripts are ready
           if (loadedCount === totalScripts) {
@@ -46,11 +45,7 @@ export default function HubSpotScript() {
         }
 
         script.onerror = () => {
-          errorLogger.logError(
-            new Error(`Failed to load HubSpot script: ${scriptConfig.id}`),
-            'HubSpotScript',
-            { src: script.src }
-          )
+          console.error(`Failed to load HubSpot script: ${scriptConfig.id}`, script.src)
         }
 
         document.head.appendChild(script)
@@ -70,11 +65,7 @@ export default function HubSpotScript() {
         })
       }
     } catch (error) {
-      errorLogger.logError(
-        error as Error,
-        'HubSpotScript',
-        { context: 'initialization' }
-      )
+      console.error('HubSpotScript initialization error:', error)
     }
   }, [])
 

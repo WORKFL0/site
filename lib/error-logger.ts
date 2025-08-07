@@ -1,3 +1,5 @@
+'use client'
+
 // Error logging utility for debugging production issues
 interface ErrorLog {
   message: string
@@ -13,13 +15,19 @@ interface ErrorLog {
 class ErrorLogger {
   private logs: ErrorLog[] = []
   private maxLogs = 50
+  private isClient = typeof window !== 'undefined'
 
   logError(error: Error, component?: string, additionalData?: any) {
+    // Safety check to prevent crashes
+    if (!error || typeof error !== 'object') {
+      return
+    }
+    
     const errorLog: ErrorLog = {
-      message: error.message,
-      stack: error.stack,
-      url: typeof window !== 'undefined' ? window.location.href : 'server',
-      userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : 'server',
+      message: error?.message || 'Unknown error',
+      stack: error?.stack,
+      url: this.isClient ? window.location.href : 'server',
+      userAgent: this.isClient ? window.navigator.userAgent : 'server',
       timestamp: new Date().toISOString(),
       type: 'error',
       component,
@@ -42,8 +50,8 @@ class ErrorLogger {
   logWarning(message: string, component?: string, additionalData?: any) {
     const log: ErrorLog = {
       message,
-      url: typeof window !== 'undefined' ? window.location.href : 'server',
-      userAgent: typeof window !== 'undefined' ? window.navigator.userAgent : 'server',
+      url: this.isClient ? window.location.href : 'server',
+      userAgent: this.isClient ? window.navigator.userAgent : 'server',
       timestamp: new Date().toISOString(),
       type: 'warning',
       component,
@@ -60,7 +68,7 @@ class ErrorLogger {
   logInfo(message: string, component?: string, additionalData?: any) {
     const log: ErrorLog = {
       message,
-      url: typeof window !== 'undefined' ? window.location.href : 'server',
+      url: this.isClient ? window.location.href : 'server',
       timestamp: new Date().toISOString(),
       type: 'info',
       component,
@@ -75,20 +83,25 @@ class ErrorLogger {
   }
 
   private addLog(log: ErrorLog) {
-    this.logs.push(log)
-    
-    // Keep only the last maxLogs entries
-    if (this.logs.length > this.maxLogs) {
-      this.logs.shift()
-    }
-
-    // Store in localStorage for debugging (if available)
-    if (typeof window !== 'undefined' && window.localStorage) {
-      try {
-        localStorage.setItem('workflo-error-logs', JSON.stringify(this.logs))
-      } catch (e) {
-        // Ignore localStorage errors
+    try {
+      this.logs.push(log)
+      
+      // Keep only the last maxLogs entries
+      if (this.logs.length > this.maxLogs) {
+        this.logs.shift()
       }
+
+      // Store in localStorage for debugging (if available)
+      if (this.isClient && window.localStorage) {
+        try {
+          localStorage.setItem('workflo-error-logs', JSON.stringify(this.logs))
+        } catch (e) {
+          // Ignore localStorage errors
+        }
+      }
+    } catch (e) {
+      // Prevent any errors in logging from causing crashes
+      console.error('Error logger failed:', e)
     }
   }
 
@@ -113,7 +126,7 @@ class ErrorLogger {
 
   clearLogs() {
     this.logs = []
-    if (typeof window !== 'undefined' && window.localStorage) {
+    if (this.isClient && window.localStorage) {
       try {
         localStorage.removeItem('workflo-error-logs')
       } catch (e) {
@@ -124,7 +137,7 @@ class ErrorLogger {
 
   // Get logs from localStorage (useful for debugging)
   getStoredLogs(): ErrorLog[] {
-    if (typeof window !== 'undefined' && window.localStorage) {
+    if (this.isClient && window.localStorage) {
       try {
         const stored = localStorage.getItem('workflo-error-logs')
         return stored ? JSON.parse(stored) : []
@@ -136,8 +149,28 @@ class ErrorLogger {
   }
 }
 
-// Singleton instance
-export const errorLogger = new ErrorLogger()
+// Create singleton instance safely
+let errorLoggerInstance: ErrorLogger | null = null
+
+function getErrorLogger(): ErrorLogger {
+  if (!errorLoggerInstance) {
+    errorLoggerInstance = new ErrorLogger()
+  }
+  return errorLoggerInstance
+}
+
+// Create a no-op logger for SSR
+class NoOpErrorLogger implements Pick<ErrorLogger, 'logError' | 'logWarning' | 'logInfo' | 'getLogs' | 'clearLogs' | 'getStoredLogs'> {
+  logError() {}
+  logWarning() {}
+  logInfo() {}
+  getLogs() { return [] }
+  clearLogs() {}
+  getStoredLogs() { return [] }
+}
+
+// Export a safe instance that works in both SSR and client
+export const errorLogger = typeof window !== 'undefined' ? getErrorLogger() : new NoOpErrorLogger()
 
 // Helper function for safe execution
 export function safeExecute<T>(
