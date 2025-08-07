@@ -2,10 +2,12 @@
 
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import DangerTape from '@/components/DangerTape'
 
 export default function ITConsultingPage() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <DangerTape height="h-3" showText={false} />
       {/* Header */}
       <Header />
 
@@ -337,6 +339,7 @@ export default function ITConsultingPage() {
 
       {/* Footer */}
       <Footer />
+      <DangerTape height="h-3" showText={false} />
     </div>
   )
 }

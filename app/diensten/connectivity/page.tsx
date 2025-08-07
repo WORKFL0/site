@@ -2,6 +2,7 @@
 
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import ZipcodeCheck from '@/components/ZipcodeCheck'
 
 export default function ConnectivityPage() {
   return (
@@ -419,6 +420,21 @@ export default function ConnectivityPage() {
                 Creative Director, Van Dijk Design Studio
               </p>
             </div>
+          </div>
+        </section>
+
+        {/* Zipcode Check Section */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                Check Direct Wat Er Op Uw Adres Mogelijk Is
+              </h2>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                Binnen 30 seconden weet u welke internetverbindingen beschikbaar zijn op uw locatie
+              </p>
+            </div>
+            <ZipcodeCheck />
           </div>
         </section>
 

@@ -2,6 +2,7 @@
 
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import DangerTape from '@/components/DangerTape'
 import { useLanguage } from '@/context/LanguageContext'
 
 export default function AboutPage() {
@@ -9,6 +10,7 @@ export default function AboutPage() {
   
   return (
     <div className="min-h-screen bg-white">
+      <DangerTape height="h-3" showText={false} />
       <Header />
 
       <main className="py-20">
@@ -220,6 +222,7 @@ export default function AboutPage() {
       </main>
 
       <Footer />
+      <DangerTape height="h-3" showText={false} />
     </div>
   )
 }

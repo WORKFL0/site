@@ -29,6 +29,7 @@ const PricingCalculator = () => {
   const [totalPrice, setTotalPrice] = useState(0)
   const [savings, setSavings] = useState(0)
   const [selectedOffice365, setSelectedOffice365] = useState('none')
+  const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'yearly'>('monthly')
   const [office365Licenses, setOffice365Licenses] = useState(0)
 
   const pricingOptions: PricingOption[] = useMemo(() => [
@@ -229,6 +230,11 @@ const PricingCalculator = () => {
         console.error('PricingCalculator: Error calculating Office 365 costs:', office365Error)
       }
 
+      // Apply yearly discount if selected (10% off)
+      if (billingPeriod === 'yearly' && option.type === 'fixed') {
+        total = total * 0.9
+      }
+      
       // Validate final total and set price
       const finalTotal = isNaN(total) || total < 0 ? 0 : Math.round(total)
       setTotalPrice(finalTotal)
@@ -248,7 +254,7 @@ const PricingCalculator = () => {
       setTotalPrice(0)
       setSavings(0)
     }
-  }, [selectedOption, employees, servers, selectedOffice365, office365Licenses, pricingOptions, office365Packages])
+  }, [selectedOption, employees, servers, selectedOffice365, office365Licenses, pricingOptions, office365Packages, billingPeriod])
 
   const getCompanySize = () => {
     try {
@@ -287,6 +293,42 @@ const PricingCalculator = () => {
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Configuration Panel */}
         <div className="lg:col-span-2 space-y-8">
+          {/* Billing Period Toggle */}
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h3 className="text-2xl font-bold text-black mb-4">
+              {language === 'en' ? 'Billing Period' : 'Facturatieperiode'}
+            </h3>
+            <div className="flex gap-4 mb-2">
+              <button
+                onClick={() => setBillingPeriod('monthly')}
+                className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-all ${
+                  billingPeriod === 'monthly' 
+                    ? 'bg-yellow-400 text-black shadow-lg' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {language === 'en' ? 'Monthly' : 'Maandelijks'}
+              </button>
+              <button
+                onClick={() => setBillingPeriod('yearly')}
+                className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-all ${
+                  billingPeriod === 'yearly' 
+                    ? 'bg-yellow-400 text-black shadow-lg' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {language === 'en' ? 'Yearly (-10%)' : 'Jaarlijks (-10%)'}
+              </button>
+            </div>
+            {billingPeriod === 'yearly' && (
+              <p className="text-sm text-green-600 font-medium">
+                {language === 'en' 
+                  ? '✓ Save 10% with annual payment' 
+                  : '✓ Bespaar 10% met jaarlijkse betaling'}
+              </p>
+            )}
+          </div>
+
           {/* Company Size */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <h3 className="text-2xl font-bold text-black mb-4">
@@ -308,7 +350,7 @@ const PricingCalculator = () => {
                   background: `linear-gradient(to right, #f2f400 0%, #f2f400 ${employees}%, #e5e5e5 ${employees}%, #e5e5e5 100%)`
                 }}
               />
-              <div className="flex justify-between text-sm text-gray-500 mt-2">
+              <div className="flex justify-between text-sm text-gray-700 font-medium mt-2">
                 <span>1</span>
                 <span className="font-medium text-black">{getCompanySize()}</span>
                 <span>100+</span>
@@ -330,7 +372,7 @@ const PricingCalculator = () => {
                   background: `linear-gradient(to right, #f2f400 0%, #f2f400 ${servers * 5}%, #e5e5e5 ${servers * 5}%, #e5e5e5 100%)`
                 }}
               />
-              <div className="flex justify-between text-sm text-gray-500 mt-2">
+              <div className="flex justify-between text-sm text-gray-700 font-medium mt-2">
                 <span>0</span>
                 <span>20+</span>
               </div>
@@ -467,7 +509,7 @@ const PricingCalculator = () => {
                         {pricingOptions.find(o => o.id === selectedOption)?.[language === 'en' ? 'name' : 'nameNL']}
                       </div>
                       {selectedOption.startsWith('fixed') && (
-                        <div className="text-sm text-gray-400">
+                        <div className="text-sm text-gray-600 font-medium">
                           {employees} {language === 'en' ? 'users' : 'gebruikers'} + {servers} servers
                         </div>
                       )}
@@ -491,7 +533,7 @@ const PricingCalculator = () => {
                         <div className="font-medium">
                           {office365Packages.find(p => p.id === selectedOffice365)?.name}
                         </div>
-                        <div className="text-sm text-gray-400">
+                        <div className="text-sm text-gray-600 font-medium">
                           {office365Licenses || employees} {language === 'en' ? 'licenses' : 'licenties'}
                         </div>
                       </div>
@@ -513,9 +555,9 @@ const PricingCalculator = () => {
                     <div className="text-center">
                       <div className="text-xl font-bold mb-2">
                         <span className="text-yellow-400">€110</span>
-                        <span className="text-gray-300"> {language === 'en' ? 'per hour' : 'per uur'}</span>
+                        <span className="text-gray-600 font-medium"> {language === 'en' ? 'per hour' : 'per uur'}</span>
                       </div>
-                      <div className="text-sm text-gray-400">
+                      <div className="text-sm text-gray-700 font-medium">
                         {language === 'en' 
                           ? 'Pay only when you need support'
                           : 'Betaal alleen wanneer u ondersteuning nodig heeft'}
@@ -531,7 +573,7 @@ const PricingCalculator = () => {
                         return option ? option.price : 0
                       })()}</span>
                     </div>
-                    <div className="text-sm text-gray-400 mb-2">
+                    <div className="text-sm text-gray-600 font-medium mb-2">
                       {language === 'en' ? 'Monthly average:' : 'Maandelijks gemiddelde:'} €{totalPrice}
                     </div>
                     {/* ETA Calculator for Prepaid */}
@@ -549,7 +591,7 @@ const PricingCalculator = () => {
                           return `${months} ${language === 'en' ? 'months' : 'maanden'}`
                         })()}
                       </div>
-                      <div className="text-xs text-gray-400 mt-1">
+                      <div className="text-xs text-gray-600 mt-1">
                         {language === 'en' 
                           ? '*Based on average usage, depends on your team\'s needs'
                           : '*Gebaseerd op gemiddeld gebruik, afhankelijk van uw team'}
@@ -562,9 +604,18 @@ const PricingCalculator = () => {
                       <span>{language === 'en' ? 'Monthly:' : 'Maandelijks:'}</span>
                       <span className="text-yellow-400">€{totalPrice.toLocaleString()}</span>
                     </div>
-                    <div className="text-sm text-gray-400">
+                    <div className="text-sm text-gray-600 font-medium">
                       {language === 'en' ? 'Annual:' : 'Jaarlijks:'} €{(totalPrice * 12).toLocaleString()}
                     </div>
+                    {billingPeriod === 'yearly' && (
+                      <div className="mt-2 p-2 bg-green-500/20 rounded-lg border border-green-500">
+                        <div className="text-green-400 text-sm font-medium">
+                          {language === 'en' 
+                            ? '✓ 10% yearly discount applied!' 
+                            : '✓ 10% jaarkorting toegepast!'}
+                        </div>
+                      </div>
+                    )}
                   </>
                 )}
               </div>
@@ -574,7 +625,7 @@ const PricingCalculator = () => {
                   <div className="text-green-400 font-bold">
                     {language === 'en' ? 'Monthly Savings:' : 'Maandelijkse Besparing:'} €{savings.toLocaleString()}
                   </div>
-                  <div className="text-sm text-gray-300">
+                  <div className="text-sm text-gray-600 font-medium">
                     {language === 'en' 
                       ? 'vs. average break-fix costs'
                       : 'vs. gemiddelde break-fix kosten'}
@@ -634,7 +685,7 @@ const PricingCalculator = () => {
                     <li>• Monitoring (RMM): €4-8 {language === 'en' ? 'per device/month' : 'per apparaat/maand'}</li>
                     <li>• Office 365: €6-57 {language === 'en' ? 'per user/month' : 'per gebruiker/maand'}</li>
                   </ul>
-                  <p className="text-xs text-gray-500 italic">
+                  <p className="text-xs text-gray-600 italic">
                     {language === 'en' 
                       ? 'Prices depend on chosen solutions and number of devices'
                       : 'Prijzen afhankelijk van gekozen oplossingen en aantal apparaten'}

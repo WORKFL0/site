@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import DangerTape from '@/components/DangerTape'
 
 // Self-contained Header Component
 const CareersHeader = () => (
@@ -55,6 +56,7 @@ const CareersFooter = () => (
 export default function CareersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <DangerTape height="h-3" showText={false} />
       <CareersHeader />
 
       <main>
@@ -343,6 +345,7 @@ export default function CareersPage() {
       </main>
 
       <CareersFooter />
+      <DangerTape height="h-3" showText={false} />
     </div>
   )
 }

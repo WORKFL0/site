@@ -68,7 +68,7 @@ export default function PricingPage() {
       description: 'Betaal alleen wanneer u ons nodig heeft',
       monthlyPrice: null,
       yearlyPrice: null,
-      perUnit: '€125 per uur',
+      perUnit: '€110 per uur',
       features: [
         'Geen contractverplichtingen',
         'Betaal per incident',

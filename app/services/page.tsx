@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
+import DangerTape from '@/components/DangerTape'
 import Button from '@/components/ui/Button'
 import { useState } from 'react'
 import { 
@@ -113,6 +114,7 @@ export default function ServicesPage() {
 
   return (
     <>
+      <DangerTape height="h-3" showText={false} />
       <Header />
       <main className="pt-20">
         {/* Hero Section - Problem First */}
@@ -290,6 +292,7 @@ export default function ServicesPage() {
         </section>
       </main>
       <Footer />
+      <DangerTape height="h-3" showText={false} />
     </>
   )
 }

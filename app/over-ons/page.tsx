@@ -95,8 +95,23 @@ export default function OverOnsPage() {
 
       <main className="pt-8 pb-16">
         {/* Hero Section */}
-        <section className="py-24 bg-gradient-to-br from-gray-900 to-black text-white">
-          <div className="container mx-auto px-4">
+        <section className="py-24 bg-gradient-to-br from-gray-900 to-black text-white relative overflow-hidden">
+          {/* Background Video */}
+          <div className="absolute inset-0 w-full h-full">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover opacity-20"
+            >
+              <source src="/videos/hero-video.mp4" type="video/mp4" />
+              <source src="/videos/Workflo_W_final.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-black/60"></div>
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
               <h1 className="text-5xl lg:text-7xl font-bold mb-6">
                 IT zonder Zorgen sinds 2015
@@ -129,26 +144,44 @@ export default function OverOnsPage() {
         {/* Our Story */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
                 Ons Verhaal
               </h2>
-              <div className="prose prose-lg max-w-none">
-                <p className="text-gray-700 mb-6">
-                  Workflo begon in 2015 met een simpele missie: IT-ondersteuning die écht werkt. 
-                  Opgericht door een team van IT-professionals die gefrustreerd waren door de 
-                  traditionele manier van werken in de IT-sector.
-                </p>
-                <p className="text-gray-700 mb-6">
-                  We zagen bedrijven worstelen met complexe systemen, onduidelijke facturen en 
-                  IT-partners die meer problemen veroorzaakten dan oplosten. Daar wilden we 
-                  verandering in brengen.
-                </p>
-                <p className="text-gray-700 mb-6">
-                  Vandaag zijn we uitgegroeid tot een van de meest vertrouwde IT-partners in 
-                  Amsterdam, met meer dan 250 tevreden klanten die kunnen focussen op hun core 
-                  business terwijl wij hun IT perfect laten draaien.
-                </p>
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="prose prose-lg max-w-none">
+                  <p className="text-gray-700 mb-6">
+                    Workflo begon in 2015 met een simpele missie: IT-ondersteuning die écht werkt. 
+                    Opgericht door een team van IT-professionals die gefrustreerd waren door de 
+                    traditionele manier van werken in de IT-sector.
+                  </p>
+                  <p className="text-gray-700 mb-6">
+                    We zagen bedrijven worstelen met complexe systemen, onduidelijke facturen en 
+                    IT-partners die meer problemen veroorzaakten dan oplosten. Daar wilden we 
+                    verandering in brengen.
+                  </p>
+                  <p className="text-gray-700 mb-6">
+                    Vandaag zijn we uitgegroeid tot een van de meest vertrouwde IT-partners in 
+                    Amsterdam, met meer dan 250 tevreden klanten die kunnen focussen op hun core 
+                    business terwijl wij hun IT perfect laten draaien.
+                  </p>
+                </div>
+                
+                {/* Story Animation */}
+                <div className="flex justify-center">
+                  <div className="bg-white rounded-2xl p-8 shadow-xl max-w-md">
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-auto rounded-lg"
+                    >
+                      <source src="/videos/workflo-w-animation.mp4" type="video/mp4" />
+                      <source src="/videos/Workflo_W_Mobile-2.mp4" type="video/mp4" />
+                    </video>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -177,22 +210,40 @@ export default function OverOnsPage() {
         {/* Timeline */}
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
               <h2 className="text-4xl font-bold text-center text-gray-900 mb-12">
                 Onze Reis
               </h2>
-              <div className="space-y-8">
-                {milestones.map((milestone, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="flex-shrink-0 w-24">
-                      <div className="text-primary-600 font-bold text-lg">{milestone.year}</div>
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="space-y-8">
+                  {milestones.map((milestone, index) => (
+                    <div key={index} className="flex gap-4">
+                      <div className="flex-shrink-0 w-24">
+                        <div className="text-primary-600 font-bold text-lg">{milestone.year}</div>
+                      </div>
+                      <div className="flex-grow pb-8 border-l-2 border-gray-300 pl-8 relative">
+                        <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
+                        <p className="text-gray-700">{milestone.event}</p>
+                      </div>
                     </div>
-                    <div className="flex-grow pb-8 border-l-2 border-gray-300 pl-8 relative">
-                      <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
-                      <p className="text-gray-700">{milestone.event}</p>
-                    </div>
+                  ))}
+                </div>
+                
+                {/* Timeline Animation */}
+                <div className="flex justify-center">
+                  <div className="bg-black rounded-2xl p-8 shadow-2xl max-w-md">
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-auto rounded-lg"
+                    >
+                      <source src="/videos/security-animation.mp4" type="video/mp4" />
+                      <source src="/videos/Security_1.mp4" type="video/mp4" />
+                    </video>
                   </div>
-                ))}
+                </div>
               </div>
             </div>
           </div>

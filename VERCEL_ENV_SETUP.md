@@ -97,7 +97,7 @@ Vercel doesn't have access to these variables unless you explicitly set them in 
 ## Testing After Setup
 
 1. Wait 2-3 minutes for deployment to complete
-2. Visit https://workflo.it
+2. Visit https://nextsite.workflo.it
 3. The site should load without errors
 4. Check that RSS feed displays (even if with fallback content)
 

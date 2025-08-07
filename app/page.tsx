@@ -25,7 +25,10 @@ import {
 import { StarIcon } from '@heroicons/react/24/solid'
 import NewsletterFormSafe from '../components/forms/NewsletterFormSafe'
 import NewsFeed from '../components/NewsFeed'
+import NewsTicker from '../components/NewsTicker'
 import DangerTape from '../components/DangerTape'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -159,27 +162,27 @@ export default function Home() {
     }
   ]
 
-  // Current active clients
+  // Current active clients - Updated with all logos from folder
   const currentClients = [
-    { name: "Havas Media", src: "/images/logos/havas-media.png" },
-    { name: "Podimo", src: "/images/logos/podimo.png" },
-    { name: "DoctorFeelgood", src: "/images/logos/doctorfeelgood.jpg" },
-    { name: "Aescap", src: "/images/logos/aescap.png" },
-    { name: "Hunt Amsterdam", src: "/images/logos/hunt-amsterdam.jpeg" },
-    { name: "Rademakkers", src: "/images/logos/rademakkers.png" },
-    { name: "Tonko", src: "/images/logos/tonko.png" },
-    { name: "DMC Makelaars", src: "/images/logos/dmc.png" },
-    { name: "Klaar", src: "/images/logos/klaar.jpg" },
-    { name: "Dag en Nacht", src: "/images/logos/dagennacht.png" },
-    { name: "Voice Industries", src: "/images/logos/voice-industries.jpeg" },
+    { name: "Havas Media", src: "/images/logos/Havas_Media.png" },
+    { name: "Podimo", src: "/images/logos/Podimo_Logo.png" },
+    { name: "DoctorFeelgood", src: "/images/logos/doctorfeelgood_Logo.jpg" },
+    { name: "Aescap", src: "/images/logos/Aescap2_Logo.png" },
+    { name: "Hunt Amsterdam", src: "/images/logos/huntamsterdam_logo.jpeg" },
+    { name: "Rademakkers", src: "/images/logos/Rademakkers_Logo.png" },
+    { name: "Tonko", src: "/images/logos/tonko_Logo.png" },
+    { name: "DMC Makelaars", src: "/images/logos/DMC_Logo.png" },
+    { name: "Klaar", src: "/images/logos/Klaar_Logo.jpg" },
+    { name: "Dag en Nacht", src: "/images/logos/Dagennacht_Logo.png" },
+    { name: "Voice Industries", src: "/images/logos/voice.industries_Logo.jpeg" },
     { name: "Schulte en Lestrade", src: "/images/logos/senl.png" },
     { name: "Duwtje", src: "/images/logos/duwtje.svg" },
     { name: "Highwood", src: "/images/logos/highwood.png" },
     { name: "PR Mansion", src: "/images/logos/prmansion.png" },
-    { name: "Winix", src: "/images/logos/winix.jpg" },
-    { name: "WorkStuff", src: "/images/logos/workstuff.jpg" },
-    { name: "Open Boek", src: "/images/logos/open-boek.png" },
-    { name: "Bijvoorkeur", src: "/images/logos/bijvoorkeur.jpg" },
+    { name: "Winix", src: "/images/logos/Winix_Logo.jpg" },
+    { name: "WorkStuff", src: "/images/logos/workstuff_Logo.jpg" },
+    { name: "Open Boek", src: "/images/logos/open-boek_Logo.png" },
+    { name: "Bijvoorkeur", src: "/images/logos/Bijvoorkeur_Logo.jpg" },
     { name: "BLC Financeview", src: "/images/logos/blc-financeview.png" },
     { name: "John Doornik Casting", src: "/images/logos/john-doornik.png" },
     { name: "Huisart Elings", src: "/images/logos/hap-elings.png" },
@@ -217,7 +220,7 @@ export default function Home() {
       name: "Mas",
       role: "Junior Support Engineer",
       expertise: "Security Audits & Compliance",
-      image: "/images/team/mas.jpg"
+      image: "" // Removed - photo was of Samir, not Mas
     },
     {
       name: "Marcello van den Berg",
@@ -314,46 +317,10 @@ export default function Home() {
       {/* Header with Warning Tape */}
       <DangerTape height="h-3" showText={false} />
       
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/images/logos/workflo-logo-yellow.png"
-                  alt="Workflo Logo"
-                  width={150}
-                  height={45}
-                  className="h-12 w-auto"
-                />
-              </Link>
-            </div>
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link href="/diensten" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-                Diensten
-              </Link>
-              <Link href="/over-ons" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-                Over Ons
-              </Link>
-              <Link href="/tarieven" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-                Tarieven
-              </Link>
-              <Link href="/case-studies" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-                Case Studies
-              </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
-                Contact
-              </Link>
-              <Link 
-                href="/tevredenheidscheck" 
-                className="px-4 py-2 bg-primary-600 text-black font-semibold rounded-lg hover:bg-primary-500 transition-colors"
-              >
-                Gratis Check
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
+
+      {/* News Ticker */}
+      <NewsTicker />
 
       <main>
         {/* Hero Section with Video Background */}
@@ -1351,97 +1318,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-            <div>
-              <div className="flex items-center mb-4">
-                <Image
-                  src="/images/logos/workflo-logo-yellow.png"
-                  alt="Workflo Logo"
-                  width={150}
-                  height={45}
-                  className="h-10 w-auto"
-                />
-              </div>
-              <p className="text-gray-400 mb-4">
-                Uw betrouwbare IT-partner in Amsterdam sinds 2015.
-              </p>
-              <div className="space-y-2">
-                <div className="flex items-center">
-                  <MapPinIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">Koivistokade 3, 1013 AC Amsterdam</span>
-                </div>
-                <div className="flex items-center">
-                  <PhoneIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">020 308 0465</span>
-                </div>
-                <div className="flex items-center">
-                  <EnvelopeIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">info@workflo.it</span>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-4">Diensten</h3>
-              <ul className="space-y-2">
-                <li><Link href="/diensten/managed-it" className="text-gray-400 hover:text-primary-600">Managed IT</Link></li>
-                <li><Link href="/diensten/cloud" className="text-gray-400 hover:text-primary-600">Cloud Solutions</Link></li>
-                <li><Link href="/diensten/cybersecurity" className="text-gray-400 hover:text-primary-600">Cybersecurity</Link></li>
-                <li><Link href="/diensten/connectivity" className="text-gray-400 hover:text-primary-600">Connectivity</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-4">Bedrijf</h3>
-              <ul className="space-y-2">
-                <li><Link href="/over-ons" className="text-gray-400 hover:text-primary-600">Over Ons</Link></li>
-                <li><Link href="/case-studies" className="text-gray-400 hover:text-primary-600">Case Studies</Link></li>
-                <li><Link href="/careers" className="text-gray-400 hover:text-primary-600">Werken Bij</Link></li>
-                <li><Link href="/contact" className="text-gray-400 hover:text-primary-600">Contact</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-bold text-lg mb-4">Resources</h3>
-              <ul className="space-y-2">
-                <li><Link href="/tevredenheidscheck" className="text-gray-400 hover:text-primary-600">Tevredenheidscheck</Link></li>
-                <li><Link href="/tarieven" className="text-gray-400 hover:text-primary-600">Tarieven</Link></li>
-                <li><Link href="/faq" className="text-gray-400 hover:text-primary-600">FAQ</Link></li>
-                <li><Link href="/support" className="text-gray-400 hover:text-primary-600">Support</Link></li>
-                <li><a href="/api/rss-feed" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-primary-600">RSS Feed</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              &copy; 2025 Workflo B.V. Alle rechten voorbehouden.
-            </p>
-            <div className="flex space-x-6">
-              <Link href="/privacy" className="text-gray-400 hover:text-primary-600 text-sm">
-                Privacy Policy
-              </Link>
-              <Link href="/terms" className="text-gray-400 hover:text-primary-600 text-sm">
-                Algemene Voorwaarden
-              </Link>
-              <Link href="/cookies" className="text-gray-400 hover:text-primary-600 text-sm">
-                Cookie Policy
-              </Link>
-              <a 
-                href="https://uptime.workflo.it/status/workflo" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-gray-400 hover:text-primary-600 text-sm"
-              >
-                <div className="w-2 h-2 rounded-full bg-green-500"></div>
-                Uptime Status
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Warning Tape Bottom */}
       <DangerTape height="h-3" showText={false} />
