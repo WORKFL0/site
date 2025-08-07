@@ -1,13 +1,9 @@
-import { Metadata } from 'next'
+'use client'
+
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import NewsFeed from '@/components/NewsFeed'
 import LinkedInPosts from '@/components/news/LinkedInPosts'
-
-export const metadata: Metadata = {
-  title: 'Nieuws & Updates - Workflo IT Services',
-  description: 'Laatste nieuws, bedrijfsupdates, en industrie-inzichten van Workflo IT Services.',
-}
 
 export default function NewsPage() {
   return (
