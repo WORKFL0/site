@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { AlertTriangleIcon, RefreshCwIcon, HomeIcon } from '@heroicons/react/24/outline'
+import { ExclamationTriangleIcon, ArrowPathIcon, HomeIcon } from '@heroicons/react/24/outline'
 
 export default function Error({
   error,
@@ -44,7 +44,7 @@ export default function Error({
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <div className="text-center">
-            <AlertTriangleIcon className="mx-auto h-12 w-12 text-red-500 mb-4" />
+            <ExclamationTriangleIcon className="mx-auto h-12 w-12 text-red-500 mb-4" />
             <h1 className="text-2xl font-bold text-gray-900 mb-4">
               Oops! Something went wrong
             </h1>
@@ -79,7 +79,7 @@ export default function Error({
                 onClick={reset}
                 className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition-colors"
               >
-                <RefreshCwIcon className="w-4 h-4 mr-2" />
+                <ArrowPathIcon className="w-4 h-4 mr-2" />
                 Try Again
               </button>
               

@@ -191,19 +191,7 @@ export default function RootLayout({
         <meta name="entity:revenue-range" content="€1M-€10M" />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <ErrorBoundary
-          onError={(error, errorInfo) => {
-            // Log error details for debugging
-            const errorDetails = {
-              message: error.message,
-              stack: error.stack,
-              componentStack: errorInfo.componentStack,
-              timestamp: new Date().toISOString(),
-              url: typeof window !== 'undefined' ? window.location.href : 'N/A'
-            }
-            console.error('Root ErrorBoundary caught error:', errorDetails)
-          }}
-        >
+        <ErrorBoundary>
           <LanguageProvider>
             {children}
             <CookieConsent />

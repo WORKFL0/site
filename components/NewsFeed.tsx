@@ -141,17 +141,18 @@ const NewsFeed = ({
               if (index < maxItems) {
                 try {
                   // Handle both RSS and Atom formats with null checks
-                  const title = item.querySelector('title')?.textContent?.trim() || ''
-                  const description = item.querySelector('description')?.textContent?.trim() || 
-                                    item.querySelector('summary')?.textContent?.trim() || 
-                                    item.querySelector('content')?.textContent?.trim() || ''
-                  const link = item.querySelector('link')?.textContent?.trim() || 
-                              item.querySelector('link')?.getAttribute('href')?.trim() || ''
-                  const pubDate = item.querySelector('pubDate')?.textContent?.trim() || 
-                                 item.querySelector('published')?.textContent?.trim() || 
-                                 item.querySelector('updated')?.textContent?.trim() || ''
-                  const guid = item.querySelector('guid')?.textContent?.trim() || 
-                              item.querySelector('id')?.textContent?.trim() || 
+                  const element = item as Element
+                  const title = element.querySelector('title')?.textContent?.trim() || ''
+                  const description = element.querySelector('description')?.textContent?.trim() || 
+                                    element.querySelector('summary')?.textContent?.trim() || 
+                                    element.querySelector('content')?.textContent?.trim() || ''
+                  const link = element.querySelector('link')?.textContent?.trim() || 
+                              element.querySelector('link')?.getAttribute('href')?.trim() || ''
+                  const pubDate = element.querySelector('pubDate')?.textContent?.trim() || 
+                                 element.querySelector('published')?.textContent?.trim() || 
+                                 element.querySelector('updated')?.textContent?.trim() || ''
+                  const guid = element.querySelector('guid')?.textContent?.trim() || 
+                              element.querySelector('id')?.textContent?.trim() || 
                               `item-${index}`
                   
                   // Check for special error message items or non-article content
