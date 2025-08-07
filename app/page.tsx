@@ -167,10 +167,11 @@ export default function Home() {
     { name: "Hunt Amsterdam", src: "/images/logos/hunt-amsterdam.jpeg" },
     { name: "Rademakkers", src: "/images/logos/rademakkers.png" },
     { name: "Tonko", src: "/images/logos/tonko.png" },
-    { name: "DMC", src: "/images/logos/dmc.png" },
+    { name: "DMC Makelaars", src: "/images/logos/dmc.png" },
     { name: "Klaar", src: "/images/logos/klaar.jpg" },
     { name: "Dag en Nacht", src: "/images/logos/dagennacht.png" },
     { name: "Voice Industries", src: "/images/logos/voice-industries.jpeg" },
+    { name: "Schulte en Lestrade", src: "/images/logos/senl.png" },
     { name: "Duwtje", src: "/images/logos/duwtje.svg" },
     { name: "Highwood", src: "/images/logos/highwood.png" },
     { name: "PR Mansion", src: "/images/logos/prmansion.png" },
@@ -179,7 +180,8 @@ export default function Home() {
     { name: "Open Boek", src: "/images/logos/open-boek.png" },
     { name: "Bijvoorkeur", src: "/images/logos/bijvoorkeur.jpg" },
     { name: "BLC Financeview", src: "/images/logos/blc-financeview.png" },
-    { name: "John Doornik", src: "/images/logos/john-doornik.png" },
+    { name: "John Doornik Casting", src: "/images/logos/john-doornik.png" },
+    { name: "Huisart Elings", src: "/images/logos/hap-elings.png" },
     { name: "Koschuch", src: "/images/logos/koschuch.png" }
   ]
 
@@ -211,10 +213,10 @@ export default function Home() {
       image: "/images/team/nam.jpg"
     },
     {
-      name: "Mas Samir",
+      name: "Mas",
       role: "Junior Support Engineer",
       expertise: "Security Audits & Compliance",
-      image: "/images/team/samir.jpg"
+      image: "/images/team/mas.jpg"
     },
     {
       name: "Marcello van den Berg",
@@ -318,15 +320,14 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-3">
+              <Link href="/" className="flex items-center">
                 <Image
                   src="/images/logos/workflo-logo-yellow.png"
                   alt="Workflo Logo"
-                  width={40}
-                  height={40}
-                  className="rounded-lg"
+                  width={150}
+                  height={45}
+                  className="h-12 w-auto"
                 />
-                <span className="text-2xl font-bold text-gray-900">Workflo</span>
               </Link>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
@@ -686,8 +687,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Client Logos Section - Light with Yellow Border */}
-        <section className="relative py-20 bg-gray-50 border-y-8 border-yellow-400 overflow-hidden" ref={statsRef}>
+        {/* REMOVED: Client Logos Grid Section - Duplicate with "Sector Ervaring" section below */}
+        {/* Keeping only the carousel version as requested in todo2.md */}
+        <section className="relative py-20 bg-gray-50 border-y-8 border-yellow-400 overflow-hidden" ref={statsRef} style={{ display: 'none' }}>
           {/* Background Video Animation */}
           <div className="absolute inset-0 pointer-events-none" ref={statsVideoRef}>
             {statsVideoInView && (
@@ -1498,15 +1500,14 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
-              <div className="flex items-center space-x-3 mb-4">
+              <div className="flex items-center mb-4">
                 <Image
                   src="/images/logos/workflo-logo-yellow.png"
                   alt="Workflo Logo"
-                  width={40}
-                  height={40}
-                  className="rounded-lg"
+                  width={150}
+                  height={45}
+                  className="h-10 w-auto"
                 />
-                <span className="text-2xl font-bold">Workflo</span>
               </div>
               <p className="text-gray-400 mb-4">
                 Uw betrouwbare IT-partner in Amsterdam sinds 2015.

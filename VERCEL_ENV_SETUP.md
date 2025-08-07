@@ -51,6 +51,7 @@ Only if you want Notion to work:
 ```
 Name: NOTION_API_KEY
 Value: [Get your API key from Notion integrations]
+NOTION_URL=https://workfloit.notion.site/CMS-2484984ee96e80c787b7eb8772edc2c8?source=copy_link
 Environment: Production, Preview, Development
 
 Name: NOTION_BLOG_DATABASE_ID

@@ -75,11 +75,10 @@ export default function OverOnsPage() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-2">
+              <Link href="/" className="flex items-center">
                 <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
                   <span className="text-black font-bold text-xl">W</span>
                 </div>
-                <span className="text-2xl font-bold text-gray-900">Workflo</span>
               </Link>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
@@ -239,11 +238,10 @@ export default function OverOnsPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
+              <div className="flex items-center mb-4">
                 <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
                   <span className="text-black font-bold text-xl">W</span>
                 </div>
-                <span className="text-2xl font-bold">Workflo</span>
               </div>
               <p className="text-gray-400 mb-4">
                 Uw betrouwbare IT-partner in Amsterdam sinds 2015.

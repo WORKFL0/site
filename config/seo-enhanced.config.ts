@@ -47,7 +47,7 @@ export const enhancedSeoConfig = {
     certifications: [
       'Microsoft Partner',
       'ISO 27001 Compliant',
-      'GDPR/AVG Certified',
+      'GDPR/AVG',
       'NEN 7510 Healthcare Standard'
     ]
   },

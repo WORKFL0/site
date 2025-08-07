@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
+import DangerTape from '@/components/DangerTape'
 
 interface FAQItem {
   id: string
@@ -155,21 +156,26 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      <DangerTape height="h-3" showText={true} />
       <InlineHeader />
 
       <main className="py-20">
         {/* Hero Section */}
-        <section className="relative mb-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white py-16">
-          {/* Warning Tape Stripe */}
-          <div className="absolute top-0 left-0 right-0 h-3" style={{
-            backgroundImage: `repeating-linear-gradient(
-              45deg,
-              #f2f400,
-              #f2f400 15px,
-              #000000 15px,
-              #000000 30px
-            )`
-          }}></div>
+        <section className="relative mb-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white py-16 overflow-hidden">
+          {/* Background Video */}
+          <div className="absolute inset-0 opacity-5 pointer-events-none">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+              preload="metadata"
+            >
+              <source src="/videos/Workflo_W_final_3.mp4" type="video/mp4" />
+              <source src="/videos/logo-animation.mp4" type="video/mp4" />
+            </video>
+          </div>
           
           <div className="container mx-auto px-4 pt-8">
             <motion.div
@@ -348,6 +354,7 @@ export default function FAQPage() {
       </main>
 
       <InlineFooter />
+      <DangerTape height="h-3" showText={true} />
     </div>
   )
 }

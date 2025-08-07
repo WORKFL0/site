@@ -12,7 +12,7 @@ export default function TevredenheidscheckPage() {
       <header className="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center space-x-3">
+            <Link href="/" className="flex items-center">
               <Image
                 src="/images/logos/workflo-logo-yellow.png"
                 alt="Workflo"
@@ -20,7 +20,6 @@ export default function TevredenheidscheckPage() {
                 height={40}
                 className="rounded-lg"
               />
-              <span className="text-xl font-bold text-gray-900">Workflo</span>
             </Link>
             <nav className="hidden md:flex items-center space-x-8">
               <Link href="/" className="text-gray-600 hover:text-gray-900 transition-colors">
@@ -97,7 +96,7 @@ export default function TevredenheidscheckPage() {
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
-              <div className="flex items-center space-x-3 mb-4">
+              <div className="flex items-center mb-4">
                 <Image
                   src="/images/logos/workflo-logo-yellow.png"
                   alt="Workflo"
@@ -105,7 +104,6 @@ export default function TevredenheidscheckPage() {
                   height={32}
                   className="rounded-lg"
                 />
-                <span className="text-xl font-bold">Workflo</span>
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
                 Wij zorgen ervoor dat uw IT altijd werkt, zodat u zich kunt concentreren op waar u goed in bent.

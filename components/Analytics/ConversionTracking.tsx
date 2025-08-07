@@ -51,8 +51,8 @@ export function HotjarTracking() {
       if (typeof window === 'undefined' || typeof document === 'undefined') return
       
       // Use the ID from todo.md (6486977) or environment variable
-      const hotjarId = process.env.NEXT_PUBLIC_HOTJAR_ID || '6486977'
-      const hotjarVersion = process.env.NEXT_PUBLIC_HOTJAR_VERSION || 6
+      const hotjarId = '6486977' // Fixed ID from todo2.md
+      const hotjarVersion = 6
       
       if (!hotjarId) return
       

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline'
+import DangerTape from '@/components/DangerTape'
 
 export default function CookiesPage() {
   const [mounted, setMounted] = useState(false)
@@ -25,17 +26,16 @@ export default function CookiesPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header with Warning Tape */}
-      <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
+      <DangerTape height="h-3" showText={true} />
       
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-2">
+              <Link href="/" className="flex items-center">
                 <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
                   <span className="text-black font-bold text-xl">W</span>
                 </div>
-                <span className="text-2xl font-bold text-gray-900">Workflo</span>
               </Link>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
@@ -192,11 +192,10 @@ export default function CookiesPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
+              <div className="flex items-center mb-4">
                 <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
                   <span className="text-black font-bold text-xl">W</span>
                 </div>
-                <span className="text-2xl font-bold">Workflo</span>
               </div>
               <p className="text-gray-400 mb-4">
                 Uw betrouwbare IT-partner in Amsterdam sinds 2015.
@@ -252,7 +251,7 @@ export default function CookiesPage() {
       </footer>
 
       {/* Warning Tape Bottom */}
-      <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
+      <DangerTape height="h-3" showText={true} />
     </div>
   )
 }

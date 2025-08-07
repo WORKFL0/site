@@ -104,7 +104,7 @@ const translations = {
     'team.mas.name': 'Mas',
     'team.mas.role': 'Junior Support Engineer',
     'team.mas.expertise': 'Service Delivery Excellence',
-    'team.marcello.name': 'Marcello',
+    'team.marcello.name': 'Marcello van den Berg',
     'team.marcello.role': 'Junior Infrastructure Engineer',
     'team.marcello.expertise': 'Cloud & Innovation',
     
@@ -475,7 +475,7 @@ const translations = {
     'team.mas.name': 'Mas',
     'team.mas.role': 'Junior Support Engineer',
     'team.mas.expertise': 'Service Delivery Excellence',
-    'team.marcello.name': 'Marcello',
+    'team.marcello.name': 'Marcello van den Berg',
     'team.marcello.role': 'Junior Infrastructure Engineer',
     'team.marcello.expertise': 'Cloud & Innovatie',
     

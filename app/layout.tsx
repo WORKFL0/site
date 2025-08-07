@@ -199,7 +199,11 @@ export default function RootLayout({
         <GlobalErrorHandler />
         <HydrationProvider>
           <LanguageProvider>
-            {children}
+            <div className="min-h-screen flex flex-col">
+              <div className="flex-1 w-full max-w-[1920px] mx-auto">
+                {children}
+              </div>
+            </div>
             <CookieConsent />
           </LanguageProvider>
           

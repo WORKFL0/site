@@ -270,13 +270,13 @@ const PricingCalculator = () => {
     <div className="max-w-6xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-12">
-        <div className="bg-black/50 backdrop-blur-sm rounded-xl p-8 inline-block">
-          <h2 className="text-4xl font-bold text-white mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.8)' }}>
+        <div className="bg-gray-900 rounded-xl p-8 inline-block shadow-2xl">
+          <h2 className="text-4xl font-bold text-yellow-400 mb-4">
             {language === 'en' 
               ? 'Calculate Your IT Support Investment'
               : 'Bereken Uw IT Support Investering'}
           </h2>
-          <p className="text-xl text-white max-w-3xl mx-auto font-medium" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.7)' }}>
+          <p className="text-xl text-gray-100 max-w-3xl mx-auto font-medium">
             {language === 'en'
               ? 'Find the perfect IT support package for your business. Transparent pricing, no hidden costs.'
               : 'Vind het perfecte IT-ondersteuningspakket voor uw bedrijf. Transparante prijzen, geen verborgen kosten.'}
@@ -294,7 +294,7 @@ const PricingCalculator = () => {
             </h3>
             
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-base font-semibold text-gray-900 mb-2">
                 {language === 'en' ? `Number of Employees: ${employees}` : `Aantal Medewerkers: ${employees}`}
               </label>
               <input
@@ -316,7 +316,7 @@ const PricingCalculator = () => {
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-base font-semibold text-gray-900 mb-2">
                 {language === 'en' ? `Number of Servers: ${servers}` : `Aantal Servers: ${servers}`}
               </label>
               <input
@@ -342,14 +342,14 @@ const PricingCalculator = () => {
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               {language === 'en' ? 'Microsoft 365 Licenses (Optional)' : 'Microsoft 365 Licenties (Optioneel)'}
             </h3>
-            <p className="text-gray-800 text-sm mb-4 font-medium">
+            <p className="text-gray-700 text-base mb-4 font-medium">
               {language === 'en' 
                 ? 'Add Microsoft 365 licenses to see your complete monthly IT investment'
                 : 'Voeg Microsoft 365 licenties toe om uw complete maandelijkse IT-investering te zien'}
             </p>
             
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-base font-semibold text-gray-900 mb-2">
                 {language === 'en' ? 'Select Package:' : 'Selecteer Pakket:'}
               </label>
               <select
@@ -367,7 +367,7 @@ const PricingCalculator = () => {
 
             {selectedOffice365 !== 'none' && (
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-base font-semibold text-gray-900 mb-2">
                   {language === 'en' 
                     ? `Number of Licenses (default: ${employees} employees):`
                     : `Aantal Licenties (standaard: ${employees} medewerkers):`}

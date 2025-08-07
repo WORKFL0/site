@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import DangerTape from '@/components/DangerTape'
 
 export default function DiagnosticsPage() {
   const [diagnostics, setDiagnostics] = useState<any>({})
@@ -126,12 +127,12 @@ export default function DiagnosticsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
+      <DangerTape height="h-3" showText={true} />
       
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center">
               <Image
                 src="/images/logos/workflo-logo-yellow.png"
                 alt="Workflo"
@@ -139,7 +140,6 @@ export default function DiagnosticsPage() {
                 height={40}
                 className="rounded-lg"
               />
-              <span className="text-2xl font-bold text-gray-900">Workflo</span>
             </Link>
             <nav className="hidden md:flex items-center space-x-8">
               <Link href="/" className="text-gray-700 hover:text-primary-600 font-medium">

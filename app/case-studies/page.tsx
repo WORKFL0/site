@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
+import DangerTape from '@/components/DangerTape'
 
 // Inline Header component
 function InlineHeader() {
@@ -132,12 +133,28 @@ export default function CaseStudiesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <DangerTape height="h-3" showText={true} />
       <InlineHeader />
       
       <main className="pt-24 pb-16">
         {/* Hero Section */}
-        <section className="bg-white py-16">
-          <div className="container mx-auto px-4">
+        <section className="relative bg-white py-16 overflow-hidden">
+          {/* Background Video */}
+          <div className="absolute inset-0 opacity-5 pointer-events-none">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+              preload="metadata"
+            >
+              <source src="/videos/Security_1.mp4" type="video/mp4" />
+              <source src="/videos/Workflo_W_final_1.mp4" type="video/mp4" />
+            </video>
+          </div>
+          
+          <div className="container mx-auto px-4 relative z-10">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-5xl font-bold text-gray-900 mb-4">
                 Klantsuccessen
@@ -278,6 +295,7 @@ export default function CaseStudiesPage() {
       </main>
 
       <InlineFooter />
+      <DangerTape height="h-3" showText={true} />
     </div>
   )
 }

@@ -1,78 +1,29 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline'
-
-// TypeScript declaration for HubSpot
-declare global {
-  interface Window {
-    hbspt: any
-  }
-}
+import HubSpotForm from '@/components/forms/HubSpotFormClient'
+import DangerTape from '@/components/DangerTape'
 
 export default function ContactPage() {
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-    
-    // Load HubSpot form script
-    const script = document.createElement('script')
-    script.src = '//js-eu1.hsforms.net/forms/embed/v2.js'
-    script.charset = 'utf-8'
-    script.type = 'text/javascript'
-    script.async = true
-    script.defer = true
-    
-    script.onload = () => {
-      // Create form when script is loaded
-      if (window.hbspt) {
-        window.hbspt.forms.create({
-          region: "eu1",
-          portalId: "26510736",
-          formId: "acf3fe0b-c542-4fc2-aa14-f3cb2fc356c0",
-          target: '#hubspot-contact-form'
-        })
-      }
-    }
-    
-    document.body.appendChild(script)
-    
-    return () => {
-      // Cleanup
-      if (document.body.contains(script)) {
-        document.body.removeChild(script)
-      }
-    }
-  }, [])
-
-  if (!mounted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    )
-  }
+  const [formReady, setFormReady] = useState(false)
+  const [formSubmitted, setFormSubmitted] = useState(false)
 
   return (
     <div className="min-h-screen bg-white">
       {/* Header with Warning Tape */}
-      <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
+      <DangerTape height="h-3" showText={true} />
       
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-2">
+              <Link href="/" className="flex items-center">
                 <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
                   <span className="text-black font-bold text-xl">W</span>
                 </div>
-                <span className="text-2xl font-bold text-gray-900">Workflo</span>
               </Link>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
@@ -120,9 +71,29 @@ export default function ContactPage() {
                   </p>
                   
                   {/* HubSpot Form Container */}
-                  <div id="hubspot-contact-form" className="hubspot-form-container">
-                    <div className="text-gray-500 text-sm">Formulier wordt geladen...</div>
-                  </div>
+                  <HubSpotForm
+                    region="eu1"
+                    portalId="26510736"
+                    formId="acf3fe0b-c542-4fc2-aa14-f3cb2fc356c0"
+                    onFormReady={() => {
+                      setFormReady(true)
+                      console.log('Contact form ready')
+                    }}
+                    onFormSubmit={() => {
+                      console.log('Contact form submitting')
+                    }}
+                    onFormSubmitted={() => {
+                      setFormSubmitted(true)
+                      console.log('Contact form submitted')
+                    }}
+                  />
+                  
+                  {formSubmitted && (
+                    <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                      <p className="text-green-800 font-medium">Bedankt voor uw bericht!</p>
+                      <p className="text-green-700 text-sm mt-1">We nemen binnen 24 uur contact met u op.</p>
+                    </div>
+                  )}
                 </div>
               </div>
               
@@ -198,7 +169,7 @@ export default function ContactPage() {
                         <h4 className="text-lg font-semibold text-gray-900 mb-2">Workflo B.V.</h4>
                         <div className="text-gray-700 space-y-1">
                           <div className="font-medium">Koivistokade 3</div>
-                          <div>1013AC Amsterdam</div>
+                          <div>1013 AC Amsterdam</div>
                           <div>Nederland</div>
                         </div>
                       </div>
@@ -278,11 +249,10 @@ export default function ContactPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
-              <div className="flex items-center space-x-2 mb-4">
+              <div className="flex items-center mb-4">
                 <div className="w-10 h-10 bg-primary-600 rounded-lg flex items-center justify-center">
                   <span className="text-black font-bold text-xl">W</span>
                 </div>
-                <span className="text-2xl font-bold">Workflo</span>
               </div>
               <p className="text-gray-400 mb-4">
                 Uw betrouwbare IT-partner in Amsterdam sinds 2015.
@@ -338,7 +308,7 @@ export default function ContactPage() {
       </footer>
 
       {/* Warning Tape Bottom */}
-      <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
+      <DangerTape height="h-3" showText={true} />
     </div>
   )
 }
