@@ -5,6 +5,7 @@ import CookieConsent from '@/components/CookieConsent'
 import { LanguageProvider } from '@/context/LanguageContext'
 import GoogleAnalytics from '@/components/Analytics/GoogleAnalytics'
 import ErrorBoundary from '@/components/ErrorBoundary'
+import HubSpotScript from '@/components/forms/HubSpotScript'
 import { 
   MicrosoftClarity, 
   HotjarTracking, 
@@ -206,6 +207,7 @@ export default function RootLayout({
         <LinkedInInsight />
         <FacebookPixel />
         <EnhancedLinkAttribution />
+        <HubSpotScript />
         
         {/* Noscript fallback */}
         <noscript>
