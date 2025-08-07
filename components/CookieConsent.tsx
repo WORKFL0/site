@@ -8,31 +8,38 @@ export default function CookieConsent() {
   const [showDetails, setShowDetails] = useState(false)
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookieConsent')
-    if (!consent) {
-      setShowBanner(true)
+    // Only access localStorage on client side
+    if (typeof window !== 'undefined') {
+      const consent = localStorage.getItem('cookieConsent')
+      if (!consent) {
+        setShowBanner(true)
+      }
     }
   }, [])
 
   const handleAcceptAll = () => {
-    localStorage.setItem('cookieConsent', 'accepted')
-    localStorage.setItem('cookiePreferences', JSON.stringify({
-      essential: true,
-      functional: true,
-      analytics: true,
-      marketing: true
-    }))
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cookieConsent', 'accepted')
+      localStorage.setItem('cookiePreferences', JSON.stringify({
+        essential: true,
+        functional: true,
+        analytics: true,
+        marketing: true
+      }))
+    }
     setShowBanner(false)
   }
 
   const handleRejectNonEssential = () => {
-    localStorage.setItem('cookieConsent', 'partial')
-    localStorage.setItem('cookiePreferences', JSON.stringify({
-      essential: true,
-      functional: false,
-      analytics: false,
-      marketing: false
-    }))
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('cookieConsent', 'partial')
+      localStorage.setItem('cookiePreferences', JSON.stringify({
+        essential: true,
+        functional: false,
+        analytics: false,
+        marketing: false
+      }))
+    }
     setShowBanner(false)
   }
 
