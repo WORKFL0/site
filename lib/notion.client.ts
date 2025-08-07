@@ -1,9 +1,11 @@
 import { Client } from '@notionhq/client'
 
-// Initialize Notion client
-const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
-})
+// Initialize Notion client conditionally
+const notion = process.env.NOTION_API_KEY 
+  ? new Client({
+      auth: process.env.NOTION_API_KEY,
+    })
+  : null
 
 // Extract database ID from the full URL if needed
 const DATABASE_ID = (process.env.NOTION_DB_ID || '')
@@ -12,6 +14,10 @@ const DATABASE_ID = (process.env.NOTION_DB_ID || '')
 
 export async function queryDatabase(filter?: any) {
   try {
+    if (!notion) {
+      console.warn('Notion client not initialized')
+      return []
+    }
     const response = await notion.databases.query({
       database_id: DATABASE_ID,
       filter: filter,
@@ -25,6 +31,10 @@ export async function queryDatabase(filter?: any) {
 
 export async function getPage(pageId: string) {
   try {
+    if (!notion) {
+      console.warn('Notion client not initialized')
+      return null
+    }
     const response = await notion.pages.retrieve({ page_id: pageId })
     return response
   } catch (error) {
@@ -35,6 +45,10 @@ export async function getPage(pageId: string) {
 
 export async function getBlocks(blockId: string) {
   try {
+    if (!notion) {
+      console.warn('Notion client not initialized')
+      return []
+    }
     const response = await notion.blocks.children.list({
       block_id: blockId,
       page_size: 100,

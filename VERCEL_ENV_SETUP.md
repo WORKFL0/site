@@ -43,7 +43,7 @@ NEXT_PUBLIC_FB_PIXEL_ID
 Only if you want Notion to work:
 ```
 Name: NOTION_API_KEY
-Value: [Your Notion API Key]
+Value: [Get from your Notion integrations page]
 Environment: Production, Preview, Development
 
 Name: NOTION_BLOG_DATABASE_ID
