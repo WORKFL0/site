@@ -1,17 +1,42 @@
 'use client'
 
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
 import FlowchartQuestionnaire from '@/components/questionnaire/FlowchartQuestionnaire'
 import { motion } from 'framer-motion'
-import { useLanguage } from '@/context/LanguageContext'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function TevredenheidscheckPage() {
-  const { t } = useLanguage()
-  
   return (
     <>
-      <Header />
+      {/* Inline Header */}
+      <header className="fixed top-0 left-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <Link href="/" className="flex items-center space-x-3">
+              <Image
+                src="/images/logos/workflo-logo-yellow.png"
+                alt="Workflo"
+                width={40}
+                height={40}
+                className="rounded-lg"
+              />
+              <span className="text-xl font-bold text-gray-900">Workflo</span>
+            </Link>
+            <nav className="hidden md:flex items-center space-x-8">
+              <Link href="/" className="text-gray-600 hover:text-gray-900 transition-colors">
+                Home
+              </Link>
+              <Link href="/diensten" className="text-gray-600 hover:text-gray-900 transition-colors">
+                Diensten
+              </Link>
+              <Link href="/contact" className="text-gray-600 hover:text-gray-900 transition-colors">
+                Contact
+              </Link>
+            </nav>
+          </div>
+        </div>
+      </header>
+
       <main className="pt-20 min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-grid-gray-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
@@ -37,7 +62,7 @@ export default function TevredenheidscheckPage() {
                     transition={{ delay: 0.2 }}
                     className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4"
                   >
-                    {t('tevredenheidscheck.title')}
+                    IT-Dienstverlener Check
                   </motion.h1>
                   <motion.p
                     initial={{ opacity: 0, y: -20 }}
@@ -45,7 +70,7 @@ export default function TevredenheidscheckPage() {
                     transition={{ delay: 0.3 }}
                     className="text-lg sm:text-xl opacity-90"
                   >
-                    {t('tevredenheidscheck.subtitle')}
+                    Ontdek in 2 minuten of uw IT-partner écht voor u zorgt
                   </motion.p>
                   <motion.div
                     initial={{ opacity: 0 }}
@@ -53,7 +78,7 @@ export default function TevredenheidscheckPage() {
                     transition={{ delay: 0.4 }}
                     className="mt-4 text-sm"
                   >
-                    {t('tevredenheidscheck.guarantee')}
+                    Eerlijk advies • Geen verplichtingen • Direct resultaat
                   </motion.div>
                 </div>
 
@@ -66,7 +91,62 @@ export default function TevredenheidscheckPage() {
           </div>
         </div>
       </main>
-      <Footer />
+
+      {/* Inline Footer */}
+      <footer className="bg-gray-900 text-white">
+        <div className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="col-span-1 md:col-span-2">
+              <div className="flex items-center space-x-3 mb-4">
+                <Image
+                  src="/images/logos/workflo-logo-yellow.png"
+                  alt="Workflo"
+                  width={32}
+                  height={32}
+                  className="rounded-lg"
+                />
+                <span className="text-xl font-bold">Workflo</span>
+              </div>
+              <p className="text-gray-400 mb-4 max-w-md">
+                Wij zorgen ervoor dat uw IT altijd werkt, zodat u zich kunt concentreren op waar u goed in bent.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4">Diensten</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/diensten" className="hover:text-white transition-colors">IT Beheer</Link></li>
+                <li><Link href="/diensten" className="hover:text-white transition-colors">Cloud Oplossingen</Link></li>
+                <li><Link href="/diensten" className="hover:text-white transition-colors">Cybersecurity</Link></li>
+                <li><Link href="/diensten" className="hover:text-white transition-colors">IT Advies</Link></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4">Contact</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>+31 20 123 4567</li>
+                <li>info@workflo.nl</li>
+                <li>Amsterdam, Nederland</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">
+              © 2024 Workflo. Alle rechten voorbehouden.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
+                Privacy
+              </Link>
+              <Link href="/algemene-voorwaarden" className="text-gray-400 hover:text-white text-sm transition-colors">
+                Algemene Voorwaarden
+              </Link>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }
