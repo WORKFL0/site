@@ -10,6 +10,7 @@ import Footer from '@/components/layout/Footer'
 import MobileMenu from '@/components/layout/MobileMenu'
 import PricingCalculator from '@/components/PricingCalculator'
 import NewsFeed from '@/components/NewsFeed'
+import SafeErrorBoundary from '@/components/SafeErrorBoundary'
 import { useLanguage } from '@/context/LanguageContext'
 
 export default function Home() {
@@ -40,28 +41,67 @@ export default function Home() {
   const ySpring = useSpring(yRange, springConfig)
 
   useEffect(() => {
-    // Only run on client side
-    if (typeof window === 'undefined') return
+    // Wrap entire effect in error handling
+    const safeSetupScrollAnimation = () => {
+      try {
+        // Only run on client side
+        if (typeof window === 'undefined' || typeof document === 'undefined') {
+          console.warn('ScrollAnimation: Not in browser environment')
+          return
+        }
 
-    // Animate elements on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+        // Check if IntersectionObserver is supported
+        if (!('IntersectionObserver' in window)) {
+          console.warn('IntersectionObserver not supported')
+          return
+        }
+
+        // Animate elements on scroll
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          try {
+            entries.forEach(entry => {
+              if (entry.isIntersecting && entry.target) {
+                entry.target.classList.add('animate-in')
+              }
+            })
+          } catch (observerError) {
+            console.warn('Error in IntersectionObserver callback:', observerError)
+          }
+        }, observerOptions)
+
+        // Safely query and observe elements
+        try {
+          const elements = document.querySelectorAll('.fade-in-up')
+          elements.forEach(el => {
+            if (el) {
+              observer.observe(el)
+            }
+          })
+        } catch (queryError) {
+          console.warn('Error querying elements for animation:', queryError)
+        }
+
+        return () => {
+          try {
+            observer.disconnect()
+          } catch (disconnectError) {
+            console.warn('Error disconnecting observer:', disconnectError)
+          }
+        }
+      } catch (effectError) {
+        console.error('Error in scroll animation effect:', effectError)
+        return () => {} // Return no-op cleanup
+      }
     }
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in')
-        }
-      })
-    }, observerOptions)
-
-    document.querySelectorAll('.fade-in-up').forEach(el => {
-      observer.observe(el)
-    })
-
-    return () => observer.disconnect()
+    // Execute safely
+    const cleanup = safeSetupScrollAnimation()
+    return cleanup || (() => {})
   }, [])
 
   const services = [
@@ -1124,7 +1164,18 @@ export default function Home() {
       {/* Industry News Feed - Gray Background */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <NewsFeed maxItems={6} showDescription={true} />
+          <SafeErrorBoundary 
+            componentName="NewsFeed"
+            fallback={
+              <div className="text-center py-12">
+                <div className="text-gray-600">
+                  News feed temporarily unavailable. Please check back later.
+                </div>
+              </div>
+            }
+          >
+            <NewsFeed maxItems={6} showDescription={true} />
+          </SafeErrorBoundary>
         </div>
       </section>
 

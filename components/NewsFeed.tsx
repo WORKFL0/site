@@ -35,6 +35,9 @@ const NewsFeed = ({
         setLoading(true)
         setError(null)
         
+        // Add a small delay to prevent blocking the main thread
+        await new Promise(resolve => setTimeout(resolve, 100))
+        
         // Check if we're in browser environment
         if (typeof window === 'undefined') {
           console.warn('NewsFeed: Not in browser environment, skipping RSS fetch')
@@ -48,20 +51,27 @@ const NewsFeed = ({
         }, 15000)
 
         try {
+          // Create manual AbortController for better browser compatibility
+          const abortController = new AbortController()
+          const fetchTimeout = setTimeout(() => abortController.abort(), 10000)
+          
           // Fetch RSS feed via our API endpoint (handles CORS server-side)
           const response = await fetch('/api/rss-feed', {
             cache: 'no-store',
             headers: {
               'Accept': 'application/xml, text/xml, application/rss+xml'
             },
-            signal: AbortSignal.timeout(10000) // 10 second timeout for fetch
+            signal: abortController.signal // Use manual AbortController instead of AbortSignal.timeout
           }).catch(err => {
+            clearTimeout(fetchTimeout)
             console.error('RSS fetch network error:', err)
             if (err.name === 'AbortError') {
               throw new Error('RSS feed request timed out')
             }
             throw new Error('Network error fetching RSS feed')
           })
+          
+          clearTimeout(fetchTimeout)
           
           clearTimeout(timeoutId)
           
@@ -231,14 +241,23 @@ const NewsFeed = ({
       }
     }
 
-    // Add error boundary for the effect itself
-    try {
-      fetchRSSFeed()
-    } catch (effectErr) {
-      console.error('Error in NewsFeed useEffect:', effectErr)
-      setError('Failed to initialize news feed')
-      setLoading(false)
+    // Add error boundary for the effect itself and wrap in safe execution
+    const safeExecuteRSSFeed = async () => {
+      try {
+        await fetchRSSFeed()
+      } catch (effectErr) {
+        console.error('Error in NewsFeed useEffect:', effectErr)
+        setError('Failed to initialize news feed')
+        setLoading(false)
+      }
     }
+    
+    // Execute with additional safety
+    safeExecuteRSSFeed().catch((finalErr) => {
+      console.error('Final catch in NewsFeed:', finalErr)
+      setError('News feed temporarily unavailable')
+      setLoading(false)
+    })
   }, [maxItems])
 
   const formatDate = (dateString: string) => {

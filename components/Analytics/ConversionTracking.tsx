@@ -6,21 +6,37 @@ import { trackConversion, trackFormSubmission, trackPhoneClick, event } from './
 // Microsoft Clarity
 export function MicrosoftClarity() {
   useEffect(() => {
-    const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID
-    if (!clarityId) return
+    try {
+      // Only run in browser
+      if (typeof window === 'undefined' || typeof document === 'undefined') return
+      
+      const clarityId = process.env.NEXT_PUBLIC_CLARITY_ID
+      if (!clarityId) return
 
-    const script = document.createElement('script')
-    script.innerHTML = `
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "${clarityId}");
-    `
-    document.head.appendChild(script)
+      const script = document.createElement('script')
+      script.innerHTML = `
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "${clarityId}");
+      `
+      
+      if (document.head) {
+        document.head.appendChild(script)
+      }
 
-    return () => {
-      document.head.removeChild(script)
+      return () => {
+        try {
+          if (script.parentNode) {
+            document.head.removeChild(script)
+          }
+        } catch (e) {
+          console.warn('Failed to remove Clarity script:', e)
+        }
+      }
+    } catch (error) {
+      console.error('Error loading Microsoft Clarity:', error)
     }
   }, [])
 
@@ -30,26 +46,42 @@ export function MicrosoftClarity() {
 // Hotjar Tracking
 export function HotjarTracking() {
   useEffect(() => {
-    const hotjarId = process.env.NEXT_PUBLIC_HOTJAR_ID
-    const hotjarVersion = process.env.NEXT_PUBLIC_HOTJAR_VERSION || 6
-    
-    if (!hotjarId) return
+    try {
+      // Only run in browser
+      if (typeof window === 'undefined' || typeof document === 'undefined') return
+      
+      const hotjarId = process.env.NEXT_PUBLIC_HOTJAR_ID
+      const hotjarVersion = process.env.NEXT_PUBLIC_HOTJAR_VERSION || 6
+      
+      if (!hotjarId) return
 
-    const script = document.createElement('script')
-    script.innerHTML = `
-      (function(h,o,t,j,a,r){
-        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-        h._hjSettings={hjid:${hotjarId},hjsv:${hotjarVersion}};
-        a=o.getElementsByTagName('head')[0];
-        r=o.createElement('script');r.async=1;
-        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-        a.appendChild(r);
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    `
-    document.head.appendChild(script)
+      const script = document.createElement('script')
+      script.innerHTML = `
+        (function(h,o,t,j,a,r){
+          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+          h._hjSettings={hjid:${hotjarId},hjsv:${hotjarVersion}};
+          a=o.getElementsByTagName('head')[0];
+          r=o.createElement('script');r.async=1;
+          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+          a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+      `
+      
+      if (document.head) {
+        document.head.appendChild(script)
+      }
 
-    return () => {
-      document.head.removeChild(script)
+      return () => {
+        try {
+          if (script.parentNode) {
+            document.head.removeChild(script)
+          }
+        } catch (e) {
+          console.warn('Failed to remove Hotjar script:', e)
+        }
+      }
+    } catch (error) {
+      console.error('Error loading Hotjar:', error)
     }
   }, [])
 
@@ -239,51 +271,62 @@ export function useConversionTracking() {
 // Enhanced Link Attribution
 export function EnhancedLinkAttribution() {
   useEffect(() => {
-    // Track all link clicks
-    const handleLinkClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
-      const link = target.closest('a')
+    try {
+      // Only run in browser
+      if (typeof window === 'undefined' || typeof document === 'undefined') return
       
-      if (link) {
-        const href = link.getAttribute('href')
-        const text = link.textContent || ''
-        
-        // Track phone links
-        if (href?.startsWith('tel:')) {
-          trackPhoneClick(href.replace('tel:', ''))
-        }
-        
-        // Track email links
-        if (href?.startsWith('mailto:')) {
-          event({
-            action: 'click',
-            category: 'contact',
-            label: 'email'
-          })
-        }
-        
-        // Track external links
-        if (href?.startsWith('http') && !href.includes('workflo.it')) {
-          event({
-            action: 'outbound_click',
-            category: 'navigation',
-            label: href
-          })
-        }
-        
-        // Track CTA buttons
-        if (link.classList.contains('cta-button') || link.classList.contains('btn-primary')) {
-          event({
-            action: 'cta_click',
-            category: 'engagement',
-            label: text
-          })
+      // Track all link clicks
+      const handleLinkClick = (e: MouseEvent) => {
+        try {
+          const target = e.target as HTMLElement
+          const link = target.closest('a')
+          
+          if (link) {
+            const href = link.getAttribute('href')
+            const text = link.textContent || ''
+            
+            // Track phone links
+            if (href?.startsWith('tel:')) {
+              trackPhoneClick(href.replace('tel:', ''))
+            }
+            
+            // Track email links
+            if (href?.startsWith('mailto:')) {
+              event({
+                action: 'click',
+                category: 'contact',
+                label: 'email'
+              })
+            }
+            
+            // Track external links
+            if (href?.startsWith('http') && !href.includes('workflo.it')) {
+              event({
+                action: 'outbound_click',
+                category: 'navigation',
+                label: href
+              })
+            }
+            
+            // Track CTA buttons
+            if (link.classList.contains('cta-button') || link.classList.contains('btn-primary')) {
+              event({
+                action: 'cta_click',
+                category: 'engagement',
+                label: text
+              })
+            }
+          }
+        } catch (clickError) {
+          console.warn('Error tracking link click:', clickError)
         }
       }
-    }
 
-    document.addEventListener('click', handleLinkClick)
-    return () => document.removeEventListener('click', handleLinkClick)
+      document.addEventListener('click', handleLinkClick)
+      return () => document.removeEventListener('click', handleLinkClick)
+    } catch (error) {
+      console.error('Error setting up Enhanced Link Attribution:', error)
+    }
   }, [])
 
   return null
