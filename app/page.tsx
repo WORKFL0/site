@@ -24,7 +24,6 @@ import {
 } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
 import dynamic from 'next/dynamic'
-import NewsletterFormSafe from '../components/forms/NewsletterFormSafe'
 import DangerTape from '../components/DangerTape'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
@@ -38,6 +37,19 @@ const NewsTicker = dynamic(() => import('../components/NewsTicker'), {
 const HelloSection = dynamic(() => import('@/components/sections/HelloSection'), {
   ssr: false,
   loading: () => null
+})
+const NewsletterFormSafe = dynamic(() => import('../components/forms/NewsletterFormSafe'), {
+  ssr: false,
+  loading: () => (
+    <div className="p-8">
+      <div className="animate-pulse">
+        <div className="h-6 bg-gray-200 rounded w-1/3 mb-4"></div>
+        <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+        <div className="h-10 bg-gray-200 rounded mb-2"></div>
+        <div className="h-10 bg-gray-200 rounded"></div>
+      </div>
+    </div>
+  )
 })
 const HubSpotContactForm = dynamic(() => import('@/components/forms/HubSpotContactForm'), { 
   ssr: false,
