@@ -20,6 +20,8 @@ import {
   LockClosedIcon
 } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
+import NewsletterFormSafe from '../components/forms/NewsletterFormSafe'
+import NewsFeed from '../components/NewsFeed'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -101,6 +103,76 @@ export default function Home() {
       rating: 5
     }
   ]
+
+  const currentClients = [
+    'Aescap', 'Hunt Amsterdam', 'Rademakkers', '\'t idee! Tonko', 'DMC Makelaars', 
+    'van der Eerde hypotheken', 'Klaar', 'Dag en Nacht', 'Voice Industries', 
+    'Schulte en Lestrade', 'Duwtje', 'Highwood', 'Jager Notarissen', 'PR Mansion', 
+    'Podimo', 'Havas Media Network', 'Havas Lemz', 'Winix', 'DoctorFeelgood', 
+    'All Response Media', 'WorkStuff', 'Open Boek', 'Bijvoorkeur', 
+    'John Doornik Casting', 'Huisart Elings', 'BLC Financeview', 'Koschuch'
+  ]
+
+  const previousClients = [
+    'Leyden labs', 'Jump Retail', 'La Dress', 'Greenpeace', 'TBWA', 
+    'iO Digital', 'Daily Paper'
+  ]
+
+  // HubSpot Contact Form Component
+  const HubSpotContactForm = () => {
+    const [isLoaded, setIsLoaded] = useState(false)
+
+    useEffect(() => {
+      // Load HubSpot script
+      const script = document.createElement('script')
+      script.src = '//js-eu1.hsforms.net/forms/embed/v2.js'
+      script.charset = 'utf-8'
+      script.type = 'text/javascript'
+      script.async = true
+      script.defer = true
+      
+      script.onload = () => {
+        // Create form when script is loaded
+        if (window.hbspt) {
+          window.hbspt.forms.create({
+            region: "eu1",
+            portalId: "26510736",
+            formId: "acf3fe0b-c542-4fc2-aa14-f3cb2fc356c0",
+            target: '#hubspot-contact-form-container'
+          })
+        }
+        setIsLoaded(true)
+      }
+      
+      document.body.appendChild(script)
+      
+      return () => {
+        // Cleanup
+        if (document.body.contains(script)) {
+          document.body.removeChild(script)
+        }
+      }
+    }, [])
+
+    return (
+      <div className="bg-white rounded-lg p-6">
+        <h3 className="text-xl font-bold text-gray-900 mb-3">
+          Neem Contact Op
+        </h3>
+        <p className="text-gray-600 mb-4">
+          Klaar om uw IT-uitdagingen aan te pakken? Laat uw gegevens achter en we nemen binnen 24 uur contact op.
+        </p>
+        
+        <div id="hubspot-contact-form-container">
+          {!isLoaded && (
+            <div className="text-gray-500 text-sm">
+              Formulier wordt geladen...
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-white">
@@ -293,6 +365,96 @@ export default function Home() {
           </div>
         </section>
 
+        {/* News Feed Section */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Laatste IT & Security Nieuws
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Blijf op de hoogte van de laatste ontwikkelingen in de IT-wereld en cybersecurity trends.
+              </p>
+            </div>
+            <NewsFeed maxItems={6} showDescription={true} />
+          </div>
+        </section>
+
+        {/* Company Experience Section */}
+        <section className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Sector Ervaring Sinds 2015
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                We hebben uitgebreide ervaring met bedrijven uit verschillende sectoren
+              </p>
+            </div>
+
+            {/* Current Clients */}
+            <div className="mb-12">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+                Huidige Klanten
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                {currentClients.map((client, index) => (
+                  <div key={index} className="bg-white rounded-lg p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <BuildingOfficeIcon className="w-6 h-6 text-primary-600" />
+                      </div>
+                      <h4 className="text-sm font-semibold text-gray-900">{client}</h4>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Previous Clients */}
+            <div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+                Vorige Klanten
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {previousClients.map((client, index) => (
+                  <div key={index} className="bg-white rounded-lg p-4 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow opacity-75">
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center mx-auto mb-2">
+                        <BuildingOfficeIcon className="w-6 h-6 text-gray-600" />
+                      </div>
+                      <h4 className="text-sm font-semibold text-gray-600">{client}</h4>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter & Contact Forms Section */}
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                Blijf Verbonden
+              </h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Meld u aan voor onze nieuwsbrief of neem direct contact op voor een gesprek
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+              <div className="bg-gray-50 rounded-xl p-1">
+                <NewsletterFormSafe />
+              </div>
+              <div className="bg-gray-50 rounded-xl p-1">
+                <HubSpotContactForm />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section className="py-20 bg-primary-600">
           <div className="container mx-auto px-4 text-center">
@@ -406,4 +568,11 @@ export default function Home() {
       <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
     </div>
   )
+}
+
+// Add TypeScript declaration for HubSpot
+declare global {
+  interface Window {
+    hbspt: any
+  }
 }
