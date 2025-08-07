@@ -50,36 +50,37 @@ export function HotjarTracking() {
       // Only run in browser
       if (typeof window === 'undefined' || typeof document === 'undefined') return
       
-      const hotjarId = process.env.NEXT_PUBLIC_HOTJAR_ID
+      // Use the ID from todo.md (6486977) or environment variable
+      const hotjarId = process.env.NEXT_PUBLIC_HOTJAR_ID || '6486977'
       const hotjarVersion = process.env.NEXT_PUBLIC_HOTJAR_VERSION || 6
       
       if (!hotjarId) return
-
-      const script = document.createElement('script')
-      script.innerHTML = `
-        (function(h,o,t,j,a,r){
-          h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-          h._hjSettings={hjid:${hotjarId},hjsv:${hotjarVersion}};
-          a=o.getElementsByTagName('head')[0];
-          r=o.createElement('script');r.async=1;
-          r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-          a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-      `
       
-      if (document.head) {
-        document.head.appendChild(script)
-      }
-
-      return () => {
-        try {
-          if (script.parentNode) {
-            document.head.removeChild(script)
-          }
-        } catch (e) {
-          console.warn('Failed to remove Hotjar script:', e)
+      // Try to use the @hotjar/browser package first
+      import('@hotjar/browser').then((module) => {
+        const Hotjar = module.default
+        Hotjar.init(parseInt(hotjarId), hotjarVersion as number)
+        console.log('Hotjar initialized with @hotjar/browser package')
+      }).catch(() => {
+        // Fallback to manual script injection if package fails
+        console.log('Using fallback Hotjar script injection')
+        
+        const script = document.createElement('script')
+        script.innerHTML = `
+          (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:${hotjarId},hjsv:${hotjarVersion}};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+          })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        `
+        
+        if (document.head) {
+          document.head.appendChild(script)
         }
-      }
+      })
     } catch (error) {
       console.error('Error loading Hotjar:', error)
     }

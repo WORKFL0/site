@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@hotjar/browser": "^1.0.9",
     "@notionhq/client": "^4.0.1",
     "@sanity/client": "^6.15.0",
     "@sanity/icons": "^2.11.8",
