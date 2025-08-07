@@ -147,7 +147,7 @@ const Footer = () => {
               </a>
             </div>
             <div>
-              <span className="text-gray-500">{t('common.address')}:</span> Koivistokade 3, 1013AC Amsterdam
+              <span className="text-gray-500">{t('common.address')}:</span> Koivistokade 3, 1013 AC Amsterdam
             </div>
           </div>
         </div>

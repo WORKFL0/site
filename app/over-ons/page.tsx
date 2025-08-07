@@ -56,8 +56,20 @@ export default function OverOnsPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header with Warning Tape */}
-      <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
+      {/* Header with Danger Tape */}
+      <div className="relative h-3 bg-gradient-to-r from-red-500 via-yellow-400 to-red-500 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+        <div className="absolute inset-0 bg-repeating-diagonal opacity-30"
+             style={{
+               backgroundImage: `repeating-linear-gradient(
+                 45deg,
+                 transparent,
+                 transparent 10px,
+                 rgba(0,0,0,0.3) 10px,
+                 rgba(0,0,0,0.3) 20px
+               )`
+             }}></div>
+      </div>
       
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
@@ -239,7 +251,7 @@ export default function OverOnsPage() {
               <div className="space-y-2">
                 <div className="flex items-center">
                   <MapPinIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">Koivistokade 3, Amsterdam</span>
+                  <span className="text-sm">Koivistokade 3, 1013 AC Amsterdam</span>
                 </div>
                 <div className="flex items-center">
                   <PhoneIcon className="w-5 h-5 text-primary-600 mr-2" />
@@ -287,7 +299,20 @@ export default function OverOnsPage() {
       </footer>
 
       {/* Warning Tape Bottom */}
-      <div className="bg-gradient-to-r from-warning-yellow via-warning-black to-warning-yellow h-2"></div>
+      {/* Danger Tape Bottom */}
+      <div className="relative h-3 bg-gradient-to-r from-red-500 via-yellow-400 to-red-500 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
+        <div className="absolute inset-0 bg-repeating-diagonal opacity-30"
+             style={{
+               backgroundImage: `repeating-linear-gradient(
+                 45deg,
+                 transparent,
+                 transparent 10px,
+                 rgba(0,0,0,0.3) 10px,
+                 rgba(0,0,0,0.3) 20px
+               )`
+             }}></div>
+      </div>
     </div>
   )
 }

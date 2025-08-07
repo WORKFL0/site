@@ -212,13 +212,13 @@ export default function Home() {
     },
     {
       name: "Mas Samir",
-      role: "Cybersecurity Specialist",
+      role: "Junior Support Engineer",
       expertise: "Security Audits & Compliance",
       image: "/images/team/samir.jpg"
     },
     {
       name: "Marcello van den Berg",
-      role: "IT Support Manager",
+      role: "Junior Infrastructure Engineer",
       expertise: "24/7 Support & System Administration",
       image: "/images/team/marcello.jpg"
     }
@@ -613,7 +613,7 @@ export default function Home() {
                 IT Simpel Gemaakt. Echt Simpel.
               </h2>
               <p className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-8">
-                We weten dat je je bedrijf niet bent gestart om IT-expert te worden. Daarom hebben we alle technische jargon en ingewikkelde contracten weggelaten. Geen verwarrende termen, geen verborgen kosten, geen handleidingen van 200 pagina's.
+                U bent ondernemer, geen IT-expert. Wij zorgen ervoor dat uw technologie gewoon werkt, zonder technische jargon of ingewikkelde contracten. IT moet uw bedrijf laten groeien, niet frustreren. Daarom maken wij het zo eenvoudig als het bestellen van een pizza.
               </p>
               <div className="grid md:grid-cols-3 gap-8 mt-12">
                 <motion.div 
@@ -630,7 +630,7 @@ export default function Home() {
                     Één Duidelijke Prijs
                   </h3>
                   <p className="text-gray-600">
-                    Je weet precies wat je betaalt. Elke maand. Geen verrassingen.
+                    U weet precies wat u betaalt. Elke maand. Geen verrassingen.
                   </p>
                 </motion.div>
                 <motion.div 
@@ -647,7 +647,7 @@ export default function Home() {
                     Gewone Taal
                   </h3>
                   <p className="text-gray-600">
-                    We leggen alles uit in woorden die je echt begrijpt.
+                    Wij leggen alles uit in woorden die u echt begrijpt.
                   </p>
                 </motion.div>
                 <motion.div 
@@ -664,7 +664,7 @@ export default function Home() {
                     Het Werkt Gewoon
                   </h3>
                   <p className="text-gray-600">
-                    Je IT werkt. Jij kunt je op je bedrijf richten. Zo simpel is het.
+                    Uw IT werkt. U kunt zich op uw bedrijf richten. Zo simpel is het.
                   </p>
                 </motion.div>
               </div>
@@ -676,7 +676,7 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <p className="text-lg text-gray-700 italic">
-                  "Als je online een pizza kunt bestellen, kun je onze IT-diensten begrijpen. Dat is onze belofte."
+                  "Als u online een pizza kunt bestellen, kunt u onze IT-diensten begrijpen. Dat is onze belofte."
                 </p>
                 <p className="text-sm text-gray-600 mt-3 font-semibold">
                   — Florian, Oprichter Workflo
@@ -1514,7 +1514,7 @@ export default function Home() {
               <div className="space-y-2">
                 <div className="flex items-center">
                   <MapPinIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">Koivistokade 3, Amsterdam</span>
+                  <span className="text-sm">Koivistokade 3, 1013 AC Amsterdam</span>
                 </div>
                 <div className="flex items-center">
                   <PhoneIcon className="w-5 h-5 text-primary-600 mr-2" />
@@ -1572,6 +1572,15 @@ export default function Home() {
               <Link href="/cookies" className="text-gray-400 hover:text-primary-600 text-sm">
                 Cookie Policy
               </Link>
+              <a 
+                href="https://uptime.workflo.it/status/workflo" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 text-gray-400 hover:text-primary-600 text-sm"
+              >
+                <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                Uptime Status
+              </a>
             </div>
           </div>
         </div>

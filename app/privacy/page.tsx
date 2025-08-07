@@ -250,7 +250,7 @@ export default function PrivacyPolicy() {
               <div className="space-y-2">
                 <div className="flex items-center">
                   <MapPinIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">Koivistokade 3, Amsterdam</span>
+                  <span className="text-sm">Koivistokade 3, 1013 AC Amsterdam</span>
                 </div>
                 <div className="flex items-center">
                   <PhoneIcon className="w-5 h-5 text-primary-600 mr-2" />

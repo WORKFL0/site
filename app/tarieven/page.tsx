@@ -173,7 +173,7 @@ export default function PricingPage() {
                     
                     <div className="p-8">
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                      <p className="text-gray-600 mb-6">{pkg.description}</p>
+                      <p className="text-gray-800 mb-6">{pkg.description}</p>
                       
                       <div className="mb-6">
                         {pkg.monthlyPrice ? (
@@ -182,9 +182,9 @@ export default function PricingPage() {
                               <span className="text-4xl font-bold text-gray-900">
                                 €{billingPeriod === 'monthly' ? pkg.monthlyPrice : Math.floor(pkg.yearlyPrice / 12)}
                               </span>
-                              <span className="text-gray-600 ml-2">/maand</span>
+                              <span className="text-gray-800 ml-2">/maand</span>
                             </div>
-                            <p className="text-sm text-gray-500 mt-1">{pkg.perUnit}</p>
+                            <p className="text-sm text-gray-700 mt-1">{pkg.perUnit}</p>
                           </>
                         ) : (
                           <div className="text-3xl font-bold text-gray-900">{pkg.perUnit}</div>
@@ -195,13 +195,13 @@ export default function PricingPage() {
                         {pkg.features.map((feature, idx) => (
                           <li key={idx} className="flex items-start gap-2">
                             <CheckIcon className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-700">{feature}</span>
+                            <span className="text-gray-800">{feature}</span>
                           </li>
                         ))}
                       </ul>
                       
                       <div className="border-t pt-6">
-                        <p className="text-sm text-gray-600 italic mb-4">{pkg.targetAudience}</p>
+                        <p className="text-sm text-gray-800 italic mb-4">{pkg.targetAudience}</p>
                         <Link
                           href="/contact"
                           className={`block w-full text-center px-6 py-3 rounded-lg font-semibold transition-colors ${
@@ -321,7 +321,7 @@ export default function PricingPage() {
               <div className="space-y-2">
                 <div className="flex items-center">
                   <MapPinIcon className="w-5 h-5 text-primary-600 mr-2" />
-                  <span className="text-sm">Koivistokade 3, Amsterdam</span>
+                  <span className="text-sm">Koivistokade 3, 1013 AC Amsterdam</span>
                 </div>
                 <div className="flex items-center">
                   <PhoneIcon className="w-5 h-5 text-primary-600 mr-2" />
