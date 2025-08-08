@@ -66,7 +66,7 @@ export default function HomeComplete() {
   // Logo carousel rotation
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentLogoSet((prev) => (prev + 1) % 4)
+      setCurrentLogoSet((prev) => (prev + 1) % 8)
     }, 5000)
     return () => clearInterval(interval)
   }, [])
@@ -179,6 +179,30 @@ export default function HomeComplete() {
       { name: 'BLC FinanceView', src: '/images/logos/blc-financeview.png' },
       { name: 'Greenpeace', src: '/images/logos/greenpeace.png' },
       { name: 'JUMP', src: '/images/logos/jump.jpg' }
+    ],
+    [
+      { name: 'Klaar', src: '/images/logos/klaar.jpg' },
+      { name: 'Dag en Nacht', src: '/images/logos/dagennacht.png' },
+      { name: 'Voice Industries', src: '/images/logos/voice-industries.jpeg' },
+      { name: 'Schulte en Lestrade', src: '/images/logos/schulte-lestraden.png' }
+    ],
+    [
+      { name: 'Duwtje', src: '/images/logos/duwtje.png' },
+      { name: 'Highwood', src: '/images/logos/highwood.png' },
+      { name: 'Jager Notarissen', src: '/images/logos/jager-notarissen.png' },
+      { name: 'PR Mansion', src: '/images/logos/prmansion.png' }
+    ],
+    [
+      { name: 'Winix', src: '/images/logos/winix.jpg' },
+      { name: 'All Response Media', src: '/images/logos/all-response-media.png' },
+      { name: 'WorkStuff', src: '/images/logos/workstuff.jpg' },
+      { name: 'Open Boek', src: '/images/logos/open-boek.png' }
+    ],
+    [
+      { name: 'Bijvoorkeur', src: '/images/logos/bijvoorkeur.jpg' },
+      { name: 'Huisarts Elings', src: '/images/logos/hap-elings.png' },
+      { name: 'Koschuch', src: '/images/logos/koschuch.png' },
+      { name: 'La Dress', src: '/images/logos/ladress.png' }
     ]
   ]
 
@@ -386,6 +410,57 @@ export default function HomeComplete() {
                   <div className="text-3xl font-bold text-gray-900">&lt; 15 min</div>
                   <div className="text-gray-600">Response tijd</div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Simplicity Proposition Section */}
+        <section className="py-16 bg-white relative overflow-hidden">
+          {/* Subtle animated background */}
+          <div className="absolute inset-0 opacity-5">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="/videos/Workflo-code-animatie-3.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8 md:p-12 shadow-xl border-2 border-yellow-200 animate-fadeInUp">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                  🎯 Onze Filosofie: IT Moet Simpel Zijn
+                </h2>
+                <p className="text-lg md:text-xl text-gray-800 leading-relaxed mb-6">
+                  Bij Workflo geloven we dat IT geen hoofdpijn moet veroorzaken. Daarom maken we alles 
+                  <strong className="text-yellow-600"> zo simpel mogelijk</strong>. Geen technisch jargon, 
+                  geen ingewikkelde contracten, geen verborgen kosten.
+                </p>
+                <div className="grid md:grid-cols-3 gap-6 mt-8">
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div className="text-3xl mb-3 animate-bounce">🤝</div>
+                    <h3 className="font-bold text-gray-900 mb-2">Menselijke Taal</h3>
+                    <p className="text-gray-700">We leggen alles uit in gewoon Nederlands, geen IT-abracadabra</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div className="text-3xl mb-3 animate-bounce" style={{ animationDelay: '0.2s' }}>💰</div>
+                    <h3 className="font-bold text-gray-900 mb-2">Vaste Prijzen</h3>
+                    <p className="text-gray-700">U weet precies waar u aan toe bent, geen verrassingen</p>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div className="text-3xl mb-3 animate-bounce" style={{ animationDelay: '0.4s' }}>⚡</div>
+                    <h3 className="font-bold text-gray-900 mb-2">Direct Resultaat</h3>
+                    <p className="text-gray-700">Wij lossen problemen op, geen eindloze meetings</p>
+                  </div>
+                </div>
+                <p className="text-lg text-gray-800 mt-8 font-semibold italic">
+                  "Zo spreken we mensen aan die helemaal geen verstand of interesse hebben in IT, 
+                  maar wel gewoon willen dat het werkt."
+                </p>
               </div>
             </div>
           </div>
