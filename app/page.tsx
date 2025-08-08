@@ -22,8 +22,7 @@ import {
 } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
 
-// Import animations CSS
-import '../styles/animations.css'
+// Animations are now inline in the component for reliability
 
 // Safe Static Components (no dynamic imports!)
 import StaticHeader from '@/components/StaticHeader'
@@ -487,6 +486,129 @@ export default function HomeEnhancedSafe() {
 
       <StaticFooter />
       <StaticDangerTape />
+      
+      {/* Inline CSS animations for reliability */}
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes expand {
+          from {
+            transform: scaleX(0);
+          }
+          to {
+            transform: scaleX(1);
+          }
+        }
+
+        @keyframes rotate {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
+          }
+        }
+
+        .animate-fadeIn {
+          animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .animate-fadeInUp {
+          opacity: 0;
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .animate-fadeInDown {
+          opacity: 0;
+          animation: fadeInDown 0.6s ease-out forwards;
+        }
+
+        .animate-expand {
+          animation: expand 0.8s ease-out 0.5s forwards;
+          transform-origin: left;
+        }
+
+        .animate-rotate {
+          animation: rotate 20s linear infinite;
+        }
+
+        .animate-pulse {
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .hover-lift {
+          transition: all 0.3s ease;
+        }
+
+        .hover-lift:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .hover-grow {
+          transition: transform 0.3s ease;
+        }
+
+        .hover-grow:hover {
+          transform: scale(1.05);
+        }
+
+        .service-card {
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover {
+          transform: translateY(-8px) scale(1.02);
+          box-shadow: 0 20px 40px rgba(251, 191, 36, 0.2);
+        }
+
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.2s; }
+        .stagger-3 { animation-delay: 0.3s; }
+        .stagger-4 { animation-delay: 0.4s; }
+        .stagger-5 { animation-delay: 0.5s; }
+        .stagger-6 { animation-delay: 0.6s; }
+      `}</style>
     </div>
   )
 }
