@@ -159,12 +159,11 @@ export default function HomeEnhanced() {
 
   // Service rotation
   useEffect(() => {
-    if (!mounted) return
     const interval = setInterval(() => {
       setActiveService((prev) => (prev + 1) % 4)
     }, 5000)
     return () => clearInterval(interval)
-  }, [mounted])
+  }, [])
 
   const services = [
     {
@@ -245,16 +244,8 @@ export default function HomeEnhanced() {
     }
   ]
 
-  if (!mounted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Workflo</h1>
-          <p className="text-gray-600">Loading...</p>
-        </div>
-      </div>
-    )
-  }
+  // Remove the mounted gate - show content immediately with progressive enhancement
+  const showContent = true
 
   return (
     <div className="min-h-screen bg-white">
@@ -277,7 +268,7 @@ export default function HomeEnhanced() {
           <div className="container mx-auto px-4 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               className="text-center max-w-5xl mx-auto"
             >
@@ -302,7 +293,7 @@ export default function HomeEnhanced() {
                   <motion.div
                     className="absolute -bottom-2 left-0 right-0 h-3 bg-yellow-400 -z-10"
                     initial={{ scaleX: 0 }}
-                    animate={heroInView ? { scaleX: 1 } : {}}
+                    animate={{ scaleX: 1 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
                   />
                 </span>
@@ -337,7 +328,7 @@ export default function HomeEnhanced() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.5 }}
-                  animate={heroInView ? { opacity: 1, scale: 1 } : {}}
+                  animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                   className="text-center"
                 >
@@ -346,7 +337,7 @@ export default function HomeEnhanced() {
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.5 }}
-                  animate={heroInView ? { opacity: 1, scale: 1 } : {}}
+                  animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.3 }}
                   className="text-center"
                 >
@@ -355,7 +346,7 @@ export default function HomeEnhanced() {
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, scale: 0.5 }}
-                  animate={heroInView ? { opacity: 1, scale: 1 } : {}}
+                  animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                   className="text-center"
                 >
@@ -375,8 +366,8 @@ export default function HomeEnhanced() {
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
               className="text-center mb-12"
             >
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
@@ -392,8 +383,8 @@ export default function HomeEnhanced() {
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={servicesInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                   className={`bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all cursor-pointer ${
                     activeService === index ? 'ring-2 ring-yellow-400 transform scale-105' : ''
                   }`}
@@ -442,8 +433,8 @@ export default function HomeEnhanced() {
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={teamInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
               className="text-center mb-12"
             >
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
@@ -459,8 +450,8 @@ export default function HomeEnhanced() {
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.9 }}
-                  animate={teamInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 1.4 + index * 0.1 }}
                   className="text-center"
                 >
                   <div className="relative w-48 h-48 mx-auto mb-4 rounded-full overflow-hidden bg-gray-200">
