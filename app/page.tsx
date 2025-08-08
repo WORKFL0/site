@@ -318,8 +318,8 @@ export default function HomeOriginalFixed() {
           </div>
         </section>
 
-        {/* Apple-inspired Hello Section */}
-        <HelloSection />
+        {/* Apple-inspired Hello Section - TEMPORARILY DISABLED FOR DEBUGGING */}
+        {/* <HelloSection /> */}
 
         {/* Services Section */}
         <section className="py-20 bg-gray-50">
@@ -454,8 +454,8 @@ export default function HomeOriginalFixed() {
           </div>
         </section>
 
-        {/* Newsletter & Contact */}
-        <section className="py-20">
+        {/* Newsletter & Contact - TEMPORARILY DISABLED FOR DEBUGGING */}
+        {/* <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
               <div className="bg-white rounded-2xl shadow-xl border border-gray-200">
@@ -466,10 +466,10 @@ export default function HomeOriginalFixed() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
-        {/* News Feed */}
-        <NewsFeed />
+        {/* News Feed - TEMPORARILY DISABLED FOR DEBUGGING */}
+        {/* <NewsFeed /> */}
 
         {/* Final CTA */}
         <section className="py-20 bg-black text-white">
