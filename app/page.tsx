@@ -238,7 +238,7 @@ export default function HomeOriginalFixed() {
       
       <Header />
       
-      {/* <NewsTicker /> */}
+      <NewsTicker />
 
       <main>
         {/* Hero Section - NO FRAMER MOTION, pure CSS animations */}
