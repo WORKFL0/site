@@ -1,9 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import DangerTape from '@/components/DangerTape'
+// import Header from '@/components/layout/Header' // REPLACED
+import StaticHeader from '@/components/StaticHeader'
+// import Footer from '@/components/layout/Footer' // REPLACED
+import StaticFooter from '@/components/StaticFooter'
+// import DangerTape from '@/components/DangerTape' // REPLACED
+import StaticDangerTape from '@/components/StaticDangerTape'
 import Button from '@/components/ui/Button'
 import { useState } from 'react'
 import { 
@@ -114,8 +117,8 @@ export default function ServicesPage() {
 
   return (
     <>
-      <DangerTape height="h-3" showText={false} />
-      <Header />
+      <StaticDangerTape />
+      <StaticHeader />
       <main className="pt-20">
         {/* Hero Section - Problem First */}
         <section className="relative py-20 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
@@ -291,8 +294,8 @@ export default function ServicesPage() {
           </div>
         </section>
       </main>
-      <Footer />
-      <DangerTape height="h-3" showText={false} />
+      <StaticFooter />
+      <StaticDangerTape />
     </>
   )
 }

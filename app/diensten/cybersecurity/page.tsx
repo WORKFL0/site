@@ -1,15 +1,18 @@
 'use client'
 
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import DangerTape from '@/components/DangerTape'
+// import Header from '@/components/layout/Header' // REPLACED
+import StaticHeader from '@/components/StaticHeader'
+// import Footer from '@/components/layout/Footer' // REPLACED
+import StaticFooter from '@/components/StaticFooter'
+// import DangerTape from '@/components/DangerTape' // REPLACED
+import StaticDangerTape from '@/components/StaticDangerTape'
 
 export default function CybersecurityPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <DangerTape height="h-3" showText={false} />
+      <StaticDangerTape />
       {/* Header */}
-      <Header />
+      <StaticHeader />
 
       <main>
         {/* Hero Section */}
@@ -236,8 +239,8 @@ export default function CybersecurityPage() {
       </main>
 
       {/* Footer */}
-      <Footer />
-      <DangerTape height="h-3" showText={false} />
+      <StaticFooter />
+      <StaticDangerTape />
     </div>
   )
 }

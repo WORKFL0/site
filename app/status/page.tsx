@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { PhoneIcon, EnvelopeIcon, MapPinIcon } from '@heroicons/react/24/outline'
-import DangerTape from '@/components/DangerTape'
+// import DangerTape from '@/components/DangerTape' // REPLACED
+import StaticDangerTape from '@/components/StaticDangerTape'
 
 export default function StatusPage() {
   const [mounted, setMounted] = useState(false)
@@ -27,7 +28,7 @@ export default function StatusPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header with Danger Tape */}
-      <DangerTape height="h-3" showText={false} />
+      <StaticDangerTape />
       
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">
@@ -299,7 +300,7 @@ export default function StatusPage() {
       </footer>
 
       {/* Danger Tape Bottom */}
-      <DangerTape height="h-3" showText={false} />
+      <StaticDangerTape />
     </div>
   )
 }

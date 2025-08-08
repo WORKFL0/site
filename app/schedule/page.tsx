@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+// import Header from '@/components/layout/Header' // REPLACED
+import StaticHeader from '@/components/StaticHeader'
+// import Footer from '@/components/layout/Footer' // REPLACED
+import StaticFooter from '@/components/StaticFooter'
 import { useLanguage } from '@/context/LanguageContext'
 
 export default function SchedulePage() {
@@ -22,7 +24,7 @@ export default function SchedulePage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <StaticHeader />
       
       <main className="pt-20">
         {/* Hero Section */}
@@ -206,7 +208,7 @@ export default function SchedulePage() {
         </section>
       </main>
 
-      <Footer />
+      <StaticFooter />
     </div>
   )
 }

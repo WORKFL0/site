@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-import DangerTape from '@/components/DangerTape'
+// import DangerTape from '@/components/DangerTape' // REPLACED
+import StaticDangerTape from '@/components/StaticDangerTape'
 
 interface FAQItem {
   id: string
@@ -168,7 +169,7 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <DangerTape height="h-3" showText={false} />
+      <StaticDangerTape />
       <InlineHeader />
 
       <main className="py-20">
@@ -366,7 +367,7 @@ export default function FAQPage() {
       </main>
 
       <InlineFooter />
-      <DangerTape height="h-3" showText={false} />
+      <StaticDangerTape />
     </div>
   )
 }

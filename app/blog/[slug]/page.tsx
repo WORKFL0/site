@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { notFound } from 'next/navigation'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+// import Header from '@/components/layout/Header' // REPLACED
+import StaticHeader from '@/components/StaticHeader'
+// import Footer from '@/components/layout/Footer' // REPLACED
+import StaticFooter from '@/components/StaticFooter'
 import BlogPost from '@/components/blog/BlogPost'
 import { getBlogPost, getBlogPosts, BlogPost as BlogPostType } from '@/lib/notion'
 
@@ -35,7 +37,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
   if (loading) {
     return (
       <>
-        <Header />
+        <StaticHeader />
         <main className="pt-20 min-h-screen bg-white">
           <div className="container mx-auto px-4 py-12">
             <div className="text-center">
@@ -44,7 +46,7 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </div>
         </main>
-        <Footer />
+        <StaticFooter />
       </>
     )
   }
@@ -55,11 +57,11 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <>
-      <Header />
+      <StaticHeader />
       <main className="pt-20 min-h-screen bg-white">
         <BlogPost post={post} relatedPosts={relatedPosts} />
       </main>
-      <Footer />
+      <StaticFooter />
     </>
   )
 }

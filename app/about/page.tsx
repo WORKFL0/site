@@ -1,8 +1,11 @@
 'use client'
 
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import DangerTape from '@/components/DangerTape'
+// import Header from '@/components/layout/Header' // REPLACED
+import StaticHeader from '@/components/StaticHeader'
+// import Footer from '@/components/layout/Footer' // REPLACED
+import StaticFooter from '@/components/StaticFooter'
+// import DangerTape from '@/components/DangerTape' // REPLACED
+import StaticDangerTape from '@/components/StaticDangerTape'
 import { useLanguage } from '@/context/LanguageContext'
 
 export default function AboutPage() {
@@ -10,8 +13,8 @@ export default function AboutPage() {
   
   return (
     <div className="min-h-screen bg-white">
-      <DangerTape height="h-3" showText={false} />
-      <Header />
+      <StaticDangerTape />
+      <StaticHeader />
 
       <main className="py-20">
         {/* Hero Section - Dark with Yellow Accents */}
@@ -221,8 +224,8 @@ export default function AboutPage() {
         </section>
       </main>
 
-      <Footer />
-      <DangerTape height="h-3" showText={false} />
+      <StaticFooter />
+      <StaticDangerTape />
     </div>
   )
 }

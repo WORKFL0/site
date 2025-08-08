@@ -1,8 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+// import Header from '@/components/layout/Header' // REPLACED
+import StaticHeader from '@/components/StaticHeader'
+// import Footer from '@/components/layout/Footer' // REPLACED
+import StaticFooter from '@/components/StaticFooter'
 
 export default function NetworkScanPage() {
   const [formData, setFormData] = useState({
@@ -40,7 +42,7 @@ export default function NetworkScanPage() {
   if (isSubmitted) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header />
+        <StaticHeader />
         <main className="pt-20">
           <div className="container mx-auto px-4 py-16 text-center">
             <div className="max-w-2xl mx-auto">
@@ -81,14 +83,14 @@ export default function NetworkScanPage() {
             </div>
           </div>
         </main>
-        <Footer />
+        <StaticFooter />
       </div>
     )
   }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <StaticHeader />
       
       <main className="pt-20">
         {/* Hero Section */}
@@ -343,7 +345,7 @@ export default function NetworkScanPage() {
         </section>
       </main>
 
-      <Footer />
+      <StaticFooter />
     </div>
   )
 }

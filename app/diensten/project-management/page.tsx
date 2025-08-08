@@ -1,13 +1,15 @@
 'use client'
 
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+// import Header from '@/components/layout/Header' // REPLACED
+import StaticHeader from '@/components/StaticHeader'
+// import Footer from '@/components/layout/Footer' // REPLACED
+import StaticFooter from '@/components/StaticFooter'
 
 export default function ProjectManagementPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <Header />
+      <StaticHeader />
 
       <main>
         {/* Hero Section */}
@@ -365,7 +367,7 @@ export default function ProjectManagementPage() {
       </main>
 
       {/* Footer */}
-      <Footer />
+      <StaticFooter />
     </div>
   )
 }

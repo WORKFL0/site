@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import DangerTape from '@/components/DangerTape'
+// import DangerTape from '@/components/DangerTape' // REPLACED
+import StaticDangerTape from '@/components/StaticDangerTape'
 
 // Inline Header component
 function InlineHeader() {
@@ -133,7 +134,7 @@ export default function CaseStudiesPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <DangerTape height="h-3" showText={false} />
+      <StaticDangerTape />
       <InlineHeader />
       
       <main className="pt-24 pb-16">
@@ -295,7 +296,7 @@ export default function CaseStudiesPage() {
       </main>
 
       <InlineFooter />
-      <DangerTape height="h-3" showText={false} />
+      <StaticDangerTape />
     </div>
   )
 }

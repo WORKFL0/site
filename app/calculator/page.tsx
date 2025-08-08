@@ -1,7 +1,9 @@
 'use client'
 
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+// import Header from '@/components/layout/Header' // REPLACED
+import StaticHeader from '@/components/StaticHeader'
+// import Footer from '@/components/layout/Footer' // REPLACED
+import StaticFooter from '@/components/StaticFooter'
 import PricingCalculator from '@/components/PricingCalculator'
 import { useLanguage } from '@/context/LanguageContext'
 
@@ -10,7 +12,7 @@ export default function CalculatorPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <StaticHeader />
       
       <main className="pt-24 pb-16">
         {/* Hero Section */}
@@ -126,7 +128,7 @@ export default function CalculatorPage() {
         </section>
       </main>
 
-      <Footer />
+      <StaticFooter />
     </div>
   )
 }

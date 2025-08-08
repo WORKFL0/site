@@ -4,17 +4,20 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { PhoneIcon, EnvelopeIcon, MapPinIcon, CheckIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
-import DangerTape from '@/components/DangerTape'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+// import DangerTape from '@/components/DangerTape' // REPLACED
+import StaticDangerTape from '@/components/StaticDangerTape'
+// import Header from '@/components/layout/Header' // REPLACED
+import StaticHeader from '@/components/StaticHeader'
+// import Footer from '@/components/layout/Footer' // REPLACED
+import StaticFooter from '@/components/StaticFooter'
 
 export default function DienstenPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header with Warning Tape */}
-      <DangerTape height="h-3" showText={false} />
+      <StaticDangerTape />
       
-      <Header />
+      <StaticHeader />
 
       <main className="pt-8 pb-16">
         {/* Hero Section - Simple & Clear */}
@@ -281,10 +284,10 @@ export default function DienstenPage() {
       </main>
 
       {/* Footer */}
-      <Footer />
+      <StaticFooter />
 
       {/* Warning Tape Bottom */}
-      <DangerTape height="h-3" showText={false} />
+      <StaticDangerTape />
     </div>
   )
 }

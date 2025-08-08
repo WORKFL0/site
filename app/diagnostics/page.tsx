@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import DangerTape from '@/components/DangerTape'
+// import DangerTape from '@/components/DangerTape' // REPLACED
+import StaticDangerTape from '@/components/StaticDangerTape'
 
 export default function DiagnosticsPage() {
   const [diagnostics, setDiagnostics] = useState<any>({})
@@ -127,7 +128,7 @@ export default function DiagnosticsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <DangerTape height="h-3" showText={true} />
+      <StaticDangerTape />
       
       <header className="bg-white shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4">

@@ -1,7 +1,9 @@
 'use client'
 
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+// import Header from '@/components/layout/Header' // REPLACED
+import StaticHeader from '@/components/StaticHeader'
+// import Footer from '@/components/layout/Footer' // REPLACED
+import StaticFooter from '@/components/StaticFooter'
 import ITHealthCheck from '@/components/questionnaire/ITHealthCheck'
 import { motion } from 'framer-motion'
 import { ShieldCheckIcon, ChartBarIcon, ClipboardDocumentCheckIcon } from '@heroicons/react/24/outline'
@@ -9,7 +11,7 @@ import { ShieldCheckIcon, ChartBarIcon, ClipboardDocumentCheckIcon } from '@hero
 export default function ITHealthCheckPage() {
   return (
     <>
-      <Header />
+      <StaticHeader />
       <main className="pt-20 min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-grid-gray-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
@@ -128,7 +130,7 @@ export default function ITHealthCheckPage() {
           </div>
         </div>
       </main>
-      <Footer />
+      <StaticFooter />
     </>
   )
 }

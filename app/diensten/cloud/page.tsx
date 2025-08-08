@@ -1,15 +1,20 @@
 'use client'
 
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
-import DangerTape from '@/components/DangerTape'
+// OLD IMPORTS CAUSING CRASHES - REPLACED WITH STATIC VERSIONS
+// import Header from '@/components/layout/Header'
+// import Footer from '@/components/layout/Footer'
+// import DangerTape from '@/components/DangerTape'
+
+import StaticHeader from '@/components/StaticHeader'
+import StaticFooter from '@/components/StaticFooter'
+import StaticDangerTape from '@/components/StaticDangerTape'
 
 export default function CloudServicesPage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      <DangerTape height="h-3" showText={false} />
+      <StaticDangerTape />
       {/* Header */}
-      <Header />
+      <StaticHeader />
 
       <main>
         {/* Hero Section */}
@@ -295,8 +300,8 @@ export default function CloudServicesPage() {
       </main>
 
       {/* Footer */}
-      <Footer />
-      <DangerTape height="h-3" showText={false} />
+      <StaticFooter />
+      <StaticDangerTape />
     </div>
   )
 }
