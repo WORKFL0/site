@@ -236,7 +236,7 @@ export default function HomeOriginalFixed() {
     <div className="min-h-screen bg-white">
       <DangerTape />
       
-      {/* <Header /> */}
+      <Header />
       
       {/* <NewsTicker /> */}
 
