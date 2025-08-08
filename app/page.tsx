@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic' // DISABLED - causing issues
 import { 
   ChevronRightIcon, 
   CheckCircleIcon,
@@ -23,76 +23,8 @@ import {
 } from '@heroicons/react/24/outline'
 import { StarIcon } from '@heroicons/react/24/solid'
 
-// Import components with failsafe loading
-const DangerTape = dynamic(() => import('../components/DangerTape'), {
-  ssr: false,
-  loading: () => <div className="h-3 bg-yellow-400"></div>
-})
-
-const Header = dynamic(() => import('@/components/layout/Header'), {
-  ssr: false,
-  loading: () => (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-20">
-          <Link href="/" className="text-2xl font-bold">Workflo</Link>
-          <nav className="hidden md:flex space-x-8">
-            <Link href="/diensten" className="text-gray-700">Services</Link>
-            <Link href="/contact" className="text-gray-700">Contact</Link>
-          </nav>
-        </div>
-      </div>
-    </header>
-  )
-})
-
-const Footer = dynamic(() => import('@/components/layout/Footer'), {
-  ssr: false,
-  loading: () => (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="container mx-auto px-4 text-center">
-        <p>&copy; 2025 Workflo B.V. All rights reserved.</p>
-      </div>
-    </footer>
-  )
-})
-
-// Optional components - if they fail, site still works
-const NewsTicker = dynamic(() => import('../components/NewsTicker'), { 
-  ssr: false,
-  loading: () => null
-})
-
-const HelloSection = dynamic(() => import('@/components/sections/HelloSection'), {
-  ssr: false,
-  loading: () => null
-})
-
-const NewsletterFormSafe = dynamic(() => import('../components/forms/NewsletterFormSafe'), {
-  ssr: false,
-  loading: () => (
-    <div className="p-8 text-center">
-      <h3 className="text-xl font-bold mb-4">Stay Updated</h3>
-      <p className="text-gray-600">Newsletter coming soon!</p>
-    </div>
-  )
-})
-
-const HubSpotContactForm = dynamic(() => import('@/components/forms/HubSpotContactForm'), { 
-  ssr: false,
-  loading: () => (
-    <div className="bg-white rounded-2xl p-8 shadow-lg">
-      <h3 className="text-2xl font-bold mb-4">Contact Us</h3>
-      <p className="text-gray-600 mb-4">Loading contact form...</p>
-      <a href="/contact" className="text-yellow-600 hover:underline">Go to contact page →</a>
-    </div>
-  )
-})
-
-const NewsFeed = dynamic(() => import('../components/NewsFeed'), {
-  ssr: false,
-  loading: () => null
-})
+// ALL DYNAMIC IMPORTS REMOVED - They were causing production crashes
+// Components are now rendered statically inline where needed
 
 // Failsafe translation function
 const safeTranslate = (key: string): string => {
@@ -234,11 +166,27 @@ export default function HomeOriginalFixed() {
   // NO MOUNTED CHECK - Show content immediately
   return (
     <div className="min-h-screen bg-white">
-      <DangerTape />
+      {/* ALL DYNAMIC COMPONENTS DISABLED FOR STABILITY */}
+      {/* <DangerTape /> */}
+      {/* <Header /> */}
+      {/* <NewsTicker /> */}
       
-      <Header />
-      
-      <NewsTicker />
+      {/* Static header replacement */}
+      <header className="bg-white shadow-sm sticky top-0 z-50">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center h-20">
+            <Link href="/" className="text-2xl font-bold text-gray-900">Workflo</Link>
+            <nav className="hidden md:flex space-x-8">
+              <Link href="/diensten" className="text-gray-700 hover:text-yellow-600 transition-colors">Diensten</Link>
+              <Link href="/over-ons" className="text-gray-700 hover:text-yellow-600 transition-colors">Over Ons</Link>
+              <Link href="/contact" className="text-gray-700 hover:text-yellow-600 transition-colors">Contact</Link>
+            </nav>
+            <Link href="/contact" className="md:hidden text-gray-700">
+              <PhoneIcon className="w-6 h-6" />
+            </Link>
+          </div>
+        </div>
+      </header>
 
       <main>
         {/* Hero Section - NO FRAMER MOTION, pure CSS animations */}
@@ -498,9 +446,46 @@ export default function HomeOriginalFixed() {
         </section>
       </main>
 
-      <Footer />
+      {/* <Footer /> */}
+      {/* <DangerTape /> */}
       
-      <DangerTape />
+      {/* Static footer replacement */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Workflo</h3>
+              <p className="text-gray-400">De IT-Partner die Écht Levert</p>
+            </div>
+            <div>
+              <h4 className="font-bold mb-3">Diensten</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/diensten/managed-it" className="hover:text-yellow-400">Managed IT</Link></li>
+                <li><Link href="/diensten/cybersecurity" className="hover:text-yellow-400">Cybersecurity</Link></li>
+                <li><Link href="/diensten/cloud" className="hover:text-yellow-400">Cloud</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-3">Contact</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>020-30 80 465</li>
+                <li>info@workflo.it</li>
+                <li>Amsterdam, NL</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-3">Legal</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><Link href="/privacy" className="hover:text-yellow-400">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="hover:text-yellow-400">Terms</Link></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 Workflo B.V. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
 
       {/* Add CSS animations */}
       <style jsx global>{`
