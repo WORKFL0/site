@@ -178,8 +178,8 @@ export default function PricingPage() {
                     )}
                     
                     <div className="p-8">
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                      <p className="text-gray-800 mb-6">{pkg.description}</p>
+                      <h3 className="text-2xl font-bold text-black mb-2">{pkg.name}</h3>
+                      <p className="text-gray-900 font-medium mb-6">{pkg.description}</p>
                       
                       <div className="mb-6">
                         {pkg.monthlyPrice ? (
@@ -188,9 +188,9 @@ export default function PricingPage() {
                               <span className="text-4xl font-bold text-gray-900">
                                 €{billingPeriod === 'monthly' ? pkg.monthlyPrice : Math.floor(pkg.yearlyPrice / 12)}
                               </span>
-                              <span className="text-gray-800 ml-2">/maand</span>
+                              <span className="text-black ml-2">/maand</span>
                             </div>
-                            <p className="text-sm text-gray-700 mt-1">{pkg.perUnit}</p>
+                            <p className="text-sm text-gray-900 font-medium mt-1">{pkg.perUnit}</p>
                           </>
                         ) : (
                           <div className="text-3xl font-bold text-gray-900">{pkg.perUnit}</div>
@@ -201,13 +201,13 @@ export default function PricingPage() {
                         {pkg.features.map((feature, idx) => (
                           <li key={idx} className="flex items-start gap-2">
                             <CheckIcon className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-800">{feature}</span>
+                            <span className="text-gray-900 font-medium">{feature}</span>
                           </li>
                         ))}
                       </ul>
                       
                       <div className="border-t pt-6">
-                        <p className="text-sm text-gray-800 italic mb-4">{pkg.targetAudience}</p>
+                        <p className="text-sm text-black font-semibold italic mb-4">{pkg.targetAudience}</p>
                         <Link
                           href="/contact"
                           className={`block w-full text-center px-6 py-3 rounded-lg font-semibold transition-colors ${
@@ -231,11 +231,14 @@ export default function PricingPage() {
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
-                Bereken uw investering
+              <h2 className="text-4xl font-bold text-center text-black mb-4">
+                Bereken Uw IT Support Investering
               </h2>
-              <p className="text-xl text-center text-gray-600 mb-12">
-                Krijg direct inzicht in uw maandelijkse IT-kosten
+              <p className="text-xl text-center text-gray-900 font-semibold mb-2">
+                Vind het perfecte IT-ondersteuningspakket voor uw bedrijf.
+              </p>
+              <p className="text-lg text-center text-gray-800 font-medium mb-12">
+                Transparante prijzen, geen verborgen kosten.
               </p>
               <PricingCalculator />
             </div>
@@ -254,7 +257,7 @@ export default function PricingPage() {
                   <h3 className="font-bold text-lg text-gray-900 mb-2">
                     Wat is het verschil tussen Fixed Fee en Break/Fix?
                   </h3>
-                  <p className="text-gray-700">
+                  <p className="text-gray-900 font-medium">
                     Fixed Fee betekent een vast maandbedrag voor onbeperkte support. U weet precies waar u aan toe bent. 
                     Break/Fix betekent dat u alleen betaalt wanneer er iets kapot is. Fixed Fee is voordeliger bij regelmatig gebruik.
                   </p>
@@ -263,7 +266,7 @@ export default function PricingPage() {
                   <h3 className="font-bold text-lg text-gray-900 mb-2">
                     Zijn er opstartkosten?
                   </h3>
-                  <p className="text-gray-700">
+                  <p className="text-gray-900 font-medium">
                     Voor nieuwe klanten rekenen we eenmalig onboarding kosten om uw systemen in kaart te brengen en te optimaliseren. 
                     Dit bedrag is afhankelijk van de grootte en complexiteit van uw infrastructuur.
                   </p>
@@ -272,7 +275,7 @@ export default function PricingPage() {
                   <h3 className="font-bold text-lg text-gray-900 mb-2">
                     Kan ik tussentijds overstappen naar een ander pakket?
                   </h3>
-                  <p className="text-gray-700">
+                  <p className="text-gray-900 font-medium">
                     Ja, u kunt maandelijks upgraden naar een uitgebreider pakket. Downgraden kan na de initiële contractperiode van 12 maanden.
                   </p>
                 </div>

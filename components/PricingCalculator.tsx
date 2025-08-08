@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useMemo } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { useLanguage } from '@/context/LanguageContext'
 
 interface PricingOption {
@@ -309,20 +308,14 @@ const PricingCalculator = () => {
       >
         {children}
       </div>
-      <AnimatePresence>
-        {activeTooltip === id && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: -10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute z-50 px-3 py-2 text-sm bg-gray-900 text-white rounded-lg shadow-lg -top-12 left-1/2 transform -translate-x-1/2 w-64 text-center"
-          >
-            {content}
-            <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {activeTooltip === id && (
+        <div
+          className="absolute z-50 px-3 py-2 text-sm bg-gray-900 text-white rounded-lg shadow-lg -top-12 left-1/2 transform -translate-x-1/2 w-64 text-center animate-fadeIn"
+        >
+          {content}
+          <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
+        </div>
+      )}
     </div>
   )
 
@@ -330,13 +323,13 @@ const PricingCalculator = () => {
     <div className="max-w-7xl mx-auto p-6">
       {/* Header */}
       <div className="text-center mb-12">
-        <div className="bg-gray-900 rounded-xl p-8 inline-block shadow-2xl">
+        <div className="bg-black rounded-xl p-8 inline-block shadow-2xl border-2 border-yellow-400">
           <h2 className="text-4xl font-bold text-yellow-400 mb-4">
             {language === 'en' 
               ? 'Calculate Your IT Support Investment'
               : 'Bereken Uw IT Support Investering'}
           </h2>
-          <p className="text-xl text-gray-100 max-w-3xl mx-auto font-medium">
+          <p className="text-xl text-white max-w-3xl mx-auto font-medium">
             {language === 'en'
               ? 'Find the perfect IT support package for your business. Transparent pricing, no hidden costs.'
               : 'Vind het perfecte IT-ondersteuningspakket voor uw bedrijf. Transparante prijzen, geen verborgen kosten.'}
@@ -358,14 +351,9 @@ const PricingCalculator = () => {
       </div>
 
       {/* Comparison Section */}
-      <AnimatePresence>
-        {showComparison && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-12"
+      {showComparison && (
+          <div
+            className="mb-12 animate-fadeIn"
           >
             <div className="bg-white rounded-xl shadow-xl p-8 mb-8">
               <h3 className="text-3xl font-bold text-center mb-8 text-gray-900">
@@ -530,9 +518,8 @@ const PricingCalculator = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
 
       <div className="grid lg:grid-cols-4 gap-6 lg:gap-8">
         {/* Configuration Panel */}
@@ -650,7 +637,7 @@ const PricingCalculator = () => {
           {/* Office 365 Package Selection */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center gap-2 mb-4">
-              <h3 className="text-2xl font-bold text-gray-900">
+              <h3 className="text-2xl font-bold text-black">
                 {language === 'en' ? 'Microsoft 365 Licenses (Optional)' : 'Microsoft 365 Licenties (Optioneel)'}
               </h3>
               <Tooltip 
@@ -754,9 +741,8 @@ const PricingCalculator = () => {
             </h3>
             <div className="grid gap-4">
               {pricingOptions.map((option) => (
-                <motion.div
+                <div
                   key={option.id}
-                  whileHover={{ scale: 1.01 }}
                   className={`relative p-6 rounded-lg border-2 cursor-pointer transition-all ${
                     selectedOption === option.id
                       ? 'border-yellow-400 bg-yellow-50 shadow-lg transform scale-[1.02]'
@@ -811,7 +797,7 @@ const PricingCalculator = () => {
                       </div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -1053,14 +1039,12 @@ const PricingCalculator = () => {
                   ? 'Free consultation • No obligations • Start within 24 hours'
                   : 'Gratis adviesgesprek • Geen verplichtingen • Start binnen 24 uur'}
               </p>
-              <motion.a
+              <a
                 href="/contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 className="block w-full bg-black text-white py-4 px-6 rounded-full font-bold text-lg hover:bg-gray-800 transition-all mb-4"
               >
                 {language === 'en' ? 'Get Started →' : 'Start Nu →'}
-              </motion.a>
+              </a>
               <p className="text-xs">
                 {language === 'en' 
                   ? '✓ Free IT assessment ✓ Custom advice ✓ No strings attached'
