@@ -56,16 +56,21 @@ npm run lint
 
 ## Current Critical Issues
 
-### 1. Site Loading Bug (PRODUCTION CRITICAL)
-- **Symptom**: Site fails to load properly in production
-- **Recent Fixes Attempted**:
-  - Hydration mismatch resolution
-  - Production crash fixes
-  - ErrorBoundary removal from layout
-  - RSS feed and company logos fixes
-- **Status**: Ongoing investigation needed
+### ✅ 1. Production Crash Issue - FIXED (January 8, 2025)
+- **Problem**: "Oops! Something went wrong" error on all pages
+- **Root Cause**: Dynamic imports with `next/dynamic` causing memory leaks
+- **Solution**: Replaced ALL dynamic imports with static components
+- **Documentation**: See `CRITICAL-PRODUCTION-ISSUES.md` for full details
+- **Status**: RESOLVED - Site is now stable
 
-### 2. Notion CRM Integration
+### 2. Remaining Issues to Fix
+- **HubSpot Forms**: Forms exist but don't submit properly
+- **RSS Feed**: Shows "RSS Feed Unavailable" error
+- **Company Logos**: Not displaying in "Sector Ervaring" section
+- **Newsletter**: Needs HubSpot integration
+- **Animations**: Need to add .mp4 files from video folder
+
+### 3. Notion CRM Integration
 - **Status**: In development
 - **Next Steps**: API connection setup, data schema definition
 
@@ -84,9 +89,12 @@ npm run lint
 ```
 
 ## Important Files
+- `CRITICAL-PRODUCTION-ISSUES.md` - **MUST READ** - Documents production crashes and solutions
 - `todo.md` - Contains all pending tasks (CHECK THIS REGULARLY)
 - `app/layout.tsx` - Root layout with analytics and meta tags
-- `app/page.tsx` - Homepage (currently being modified)
+- `app/page.tsx` - Homepage (uses static components only)
+- `components/StaticHeader.tsx` - Safe static header component
+- `components/StaticFooter.tsx` - Safe static footer component
 - `.env.local` - Environment variables (DO NOT COMMIT)
 
 ## Working Methodology
@@ -104,6 +112,9 @@ npm run lint
 5. Push to trigger Vercel deployment
 
 ### Critical Reminders
+- **READ `CRITICAL-PRODUCTION-ISSUES.md`** before making any component changes
+- **NEVER use `next/dynamic`** for Header, Footer, or shared components
+- **ALWAYS use StaticHeader/StaticFooter** instead of dynamic imports
 - **NEVER** commit directly to production without testing
 - **ALWAYS** check that typecheck and lint pass
 - **MONITOR** Vercel deployment after pushing
