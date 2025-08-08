@@ -167,21 +167,18 @@ export default function ContactPage() {
                   </div>
                   
                   <div className="p-8">
-                    {/* Address Section */}
+                    {/* Clean Address Section */}
                     <div className="mb-8">
-                      <div className="flex items-start gap-4 p-6 bg-primary-50 rounded-xl border border-primary-100">
-                        <div className="flex-shrink-0">
-                          <div className="w-12 h-12 bg-primary-600 rounded-xl flex items-center justify-center">
-                            <MapPinIcon className="w-6 h-6 text-white" />
-                          </div>
+                      <div className="p-6 bg-gray-50 rounded-xl">
+                        <div className="flex items-center gap-3 mb-3">
+                          <MapPinIcon className="w-6 h-6 text-yellow-600" />
+                          <h4 className="text-xl font-bold text-gray-900">Kantooradres</h4>
                         </div>
-                        <div className="flex-1">
-                          <h4 className="text-xl font-bold text-gray-900 mb-3">Workflo B.V.</h4>
-                          <div className="text-gray-700 space-y-1 text-lg">
-                            <div className="font-semibold">Koivistokade 3</div>
-                            <div>1013 AC Amsterdam</div>
-                            <div>Nederland</div>
-                          </div>
+                        <div className="text-gray-700 text-lg leading-relaxed">
+                          <strong>Workflo Amsterdam</strong><br />
+                          Koivistokade 3<br />
+                          1013 AC Amsterdam<br />
+                          Nederland
                         </div>
                       </div>
                     </div>

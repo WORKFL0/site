@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 // import DangerTape from '@/components/DangerTape' // REPLACED
@@ -86,7 +85,7 @@ export default function CaseStudiesPage() {
     {
       client: 'Schulte & Lestraden',
       industry: 'Installatie Diensten',
-      logo: null, // Removed broken logo
+      logo: '/images/logos/schulte-lestraden.png',
       duration: 'Managed IT Services',
       linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7236276208433344512',
       challenge: 'Een gevestigd installatiebedrijf met meer dan 70 jaar ervaring had een complete IT-infrastructuur installatie en doorlopende tweedelijns ondersteuning nodig om hun activiteiten te moderniseren.',
@@ -102,9 +101,10 @@ export default function CaseStudiesPage() {
     {
       client: 'Duwtje',
       industry: 'Wetenschappelijk & Creatief Bureau',
-      logo: '/images/logos/duwtje.svg',
+      logo: '/images/logos/duwtje.png',
       duration: 'Complete IT Partnership',
       linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7233749063135903744',
+      additionalLinkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7233749063135903744',
       challenge: 'Een wetenschappelijk en creatief gedragsbureau had een betrouwbare IT-partner nodig om hun innovatieve werk te ondersteunen en ervoor te zorgen dat hun digitale infrastructuur gelijke tred kon houden met hun creatieve processen.',
       solution: 'WORKFLO werd hun toegewijde IT-partner en leverde uitgebreide beheerde IT-diensten, cloudoplossingen en proactieve monitoring om ervoor te zorgen dat hun creatieve teams zonder onderbreking konden werken.',
       results: [
@@ -172,12 +172,10 @@ export default function CaseStudiesPage() {
           <div className="container mx-auto px-4">
             <div className="space-y-16">
               {caseStudies.map((study, index) => (
-                <motion.div
+                <div
                   key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="bg-white rounded-2xl shadow-xl overflow-hidden"
+                  className="bg-white rounded-2xl shadow-xl overflow-hidden animate-fadeInUp"
+                  style={{ animationDelay: `${index * 0.2}s` }}
                 >
                   <div className="grid md:grid-cols-2">
                     {/* Content Side */}
@@ -248,23 +246,38 @@ export default function CaseStudiesPage() {
                           </p>
                           <p className="text-black">{study.duration}</p>
                         </div>
-                        {study.linkedinUrl && (
-                          <a 
-                            href={study.linkedinUrl} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-black text-yellow-400 rounded-lg hover:bg-gray-800 transition-colors"
-                          >
-                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                            Lees op LinkedIn
-                          </a>
-                        )}
+                        <div className="flex flex-wrap gap-2">
+                          {study.linkedinUrl && (
+                            <a 
+                              href={study.linkedinUrl} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-4 py-2 bg-black text-yellow-400 rounded-lg hover:bg-gray-800 transition-colors"
+                            >
+                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                              </svg>
+                              Lees artikel 1
+                            </a>
+                          )}
+                          {study.additionalLinkedinUrl && (
+                            <a 
+                              href={study.additionalLinkedinUrl} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-4 py-2 bg-black text-yellow-400 rounded-lg hover:bg-gray-800 transition-colors"
+                            >
+                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                              </svg>
+                              Lees artikel 2
+                            </a>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
 
@@ -297,6 +310,25 @@ export default function CaseStudiesPage() {
 
       <InlineFooter />
       <StaticDangerTape />
+      
+      {/* Inline Animations */}
+      <style jsx global>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fadeInUp {
+          opacity: 0;
+          animation: fadeInUp 0.6s ease-out forwards;
+        }
+      `}</style>
     </div>
   )
 }

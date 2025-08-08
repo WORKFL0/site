@@ -44,14 +44,14 @@ export default function HomeComplete() {
     
     // Add Hotjar
     if (typeof window !== 'undefined') {
-      (function(h,o,t,j,a,r){
+      (function(h: any,o: any,t: any,j: any,a: any,r: any){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
         h._hjSettings={hjid:3486977,hjsv:6};
         a=o.getElementsByTagName('head')[0];
         r=o.createElement('script');r.async=1;
         r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
         a.appendChild(r);
-      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=','','');
     }
   }, [])
 
@@ -570,6 +570,70 @@ export default function HomeComplete() {
                   <p className="text-gray-600 text-sm mt-2">{member.description}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Internship Section with SBB Logo */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <div className="flex-1">
+                    <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                      🎓 Stageplekken Beschikbaar
+                    </h2>
+                    <p className="text-lg text-gray-700 mb-6">
+                      Ben jij een ambitieuze student op zoek naar een uitdagende stageplek in de IT? 
+                      Bij Workflo bieden we erkende stageplekken waar je echt impact kunt maken.
+                    </p>
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-center gap-2">
+                        <CheckCircleIcon className="w-5 h-5 text-green-600" />
+                        <span className="text-gray-700">Hands-on ervaring met enterprise IT</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircleIcon className="w-5 h-5 text-green-600" />
+                        <span className="text-gray-700">Persoonlijke begeleiding van experts</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <CheckCircleIcon className="w-5 h-5 text-green-600" />
+                        <span className="text-gray-700">Werken aan echte klantprojecten</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <a
+                        href="mailto:work@workflo.nl"
+                        className="inline-flex items-center justify-center bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-all"
+                      >
+                        <EnvelopeIcon className="w-5 h-5 mr-2" />
+                        work@workflo.nl
+                      </a>
+                      <Link
+                        href="/careers"
+                        className="inline-flex items-center justify-center bg-white text-gray-900 border-2 border-gray-300 px-6 py-3 rounded-lg font-bold hover:border-gray-400 transition-all"
+                      >
+                        Meer info →
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="flex-shrink-0">
+                    <div className="bg-gray-50 rounded-xl p-6">
+                      <Image
+                        src="/grapics/sbb-beeldmerk.png"
+                        alt="SBB Erkend Leerbedrijf"
+                        width={180}
+                        height={180}
+                        className="w-40 h-40 object-contain"
+                      />
+                      <p className="text-center text-sm text-gray-600 mt-3 font-medium">
+                        Erkend Leerbedrijf
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>

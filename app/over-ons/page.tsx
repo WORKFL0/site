@@ -59,34 +59,32 @@ export default function OverOnsPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Header with Danger Tape */}
-      <StaticDangerTape />
+      {/* Danger Tape Top */}
+      <div className="h-8 relative overflow-hidden" style={{
+        background: 'repeating-linear-gradient(45deg, #facc15 0px, #facc15 20px, #000 20px, #000 40px)'
+      }}>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="text-black font-bold text-xs tracking-wider animate-pulse">⚠️ WORKFLO IT SERVICES ⚠️</span>
+        </div>
+      </div>
       
-      <header className="bg-white shadow-sm sticky top-0 z-50">
+      <header className="bg-white shadow-sm sticky top-8 z-50">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-20">
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/images/logos/workflo-logo-yellow.png"
-                  alt="Workflo Logo"
-                  width={150}
-                  height={45}
-                  className="h-12 w-auto"
-                />
-              </Link>
-            </div>
+            <Link href="/" className="text-2xl font-bold text-gray-900">
+              Workflo
+            </Link>
             <nav className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+              <Link href="/" className="text-gray-700 hover:text-yellow-600 font-medium transition-colors">
                 Home
               </Link>
-              <Link href="/diensten" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+              <Link href="/diensten" className="text-gray-700 hover:text-yellow-600 font-medium transition-colors">
                 Diensten
               </Link>
-              <Link href="/over-ons" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+              <Link href="/over-ons" className="text-gray-700 hover:text-yellow-600 font-medium transition-colors">
                 Over Ons
               </Link>
-              <Link href="/contact" className="text-gray-700 hover:text-primary-600 font-medium transition-colors">
+              <Link href="/contact" className="text-gray-700 hover:text-yellow-600 font-medium transition-colors">
                 Contact
               </Link>
             </nav>
@@ -94,9 +92,9 @@ export default function OverOnsPage() {
         </div>
       </header>
 
-      <main className="pt-8 pb-16">
+      <main>
         {/* Hero Section */}
-        <section className="py-24 bg-gradient-to-br from-gray-900 to-black text-white relative overflow-hidden">
+        <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative overflow-hidden">
           {/* Background Video */}
           <div className="absolute inset-0 w-full h-full">
             <video
@@ -114,28 +112,28 @@ export default function OverOnsPage() {
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-5xl mx-auto text-center">
-              <h1 className="text-5xl lg:text-7xl font-bold mb-6">
+              <h1 className="text-4xl lg:text-6xl font-bold mb-6">
                 IT zonder Zorgen sinds 2015
               </h1>
-              <p className="text-xl lg:text-2xl opacity-90 mb-8">
+              <p className="text-lg lg:text-xl opacity-90 mb-12 max-w-3xl mx-auto">
                 Van startup tot scale-up: wij zijn de technologiepartner die met u meegroeit
               </p>
               <div className="flex flex-wrap justify-center gap-8 text-center">
-                <div>
-                  <div className="text-4xl font-bold text-primary-600">250+</div>
-                  <div className="text-sm opacity-80">Tevreden klanten</div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <div className="text-3xl font-bold text-yellow-400">250+</div>
+                  <div className="text-sm opacity-90">Tevreden klanten</div>
                 </div>
-                <div>
-                  <div className="text-4xl font-bold text-primary-600">10+</div>
-                  <div className="text-sm opacity-80">Jaar ervaring</div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <div className="text-3xl font-bold text-yellow-400">10+</div>
+                  <div className="text-sm opacity-90">Jaar ervaring</div>
                 </div>
-                <div>
-                  <div className="text-4xl font-bold text-primary-600">99.9%</div>
-                  <div className="text-sm opacity-80">Uptime garantie</div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <div className="text-3xl font-bold text-yellow-400">99.9%</div>
+                  <div className="text-sm opacity-90">Uptime garantie</div>
                 </div>
-                <div>
-                  <div className="text-4xl font-bold text-primary-600">24/7</div>
-                  <div className="text-sm opacity-80">Support beschikbaar</div>
+                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
+                  <div className="text-3xl font-bold text-yellow-400">24/7</div>
+                  <div className="text-sm opacity-90">Support beschikbaar</div>
                 </div>
               </div>
             </div>
@@ -220,10 +218,10 @@ export default function OverOnsPage() {
                   {milestones.map((milestone, index) => (
                     <div key={index} className="flex gap-4">
                       <div className="flex-shrink-0 w-24">
-                        <div className="text-primary-600 font-bold text-lg">{milestone.year}</div>
+                        <div className="text-yellow-600 font-bold text-lg">{milestone.year}</div>
                       </div>
                       <div className="flex-grow pb-8 border-l-2 border-gray-300 pl-8 relative">
-                        <div className="absolute -left-2 top-0 w-4 h-4 bg-primary-600 rounded-full"></div>
+                        <div className="absolute -left-2 top-0 w-4 h-4 bg-yellow-600 rounded-full"></div>
                         <p className="text-gray-700">{milestone.event}</p>
                       </div>
                     </div>
@@ -263,7 +261,7 @@ export default function OverOnsPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link 
                   href="/contact" 
-                  className="inline-block px-8 py-4 bg-primary-600 text-black rounded-lg font-semibold hover:bg-primary-700 transition-colors text-lg"
+                  className="inline-block px-8 py-4 bg-yellow-400 text-black rounded-lg font-semibold hover:bg-yellow-500 transition-colors text-lg"
                 >
                   Start een gesprek
                 </Link>
@@ -284,29 +282,21 @@ export default function OverOnsPage() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
-              <div className="flex items-center mb-4">
-                <Image
-                  src="/images/logos/workflo-logo-yellow.png"
-                  alt="Workflo Logo"
-                  width={150}
-                  height={45}
-                  className="h-10 w-auto"
-                />
-              </div>
+              <h3 className="text-2xl font-bold text-yellow-400 mb-4">Workflo</h3>
               <p className="text-gray-400 mb-4">
                 Uw betrouwbare IT-partner in Amsterdam sinds 2015.
               </p>
               <div className="space-y-2">
                 <div className="flex items-center">
-                  <MapPinIcon className="w-5 h-5 text-primary-600 mr-2" />
+                  <MapPinIcon className="w-5 h-5 text-yellow-400 mr-2" />
                   <span className="text-sm">Koivistokade 3, 1013 AC Amsterdam</span>
                 </div>
                 <div className="flex items-center">
-                  <PhoneIcon className="w-5 h-5 text-primary-600 mr-2" />
+                  <PhoneIcon className="w-5 h-5 text-yellow-400 mr-2" />
                   <span className="text-sm">020 308 0465</span>
                 </div>
                 <div className="flex items-center">
-                  <EnvelopeIcon className="w-5 h-5 text-primary-600 mr-2" />
+                  <EnvelopeIcon className="w-5 h-5 text-yellow-400 mr-2" />
                   <span className="text-sm">info@workflo.it</span>
                 </div>
               </div>
@@ -315,25 +305,25 @@ export default function OverOnsPage() {
             <div>
               <h3 className="font-bold text-lg mb-4">Legal</h3>
               <ul className="space-y-2">
-                <li><Link href="/privacy" className="text-gray-400 hover:text-primary-600">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="text-gray-400 hover:text-primary-600">Terms of Service</Link></li>
-                <li><Link href="/cookies" className="text-gray-400 hover:text-primary-600">Cookie Policy</Link></li>
+                <li><Link href="/privacy" className="text-gray-400 hover:text-yellow-400">Privacy Policy</Link></li>
+                <li><Link href="/terms" className="text-gray-400 hover:text-yellow-400">Terms of Service</Link></li>
+                <li><Link href="/cookies" className="text-gray-400 hover:text-yellow-400">Cookie Policy</Link></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-bold text-lg mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><Link href="/over-ons" className="text-gray-400 hover:text-primary-600">Over Ons</Link></li>
-                <li><Link href="/contact" className="text-gray-400 hover:text-primary-600">Contact</Link></li>
+                <li><Link href="/over-ons" className="text-gray-400 hover:text-yellow-400">Over Ons</Link></li>
+                <li><Link href="/contact" className="text-gray-400 hover:text-yellow-400">Contact</Link></li>
               </ul>
             </div>
 
             <div>
               <h3 className="font-bold text-lg mb-4">Services</h3>
               <ul className="space-y-2">
-                <li><Link href="/diensten" className="text-gray-400 hover:text-primary-600">All Services</Link></li>
-                <li><Link href="/tevredenheidscheck" className="text-gray-400 hover:text-primary-600">Satisfaction Check</Link></li>
+                <li><Link href="/diensten" className="text-gray-400 hover:text-yellow-400">All Services</Link></li>
+                <li><Link href="/tevredenheidscheck" className="text-gray-400 hover:text-yellow-400">Satisfaction Check</Link></li>
               </ul>
             </div>
           </div>
@@ -346,9 +336,14 @@ export default function OverOnsPage() {
         </div>
       </footer>
 
-      {/* Warning Tape Bottom */}
       {/* Danger Tape Bottom */}
-      <StaticDangerTape />
+      <div className="h-8 relative overflow-hidden" style={{
+        background: 'repeating-linear-gradient(-45deg, #facc15 0px, #facc15 20px, #000 20px, #000 40px)'
+      }}>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="text-black font-bold text-xs tracking-wider">⚠️ AMSTERDAM'S TRUSTED IT PARTNER ⚠️</span>
+        </div>
+      </div>
     </div>
   )
 }
