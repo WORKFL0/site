@@ -231,13 +231,13 @@ export default function PricingPage() {
         <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl font-bold text-center text-black mb-4">
+              <h2 className="text-4xl font-bold text-center text-gray-900 mb-4">
                 Bereken Uw IT Support Investering
               </h2>
-              <p className="text-xl text-center text-gray-900 font-semibold mb-2">
+              <p className="text-xl text-center text-gray-800 font-semibold mb-2">
                 Vind het perfecte IT-ondersteuningspakket voor uw bedrijf.
               </p>
-              <p className="text-lg text-center text-gray-800 font-medium mb-12">
+              <p className="text-lg text-center text-gray-700 font-medium mb-12">
                 Transparante prijzen, geen verborgen kosten.
               </p>
               <PricingCalculator />

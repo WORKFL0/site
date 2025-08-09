@@ -637,7 +637,7 @@ const PricingCalculator = () => {
           {/* Office 365 Package Selection */}
           <div className="bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center gap-2 mb-4">
-              <h3 className="text-2xl font-bold text-black">
+              <h3 className="text-2xl font-bold text-gray-900">
                 {language === 'en' ? 'Microsoft 365 Licenses (Optional)' : 'Microsoft 365 Licenties (Optioneel)'}
               </h3>
               <Tooltip 

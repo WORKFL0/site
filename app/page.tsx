@@ -28,6 +28,7 @@ import { StarIcon } from '@heroicons/react/24/solid'
 import StaticHeader from '@/components/StaticHeader'
 import StaticFooter from '@/components/StaticFooter'
 import StaticDangerTape from '@/components/StaticDangerTape'
+import HubSpotNewsletterSignup from '@/components/forms/HubSpotNewsletterSignup'
 import SafeHubSpotForm from '@/components/SafeHubSpotForm'
 import SafeNewsletter from '@/components/SafeNewsletter'
 import SafeNewsFeed from '@/components/SafeNewsFeed'
@@ -407,7 +408,7 @@ export default function HomeComplete() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover opacity-10"
           >
-            <source src="/videos/Workflo-code-animatie-2.mp4" type="video/mp4" />
+            <source src="/videos/Workflo_W_final.mp4" type="video/mp4" />
           </video>
           
           <div className="absolute inset-0 bg-gradient-to-br from-gray-50/90 via-white/90 to-yellow-50/90"></div>
@@ -853,6 +854,15 @@ export default function HomeComplete() {
                 className="w-full h-96 border-0"
                 title="Uptime Status"
               />
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter Signup */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-2xl mx-auto">
+              <HubSpotNewsletterSignup />
             </div>
           </div>
         </section>
