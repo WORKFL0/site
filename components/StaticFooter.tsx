@@ -60,6 +60,18 @@ export default function StaticFooter() {
           <p>&copy; 2025 Workflo B.V. Alle rechten voorbehouden.</p>
         </div>
       </div>
+      
+      {/* Legal Information - Outside main footer */}
+      <div className="bg-black py-4">
+        <div className="container mx-auto px-4">
+          <div className="text-center text-gray-500 text-sm">
+            <p>
+              Workflo B.V. | KVK: 64929051 | BTW: NL855931384B01 | 
+              IBAN: NL86 INGB 0007 2853 15 | BIC: INGBNL2A
+            </p>
+          </div>
+        </div>
+      </div>
     </footer>
   )
 }
