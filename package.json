@@ -12,7 +12,10 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "type-check": "tsc --noEmit",
-    "test:qa": "playwright test tests/comprehensive-qa.spec.ts"
+    "test:qa": "playwright test tests/comprehensive-qa.spec.ts tests/hubspot-forms.spec.ts tests/rss-and-logos.spec.ts",
+    "test:unit": "jest",
+    "test:e2e": "playwright test",
+    "test:ci": "npm run test:unit && npm run test:e2e && npm run test:qa"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -33,14 +36,22 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.54.2",
+    "@types/jest": "^30.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",
+    "axe-core": "^4.10.3",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
+    "jest": "^29.7.0",
+    "jest-axe": "^10.0.0",
+    "jest-environment-jsdom": "^30.0.5",
+    "jest-playwright-preset": "^4.0.0",
+    "playwright": "^1.54.2",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
+    "ts-jest": "^29.4.1",
     "typescript": "^5"
   }
 }

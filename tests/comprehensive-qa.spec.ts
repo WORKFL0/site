@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 // Configure base URL from environment or default
-const BASE_URL = process.env.BASE_URL || 'http://localhost:3001';
+const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 
 // Define routes to test
 const ROUTES = [
