@@ -191,12 +191,12 @@ export default function HomeComplete() {
       { name: 'Klaar', src: '/images/logos/klaar.jpg' },
       { name: 'Dag en Nacht', src: '/images/logos/dagennacht.png' },
       { name: 'Voice Industries', src: '/images/logos/voice-industries.jpeg' },
-      { name: 'Schulte en Lestrade', src: '/images/logos/schulte-lestraden.png' }
+      { name: 'Hap Elings', src: '/images/logos/hap-elings.png' }
     ],
     [
       { name: 'Duwtje', src: '/images/logos/duwtje.png' },
       { name: 'Highwood', src: '/images/logos/highwood.png' },
-      { name: 'Jager Notarissen', src: '/images/logos/jager-notarissen.png' },
+      { name: 'Hap Elings', src: '/images/logos/hap-elings.png' },
       { name: 'PR Mansion', src: '/images/logos/prmansion.png' }
     ],
     [

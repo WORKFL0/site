@@ -32,6 +32,7 @@ export default function DienstenPage() {
               className="absolute inset-0 w-full h-full object-cover"
               preload="metadata"
             >
+              <source src="/videos/Workflo_W_final.mp4" type="video/mp4" />
               <source src="/videos/workflo-code-animation.mp4" type="video/mp4" />
               <source src="/videos/Workflo-code-animatie.mp4" type="video/mp4" />
             </video>
@@ -147,6 +148,18 @@ export default function DienstenPage() {
         <section className="relative py-20 bg-gray-50 overflow-hidden">
           {/* Background Video */}
           <div className="absolute inset-0 opacity-5 pointer-events-none">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="/videos/mobile-device-animation.mp4" type="video/mp4" />
+              <source src="/videos/Mobile-Device-Header-1.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div className="absolute inset-0 opacity-5 pointer-events-none hidden">
             <video
               autoPlay
               muted

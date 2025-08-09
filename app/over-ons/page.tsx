@@ -176,6 +176,7 @@ export default function OverOnsPage() {
                       playsInline
                       className="w-full h-auto rounded-lg"
                     >
+                      <source src="/videos/Workflo_W_Mobile_1-1.mp4" type="video/mp4" />
                       <source src="/videos/workflo-w-animation.mp4" type="video/mp4" />
                       <source src="/videos/Workflo_W_Mobile-2.mp4" type="video/mp4" />
                     </video>
@@ -238,6 +239,7 @@ export default function OverOnsPage() {
                       playsInline
                       className="w-full h-auto rounded-lg"
                     >
+                      <source src="/videos/Workflo_W_final_1.mp4" type="video/mp4" />
                       <source src="/videos/security-animation.mp4" type="video/mp4" />
                       <source src="/videos/Security_1.mp4" type="video/mp4" />
                     </video>

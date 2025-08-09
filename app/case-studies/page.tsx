@@ -85,7 +85,7 @@ export default function CaseStudiesPage() {
     {
       client: 'Schulte & Lestraden',
       industry: 'Installatie Diensten',
-      logo: '/images/logos/schulte-lestraden.png',
+      logo: '/images/placeholder-logo.png',
       duration: 'Managed IT Diensten',
       linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7236276208433344512',
       challenge: 'Een gevestigd installatiebedrijf met meer dan 70 jaar ervaring had een complete IT-infrastructuur installatie en doorlopende tweedelijns ondersteuning nodig om hun activiteiten te moderniseren.',
