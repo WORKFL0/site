@@ -926,7 +926,16 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 export function useLanguage() {
   const context = useContext(LanguageContext)
   if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider')
+    console.error('useLanguage must be used within a LanguageProvider, using default values')
+    // Return safe default values instead of throwing
+    const defaultTranslations = translations.nl
+    return {
+      language: 'nl' as const,
+      setLanguage: () => console.warn('Cannot set language outside LanguageProvider'),
+      translations: defaultTranslations,
+      t: (key: string) => (defaultTranslations as any)[key] || key,
+      isLoading: false
+    }
   }
   return context
 }

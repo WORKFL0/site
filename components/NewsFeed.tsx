@@ -47,7 +47,8 @@ const NewsFeed = ({
         
         // Add timeout for the entire operation
         const timeoutId = setTimeout(() => {
-          throw new Error('RSS feed request timed out after 15 seconds')
+          setError('RSS feed request timed out after 15 seconds')
+          setLoading(false)
         }, 15000)
 
         try {
