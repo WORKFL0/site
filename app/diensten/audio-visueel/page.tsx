@@ -4,6 +4,7 @@
 import StaticHeader from '@/components/StaticHeader'
 // import Footer from '@/components/layout/Footer' // REPLACED
 import StaticFooter from '@/components/StaticFooter'
+import SafeVideoEmbed from '@/components/SafeVideoEmbed'
 
 export default function AudioVisuaalPage() {
   return (
@@ -381,6 +382,44 @@ export default function AudioVisuaalPage() {
               <div className="mt-4 p-3 bg-green-50 rounded">
                 <p className="font-bold text-green-700">Result: 146% ROI in Year One, €22,000 net benefit</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Video Demonstrations */}
+        <section className="py-16 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-12 text-black">See Our Solutions in Action</h2>
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <div>
+                <h3 className="text-xl font-bold mb-4 text-black">Microsoft Teams Room Setup</h3>
+                <SafeVideoEmbed 
+                  videoId="uyYDqn5K_tE"
+                  title="Microsoft Teams Room Professional Setup"
+                  platform="youtube"
+                />
+                <p className="text-gray-600 mt-4">
+                  Experience how a professional Teams Room transforms your meeting experience with 
+                  one-touch join, intelligent cameras, and crystal-clear audio.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-4 text-black">Interactive Digital Signage</h3>
+                <SafeVideoEmbed 
+                  videoId="MbnDNPcFRkA"
+                  title="Digital Signage Solutions for Business"
+                  platform="youtube"
+                />
+                <p className="text-gray-600 mt-4">
+                  Discover how digital signage can enhance your office environment, improve 
+                  communication, and impress visitors from the moment they arrive.
+                </p>
+              </div>
+            </div>
+            <div className="mt-12 text-center">
+              <a href="/case-studies" className="inline-block bg-yellow-400 text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-500 transition">
+                View More Client Success Stories →
+              </a>
             </div>
           </div>
         </section>

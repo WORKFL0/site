@@ -484,6 +484,47 @@ export default function HomeComplete() {
           </div>
         </section>
 
+        {/* Simplicity Philosophy Section */}
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+                IT Hoeft Niet Ingewikkeld Te Zijn
+              </h2>
+              <div className="bg-yellow-50 border-l-4 border-yellow-400 p-6 rounded-r-lg text-left mb-8">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Onze Simplicity Filosofie</h3>
+                <p className="text-gray-700 mb-4">
+                  Bij Workflo geloven we dat IT toegankelijk moet zijn voor iedereen. 
+                  Geen technisch jargon, geen verborgen kosten, geen ingewikkelde contracten. 
+                  Gewoon duidelijke oplossingen die werken.
+                </p>
+                <div className="grid md:grid-cols-3 gap-4 mt-6">
+                  <div className="text-center">
+                    <div className="text-3xl mb-2">🎯</div>
+                    <h4 className="font-bold text-gray-900">Direct & Duidelijk</h4>
+                    <p className="text-sm text-gray-600">Geen IT-taal, maar gewoon Nederlands</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl mb-2">💡</div>
+                    <h4 className="font-bold text-gray-900">Eenvoudige Oplossingen</h4>
+                    <p className="text-sm text-gray-600">Waarom moeilijk als het makkelijk kan?</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl mb-2">🤝</div>
+                    <h4 className="font-bold text-gray-900">Persoonlijk Contact</h4>
+                    <p className="text-sm text-gray-600">Echte mensen, geen chatbots</p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-lg text-gray-600 italic">
+                "Ook mensen zonder technische kennis of interesse verdienen uitstekende IT-ondersteuning. 
+                Daarom maken we complexe technologie begrijpelijk en behapbaar voor iedereen."
+              </p>
+              <p className="text-gray-500 mt-2">— Florian, Oprichter Workflo</p>
+            </div>
+          </div>
+        </section>
+
         {/* Client Logos - Complete List */}
         <section className="py-12 bg-gray-50 overflow-hidden">
           <div className="container mx-auto px-4">
@@ -494,14 +535,14 @@ export default function HomeComplete() {
               {logoSets[currentLogoSet].map((logo, index) => (
                 <div
                   key={logo.name}
-                  className="flex items-center justify-center opacity-60 hover:opacity-100 transition-all"
+                  className="flex items-center justify-center opacity-70 hover:opacity-100 transition-all p-4"
                 >
                   <Image
                     src={logo.src}
                     alt={logo.name}
-                    width={120}
-                    height={60}
-                    className="max-h-12 w-auto object-contain"
+                    width={180}
+                    height={90}
+                    className="max-h-20 w-auto object-contain"
                     onError={(e) => {
                       e.currentTarget.src = '/images/placeholder-logo.png'
                     }}

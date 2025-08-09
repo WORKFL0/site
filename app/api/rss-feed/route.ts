@@ -186,12 +186,76 @@ async function tryFetchRSS(url: string): Promise<{ success: boolean; content?: s
   }
 }
 
+// Helper function to parse RSS XML to JSON
+function parseRSSToJSON(xmlContent: string): { items: NewsItem[] } {
+  const items: NewsItem[] = []
+  
+  try {
+    // Simple XML parsing without external dependencies
+    const itemRegex = /<item>([\s\S]*?)<\/item>/gi
+    const matches = xmlContent.match(itemRegex) || []
+    
+    for (const itemXml of matches.slice(0, 10)) { // Limit to 10 items
+      const title = (itemXml.match(/<title>([\s\S]*?)<\/title>/i) || ['', ''])[1]
+        .replace(/<!\[CDATA\[(.*?)\]\]>/g, '$1')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&')
+        .replace(/&quot;/g, '"')
+        .trim()
+      
+      const link = (itemXml.match(/<link>([\s\S]*?)<\/link>/i) || ['', ''])[1]
+        .replace(/<!\[CDATA\[(.*?)\]\]>/g, '$1')
+        .trim()
+      
+      const description = (itemXml.match(/<description>([\s\S]*?)<\/description>/i) || ['', ''])[1]
+        .replace(/<!\[CDATA\[(.*?)\]\]>/g, '$1')
+        .replace(/<[^>]+>/g, '') // Strip HTML tags
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&')
+        .replace(/&quot;/g, '"')
+        .trim()
+        .substring(0, 200) // Limit description length
+      
+      const pubDate = (itemXml.match(/<pubDate>([\s\S]*?)<\/pubDate>/i) || ['', new Date().toISOString()])[1]
+        .trim()
+      
+      const guid = (itemXml.match(/<guid[^>]*>([\s\S]*?)<\/guid>/i) || ['', `item-${Date.now()}-${Math.random()}`])[1]
+        .replace(/<!\[CDATA\[(.*?)\]\]>/g, '$1')
+        .trim()
+      
+      if (title && (link || description)) {
+        items.push({
+          title,
+          link: link || '#',
+          description: description || title,
+          pubDate: pubDate || new Date().toISOString(),
+          guid: guid || `${title}-${Date.now()}`
+        })
+      }
+    }
+  } catch (parseError) {
+    console.error('Error parsing RSS XML:', parseError)
+  }
+  
+  return { items }
+}
+
+interface NewsItem {
+  title: string
+  link: string
+  description: string
+  pubDate: string
+  guid: string
+}
+
 export async function GET(request: Request) {
   try {
     // Validate request
     if (!request || !request.url) {
       console.error('RSS API: Invalid request object received')
-      return new NextResponse('Invalid request', { status: 400 })
+      return NextResponse.json({ items: [] }, { status: 400 })
     }
 
     let searchParams: URLSearchParams
@@ -205,7 +269,7 @@ export async function GET(request: Request) {
       testMode = searchParams.get('test') === 'true'
     } catch (urlError) {
       console.error('RSS API: Failed to parse request URL:', urlError)
-      return new NextResponse('Invalid request URL', { status: 400 })
+      return NextResponse.json({ items: [] }, { status: 400 })
     }
     
     // Determine which feeds to try
@@ -240,14 +304,15 @@ export async function GET(request: Request) {
       })
       
       if (feedsToTry.length === 0) {
-        throw new Error('No valid RSS feed URLs available')
+        // Return empty items array instead of error
+        return NextResponse.json({ items: [] })
       }
       
       console.log('RSS Feed URLs to try:', feedsToTry)
       
     } catch (configError) {
       console.error('RSS API: Error preparing feed URLs:', configError)
-      return new NextResponse('Configuration error', { status: 500 })
+      return NextResponse.json({ items: [] })
     }
     
     // Try each RSS URL in order until one succeeds
@@ -260,11 +325,13 @@ export async function GET(request: Request) {
         if (result.success && result.content) {
           console.log(`Successfully fetched RSS from: ${url}`)
           
-          // Return the successful RSS content
-          return new NextResponse(result.content, {
+          // Parse RSS XML to JSON
+          const jsonData = parseRSSToJSON(result.content)
+          
+          // Return the successful RSS content as JSON
+          return NextResponse.json(jsonData, {
             status: 200,
             headers: {
-              'Content-Type': 'application/xml; charset=utf-8',
               'Cache-Control': 'public, s-maxage=300, stale-while-revalidate=600',
               'X-RSS-Source': url, // Include source URL for debugging
             },
@@ -281,73 +348,23 @@ export async function GET(request: Request) {
       }
     }
 
-    // All URLs failed - provide informative error RSS
+    // All URLs failed - return empty items array
     console.error('All RSS feed URLs failed:', errors.join('; '))
     
-    const errorMessage = testMode 
-      ? 'Test feeds are currently unavailable. Please check your internet connection.'
-      : 'The WorkFlo RSS feed service is currently unavailable. This could be due to server maintenance or configuration issues.'
-    
-    // Return a valid RSS feed with helpful error information
-    try {
-      const errorRss = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>WorkFlo News Feed</title>
-    <description>Latest industry news and updates</description>
-    <link>https://rss.workflo.it</link>
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    <generator>WorkFlo RSS Service</generator>
-    <item>
-      <title>RSS Feed Service Status</title>
-      <description>${errorMessage.replace(/[<>&"]/g, (match) => {
-        const entityMap: { [key: string]: string } = {
-          '<': '&lt;',
-          '>': '&gt;',
-          '&': '&amp;',
-          '"': '&quot;'
-        }
-        return entityMap[match] || match
-      })} The feed URLs have been configured but are not responding. Please verify the RSS feed URL with your provider or try again later.</description>
-      <link>https://rss.workflo.it</link>
-      <guid isPermaLink="false">status-${Date.now()}</guid>
-      <pubDate>${new Date().toUTCString()}</pubDate>
-    </item>
-    <item>
-      <title>Alternative: Enable Test Mode</title>
-      <description>To test the RSS feed functionality with working feeds, you can append ?test=true to the API endpoint, or set USE_FALLBACK_FEED to true in the configuration.</description>
-      <link>/api/rss-feed?test=true</link>
-      <guid isPermaLink="false">help-${Date.now()}</guid>
-      <pubDate>${new Date().toUTCString()}</pubDate>
-    </item>
-  </channel>
-</rss>`
-      
-      return new NextResponse(errorRss, {
-        status: 200, // Return 200 to prevent client errors
-        headers: {
-          'Content-Type': 'application/xml; charset=utf-8',
-          'Cache-Control': 'no-cache', // Don't cache error responses
-          'X-RSS-Status': 'error', // Signal error state
-          'X-RSS-Errors': errors.slice(0, 5).join('; ').substring(0, 500), // Include error details (truncated)
-        },
-      })
-    } catch (rssGenerationError) {
-      console.error('RSS API: Failed to generate error RSS:', rssGenerationError)
-      return new NextResponse('RSS feed service unavailable', {
-        status: 503,
-        headers: {
-          'Content-Type': 'text/plain',
-          'Cache-Control': 'no-cache',
-        },
-      })
-    }
+    // Return empty items array to prevent errors in frontend
+    return NextResponse.json({ items: [] }, {
+      status: 200,
+      headers: {
+        'Cache-Control': 'no-cache',
+        'X-RSS-Status': 'error',
+        'X-RSS-Errors': errors.slice(0, 5).join('; ').substring(0, 500),
+      },
+    })
   } catch (error) {
     console.error('RSS API: Unexpected error:', error)
-    return new NextResponse('Internal server error', {
-      status: 500,
+    return NextResponse.json({ items: [] }, {
+      status: 200,
       headers: {
-        'Content-Type': 'text/plain',
         'Cache-Control': 'no-cache',
       },
     })
