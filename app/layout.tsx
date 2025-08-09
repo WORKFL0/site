@@ -16,6 +16,7 @@ import {
 import HydrationProvider from '@/components/HydrationProvider'
 import GlobalErrorHandler from '@/components/GlobalErrorHandler'
 import { seoConfig } from '@/config/seo.config'
+import StructuredData, { LocalBusinessStructuredData } from '@/components/SEO/StructuredData'
 import './globals.css'
 
 const inter = Inter({ 
@@ -218,6 +219,11 @@ export default function RootLayout({
           <FacebookPixel />
           <EnhancedLinkAttribution />
           <HubSpotScript />
+          
+          {/* Structured Data for SEO */}
+          <StructuredData type="organization" />
+          <StructuredData type="website" />
+          <LocalBusinessStructuredData />
         </HydrationProvider>
         
         {/* Noscript fallback */}

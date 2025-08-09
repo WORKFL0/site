@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 
     const searchParams = request.nextUrl.searchParams
     const action = searchParams.get('action')
-    const databaseId = process.env.NOTION_BLOG_DATABASE_ID
+    const databaseId = process.env.NOTION_DATABASE_ID || process.env.NOTION_BLOG_DATABASE_ID
 
     if (!databaseId) {
       return NextResponse.json(
@@ -103,7 +103,7 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json()
     const { title, content, type = 'blog' } = body
-    const databaseId = process.env.NOTION_BLOG_DATABASE_ID
+    const databaseId = process.env.NOTION_DATABASE_ID || process.env.NOTION_BLOG_DATABASE_ID
 
     if (!databaseId) {
       return NextResponse.json(

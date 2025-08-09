@@ -31,6 +31,7 @@ import StaticDangerTape from '@/components/StaticDangerTape'
 import SafeHubSpotForm from '@/components/SafeHubSpotForm'
 import SafeNewsletter from '@/components/SafeNewsletter'
 import SafeNewsFeed from '@/components/SafeNewsFeed'
+import StructuredData from '@/components/SEO/StructuredData'
 
 export default function HomeComplete() {
   const [mounted, setMounted] = useState(false)
@@ -344,9 +345,23 @@ export default function HomeComplete() {
     )
   }
 
+  // Prepare FAQ data for structured data
+  const faqStructuredData = faqs.map(faq => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+
   return (
     <div className="min-h-screen bg-white">
       <StaticDangerTape />
+      
+      {/* Structured Data for FAQ */}
+      <StructuredData type="faq" data={faqStructuredData} />
+      <StructuredData type="service" />
       
       {/* Header with Language Switcher */}
       <header className="bg-white shadow-sm sticky top-0 z-50">

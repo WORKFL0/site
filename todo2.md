@@ -2,6 +2,8 @@ Website to do list:
 
 ## 🚨 CRITICAL PRIORITY - CONTENT & DESIGN
 
+
+[] - het klanten gedeelte rond "Sector Ervaring Sinds 2015" klopt niet. Het geeft bestaande klanten en gewerkt voor door elkaar heen weer. Dat wil ik graag uit elkaar los van elkkaar weer geven. Dit voornamelijk omdat de klanten waarvoor we gewerkt hebben in het verleden best wel grote namen zijn! Dat geeft mensen een gevoel van vertrouwen en daar wil ik zo goed en discreet mogelijk mee omgaan!
 [] -  net onder "Ontmoet Het Team" en boven "Sector Ervaring Sinds 2015" zit een enorm groot wit vlak, can je dit ajb weghalen?
 [] - Break/Fix Support Betaal alleen wanneer u ons nodig heeft €125 per uur. hoort 110 per uur te zijn. 
 []-  kan je de beste UX expert laten kijken naar de calculator? Het moet mooier en duiderlijker kunnen. Selector break-fix vs fixed-fee selector met de voor en nadelen naast elkaar, kosten besparing van fixed-fee tenopzichte van breakfix icm het gemak en de rust die het met zich meebrengt. Net iets mooier en doordacht dan dat het nu is. 
