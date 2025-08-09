@@ -2,12 +2,7 @@
 
 import { useEffect } from 'react'
 
-declare global {
-  interface Window {
-    hj: any
-    _hjSettings: any
-  }
-}
+// Type declarations moved to component file to avoid conflicts
 
 export default function Hotjar() {
   useEffect(() => {
@@ -30,7 +25,7 @@ export default function Hotjar() {
       r.async = true
       r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv
       a.appendChild(r)
-    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
+    })(window as any, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=')
   }, [])
   
   return null

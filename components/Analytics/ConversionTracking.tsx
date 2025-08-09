@@ -339,6 +339,6 @@ declare global {
     fbq: (...args: any[]) => void
     lintrk: (...args: any[]) => void
     clarity: (...args: any[]) => void
-    hj: (...args: any[]) => void
+    hj: any
   }
 }
