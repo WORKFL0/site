@@ -269,7 +269,16 @@ export default function HomeComplete() {
       simplicity: 'Simpel, zonder gedoe.',
       promise: 'Dat is onze belofte.',
       ctaPrimary: 'Start Gratis IT-Check',
-      ctaSecondary: 'Bekijk Diensten'
+      ctaSecondary: 'Bekijk Diensten',
+      customers: 'Klanten',
+      inAmsterdam: 'In Amsterdam',
+      uptime: 'Uptime',
+      guaranteed: 'Gegarandeerd',
+      responseTime: 'Response tijd',
+      philosophy: '🎯 Onze Filosofie: IT Moet Simpel Zijn',
+      services: 'Diensten',
+      aboutUs: 'Over Ons',
+      contact: 'Contact'
     },
     en: {
       title: 'The IT Partner that',
@@ -279,7 +288,16 @@ export default function HomeComplete() {
       simplicity: 'Simple, no hassle.',
       promise: "That's our promise.",
       ctaPrimary: 'Start Free IT Check',
-      ctaSecondary: 'View Services'
+      ctaSecondary: 'View Services',
+      customers: 'Customers',
+      inAmsterdam: 'In Amsterdam',
+      uptime: 'Uptime',
+      guaranteed: 'Guaranteed',
+      responseTime: 'Response time',
+      philosophy: '🎯 Our Philosophy: IT Should Be Simple',
+      services: 'Services',
+      aboutUs: 'About Us',
+      contact: 'Contact'
     }
   }
 
@@ -309,13 +327,13 @@ export default function HomeComplete() {
             </Link>
             <nav className="hidden md:flex items-center space-x-8">
               <Link href="/diensten" className="text-gray-700 hover:text-yellow-600">
-                Diensten
+                {t.services}
               </Link>
               <Link href="/over-ons" className="text-gray-700 hover:text-yellow-600">
-                Over Ons
+                {t.aboutUs}
               </Link>
               <Link href="/contact" className="text-gray-700 hover:text-yellow-600">
-                Contact
+                {t.contact}
               </Link>
               <button
                 onClick={() => setLanguage(language === 'nl' ? 'en' : 'nl')}
