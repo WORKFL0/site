@@ -281,14 +281,6 @@ export default function HomeComplete() {
       answer: "We bieden een gratis IT-scan en adviesgesprek. Voor Fixed Fee contracten geldt een opzegtermijn van slechts 1 maand, dus u zit nergens lang aan vast. Begin met Break-Fix om ons te leren kennen!"
     },
     {
-      question: "Helpen jullie ook met cloud migraties?",
-      answer: "Absoluut! We zijn Microsoft Partner en specialiseren in Microsoft 365 migraties. We begeleiden het complete traject van planning tot implementatie en training."
-    },
-    {
-      question: "Hoe zit het met cybersecurity en GDPR?",
-      answer: "Security is onze topprioriteit. We bieden complete security audits, GDPR compliance checks, security awareness training en 24/7 monitoring van uw systemen."
-    },
-    {
       question: "Kunnen jullie onze huidige IT-leverancier vervangen?",
       answer: "Ja, we hebben een beproefd transitieproces waarbij we alles naadloos overnemen zonder downtime. We beginnen met een gratis IT-assessment om de huidige situatie in kaart te brengen."
     }
