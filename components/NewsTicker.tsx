@@ -35,34 +35,25 @@ export default function NewsTicker() {
         })
         
         if (response.ok) {
-          const xmlContent = await response.text()
+          const data = await response.json()
           
-          // Parse RSS XML
-          const parser = new DOMParser()
-          const xmlDoc = parser.parseFromString(xmlContent, 'text/xml')
-          
-          // Extract items (RSS or Atom format)
-          let items = xmlDoc.querySelectorAll('item')
-          if (items.length === 0) {
-            items = xmlDoc.querySelectorAll('entry')
+          // Check if we have items in the response
+          if (data.items && Array.isArray(data.items) && data.items.length > 0) {
+            const news: NewsItem[] = data.items.slice(0, 10).map((item: any) => ({
+              title: item.title || '',
+              link: item.link || '#',
+              pubDate: item.pubDate || ''
+            }))
+            
+            setNewsItems(news)
+          } else {
+            // Set fallback news items if no RSS items available
+            setNewsItems([
+              { title: 'Workflo IT Services - Uw betrouwbare IT-partner', link: '/diensten' },
+              { title: 'Gratis IT-assessment voor nieuwe klanten', link: '/tevredenheidscheck' },
+              { title: '24/7 Support voor al onze managed service klanten', link: '/contact' },
+            ])
           }
-          
-          const news: NewsItem[] = []
-          items.forEach((item, index) => {
-            if (index < 10) { // Limit to 10 items
-              const title = item.querySelector('title')?.textContent?.trim() || ''
-              const link = item.querySelector('link')?.textContent?.trim() || 
-                          item.querySelector('link')?.getAttribute('href')?.trim() || ''
-              const pubDate = item.querySelector('pubDate')?.textContent?.trim() || 
-                             item.querySelector('published')?.textContent?.trim() || ''
-              
-              if (title && link && !title.includes('RSS Feed Unavailable')) {
-                news.push({ title, link, pubDate })
-              }
-            }
-          })
-          
-          setNewsItems(news)
         }
       } catch (error) {
         console.error('Error fetching news:', error)

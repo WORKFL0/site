@@ -177,36 +177,36 @@ export default function HomeComplete() {
     ],
     [
       { name: 'Hunt Amsterdam', src: '/images/logos/hunt-amsterdam.jpeg' },
-      { name: 'Rademakkers', src: '/images/logos/rademakkers.png' },
-      { name: 'Tonko', src: '/images/logos/tonko.png' },
-      { name: 'DMC', src: '/images/logos/dmc.png' }
+      { name: 'Rademakkers', src: '/images/logos/Rademakkers_Logo.png' },
+      { name: 'Tonko', src: '/images/logos/tonko_Logo.png' },
+      { name: 'DMC', src: '/images/logos/DMC_Logo.png' }
     ],
     [
       { name: 'John Doornik', src: '/images/logos/john-doornik.png' },
       { name: 'BLC FinanceView', src: '/images/logos/blc-financeview.png' },
-      { name: 'Greenpeace', src: '/images/logos/greenpeace.png' },
-      { name: 'JUMP', src: '/images/logos/jump.jpg' }
+      { name: 'Greenpeace', src: '/images/logos/Greenpeace_logo.png' },
+      { name: 'JUMP', src: '/images/logos/JUMP_Logo.jpg' }
     ],
     [
-      { name: 'Klaar', src: '/images/logos/klaar.jpg' },
-      { name: 'Dag en Nacht', src: '/images/logos/dagennacht.png' },
-      { name: 'Voice Industries', src: '/images/logos/voice-industries.jpeg' },
+      { name: 'Klaar', src: '/images/logos/Klaar_Logo.jpg' },
+      { name: 'Dag en Nacht', src: '/images/logos/Dagennacht_Logo.png' },
+      { name: 'Voice Industries', src: '/images/logos/voice.industries_Logo.jpeg' },
       { name: 'Hap Elings', src: '/images/logos/hap-elings.png' }
     ],
     [
-      { name: 'Duwtje', src: '/images/logos/duwtje.png' },
+      { name: 'Duwtje', src: '/images/logos/duwtje.svg' },
       { name: 'Highwood', src: '/images/logos/highwood.png' },
       { name: 'Hap Elings', src: '/images/logos/hap-elings.png' },
       { name: 'PR Mansion', src: '/images/logos/prmansion.png' }
     ],
     [
-      { name: 'Winix', src: '/images/logos/winix.jpg' },
-      { name: 'All Response Media', src: '/images/logos/all-response-media.png' },
-      { name: 'WorkStuff', src: '/images/logos/workstuff.jpg' },
-      { name: 'Open Boek', src: '/images/logos/open-boek.png' }
+      { name: 'Winix', src: '/images/logos/Winix_Logo.jpg' },
+      { name: 'Schulte & Lestrade', src: '/images/logos/senl.png' },
+      { name: 'WorkStuff', src: '/images/logos/workstuff_Logo.jpg' },
+      { name: 'Open Boek', src: '/images/logos/open-boek_Logo.png' }
     ],
     [
-      { name: 'Bijvoorkeur', src: '/images/logos/bijvoorkeur.jpg' },
+      { name: 'Bijvoorkeur', src: '/images/logos/Bijvoorkeur_Logo.jpg' },
       { name: 'Huisarts Elings', src: '/images/logos/hap-elings.png' },
       { name: 'Koschuch', src: '/images/logos/koschuch.png' },
       { name: 'La Dress', src: '/images/logos/ladress.png' }

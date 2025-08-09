@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Run typecheck
+npm run typecheck
+
+# Run linting
+npm run lint
+
+# Run unit tests
+npm run test:unit
+
+# Run comprehensive QA tests
+npm run test:qa
+
+# If any command fails, prevent commit
+if [ $? -ne 0 ]; then
+  echo "Commit failed. Please fix the issues above."
+  exit 1
+fi
+
+exit 0
