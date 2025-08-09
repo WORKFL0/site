@@ -560,23 +560,30 @@ export default function HomeComplete() {
               Sector Ervaring Sinds 2015
             </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
-              {logoSets[currentLogoSet].map((logo, index) => (
-                <div
-                  key={logo.name}
-                  className="flex items-center justify-center opacity-70 hover:opacity-100 transition-all p-4"
-                >
-                  <Image
-                    src={logo.src}
-                    alt={logo.name}
-                    width={180}
-                    height={90}
-                    className="max-h-20 w-auto object-contain"
-                    onError={(e) => {
-                      e.currentTarget.src = '/images/placeholder-logo.png'
-                    }}
-                  />
-                </div>
-              ))}
+              {logoSets[currentLogoSet].map((logo, index) => {
+                // Logos that need special sizing (take up 2 spaces)
+                const needsSpecialSizing = ['John Doornik', 'DoctorFeelgood', 'BLC FinanceView'].includes(logo.name)
+                
+                return (
+                  <div
+                    key={logo.name}
+                    className={`flex items-center justify-center opacity-70 hover:opacity-100 transition-all p-4 ${
+                      needsSpecialSizing ? 'md:col-span-2' : ''
+                    }`}
+                  >
+                    <Image
+                      src={logo.src}
+                      alt={logo.name}
+                      width={needsSpecialSizing ? 240 : 180}
+                      height={needsSpecialSizing ? 120 : 90}
+                      className={`${needsSpecialSizing ? 'max-h-24' : 'max-h-20'} w-auto object-contain`}
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/placeholder-logo.png'
+                      }}
+                    />
+                  </div>
+                )
+              })}
             </div>
             <div className="text-center mt-4 text-sm text-gray-500">
               Vertrouwd door: Havas Media • Podimo • Leyden Labs • TBWA • iO Digital • Daily Paper • Greenpeace • en 200+ anderen
