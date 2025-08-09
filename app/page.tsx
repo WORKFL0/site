@@ -226,10 +226,10 @@ export default function HomeComplete() {
       description: 'Customer success expert'
     },
     {
-      name: 'Mas Samir',
+      name: 'Mas',
       role: 'Junior Support Engineer',
-      image: '/images/team/samir.jpg',
-      description: 'Cybersecurity & compliance'
+      image: null,  // Remove photo as per todo
+      description: 'Technical support specialist'
     }
   ]
 

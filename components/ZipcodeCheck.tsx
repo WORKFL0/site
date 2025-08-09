@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 
 interface Provider {
   name: string
@@ -153,11 +152,7 @@ export default function ZipcodeCheck() {
               </div>
             </div>
           ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
+            <div className="animate-fadeInUp">
               <div className="mb-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">
                   Beschikbare verbindingen voor:
@@ -169,11 +164,8 @@ export default function ZipcodeCheck() {
 
               <div className="space-y-3 mb-6">
                 {results.map((provider, index) => (
-                  <motion.div
+                  <div
                     key={provider.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
                     className={`p-4 rounded-lg border-2 ${
                       provider.available
                         ? 'border-green-200 bg-green-50'
@@ -207,7 +199,7 @@ export default function ZipcodeCheck() {
                         )}
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
 
@@ -232,10 +224,28 @@ export default function ZipcodeCheck() {
                   <strong>Tip:</strong> Wij regelen de complete overstap voor u, inclusief opzegging bij uw huidige provider!
                 </p>
               </div>
-            </motion.div>
+            </div>
           )}
         </div>
       </div>
+      
+      {/* Inline CSS animations */}
+      <style jsx>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fadeInUp {
+          animation: fadeInUp 0.5s ease-out forwards;
+        }
+      `}</style>
     </div>
   )
 }

@@ -25,12 +25,21 @@ export default function SafeHubSpotForm() {
       return
     }
 
+    // Load main HubSpot script
     const script = document.createElement('script')
-    script.src = '//js-eu1.hsforms.net/forms/embed/v2.js'
+    script.src = 'https://js-eu1.hsforms.net/forms/embed/v2.js'
     script.charset = 'utf-8'
     script.type = 'text/javascript'
     script.async = true
     script.defer = true
+    
+    // Load secondary HubSpot script for extra functionality
+    const script2 = document.createElement('script')
+    script2.src = 'https://js-eu1.hsforms.net/forms/embed/26510736.js'
+    script2.charset = 'utf-8'
+    script2.type = 'text/javascript'
+    script2.async = true
+    script2.defer = true
     
     script.onload = () => {
       if (window.hbspt) {
@@ -45,9 +54,10 @@ export default function SafeHubSpotForm() {
     }
     
     document.body.appendChild(script)
+    document.body.appendChild(script2)
     
     return () => {
-      // Don't remove script as it might be used by other components
+      // Don't remove scripts as they might be used by other components
     }
   }, [mounted])
 
