@@ -42,6 +42,12 @@ export default function HomeComplete() {
   useEffect(() => {
     setMounted(true)
     
+    // Load language preference from localStorage
+    const savedLanguage = localStorage.getItem('language') as 'nl' | 'en' | null
+    if (savedLanguage) {
+      setLanguage(savedLanguage)
+    }
+    
     // Add Hotjar
     if (typeof window !== 'undefined') {
       (function(h: any,o: any,t: any,j: any,a: any,r: any){
@@ -73,7 +79,7 @@ export default function HomeComplete() {
 
   const services = [
     {
-      title: 'Managed IT Services',
+      title: 'Managed IT Diensten',
       description: 'Complete IT-ondersteuning voor uw bedrijf met 24/7 monitoring.',
       icon: ServerIcon,
       emoji: '🛡️',
@@ -93,7 +99,7 @@ export default function HomeComplete() {
       link: '/diensten/cybersecurity'
     },
     {
-      title: 'Cloud Solutions',
+      title: 'Cloud Oplossingen',
       description: 'Veilige cloud-infrastructuur die meegroeit.',
       icon: CloudIcon,
       emoji: '☁️',
@@ -306,7 +312,9 @@ export default function HomeComplete() {
       philosophy: '🎯 Onze Filosofie: IT Moet Simpel Zijn',
       services: 'Diensten',
       aboutUs: 'Over Ons',
-      contact: 'Contact'
+      contact: 'Contact',
+      ourServices: 'Onze Diensten',
+      ourTeam: 'Ons Team'
     },
     en: {
       title: 'The IT Partner that',
@@ -316,7 +324,7 @@ export default function HomeComplete() {
       simplicity: 'Simple, no hassle.',
       promise: "That's our promise.",
       ctaPrimary: 'Start Free IT Check',
-      ctaSecondary: 'View Services',
+      ctaSecondary: 'Bekijk Diensten',
       customers: 'Customers',
       inAmsterdam: 'In Amsterdam',
       uptime: 'Uptime',
@@ -325,7 +333,9 @@ export default function HomeComplete() {
       philosophy: '🎯 Our Philosophy: IT Should Be Simple',
       services: 'Services',
       aboutUs: 'About Us',
-      contact: 'Contact'
+      contact: 'Contact',
+      ourServices: 'Our Services',
+      ourTeam: 'Our Team'
     }
   }
 
@@ -364,7 +374,11 @@ export default function HomeComplete() {
                 {t.contact}
               </Link>
               <button
-                onClick={() => setLanguage(language === 'nl' ? 'en' : 'nl')}
+                onClick={() => {
+                  const newLanguage = language === 'nl' ? 'en' : 'nl'
+                  setLanguage(newLanguage)
+                  localStorage.setItem('language', newLanguage)
+                }}
                 className="flex items-center gap-1 px-3 py-1 rounded-lg border border-gray-300 hover:border-yellow-400"
               >
                 <GlobeAltIcon className="w-4 h-4" />
@@ -445,16 +459,16 @@ export default function HomeComplete() {
               {/* Stats */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
                 <div className="text-center animate-fadeInUp">
-                  <div className="text-3xl font-bold text-gray-900">200+ Klanten</div>
-                  <div className="text-gray-600">In Amsterdam</div>
+                  <div className="text-3xl font-bold text-gray-900">200+ {t.customers}</div>
+                  <div className="text-gray-600">{t.inAmsterdam}</div>
                 </div>
                 <div className="text-center animate-fadeInUp">
-                  <div className="text-3xl font-bold text-gray-900">99.9% Uptime</div>
-                  <div className="text-gray-600">Gegarandeerd</div>
+                  <div className="text-3xl font-bold text-gray-900">99.9% {t.uptime}</div>
+                  <div className="text-gray-600">{t.guaranteed}</div>
                 </div>
                 <div className="text-center animate-fadeInUp">
                   <div className="text-3xl font-bold text-gray-900">&lt; 15 min</div>
-                  <div className="text-gray-600">Response tijd</div>
+                  <div className="text-gray-600">{t.responseTime}</div>
                 </div>
               </div>
             </div>
@@ -479,7 +493,7 @@ export default function HomeComplete() {
             <div className="max-w-4xl mx-auto text-center">
               <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-8 md:p-12 shadow-xl border-2 border-yellow-200 animate-fadeInUp">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                  🎯 Onze Filosofie: IT Moet Simpel Zijn
+                  {t.philosophy}
                 </h2>
                 <p className="text-lg md:text-xl text-gray-800 leading-relaxed mb-6">
                   Bij Workflo geloven we dat IT geen hoofdpijn moet veroorzaken. Daarom maken we alles 
@@ -596,7 +610,7 @@ export default function HomeComplete() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                Onze Diensten
+                {t.ourServices}
               </h2>
               <p className="text-xl text-gray-600">
                 Complete IT-oplossingen voor uw bedrijf
@@ -710,7 +724,7 @@ export default function HomeComplete() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                Ons Team
+                {t.ourTeam}
               </h2>
               <p className="text-xl text-gray-600">
                 Ervaren IT professionals die klaar staan voor uw bedrijf

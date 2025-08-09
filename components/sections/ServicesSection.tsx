@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const services = [
   {
-    title: 'Cloud Services',
+    title: 'Cloud Diensten',
     description: 'Reduce IT costs by 35% with smart cloud solutions. Scalable, secure, and optimized for Amsterdam businesses.',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -28,7 +28,7 @@ const services = [
     color: 'from-purple-400 to-purple-600',
   },
   {
-    title: 'Managed IT Services',
+    title: 'Managed IT Diensten',
     description: 'Focus on growth while we handle your IT. 95% less downtime, predictable monthly costs, expert support.',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -39,7 +39,7 @@ const services = [
     color: 'from-green-400 to-green-600',
   },
   {
-    title: 'IT Consulting',
+    title: 'IT Consultancy',
     description: 'Strategic technology guidance for Amsterdam SMEs. Transform IT from cost center to growth engine.',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,11 +104,11 @@ const ServicesSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Solutions That <span className="text-gradient">Drive Results</span>
+            Oplossingen Die <span className="text-gradient">Resultaat Leveren</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            From cloud migration to cybersecurity, we provide comprehensive IT solutions 
-            tailored for Amsterdam&apos;s ambitious businesses.
+            Van cloud migratie tot cybersecurity, wij bieden complete IT-oplossingen 
+            op maat voor ambitieuze Amsterdamse bedrijven.
           </p>
         </motion.div>
 
@@ -151,7 +151,7 @@ const ServicesSection = () => {
 
                   {/* Learn more link */}
                   <div className="flex items-center text-primary-600 font-medium group-hover:translate-x-2 transition-transform duration-300">
-                    <span className="mr-2">Learn more</span>
+                    <span className="mr-2">Lees meer</span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
@@ -176,7 +176,7 @@ const ServicesSection = () => {
             href="/services"
             className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium text-lg group"
           >
-            <span>View all services</span>
+            <span>Bekijk alle diensten</span>
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

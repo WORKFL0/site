@@ -52,7 +52,7 @@ function InlineFooter() {
             <h3 className="font-bold mb-4 text-yellow-400">Diensten</h3>
             <ul className="space-y-2 text-gray-400">
               <li><Link href="/diensten" className="hover:text-yellow-400">Managed IT</Link></li>
-              <li><Link href="/diensten" className="hover:text-yellow-400">Cloud Services</Link></li>
+              <li><Link href="/diensten" className="hover:text-yellow-400">Cloud Diensten</Link></li>
               <li><Link href="/diensten" className="hover:text-yellow-400">Cybersecurity</Link></li>
             </ul>
           </div>
@@ -86,7 +86,7 @@ export default function CaseStudiesPage() {
       client: 'Schulte & Lestraden',
       industry: 'Installatie Diensten',
       logo: '/images/logos/schulte-lestraden.png',
-      duration: 'Managed IT Services',
+      duration: 'Managed IT Diensten',
       linkedinUrl: 'https://www.linkedin.com/feed/update/urn:li:activity:7236276208433344512',
       challenge: 'Een gevestigd installatiebedrijf met meer dan 70 jaar ervaring had een complete IT-infrastructuur installatie en doorlopende tweedelijns ondersteuning nodig om hun activiteiten te moderniseren.',
       solution: 'WORKFLO leverde een uitgebreide IT-omgeving installatie inclusief netwerk setup, server configuratie en werkstation uitrol. We hebben ook een tweedelijns ondersteuningssysteem opgezet om continue bedrijfsvoering te garanderen.',
