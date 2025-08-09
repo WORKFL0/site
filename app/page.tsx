@@ -829,8 +829,8 @@ export default function HomeComplete() {
           </div>
         </section>
 
-        {/* News Feed */}
-        <SafeNewsFeed />
+        {/* News Feed - Temporarily disabled due to error */}
+        {/* <SafeNewsFeed /> */}
 
         {/* Newsletter & Contact Forms */}
         <section className="py-20 bg-white">
@@ -858,14 +858,14 @@ export default function HomeComplete() {
           </div>
         </section>
 
-        {/* Newsletter Signup */}
-        <section className="py-16 bg-gray-50">
+        {/* Newsletter Signup - Temporarily disabled due to error */}
+        {/* <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto">
               <HubSpotNewsletterSignup />
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Final CTA */}
         <section className="py-20 bg-black text-white relative overflow-hidden">
