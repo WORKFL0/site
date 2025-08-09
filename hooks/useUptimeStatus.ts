@@ -62,7 +62,9 @@ export const useUptimeStatus = (): UptimeStatus => {
           }
           
           if (!response) {
-            throw new Error('No response received from uptime check API')
+            console.error('No response received from uptime check API')
+            setStatus(prev => ({ ...prev, loading: false, error: 'Connection failed' }))
+            return
           }
           
           if (response.ok) {

@@ -67,9 +67,15 @@ const NewsFeed = ({
             clearTimeout(fetchTimeout)
             console.error('RSS fetch network error:', err)
             if (err.name === 'AbortError') {
-              throw new Error('RSS feed request timed out')
+              console.error('RSS feed request timed out')
+              setError('RSS feed request timed out')
+              setLoading(false)
+              return
             }
-            throw new Error('Network error fetching RSS feed')
+            console.error('Network error fetching RSS feed')
+            setError('Network error fetching RSS feed')
+            setLoading(false)
+            return
           })
           
           clearTimeout(fetchTimeout)
@@ -77,11 +83,17 @@ const NewsFeed = ({
           clearTimeout(timeoutId)
           
           if (!response) {
-            throw new Error('No response received from RSS feed API')
+            console.error('No response received from RSS feed API')
+            setError('No response received from RSS feed')
+            setLoading(false)
+            return
           }
           
           if (!response.ok) {
-            throw new Error(`Failed to fetch RSS feed: ${response.status} ${response.statusText}`)
+            console.error(`Failed to fetch RSS feed: ${response.status} ${response.statusText}`)
+            setError(`Failed to fetch RSS feed: ${response.status}`)
+            setLoading(false)
+            return
           }
           
           // Check which RSS source was used (for debugging)
@@ -92,11 +104,16 @@ const NewsFeed = ({
           
           const xmlContent = await response.text().catch(err => {
             console.error('Error reading RSS response text:', err)
-            throw new Error('Failed to read RSS feed content')
+            setError('Failed to read RSS feed content')
+            setLoading(false)
+            return ''
           })
           
           if (!xmlContent || xmlContent.trim().length === 0) {
-            throw new Error('No RSS content available')
+            console.warn('No RSS content available')
+            setError('No RSS content available')
+            setLoading(false)
+            return
           }
           
           console.log('Received RSS content length:', xmlContent.length)
@@ -104,7 +121,10 @@ const NewsFeed = ({
           
           // Validate that we have a DOM parser available
           if (typeof DOMParser === 'undefined') {
-            throw new Error('DOMParser not available in this environment')
+            console.error('DOMParser not available in this environment')
+            setError('Browser compatibility issue')
+            setLoading(false)
+            return
           }
           
           const parser = new DOMParser()
@@ -114,11 +134,16 @@ const NewsFeed = ({
             xmlDoc = parser.parseFromString(xmlContent, 'text/xml')
           } catch (parseErr) {
             console.error('XML parsing failed:', parseErr)
-            throw new Error('Failed to parse RSS feed XML')
+            setError('Failed to parse RSS feed')
+            setLoading(false)
+            return
           }
           
           if (!xmlDoc) {
-            throw new Error('Failed to create XML document from RSS content')
+            console.error('Failed to create XML document from RSS content')
+            setError('Failed to process RSS feed')
+            setLoading(false)
+            return
           }
           
           // Check for parsing errors
@@ -127,7 +152,10 @@ const NewsFeed = ({
             console.error('XML parsing error:', parserError.textContent)
             // Try to recover by checking if it's a valid RSS structure despite the error
             if (!xmlContent.includes('<item>') && !xmlContent.includes('<entry>')) {
-              throw new Error('Invalid RSS feed format - no items found')
+              console.error('Invalid RSS feed format - no items found')
+              setError('Invalid RSS feed format')
+              setLoading(false)
+              return
             }
           }
           
@@ -140,7 +168,9 @@ const NewsFeed = ({
             }
           } catch (queryErr) {
             console.error('Error querying RSS items:', queryErr)
-            throw new Error('Failed to extract items from RSS feed')
+            setError('Failed to extract items from RSS feed')
+            setLoading(false)
+            return
           }
           
           console.log(`Found ${items.length} items in RSS feed`)
@@ -214,7 +244,9 @@ const NewsFeed = ({
             })
           } catch (iterationErr) {
             console.error('Error iterating through RSS items:', iterationErr)
-            throw new Error('Failed to process RSS feed items')
+            setError('Failed to process RSS feed items')
+            setLoading(false)
+            return
           }
           
           console.log(`Processed ${newsData.length} valid news items`)
@@ -230,7 +262,9 @@ const NewsFeed = ({
           setNewsItems(newsData)
         } catch (timeoutErr) {
           clearTimeout(timeoutId)
-          throw timeoutErr
+          console.error('Timeout error in RSS feed:', timeoutErr)
+          setError('Failed to load RSS feed')
+          setLoading(false)
         }
       } catch (err) {
         console.error('Error in RSS feed fetch operation:', err)

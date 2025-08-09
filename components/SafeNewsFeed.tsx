@@ -20,7 +20,11 @@ export default function SafeNewsFeed() {
     const fetchNews = async () => {
       try {
         const response = await fetch('/api/rss-feed')
-        if (!response.ok) throw new Error('Failed to fetch')
+        if (!response.ok) {
+          console.error('Failed to fetch RSS feed')
+          setError(true)
+          return
+        }
         const data = await response.json()
         
         if (data.items && data.items.length > 0) {
