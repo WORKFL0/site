@@ -247,6 +247,34 @@ export default function HomeComplete() {
       answer: "Ja, voor Fixed Fee klanten bieden we 24/7 support. Break-Fix klanten kunnen optioneel een SLA afsluiten voor support buiten kantooruren."
     },
     {
+      question: "Wat is het verschil tussen Break-Fix en Fixed Fee?",
+      answer: "Break-Fix betekent dat u alleen betaalt wanneer u ons nodig heeft (uurtarief). Fixed Fee is een vast maandbedrag voor onbeperkte support. Fixed Fee is voordeliger vanaf 1-2 storingen per maand en biedt proactieve monitoring."
+    },
+    {
+      question: "Kunnen jullie ook helpen met cloudmigratie?",
+      answer: "Absoluut! We zijn Microsoft Partner en helpen dagelijks bedrijven met de overgang naar Microsoft 365, Azure en andere cloudoplossingen. Inclusief datamistratie, training en nazorg."
+    },
+    {
+      question: "Hoe zit het met cybersecurity?",
+      answer: "Security is onze topprioriteit. We implementeren multi-layer security met firewalls, antivirus, backup, MFA en security awareness training. Voor Fixed Fee klanten is dit allemaal inbegrepen."
+    },
+    {
+      question: "Werken jullie ook voor kleine bedrijven?",
+      answer: "Jazeker! We werken voor bedrijven vanaf 5 werkplekken. Ons kleinste Fixed Fee pakket is speciaal ontworpen voor MKB-bedrijven die professionele IT willen zonder enterprise prijzen."
+    },
+    {
+      question: "Wat gebeurt er met onze data als we stoppen?",
+      answer: "U blijft altijd eigenaar van uw data. Bij beëindiging krijgt u alle data, documentatie en wachtwoorden. We helpen zelfs met de overdracht naar een nieuwe partij als dat nodig is."
+    },
+    {
+      question: "Hebben jullie ervaring in onze branche?",
+      answer: "Met 200+ klanten sinds 2015 hebben we ervaring in vrijwel elke branche: van advocatenkantoren tot creative agencies, van e-commerce tot healthcare. We begrijpen branche-specifieke requirements."
+    },
+    {
+      question: "Kunnen we eerst een proefperiode doen?",
+      answer: "We bieden een gratis IT-scan en adviesgesprek. Voor Fixed Fee contracten geldt een opzegtermijn van slechts 1 maand, dus u zit nergens lang aan vast. Begin met Break-Fix om ons te leren kennen!"
+    },
+    {
       question: "Helpen jullie ook met cloud migraties?",
       answer: "Absoluut! We zijn Microsoft Partner en specialiseren in Microsoft 365 migraties. We begeleiden het complete traject van planning tot implementatie en training."
     },

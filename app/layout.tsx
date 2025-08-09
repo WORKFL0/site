@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 import CookieConsent from '@/components/CookieConsent'
 import { LanguageProvider } from '@/context/LanguageContext'
 import GoogleAnalytics from '@/components/Analytics/GoogleAnalytics'
+import Hotjar from '@/components/Analytics/Hotjar'
 import HubSpotScript from '@/components/forms/HubSpotScript'
 import { 
   MicrosoftClarity, 
@@ -210,6 +211,7 @@ export default function RootLayout({
           {/* Analytics and Tracking - Delayed after hydration */}
           <Analytics />
           <GoogleAnalytics />
+          <Hotjar />
           <MicrosoftClarity />
           <HotjarTracking />
           <LinkedInInsight />
